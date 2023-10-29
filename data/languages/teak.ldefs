@@ -2,7 +2,7 @@
 
 <language_definitions>
   
-  <language processor="XpertTeak"
+  <language processor="TeakLite"
             endian="little"
             size="16"
             variant="default"
