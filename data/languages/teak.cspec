@@ -9,10 +9,25 @@
     <varnode space="stack" offset="1" size="2"/>
   </returnaddress>
   <default_proto>
-    <prototype name="__stdcall" extrapop="2" stackshift="2" strategy="register">
+    <prototype name="__stdcall" extrapop="0" stackshift="0">
       <input>
         <pentry minsize="1" maxsize="1">
           <register name="a0"/>
+        </pentry>
+        <pentry minsize="1" maxsize="1">
+          <register name="a1"/>
+        </pentry>
+        <pentry minsize="1" maxsize="1">
+          <register name="b0"/>
+        </pentry>
+        <pentry minsize="1" maxsize="1">
+          <register name="b0"/>
+        </pentry>
+        <pentry minsize="1" maxsize="1">
+          <register name="a1"/>
+        </pentry>
+        <pentry minsize="1" maxsize="500">
+          <addr offset="0" space="stack"/>
         </pentry>
       </input>
       <output>
@@ -21,8 +36,15 @@
         </pentry>
       </output>
       <unaffected>
+      <!-- TODO: -->
         <register name="SP"/>
       </unaffected>
+      <killedbycall>
+          <register name="a0"/>
+          <register name="a1"/>
+          <register name="b0"/>
+          <register name="b1"/>
+      </killedbycall>
     </prototype>
   </default_proto>
 </compiler_spec>
