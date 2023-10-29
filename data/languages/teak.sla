@@ -1,0 +1,96 @@
+<sleigh version="3" bigendian="false" align="1" uniqbase="0x80">
+<sourcefiles>
+<sourcefile name="teak.slaspec" index="0"/>
+</sourcefiles>
+<spaces defaultspace="RAM">
+<space_other name="OTHER" index="1" bigendian="false" delay="0" size="8" physical="false"/>
+<space_unique name="unique" index="2" bigendian="false" delay="0" size="4" physical="true"/>
+<space name="RAM" index="3" bigendian="false" delay="1" size="2" physical="true"/>
+<space name="register" index="4" bigendian="false" delay="0" size="2" physical="true"/>
+</spaces>
+<symbol_table scopesize="2" symbolsize="16">
+<scope id="0x0" parent="0x0"/>
+<scope id="0x1" parent="0x0"/>
+<subtable_sym_head name="instruction" id="0x0" scope="0x0"/>
+<start_sym_head name="inst_start" id="0x1" scope="0x0"/>
+<end_sym_head name="inst_next" id="0x2" scope="0x0"/>
+<next2_sym_head name="inst_next2" id="0x3" scope="0x0"/>
+<varnode_sym_head name="b0" id="0x4" scope="0x0"/>
+<varnode_sym_head name="b1" id="0x5" scope="0x0"/>
+<varnode_sym_head name="a0" id="0x6" scope="0x0"/>
+<varnode_sym_head name="a1" id="0x7" scope="0x0"/>
+<varnode_sym_head name="ip" id="0x8" scope="0x0"/>
+<varnode_sym_head name="sp" id="0x9" scope="0x0"/>
+<value_sym_head name="op1_9" id="0xa" scope="0x0"/>
+<varlist_sym_head name="Ab_10" id="0xb" scope="0x0"/>
+<varlist_sym_head name="Bx_0" id="0xc" scope="0x0"/>
+<value_sym_head name="op12_15" id="0xd" scope="0x0"/>
+<operand_sym_head name="Ab_10" id="0xe" scope="0x1"/>
+<operand_sym_head name="Bx_0" id="0xf" scope="0x1"/>
+<subtable_sym name="instruction" id="0x0" scope="0x0" numct="1">
+<constructor parent="0x0" first="1" length="2" line="0:28">
+<oper id="0xe"/>
+<oper id="0xf"/>
+<print piece="add"/>
+<print piece=" "/>
+<opprint id="0"/>
+<print piece=","/>
+<opprint id="1"/>
+<construct_tpl>
+<null/><op_tpl code="INT_ADD"><varnode_tpl><const_tpl type="handle" val="1" s="space"/><const_tpl type="handle" val="1" s="offset"/><const_tpl type="handle" val="1" s="size"/></varnode_tpl>
+<varnode_tpl><const_tpl type="handle" val="0" s="space"/><const_tpl type="handle" val="0" s="offset"/><const_tpl type="handle" val="0" s="size"/></varnode_tpl>
+<varnode_tpl><const_tpl type="handle" val="1" s="space"/><const_tpl type="handle" val="1" s="offset"/><const_tpl type="handle" val="1" s="size"/></varnode_tpl>
+</op_tpl>
+</construct_tpl>
+</constructor>
+<decision number="1" context="false" start="0" size="0">
+<pair id="0">
+<instruct_pat>
+<pat_block offset="0" nonzero="2">
+  <mask_word mask="0xfef30000" val="0xdad20000"/>
+</pat_block>
+</instruct_pat>
+</pair>
+</decision>
+</subtable_sym>
+<start_sym name="inst_start" id="0x1" scope="0x0"/>
+<end_sym name="inst_next" id="0x2" scope="0x0"/>
+<next2_sym name="inst_next2" id="0x3" scope="0x0"/>
+<varnode_sym name="b0" id="0x4" scope="0x0" space="register" offset="0x0" size="2">
+</varnode_sym>
+<varnode_sym name="b1" id="0x5" scope="0x0" space="register" offset="0x2" size="2">
+</varnode_sym>
+<varnode_sym name="a0" id="0x6" scope="0x0" space="register" offset="0x4" size="2">
+</varnode_sym>
+<varnode_sym name="a1" id="0x7" scope="0x0" space="register" offset="0x6" size="2">
+</varnode_sym>
+<varnode_sym name="ip" id="0x8" scope="0x0" space="register" offset="0x10" size="2">
+</varnode_sym>
+<varnode_sym name="sp" id="0x9" scope="0x0" space="register" offset="0x12" size="2">
+</varnode_sym>
+<value_sym name="op1_9" id="0xa" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="1" bitend="9" bytestart="0" byteend="1" shift="1"/>
+</value_sym>
+<varlist_sym name="Ab_10" id="0xb" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="10" bitend="11" bytestart="1" byteend="1" shift="2"/>
+<var id="0x4"/>
+<var id="0x5"/>
+<var id="0x6"/>
+<var id="0x7"/>
+</varlist_sym>
+<varlist_sym name="Bx_0" id="0xc" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="0" bytestart="0" byteend="0" shift="0"/>
+<var id="0x4"/>
+<var id="0x5"/>
+</varlist_sym>
+<value_sym name="op12_15" id="0xd" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="12" bitend="15" bytestart="1" byteend="1" shift="4"/>
+</value_sym>
+<operand_sym name="Ab_10" id="0xe" scope="0x1" subsym="0xb" off="0" base="-1" minlen="2" index="0">
+<operand_exp index="0" table="0x0" ct="0x0"/>
+</operand_sym>
+<operand_sym name="Bx_0" id="0xf" scope="0x1" subsym="0xc" off="0" base="-1" minlen="2" index="1">
+<operand_exp index="1" table="0x0" ct="0x0"/>
+</operand_sym>
+</symbol_table>
+</sleigh>

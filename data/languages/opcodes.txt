@@ -1,0 +1,772 @@
+# Borrowed from http://problemkaputt.de/gbatek-dsi-teaklite-ii-instruction-set-encoding.htm
+# Base  Ver Opcode (with parameter bits located at @bitnumber and up)
+  D4FBh TL  add  MemImm16@16, Ax@8
+  A600h TL  add  MemImm8@0, Ax@8
+  86C0h TL  add  Imm16@16, Ax@8
+  C600h TL  add  Imm8u@0, Ax@8
+  D4DBh TL  add  MemR7Imm16@16, Ax@8
+  4600h TL  add  MemR7Imm7s@0, Ax@8
+  8680h TL  add  MemRn@0, Ax@8 
+             || Rn@0stepZIDS@3
+  86A0h TL  add  RegisterP0@0, Ax@8
+  D2DAh TL2 add  Ab@10, Bx@0
+  5DF0h TL2 add  Bx@1, Ax@0
+  9070h TL2 add  MemR01@8, sv, Abh@2 
+             || sub MemR01@8offsZI@0, sv, Abl@2
+             || mov Abl@2, MemR45@8 
+             || R01@8stepII2@0, R45@8stepII2@1
+  5DB0h TL2 add  MemR04@1, sv, Abh@2 
+             || sub MemR04@1offsZI@0, sv, Abl@2
+             || R04@1stepII2@0
+  6F80h TL2 add  MemR45@2, MemR01@2, Abh@3
+             || add MemR45@2offsZI@1, MemR01@2offsZI@0, Abl@3
+             || R01@2stepII2@0, R45@2stepII2@1
+  6FA0h TL2 add  MemR45@2, MemR01@2, Abh@3
+             || sub MemR45@2offsZI@1, MemR01@2offsZI@0, Abl@3
+             || R01@2stepII2@0, R45@2stepII2@1
+  5E30h TL2 add  MemR45@8, sv, Abh@2 
+             || sub MemR45@8offsZI@1, sv, Abl@2
+             || mov Abl@2, MemR01@8 
+             || R01@8stepII2@0, R45@8stepII2@1
+  5DC0h TL2 add  p0, p1, Ab@2
+  D782h TL2 add  p1, Ax@0
+  5DF8h TL2 add  Px@1, Bx@0
+  D38Bh TL2 add  r6, Ax@4
+  4590h TL2 add3 p0, p1, Ab@2
+  4592h TL2 add3a p0, p1, Ab@2
+  4593h TL2 add3aa p0, p1, Ab@2
+  5DC1h TL2 adda p0, p1, Ab@2
+  B200h TL  addh MemImm8@0, Ax@8
+  9280h TL  addh MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  92A0h TL  addh Register@0, Ax@8
+  9464h TL2 addh r6, Ax@0
+  90E0h TL2 addhp MemR0425@2, Px@4, Ax@8 || R0425@2stepII2D2S@0 ;p=ProgMem? Px?
+  B400h TL  addl MemImm8@0, Ax@8
+  9480h TL  addl MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  94A0h TL  addl Register@0, Ax@8
+  9466h TL2 addl r6, Ax@0
+  906Ch TL2 addsub  p0, p1, Ab@0
+  49C2h TL2 addsub  p1, p0, Ab@4
+  916Ch TL2 addsuba p0, p1, Ab@0
+  49C3h TL2 addsuba p1, p0, Ab@4
+  E700h TL  addv Imm16@16, MemImm8@0
+  86E0h TL  addv Imm16@16, MemRn@0 || Rn@0stepZIDS@3
+  87E0h TL  addv Imm16@16, Register@0
+  47BBh TL2 addv Imm16@16, r6
+  D4F9h TL  and  MemImm16@16, Ax@8
+  A200h TL  and  MemImm8@0, Ax@8
+  82C0h TL  and  Imm16@16, Ax@8
+  C200h TL  and  Imm8u@0, Ax@8
+  D4D9h TL  and  MemR7Imm16@16, Ax@8
+  4200h TL  and  MemR7Imm7s@0, Ax@8
+  8280h TL  and  MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  82A0h TL  and  RegisterP0@0, Ax@8
+  6770h TL2 and  Ab@2, Ab@0, Ax@12                ;TL2 only
+  D389h TL2 and  r6, Ax@4
+  4B80h TL  banke BankFlags6@0  ;{r0}{,r1}{,r4}{,cfgi}{,r7}{,cfgj}
+  8CDFh TL2 bankr       ;without operand ?
+  8CDCh TL2 bankr Ar@0
+  8CD0h TL2 bankr Ar@2, Arp@0
+  8CD8h TL2 bankr Arp@0
+  5EB8h TL2 bitrev Rn@0
+  D7E8h TL2 bitrev Rn@0, dbrv
+  D7E0h TL2 bitrev Rn@0, ebrv
+  5C00h TL  bkrep NoReverse, Imm8u@0, Address16@16
+  5D00h TL  bkrep NoReverse, Register@0, Address18@16and5
+  8FDCh TL2 bkrep NoReverse, r6, Address18@16and0
+  DA9Ch TL2 bkreprst MemR0425@0
+  5F48h TL2 bkreprst MemSp, Unused2@0
+  DADCh TL2 bkrepsto MemR0425@0, Unused1@10
+  9468h TL2 bkrepsto MemSp, Unused3@0
+  4180h TL  br   Address18@16and4, Cond@0
+  D3C0h TL  break               ;break
+  5000h TL  brr  RelAddr7@4, Cond@0
+  41C0h TL  call Address18@16and4, Cond@0
+  D480h TL  calla Axl@8
+  D381h TL2 calla Ax@4
+  1000h TL  callr RelAddr7@4, Cond@0
+  9068h TL2 cbs  Axh@0, Axh@not0, r0, ge
+  9168h TL2 cbs  Axh@0, Axh@not0, r0, gt
+  D49Eh TL2 cbs  Axh@8, Bxh@5, r0, ge
+  D49Fh TL2 cbs  Axh@8, Bxh@5, r0, gt
+  D5C0h TL2 cbs  MemR01@2, MemR45@2, ge || R01@2stepII2@0, R45@2stepII2@1
+  D5C8h TL2 cbs  MemR01@2, MemR45@2, gt || R01@2stepII2@0, R45@2stepII2@1
+  E500h TL  chng Imm16@16, MemImm8@0
+  84E0h TL  chng Imm16@16, MemRn@0 || Rn@0stepZIDS@3
+  85E0h TL  chng Imm16@16, Register@0
+  47BAh TL2 chng Imm16@16, r6
+  0038h TL2 chng Imm16@16, SttMod@0
+  6760h TL  clr  Implied ConstZero, Ax@12, Cond@0  ;aX=0
+  6F60h TL  clr  Implied ConstZero, Bx@12, Cond@0  ;bX=0
+  8ED0h TL2 clr  Implied ConstZero, Ab@2, Ab@0
+  5DFEh TL2 clrp p0
+  5DFFh TL2 clrp p0, p1
+  5DFDh TL2 clrp p1
+  67C0h TL  clrr Implied Const8000h, Ax@12, Cond@0 ;aX=8000h
+  6F70h TL2 clrr Implied Const8000h, Bx@12, Cond@0 ;bX=8000h
+  8DD0h TL2 clrr Implied Const8000h, Ab@2, Ab@0
+  D4FEh TL  cmp  MemImm16@16, Ax@8
+  AC00h TL  cmp  MemImm8@0, Ax@8
+  8CC0h TL  cmp  Imm16@16, Ax@8
+  CC00h TL  cmp  Imm8u@0, Ax@8
+  D4DEh TL  cmp  MemR7Imm16@16, Ax@8
+  4C00h TL  cmp  MemR7Imm7s@0, Ax@8
+  8C80h TL  cmp  MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  8CA0h TL  cmp  RegisterP0@0, Ax@8
+  4D8Ch TL2 cmp  Ax@1, Bx@0
+  D483h TL2 cmp  b0, b1
+  D583h TL2 cmp  b1, b0
+  DA9Ah TL2 cmp  Bx@10, Ax@0
+  8B63h TL2 cmp  p1, Ax@4
+  D38Eh TL2 cmp  r6, Ax@4
+  BE00h TL  cmpu MemImm8@0, Ax@8
+  9E80h TL  cmpu MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  9EA0h TL  cmpu Register@0, Ax@8
+  8A63h TL2 cmpu r6, Ax@3
+  ED00h TL  cmpv Imm16@16, MemImm8@0
+  8CE0h TL  cmpv Imm16@16, MemRn@0 || Rn@0stepZIDS@3
+  8DE0h TL  cmpv Imm16@16, Register@0
+  47BEh TL2 cmpv Imm16@16, r6
+  D390h TL  cntx r  ;restore shadows
+  D380h TL  cntx s  ;store shadows
+  67F0h TL  copy Implied Ax@not12,   Ax@12, Cond@0 ;aX=aY
+  67E0h TL  dec  Implied Const1,     Ax@12, Cond@0 ;aX=aX-1
+  43C0h TL  dint        ;IE=0, interrupt disable
+  0E00h TL  divs MemImm8@0, Ax@8
+  4380h TL  eint        ;IE=1, interrupt enable
+  9460h TL  exp  Bx@0, Implied sv
+  9060h TL  exp  Bx@0, Implied sv, Ax@8
+  9C40h TL  exp  MemRn@0, Implied sv || Rn@0stepZIDS@3
+  9840h TL  exp  MemRn@0, Implied sv, Ax@8 || Rn@0stepZIDS@3
+  9040h TL  exp  RegisterP0@0, Implied sv, Ax@8
+  9440h TL  exp  RegisterP0@0, Implied sv
+  D7C1h TL2 exp  r6, Implied sv
+  D382h TL2 exp  r6, Implied sv, Ax@4
+  67D0h TL  inc  Implied Const1,     Ax@12, Cond@0 ;aX=aX+1
+  49C0h TL  lim  a0     ;aka a0,a0
+  49D0h TL  lim  a0, a1
+  49F0h TL  lim  a1     ;aka a1,a1
+  49E0h TL  lim  a1, a0
+  4D80h TL  load Imm2u@0, ps               ;st1.bit11-10=imm2
+  DB80h TL  load Imm7s@0, stepi            ;cfgi.LSB=imm7
+  DF80h TL  load Imm7s@0, stepj            ;cfgj.LSB=imm7
+  0400h TL  load Imm8u@0, page             ;st1.LSBs=imm8 ;aka "lpg"
+  0200h TL  load Imm9u@0, modi             ;cfgi.MSB=imm9
+  0A00h TL  load Imm9u@0, modj             ;cfgj.MSB=imm9
+  D7D8h TL2 load Imm2u@1, movpd, Unused1@0 ;stt2.bit6.7 (page for ProgMem)
+  0010h TL2 load Imm4u@0, ps01             ;mod0.bit10-11,13-14 and st1.10-11 ?
+  D400h TL  maa  MemR45@2, MemR0123@0, Ax@11
+             || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  8400h TL  maa  MemRn@0, Imm16@16, Ax@11 || Rn@0stepZIDS@3
+  8420h TL  maa  y0, MemRn@0, Ax@11 || Rn@0stepZIDS@3
+  8440h TL  maa  y0, Register@0, Ax@11
+  E400h TL  maa  y0, MemImm8@0, Ax@11
+  5EA8h TL2 maa  y0, r6, Ax@0
+  D700h TL  maasu MemR45@2, MemR0123@0, Ax@11
+             || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  8700h TL  maasu MemRn@0, Imm16@16, Ax@11 || Rn@0stepZIDS@3
+  8720h TL  maasu y0, MemRn@0, Ax@11 || Rn@0stepZIDS@3
+  8740h TL  maasu y0, Register@0, Ax@11
+  5EAEh TL2 maasu y0, r6, Ax@0
+  D200h TL  mac  MemR45@2, MemR0123@0, Ax@11
+             || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  8200h TL  mac  MemRn@0, Imm16@16, Ax@11 || Rn@0stepZIDS@3
+  8220h TL  mac  y0, MemRn@0, Ax@11 || Rn@0stepZIDS@3
+  8240h TL  mac  y0, Register@0, Ax@11
+  E200h TL  mac  y0, MemImm8@0, Ax@11
+  5EA4h TL2 mac  y0, r6, Ax@0
+  4D84h TL2 mac  y0, x1, Ax@1, Unused1@0
+  5E28h TL2 mac1 MemR45@2, MemR01@2, Ax@8 || R01@2stepII2@0, R45@2stepII2@1
+  D600h TL  macsu MemR45@2, MemR0123@0, Ax@11
+             || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  8600h TL  macsu MemRn@0, Imm16@16, Ax@11 || Rn@0stepZIDS@3
+  E600h TL  macsu y0, MemImm8@0, Ax@11
+  8620h TL  macsu y0, MemRn@0, Ax@11 || Rn@0stepZIDS@3
+  8640h TL  macsu y0, Register@0, Ax@11
+  5EACh TL2 macsu y0, r6, Ax@0
+  D300h TL  macus MemR45@2, MemR0123@0, Ax@11
+             || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  8300h TL  macus MemRn@0, Imm16@16, Ax@11 || Rn@0stepZIDS@3
+  8320h TL  macus y0, MemRn@0, Ax@11 || Rn@0stepZIDS@3
+  8340h TL  macus y0, Register@0, Ax@11
+  5EA6h TL2 macus y0, r6, Ax@0
+  D500h TL  macuu MemR45@2, MemR0123@0, Ax@11
+             || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  8500h TL  macuu MemRn@0, Imm16@16, Ax@11 || Rn@0stepZIDS@3
+  8520h TL  macuu y0, MemRn@0, Ax@11 || Rn@0stepZIDS@3
+  8540h TL  macuu y0, Register@0, Ax@11
+  5EAAh TL2 macuu y0, r6, Ax@0
+  8460h TL  max  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, ge,
+             Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY >= aX
+  8660h TL  max  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, gt,
+             Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY > aX
+  5E21h TL2 max  a0h, a1h || max a0l, a1l || vtrshr
+  5F21h TL2 max  a1h, a0h || max a1l, a0l || vtrshr
+  D784h TL2 max  Axh@1, Bxh@0 || max Axl@1, Bxl@0 || vtrshr
+  4A40h TL2 max  Axh@3, Bxh@4 || max Axl@3, Bxl@4 || mov Axl@not3, MemR04@1
+             || vtrshr || R04@1stepII2@0
+  4A44h TL2 max  Axh@3, Bxh@4 || max Axl@3, Bxl@4 || mov Axh@not3, MemR04@1
+             || vtrshr || R04@1stepII2@0
+  45A0h TL2 max  Axh@4, Bxh@3 || max Axl@4, Bxl@3 || mov Axh@not4, MemR45@2
+             || mov Axl@not4, MemR01@2 || vtrshr
+             || R01@2stepII2@0, R45@2stepII2@1
+  D590h TL2 max  Axh@6, Bxh@5 || max Axl@6, Bxl@5 || mov Axh@not6, MemR01@2
+             || mov Axl@not6, MemR45@2 || vtrshr
+             || R01@2stepII2@0, R45@2stepII2@1
+  4A60h TL2 max  Bxh@4, Axh@3 || max Bxl@4, Axl@3 || mov Bxl@not4, MemR04@1
+             || vtrshr || R04@1stepII2@0
+  4A64h TL2 max  Bxh@4, Axh@3 || max Bxl@4, Axl@3 || mov Bxh@not4, MemR04@1
+             || vtrshr || R04@1stepII2@0
+  8060h TL  maxd NoReverse, Ax@8, MemR0, ge, Implied mixp, Implied r0
+             || R0stepZIDS@3   ;when (r0) >= aX
+  8260h TL  maxd NoReverse, Ax@8, MemR0, gt, Implied mixp, Implied r0
+             || R0stepZIDS@3   ;when (r0) > aX
+  8860h TL  min  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, le,
+             Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY <= aX
+  8A60h TL  min  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, lt,
+             Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY < aX
+  43C2h TL2 min  Axh@0, Axh@not0 || min Axl@0, Axl@not0 || vtrshr
+  D2B8h TL2 min  Axh@11, Bxh@10 || min Axl@11, Bxl@10
+             || mov Axh@not11, MemR01@2 || mov Axl@not11, MemR45@2
+             || vtrshr || R01@2stepII2@0, R45@2stepII2@1
+  4A00h TL2 min  Axh@3, Bxh@4 || min Axl@3, Bxl@4 || mov Axl@not3, MemR04@1
+             || vtrshr || R04@1stepII2@0
+  4A04h TL2 min  Axh@3, Bxh@4 || min Axl@3, Bxl@4 || mov Axh@not3, MemR04@1
+             || vtrshr || R04@1stepII2@0
+  45E0h TL2 min  Axh@4, Bxh@3 || min Axl@4, Bxl@3 || mov Axh@not4, MemR45@2
+             || mov Axl@not4, MemR01@2 || vtrshr
+             || R01@2stepII2@0, R45@2stepII2@1
+  D4BAh TL2 min  Axh@8, Bxh@0 || min Axl@8, Bxl@0 || vtrshr
+  4A20h TL2 min  Bxh@4, Axh@3 || min Bxl@4, Axl@3 || mov Bxl@not4, MemR04@1
+             || vtrshr || R04@1stepII2@0
+  4A24h TL2 min  Bxh@4, Axh@3 || min Bxl@4, Axl@3 || mov Bxh@not4, MemR04@1
+             || vtrshr || R04@1stepII2@0
+  47A0h TL2 mind NoReverse, Ax@3, MemR0, le, Implied mixp, Implied r0
+             || R0stepZIDS@0
+  47A4h TL2 mind NoReverse, Ax@3, MemR0, lt, Implied mixp, Implied r0
+             || R0stepZIDS@0
+  0080h TL  modr MemRn@0stepZIDS@3
+  00A0h TL  modr MemRn@0stepZIDS@3, dmod  ;Disable modulo
+  D294h TL2 modr MemR0123@10stepII2D2S0@0 || modr MemR4567@10stepII2D2S0@5
+  0D80h TL2 modr MemR0123@5stepII2D2S0@1  || modr MemR4567@5stepII2D2S0@3, dmod
+  0D81h TL2 modr MemR0123@5stepII2D2S0@1, dmod
+             || modr MemR4567@5stepII2D2S0@3, dmod
+  8464h TL2 modr MemR0123@8stepII2D2S0@0, dmod || modr MemR4567@8stepII2D2S0@3
+  5DA0h TL2 modr MemRn@0stepD2
+  5DA8h TL2 modr MemRn@0stepD2, dmod
+  4990h TL2 modr MemRn@0stepI2
+  4998h TL2 modr MemRn@0stepI2, dmod
+  D290h TL  mov  Ab@10, Ab@5
+  D298h TL  mov  Abl@10, dvm
+  D2D8h TL  mov  Abl@10, x0
+  3000h TL  mov  Ablh@9, MemImm8@0
+  D4BCh TL  mov  Axl@8, MemImm16@16
+  D49Ch TL  mov  Axl@8, MemR7Imm16@16
+  DC80h TL  mov  Axl@8, MemR7Imm7s@0
+  D4B8h TL  mov  MemImm16@16, Ax@8
+  6100h TL  mov  MemImm8@0, Ab@11
+  6200h TL  mov  MemImm8@0, Ablh@10
+  6500h TL  mov  MemImm8@0, Axh@12, eu   ;aka Axheu
+  6000h TL  mov  MemImm8@0, R0123457y0@10
+  6D00h TL  mov  MemImm8@0, sv
+  D491h TL  mov  dvm, Ab@5
+  D492h TL  mov  icr, Ab@5
+  5E20h TL  mov  Imm16@16, Bx@8
+  5E00h TL  mov  Imm16@16, Register@0
+  4F80h TL  mov  Imm5u@0, icr    ;uh, but icr is 8bit wide (only 4bit are R/W)?
+  2500h TL  mov  Imm8s@0, Axh@12         ;signed!
+  2900h TL  mov  Imm8s@0, ext0
+  2D00h TL  mov  Imm8s@0, ext1
+  3900h TL  mov  Imm8s@0, ext2
+  3D00h TL  mov  Imm8s@0, ext3
+  2300h TL  mov  Imm8s@0, R0123457y0@10  ;signed!
+  0500h TL  mov  Imm8s@0, sv
+  2100h TL  mov  Imm8u@0, Axl@12         ;unsigned!
+  D498h TL  mov  MemR7Imm16@16, Ax@8
+  D880h TL  mov  MemR7Imm7s@0, Ax@8
+  98C0h TL  mov  MemRn@0, Bx@8 || Rn@0stepZIDS@3
+  1C00h TL  mov  MemRn@0, Register@5 || Rn@0stepZIDS@3
+  47E0h TL  mov  MemSp, Register@0
+  47C0h TL  mov  mixp, Register@0
+  2000h TL  mov  R0123457y0@9, MemImm8@0
+  4FC0h TL  mov  Register@0, icr
+  5E80h TL  mov  Register@0, mixp
+  1800h TL  mov  Register@5, MemRn@0 || Rn@0stepZIDS@3
+  5EC0h TL  mov  RegisterP0@0, Bx@5
+  5800h TL  mov  RegisterP0@0, Register@5
+  D490h TL  mov  repc, Ab@5
+  7D00h TL  mov  sv, MemImm8@0
+  D493h TL  mov  x0, Ab@5
+  D49Bh TL2 mov  a0h, stepi0
+  D59Bh TL2 mov  a0h, stepj0
+  4390h TL2 mov  a0h, MemR0425@2 || mov y0, MemR0425@2offsZIDZ@0
+             || R0425@2stepII2D2S@0
+  43D0h TL2 mov  a1h, MemR0425@2 || mov y0, MemR0425@2offsZIDZ@0
+             || R0425@2stepII2D2S@0
+  8FD4h TL2 mov  Ab@0, p0
+  43A0h TL2 mov  Abh@3, MemR01@2 || mov Abl@3, MemR45@2
+             || R01@2stepII2@0, R45@2stepII2@1
+  43E0h TL2 mov  Abh@3, MemR45@2 || mov Abl@3, MemR01@2
+             || R01@2stepII2@0, R45@2stepII2@1
+  9D40h TL2 mov  Abh@4, MemR04@1 || mov Abh@2, MemR04@1offsZI@0
+             || R04@1stepII2@0
+  9164h TL2 mov  Abl@0, prpage
+  9064h TL2 mov  Abl@0, repc
+  D394h TL2 mov  Abl@0, x1
+  D384h TL2 mov  Abl@0, y1
+  9540h TL2 mov  Abl@3, ArArp@0
+  9C60h TL2 mov  Abl@3, SttMod@0
+  9560h TL2 mov  ArArp@0, Abl@3
+  D488h TL2 mov  ArArp@0, MemR04@8 || R04@8stepII2@5
+  5F50h TL2 mov  ArArpSttMod@0, MemR7Imm16@16
+  886Bh TL2 mov  Ax@8, pc
+  8C60h TL2 mov  Axh@4, MemR4567@8 || mov MemR0123@8, Axh@4
+             || R0123@8stepII2D2S@0, R4567@8stepII2D2S@2
+  4800h TL2 mov  Axh@6, MemR0123@4 || movr MemR4567@4, Axh@6
+             || R0123@4stepII2D2S@0, R4567@4stepII2D2S@2
+  4900h TL2 mov  Axh@6, MemR0123@4 || mov  MemR4567@4, Axh@6
+             || R0123@4stepII2D2S@0, R4567@4stepII2D2S@2
+  7F80h TL2 mov  Axh@6, MemR4567@4 || movr MemR0123@4, Axh@6
+             || R0123@4stepII2D2S@0, R4567@4stepII2D2S@2
+  8863h TL2 mov  Bx@8, pc
+  0008h TL2 mov  Imm16@16, ArArp@0
+  0023h TL2 mov  Imm16@16, r6
+  0001h TL2 mov  Imm16@16, repc
+  8971h TL2 mov  Imm16@16, stepi0
+  8979h TL2 mov  Imm16@16, stepj0
+  0030h TL2 mov  Imm16@16, SttMod@0
+  5DD0h TL2 mov  Imm4u@0, prpage
+  80C4h TL2 mov  MemR01@9, Abh@10 || mov MemR45@9, Abl@10
+             || R01@9stepII2@0, R45@9stepII2@8
+  D292h TL2 mov  MemR0425@10_MemR0425@10offsZIDZ@5, Px@0
+             || R0425@10stepII2D2S@5
+  D7D4h TL2 mov  MemR04@1, repc || R04@1stepII2@0
+  5F4Ch TL2 mov  MemR04@1, sv || sub3 MemR04@1, p0, p1, b0 || R04@1stepII2@0
+  D4B4h TL2 mov  MemR04@1, sv || sub3rnd MemR04@1, p0, p1, b1 || R04@1stepII2@0
+  DE9Ch TL2 mov  MemR04@1, sv || sub3rnd MemR04@1, p0, p1, b0 || R04@1stepII2@0
+  4B40h TL2 mov  MemR04@3, sv || addsub    MemR04@3, p1, p0, Bx@0
+             || R04@3stepII2@2
+  4B42h TL2 mov  MemR04@3, sv || addsubrnd MemR04@3, p1, p0, Bx@0
+             || R04@3stepII2@2
+  8062h TL2 mov  MemR04@4, ArArp@8  || R04@4stepII2@3
+  8063h TL2 mov  MemR04@4, SttMod@8 || R04@4stepII2@3
+  9960h TL2 mov  MemR04@4, sv || addsub    MemR04@4, p1, p0, Bx@2
+             || R04@4stepD2S@3  ;<-- ordered p1, p0 here !
+  99E0h TL2 mov  MemR04@4, sv || addsubrnd MemR04@4, p1, p0, Bx@2
+             || R04@4stepD2S@3  ;<-- ordered p1, p0 here !
+  9860h TL2 mov  MemR04@4, sv || sub3      MemR04@4, p0, p1, Bx@2
+             || R04@4stepD2S@3
+  98E0h TL2 mov  MemR04@4, sv || sub3rnd   MemR04@4, p0, p1, Bx@2
+             || R04@4stepD2S@3
+  8873h TL2 mov  MemR04@8, sv || sub3 MemR04@8, p0, p1, b1 || R04@8stepII2@3
+  D4C0h TL2 mov  MemR45@5, Abh@2 || mov MemR01@5, Abl@2
+             || R01@5stepII2@0, R45@5stepII2@1
+  4D90h TL2 mov  MemR7Imm16@16, ArArpSttMod@0
+  D2DCh TL2 mov  MemR7Imm16@16, repc, Unused2@0, Unused1@10
+  1B20h TL2 mov  MemRn@0, r6 || Rn@0stepZIDS@3 ;override 1800h (mov a1,MemRn@0)
+  D29Ch TL2 mov  MemSp, r6, Unused2@0, Unused1@10
+  8A73h TL2 mov  mixp, Bx@3
+  4381h TL2 mov  mixp, r6
+  4382h TL2 mov  p0h, Bx@0
+  D3C2h TL2 mov  p0h, r6
+  4B60h TL2 mov  p0h, Register@0     ;<-- here "p0h" as source
+  8FD8h TL2 mov  p1, Ab@0
+  88D0h TL2 mov  Px@1, MemR0425@8_MemR0425@8offsZIDZ@2   || R0425@8stepII2D2S@2
+  88D1h TL2 mov  Px@1, MemR0425@8_MemR0425@8offsZIDZ@2,s || R0425@8stepII2D2S@2
+  D481h TL2 mov  r6, Bx@8
+  1B00h TL2 mov  r6, MemRn@0 || Rn@0stepZIDS@3 ;override 1800h (mov a0,MemRn@0)
+  43C1h TL2 mov  r6, mixp
+  5F00h TL2 mov  r6, Register@0
+  5F60h TL2 mov  Register@0, r6
+  D2D9h TL2 mov  repc, Abl@10
+  D7D0h TL2 mov  repc, MemR04@1 || R04@1stepII2@0
+  D3C8h TL2 mov  repc, MemR7Imm16@16, Unused3@0
+  D482h TL2 mov  stepi0, a0h
+  D582h TL2 mov  stepj0, a0h
+  D2F8h TL2 mov  SttMod@0, Abl@10
+  49C1h TL2 mov  x1, Ab@4
+  D299h TL2 mov  y1, Ab@10
+  5EB0h TL2 mov  prpage, Abl@0
+  49A0h TL2 mov  SttMod@0, MemR04@4 || R04@4stepII2@3
+  4DC0h TL2 mova Ab@4, MemR0425@2_MemR0425@2offsZIDZ@0 || R0425@2stepII2D2S@0
+  4BC0h TL2 mova MemR0425@2_MemR0425@2offsZIDZ@0, Ab@4 || R0425@2stepII2D2S@0
+  5F80h TL  movd MemR0123@0,ProgMemR45@2 || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  0040h TL  movp ProgMemAxl@5, Register@0
+  0D40h TL2 movp ProgMemAx@5, Register@0
+  0600h TL  movp ProgMemRn@0, MemR0123@5 || R0123@5stepZIDS@7, Rn@0stepZIDS@3
+  D499h TL2 movpdw ProgMemAx@8_ProgMemAx@8offsI, pc
+  8864h TL  movr MemR0425@3, Abh@8 || R0425@3stepII2D2S@0   ;op*10000h+8000h
+  9CE0h TL  movr MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  9CC0h TL  movr RegisterP0@0, Ax@8
+  5DF4h TL2 movr Bx@1, Ax@0
+  8961h TL2 movr r6, Ax@3
+  6300h TL  movs Implied sv, MemImm8@0, Ab@11
+  0180h TL  movs Implied sv, MemRn@0, Ab@5 || Rn@0stepZIDS@3
+  0100h TL  movs Implied sv, RegisterP0@0, Ab@5
+  5F42h TL2 movs Implied sv, r6, Ax@0
+  4080h TL  movsi Implied Imm5s@0, R0123457y0@9, Ab@5, Bogus Imm5s@0
+  D000h TL  mpy  MemR45@2, MemR0123@0 || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  8000h TL  mpy  MemRn@0, Imm16@16    || Rn@0stepZIDS@3
+  8020h TL  mpy  y0, MemRn@0          || Rn@0stepZIDS@3
+  8040h TL  mpy  y0, Register@0
+  E000h TL  mpy  y0, MemImm8@0
+  5EA0h TL2 mpy  y0, r6
+  CB00h TL2 mpy  MemR45@5, MemR01@5 || mpysu MemR45@5offsZI@4, MemR01@5offsZI@3
+             || sub3   p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CB01h TL2 mpy  MemR45@5, MemR01@5 || mpyus MemR45@5offsZI@4, MemR01@5offsZI@3
+             || sub3   p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CB02h TL2 mpy  MemR45@5, MemR01@5 || mpysu MemR45@5offsZI@4, MemR01@5offsZI@3
+             || sub3a  p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CB03h TL2 mpy  MemR45@5, MemR01@5 || mpyus MemR45@5offsZI@4, MemR01@5offsZI@3
+             || sub3a  p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CB04h TL2 mpy  MemR45@5, MemR01@5 || mpysu MemR45@5offsZI@4, MemR01@5offsZI@3
+             || add3   p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CB05h TL2 mpy  MemR45@5, MemR01@5 || mpyus MemR45@5offsZI@4, MemR01@5offsZI@3
+             || add3   p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CB06h TL2 mpy  MemR45@5, MemR01@5 || mpysu MemR45@5offsZI@4, MemR01@5offsZI@3
+             || add3a  p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CB07h TL2 mpy  MemR45@5, MemR01@5 || mpyus MemR45@5offsZI@4, MemR01@5offsZI@3
+             || add3a  p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  D5E0h TL2 mpy  MemR04@1, x1 || mpy y1, x0 || sub3 p0, p1, Ax@3
+             || R04@1stepII2@0
+  D5E4h TL2 mpy  MemR04@1, x1 || mpy y1, x0 || add3 p0, p1, Ax@3
+             || R04@1stepII2@0
+  C800h TL2 mpy  MemR4567@4, MemR0123@4
+             || mpy MemR4567@4offsZIDZ@2, MemR0123@4offsZIDZ@0
+             || add3 p0, p1, Ab@6 || R0123@4stepII2D2S@0, R4567@4stepII2D2S@2
+  C900h TL2 mpy  MemR4567@4, MemR0123@4
+             || mpy MemR4567@4offsZIDZ@2, MemR0123@4offsZIDZ@0
+             || sub3 p0, p1, Ab@6 || R0123@4stepII2D2S@0, R4567@4stepII2D2S@2
+  80C2h TL2 mpy  MemR45@0, MemR01@0 || mpy MemR45@0offsZI@9, MemR01@0offsZI@8
+             || add3a p0, p1, Ab@10 || R01@0stepII2@8, R45@0stepII2@9
+  49C8h TL2 mpy  MemR45@2, MemR01@2 || mpy MemR45@2offsZI@1, MemR01@2offsZI@0
+             || sub3a p0, p1, Ab@4 || R01@2stepII2@0, R45@2stepII2@1
+  80C8h TL2 mpy  MemR45@2, MemR01@2 || mpy MemR45@2offsZI@1, MemR01@2offsZI@0
+             || addsub  p0, p1, Ab@10 || R01@2stepII2@0, R45@2stepII2@1
+  81C8h TL2 mpy  MemR45@2, MemR01@2 || mpy MemR45@2offsZI@1, MemR01@2offsZI@0
+             || addsuba p0, p1, Ab@10 || R01@2stepII2@0, R45@2stepII2@1
+  82C8h TL2 mpy  MemR45@2, MemR01@2 || mpy MemR45@2offsZI@1, MemR01@2offsZI@0
+             || add     p0, p1, Ab@10 || R01@2stepII2@0, R45@2stepII2@1
+  83C8h TL2 mpy  MemR45@2, MemR01@2 || mpy MemR45@2offsZI@1, MemR01@2offsZI@0
+             || adda    p0, p1, Ab@10 || R01@2stepII2@0, R45@2stepII2@1
+  00C0h TL2 mpy  MemR45@3, MemR01@3 || mpy MemR45@3offsZI@2, MemR01@3offsZI@1
+             || sub  p0, p1, Ab@4 || R01@3stepII2@1, R45@3stepII2@2
+  00C1h TL2 mpy  MemR45@3, MemR01@3 || mpy MemR45@3offsZI@2, MemR01@3offsZI@1
+             || suba p0, p1, Ab@4 || R01@3stepII2@1, R45@3stepII2@2
+  0D20h TL2 mpy  MemR45@3, MemR01@3 || mpyus MemR45@3offsZI@2, MemR01@3offsZI@1
+             || add3a p0, p1, Ax@0, dmodi || R01@3stepII2@1, R45@3stepII2@2
+  0D30h TL2 mpy  MemR45@3, MemR01@3 || mpyus MemR45@3offsZI@2, MemR01@3offsZI@1
+             || add3a p0, p1, Ax@0, dmodj || R01@3stepII2@1, R45@3stepII2@2
+  4B50h TL2 mpy  MemR45@3, MemR01@3 || mpyus MemR45@3offsZI@2, MemR01@3offsZI@1
+             || add3a p0, p1, Ax@0, dmodij || R01@3stepII2@1, R45@3stepII2@2
+  D7A0h TL2 mpy  MemR45@3, MemR01@3 || mpy MemR45@3offsZI@2, MemR01@3offsZI@1
+             || add3    sv, p0, p1, Ax@4 || R01@3stepII2@1, R45@3stepII2@2
+  D7A1h TL2 mpy  MemR45@3, MemR01@3 || mpy MemR45@3offsZI@2, MemR01@3offsZI@1
+             || add3rnd sv, p0, p1, Ax@4 || R01@3stepII2@1, R45@3stepII2@2
+  9861h TL2 mpy  MemR45@4, MemR01@4 || mpy MemR45@4offsZI@3, MemR01@4offsZI@2
+             || add3  p0, p1, Ax@8, dmodj  || R01@4stepII2@2, R45@4stepII2@3
+  9862h TL2 mpy  MemR45@4, MemR01@4 || mpy MemR45@4offsZI@3, MemR01@4offsZI@2
+             || add3  p0, p1, Ax@8, dmodi  || R01@4stepII2@2, R45@4stepII2@3
+  9863h TL2 mpy  MemR45@4, MemR01@4 || mpy MemR45@4offsZI@3, MemR01@4offsZI@2
+             || add3  p0, p1, Ax@8, dmodij || R01@4stepII2@2, R45@4stepII2@3
+  98E1h TL2 mpy  MemR45@4, MemR01@4 || mpy MemR45@4offsZI@3, MemR01@4offsZI@2
+             || add3a p0, p1, Ax@8, dmodj  || R01@4stepII2@2, R45@4stepII2@3
+  98E2h TL2 mpy  MemR45@4, MemR01@4 || mpy MemR45@4offsZI@3, MemR01@4offsZI@2
+             || add3a p0, p1, Ax@8, dmodi  || R01@4stepII2@2, R45@4stepII2@3
+  98E3h TL2 mpy  MemR45@4, MemR01@4 || mpy MemR45@4offsZI@3, MemR01@4offsZI@2
+             || add3a p0, p1, Ax@8, dmodij || R01@4stepII2@2, R45@4stepII2@3
+  4DA0h TL2 mpy  y0, MemR04@3 || mpyus y1, MemR04@3offsZI@2
+             || sub3  p0, p1, Ax@4 || R04@3stepII2@2
+  4DA1h TL2 mpy  y0, MemR04@3 || mpyus y1, MemR04@3offsZI@2
+             || sub3a p0, p1, Ax@4 || R04@3stepII2@2
+  4DA2h TL2 mpy  y0, MemR04@3 || mpyus y1, MemR04@3offsZI@2
+             || add3  p0, p1, Ax@4 || R04@3stepII2@2
+  4DA3h TL2 mpy  y0, MemR04@3 || mpyus y1, MemR04@3offsZI@2
+             || add3a p0, p1, Ax@4 || R04@3stepII2@2
+  94E0h TL2 mpy  y0, MemR04@4 || mpy   y1, MemR04@4offsZI@3
+             || sub3  p0, p1, Ax@8 || R04@4stepII2@3
+  94E2h TL2 mpy  y0, MemR04@4 || mpy   y1, MemR04@4offsZI@3
+             || sub3a p0, p1, Ax@8 || R04@4stepII2@3
+  94E4h TL2 mpy  y0, MemR04@4 || mpy   y1, MemR04@4offsZI@3
+             || add3  p0, p1, Ax@8 || R04@4stepII2@3
+  94E6h TL2 mpy  y0, MemR04@4 || mpy   y1, MemR04@4offsZI@3
+             || add3a p0, p1, Ax@8 || R04@4stepII2@3
+  94E1h TL2 mpy  y0, MemR04@4 || mpysu y1, MemR04@4offsZI@3
+             || sub3  p0, p1, Ax@8 || R04@4stepII2@3
+  94E3h TL2 mpy  y0, MemR04@4 || mpysu y1, MemR04@4offsZI@3
+             || sub3a p0, p1, Ax@8 || R04@4stepII2@3
+  94E5h TL2 mpy  y0, MemR04@4 || mpysu y1, MemR04@4offsZI@3
+             || add3  p0, p1, Ax@8 || R04@4stepII2@3
+  94E7h TL2 mpy  y0, MemR04@4 || mpysu y1, MemR04@4offsZI@3
+             || add3a p0, p1, Ax@8 || R04@4stepII2@3
+  8862h TL2 mpy  y0, x1 || mpy   MemR04@4, x0 || sub3  p0, p1, Ax@8
+             || R04@4stepII2@3
+  8A62h TL2 mpy  y0, x1 || mpy   MemR04@4, x0 || add3  p0, p1, Ax@8
+             || R04@4stepII2@3
+  4D88h TL2 mpy  y0, x1 || mpy   y1, x0 || sub p0, p1, Ax@1
+  5E24h TL2 mpy  y0, x1 || mpy   y1, x0 || add p0, p1, Ab@0
+  8061h TL2 mpy  y0, x1 || mpy   y1, x0 || add3  p0, p1, Ab@8
+  8071h TL2 mpy  y0, x1 || mpy   y1, x0 || add3a p0, p1, Ab@8
+  8461h TL2 mpy  y0, x1 || mpy   y1, x0 || sub3  p0, p1, Ab@8
+  8471h TL2 mpy  y0, x1 || mpy   y1, x0 || sub3a p0, p1, Ab@8
+  D484h TL2 mpy  y0, x1 || mpy   y1, x0 || add3aa p0, p1, Ab@0
+  D49Dh TL2 mpy  y0, x1 || mpy   y1, x0 || sub p0, p1, Bx@5
+  D4A0h TL2 mpy  y0, x1 || mpy   y1, x0 || addsub p0, p1, Ab@0
+  4FA0h TL2 mpy  y0, x1 || mpy y1, x0 || add3 p0, p1, Ab@3
+             || mov Axh@6, MemR04@1 || mov Bxh@2, MemR04@1offsZI@0
+             || R04@1stepII2@0
+  5818h TL2 mpy  y0, x1 || mpy y1, x0 || addsub    sv, p0, p1, Ax@0
+             || mov Axh@0, MemR0425@7 || mov Axh@not0, MemR0425@7offsZI@6
+             || R0425@7stepII2@6  ;override 5800h+18h (mov a0, Register)
+  5838h TL2 mpy  y0, x1 || mpy y1, x0 || addsubrnd sv, p0, p1, Ax@0
+             || mov Axh@0, MemR0425@7 || mov Axh@not0, MemR0425@7offsZI@6
+             || R0425@7stepII2@6  ;override 5800h+38h (mov a1, Register)
+  80D0h TL2 mpy  y0, x1 || mpy y1, x0 || addsub    sv, p0, p1, Ax@10
+             || mov Axh@9, MemR04@3 || mov Bxh@8, MemR04@3offsZI@2
+             || R04@3stepII2@2
+  80D1h TL2 mpy  y0, x1 || mpy y1, x0 || addsubrnd sv, p0, p1, Ax@10
+             || mov Axh@9, MemR04@3 || mov Bxh@8, MemR04@3offsZI@2
+             || R04@3stepII2@2
+  80D2h TL2 mpy  y0, x1 || mpy y1, x0 || add3      sv, p0, p1, Ax@10
+             || mov Axh@9, MemR04@3 || mov Bxh@8, MemR04@3offsZI@2
+             || R04@3stepII2@2
+  80D3h TL2 mpy  y0, x1 || mpy y1, x0 || add3rnd   sv, p0, p1, Ax@10
+             || mov Axh@9, MemR04@3 || mov Bxh@8, MemR04@3offsZI@2
+             || R04@3stepII2@2
+  D3A0h TL2 mpy  y0, x1 || mpy y1, x0 || addsub p0, p1, Ab@3
+             || mov Axh@6, MemR04@1 || mov Bxh@2, MemR04@1offsZI@0
+             || R04@1stepII2@0
+  4D89h TL2 mpy  y0, x1 || mpyus y1, x0 || sub p0, p1, Ax@1
+  5F24h TL2 mpy  y0, x1 || mpyus y1, x0 || add p0, p1, Ab@0
+  8069h TL2 mpy  y0, x1 || mpyus y1, x0 || add3  p0, p1, Ab@8
+  8079h TL2 mpy  y0, x1 || mpyus y1, x0 || add3a p0, p1, Ab@8
+  8469h TL2 mpy  y0, x1 || mpyus y1, x0 || sub3  p0, p1, Ab@8
+  8479h TL2 mpy  y0, x1 || mpyus y1, x0 || sub3a p0, p1, Ab@8
+  D584h TL2 mpy  y0, x1 || mpyus y1, x0 || add3aa p0, p1, Ab@0
+  D59Dh TL2 mpy  y0, x1 || mpyus y1, x0 || sub p0, p1, Bx@5
+  D5A0h TL2 mpy  y0, x1 || mpyus y1, x0 || addsub p0, p1, Ab@0
+  0800h TL  mpyi NoReverse, Implied p0, y0, Imm8s@0   ;multiply  ;aka "mpys"
+  D100h TL  mpysu MemR45@2, MemR0123@0 || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  8100h TL  mpysu MemRn@0, Imm16@16    || Rn@0stepZIDS@3
+  8120h TL  mpysu y0, MemRn@0          || Rn@0stepZIDS@3
+  8140h TL  mpysu y0, Register@0
+  CA00h TL2 mpysu MemR45@5, MemR01@5
+             || mpysu MemR45@5offsZI@4, MemR01@5offsZI@3
+             || sub3a  p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CA01h TL2 mpysu MemR45@5, MemR01@5
+             || mpyus MemR45@5offsZI@4, MemR01@5offsZI@3
+             || sub3a  p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CA02h TL2 mpysu MemR45@5, MemR01@5
+             || mpysu MemR45@5offsZI@4, MemR01@5offsZI@3
+             || sub3aa p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CA03h TL2 mpysu MemR45@5, MemR01@5
+             || mpyus MemR45@5offsZI@4, MemR01@5offsZI@3
+             || sub3aa p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CA04h TL2 mpysu MemR45@5, MemR01@5
+             || mpysu MemR45@5offsZI@4, MemR01@5offsZI@3
+             || add3a  p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CA05h TL2 mpysu MemR45@5, MemR01@5
+             || mpyus MemR45@5offsZI@4, MemR01@5offsZI@3
+             || add3a  p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CA06h TL2 mpysu MemR45@5, MemR01@5
+             || mpysu MemR45@5offsZI@4, MemR01@5offsZI@3
+             || add3aa p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  CA07h TL2 mpysu MemR45@5, MemR01@5
+             || mpyus MemR45@5offsZI@4, MemR01@5offsZI@3
+             || add3aa p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
+  5EA2h TL2 mpysu y0, r6
+  D080h TL  msu  MemR45@2,MemR0123@0,Ax@8 || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  90C0h TL  msu  MemRn@0, Imm16@16,  Ax@8 || Rn@0stepZIDS@3 ;multiply, subtract
+  9080h TL  msu  y0, MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  90A0h TL  msu  y0, Register@0, Ax@8
+  B000h TL  msu  y0,MemImm8@0, Ax@8
+  9462h TL2 msu  y0, r6, Ax@0
+  8264h TL2 msusu y0, MemR0425@3, Ax@8 || R0425@3stepII2D2S@0
+  6790h TL  neg  Ax@12, Cond@0 ;aX=0-aX
+  0000h TL  nop
+  94C0h TL  norm Ax@8, Bogus MemRn@0 || Rn@0stepZIDS@3  ;if N=0 (aX=aX*2,rN+/-)
+  6780h TL  not  Ax@12, Cond@0 ;aX=not aX
+  D4F8h TL  or   MemImm16@16, Ax@8
+  A000h TL  or   MemImm8@0, Ax@8
+  80C0h TL  or   Imm16@16, Ax@8
+  C000h TL  or   Imm8u@0, Ax@8
+  D4D8h TL  or   MemR7Imm16@16, Ax@8
+  4000h TL  or   MemR7Imm7s@0, Ax@8
+  8080h TL  or   MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  80A0h TL  or   RegisterP0@0, Ax@8
+  D291h TL2 or   Ab@10, Ax@6, Ax@5
+  D4A4h TL2 or   Ax@8, Bx@1, Ax@0
+  D3C4h TL2 or   b0, Bx@1, Ax@0
+  D7C4h TL2 or   b1, Bx@1, Ax@0
+  D388h TL2 or   r6, Ax@4
+  67B0h TL  pacr Implied Const8000h, Implied p0, Ax@12, Cond@0 ;aX=shfP+8000h
+  D7C2h TL2 pacr1 Implied Const8000h, Implied p1, Ax@0
+  5E60h TL  pop  Register@0
+  47B4h TL2 pop  Abe@0
+  80C7h TL2 pop  ArArpSttMod@8
+  0006h TL2 pop  Bx@5, Unused1@0
+  D7F4h TL2 pop  prpage, Unused2@0
+  D496h TL2 pop  Px@0
+  0024h TL2 pop  r6, Unused1@0
+  D7F0h TL2 pop  repc, Unused2@0
+  D494h TL2 pop  x0
+  D495h TL2 pop  x1
+  0004h TL2 pop  y1, Unused1@0
+  47B0h TL2 popa Ab@0
+  5F40h TL  push Imm16@16
+  5E40h TL  push Register@0
+  D7C8h TL2 push Abe@1, Unused1@0
+  D3D0h TL2 push ArArpSttMod@0
+  D7FCh TL2 push prpage, Unused2@0
+  D78Ch TL2 push Px@1, Unused1@0
+  D4D7h TL2 push r6, Unused1@5
+  D7F8h TL2 push repc, Unused2@0
+  D4D4h TL2 push x0, Unused1@5
+  D4D5h TL2 push x1, Unused1@5
+  D4D6h TL2 push y1, Unused1@5
+  4384h TL2 pusha Ax@6, Unused2@0
+  D788h TL2 pusha Bx@1, Unused1@0
+  0C00h TL  rep  Imm8u@0    ;repeat next opcode N+1 times
+  0D00h TL  rep  Register@0 ;repeat next opcode N+1 times
+  0002h TL2 rep  r6, Unused1@0
+  4580h TL  ret  Cond@0      ;=pop pc
+  D780h TL  retd    ;delayed return (after 2 clks)
+  45C0h TL  reti Cond@0          ;Don't context switch
+  45D0h TL  reti Cond@0, context ;Do context switch
+  D7C0h TL  retid   ;delayed, from interrupt
+  D3C3h TL2 retid context
+  0900h TL  rets Imm8u@0          ;ret+dealloc sp (for INCOMING pushed params)
+  67A0h TL  rnd  Implied Const8000h, Ax@12, Cond@0 ;aX=aX+8000h
+  6750h TL  rol  Implied Const1,     Ax@12, Cond@0 ;aX=aX rcl 1 (37bit rotate)
+  6F50h TL  rol  Implied Const1,     Bx@12, Cond@0 ;bX=bX rcl 1 (37bit rotate)
+  6740h TL  ror  Implied Const1,     Ax@12, Cond@0 ;aX=aX rcr 1 (37bit rotate)
+  6F40h TL  ror  Implied Const1,     Bx@12, Cond@0 ;bX=bX rcr 1 (37bit rotate)
+  E300h TL  rst  Imm16@16, MemImm8@0
+  82E0h TL  rst  Imm16@16, MemRn@0 || Rn@0stepZIDS@3
+  83E0h TL  rst  Imm16@16, Register@0
+  47B9h TL2 rst  Imm16@16, r6
+  4388h TL2 rst  Imm16@16, SttMod@0
+  E100h TL  set  Imm16@16, MemImm8@0
+  80E0h TL  set  Imm16@16, MemRn@0 || Rn@0stepZIDS@3
+  81E0h TL  set  Imm16@16, Register@0
+  47B8h TL2 set  Imm16@16, r6
+  43C8h TL2 set  Imm16@16, SttMod@0
+  D280h TL  shfc Implied sv, Ab@10, Ab@5, Cond@0
+  9240h TL  shfi Implied Imm6s@0, Ab@10, Ab@7, Bogus Imm6s@0
+  6720h TL  shl  Implied Const1,     Ax@12, Cond@0 ;aX=aX*2
+  6F20h TL  shl  Implied Const1,     Bx@12, Cond@0 ;bX=bX*2
+  6730h TL  shl4 Implied Const4,     Ax@12, Cond@0 ;aX=aX*10h
+  6F30h TL  shl4 Implied Const4,     Bx@12, Cond@0 ;bX=bX*10h
+  6700h TL  shr  Implied Const1,     Ax@12, Cond@0 ;aX=aX/2
+  6F00h TL  shr  Implied Const1,     Bx@12, Cond@0 ;bX=bX/2
+  6710h TL  shr4 Implied Const4,     Ax@12, Cond@0 ;aX=aX/10h
+  6F10h TL  shr4 Implied Const4,     Bx@12, Cond@0 ;bX=bX/10h
+  BA00h TL  sqr  MemImm8@0
+  9A80h TL  sqr  MemRn@0 || Rn@0stepZIDS@3
+  9AA0h TL  sqr  Register@0
+  D790h TL2 sqr  Abh@2 || sqr Abl@2 || add3 p0, p1, Ab@0
+  49C4h TL2 sqr  Abh@4 || mpysu Abh@4, Abl@4 || add3a p0, p1, Ab@0
+  4B00h TL2 sqr  MemR0425@4 || sqr MemR0425@4offsZIDZ@2 || add3 p0, p1, Ab@0
+             || R0425@4stepII2D2S@2
+  5F41h TL2 sqr  r6
+  BC00h TL  sqra MemImm8@0, Ax@8
+  9C80h TL  sqra MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  9CA0h TL  sqra Register@0, Ax@8
+  9062h TL2 sqra r6, Ax@8, Unused1@0
+  D4FFh TL  sub  MemImm16@16, Ax@8
+  AE00h TL  sub  MemImm8@0, Ax@8
+  8EC0h TL  sub  Imm16@16, Ax@8
+  CE00h TL  sub  Imm8u@0, Ax@8
+  D4DFh TL  sub  MemR7Imm16@16, Ax@8
+  4E00h TL  sub  MemR7Imm7s@0, Ax@8
+  8E80h TL  sub  MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  8EA0h TL  sub  RegisterP0@0, Ax@8
+  8A61h TL2 sub  Ab@3, Bx@8
+  8861h TL2 sub  Bx@4, Ax@3
+  8064h TL2 sub  MemR01@8, sv, Abh@3 || add MemR01@8offsZI@0, sv, Abl@3
+             || mov MemR45@8, sv || R01@8stepII2@0, R45@8stepII2@1
+  5DE0h TL2 sub  MemR04@1, sv, Abh@2 || add MemR04@1offsZI@0, sv, Abl@2
+             || R04@1stepII2@0
+  6FC0h TL2 sub  MemR45@2, MemR01@2, Abh@3
+             || add MemR45@2offsZI@1, MemR01@2offsZI@0, Abl@3
+             || R01@2stepII2@0, R45@2stepII2@1
+  6FE0h TL2 sub  MemR45@2, MemR01@2, Abh@3
+             || sub MemR45@2offsZI@1, MemR01@2offsZI@0, Abl@3
+             || R01@2stepII2@0, R45@2stepII2@1
+  5D80h TL2 sub  MemR45@2, sv, Abh@3 || add MemR45@2offsZI@1, sv, Abl@3
+             || mov MemR01@2, sv || R01@2stepII2@0, R45@2stepII2@1
+  5DC2h TL2 sub  p0, p1, Ab@2
+  D4B9h TL2 sub  p1, Ax@8
+  8FD0h TL2 sub  Px@1, Bx@0
+  D38Fh TL2 sub  r6, Ax@4
+  80C6h TL2 sub3 p0, p1, Ab@10
+  82C6h TL2 sub3a p0, p1, Ab@10
+  83C6h TL2 sub3aa p0, p1, Ab@10
+  5DC3h TL2 suba p0, p1, Ab@2
+  B600h TL  subh MemImm8@0, Ax@8
+  9680h TL  subh MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  96A0h TL  subh Register@0, Ax@8
+  5E23h TL2 subh r6, Ax@8
+  B800h TL  subl MemImm8@0, Ax@8
+  9880h TL  subl MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  98A0h TL  subl Register@0, Ax@8
+  5E22h TL2 subl r6, Ax@8
+  EF00h TL  subv Imm16@16, MemImm8@0
+  8EE0h TL  subv Imm16@16, MemRn@0 || Rn@0stepZIDS@3
+  8FE0h TL  subv Imm16@16, Register@0
+  47BFh TL2 subv Imm16@16, r6
+  4980h TL  swap SwapTypes4@0
+  0020h TL  trap                  ;software interrupt
+  A800h TL  tst0 Axl@8, MemImm8@0
+  8880h TL  tst0 Axl@8, MemRn@0 || Rn@0stepZIDS@3
+  88A0h TL  tst0 Axl@8, Register@0
+  E900h TL  tst0 Imm16@16, MemImm8@0
+  88E0h TL  tst0 Imm16@16, MemRn@0 || Rn@0stepZIDS@3
+  89E0h TL  tst0 Imm16@16, Register@0
+  D38Ch TL2 tst0 Axl@4, r6
+  47BCh TL2 tst0 Imm16@16, r6
+  9470h TL2 tst0 Imm16@16, SttMod@0
+  AA00h TL  tst1 Axl@8, MemImm8@0 Implied Not
+  8A80h TL  tst1 Axl@8, MemRn@0 Implied Not || Rn@0stepZIDS@3
+  8AA0h TL  tst1 Axl@8, Register@0 Implied Not
+  EB00h TL  tst1 Imm16@16, MemImm8@0 Implied Not
+  8AE0h TL  tst1 Imm16@16, MemRn@0 Implied Not || Rn@0stepZIDS@3
+  8BE0h TL  tst1 Imm16@16, Register@0 Implied Not
+  D38Dh TL2 tst1 Axl@4, r6 Implied Not
+  47BDh TL2 tst1 Imm16@16, r6 Implied Not
+  9478h TL2 tst1 Imm16@16, SttMod@0 Implied Not
+  80C1h TL2 tst4b a0l, MemR0425@10 || R0425@10stepII2D2S@8
+  4780h TL2 tst4b a0l, MemR0425@2, Ax@4 || R0425@2stepII2D2S@0
+  F000h TL  tstb NoReverse, Implied Not MemImm8@0, Imm4bitno@8
+  9020h TL  tstb NoReverse, Implied Not MemRn@0, Imm4bitno@8 || Rn@0stepZIDS@3
+  9000h TL  tstb NoReverse, Implied Not Register@0, Imm4bitno@8
+  9018h TL2 tstb NoReverse, Implied Not r6, Imm4bitno@8  ;override tstb a0,Imm4
+  0028h TL2 tstb NoReverse, Implied Not SttMod@0, Imm4bitno@16, Unused12@20
+  5F45h TL2 vtrclr vtr0         ;vtr0=0           ;for Viterbi decoding...
+  5F47h TL2 vtrclr vtr0, vtr1   ;vtr0=0, vtr1=0   ;(saved C/C1 carry flags)
+  5F46h TL2 vtrclr vtr1         ;vtr1=0
+  D383h TL2 vtrmov Axl@4        ;Axl=(vtr1 and FF00h)+(vtr0/100h)
+  D29Ah TL2 vtrmov vtr0, Axl@0  ;Axl=vtr0
+  D69Ah TL2 vtrmov vtr1, Axl@0  ;Axl=vtr1
+  D781h TL2 vtrshr              ;vtr0=vtr0/2+C*8000h, vtr1=vtr1/2+C1*8000h
+  D4FAh TL  xor  MemImm16@16, Ax@8
+  A400h TL  xor  MemImm8@0, Ax@8
+  84C0h TL  xor  Imm16@16, Ax@8
+  C400h TL  xor  Imm8u@0, Ax@8
+  D4DAh TL  xor  MemR7Imm16@16, Ax@8
+  4400h TL  xor  MemR7Imm7s@0, Ax@8
+  8480h TL  xor  MemRn@0, Ax@8 || Rn@0stepZIDS@3
+  84A0h TL  xor  RegisterP0@0, Ax@8
+  D38Ah TL2 xor  r6, Ax@4
+  8800h TL  undefined Unused5@0, Unused1@8 ;(mpy/mpys without A in bit11)
+  8820h TL  undefined Unused5@0, Unused1@8 ;(mpy/mpys without A in bit11)
+  8840h TL  undefined Unused5@0, Unused1@8 ;(mpy/mpys without A in bit11)
+  D800h TL  undefined Unused7@0, Unused1@8 ;(mpy/mpys without A in bit11)
+  9B80h TL  undefined Unused6@0  ;(sqr without A in bit8)
+  BB00h TL  undefined Unused8@0  ;(sqr without A in bit8)
+  E800h TL  undefined Unused8@0  ;(mpy without A in bit11)
+  5EA1h TL2 undefined Unused1@1  ;(mpy/mpys without A in bit11)
+  5DFCh TL2 undefined
+  8CDEh TL2 undefined
+  D3C1h TL2 undefined
+  5EB4h TL2 undefined Unused2@0

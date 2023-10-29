@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<language_definitions>
+  
+  <language processor="XpertTeak"
+            endian="little"
+            size="16"
+            variant="default"
+            version="1.0"
+            slafile="teak.sla"
+            processorspec="teak.pspec"
+            manualindexfile="../manuals/6502.idx"
+            id="teak:LE:16:default">
+    <description>TeakLite Family</description>
+    <compiler name="default" spec="teak.cspec" id="default"/>
+  </language>
+
+</language_definitions>
