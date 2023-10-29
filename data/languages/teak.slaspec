@@ -1,13 +1,59 @@
 # sleigh specification file for MOS 6502
 
 define endian=little;
-define alignment=1;
+define alignment=2;
 
 define space RAM     type=ram_space      size=2  default;
 define space register type=register_space size=2;
 
-define register offset=0x0 size=2  [ b0 b1 a0 a1 ];
-define register offset=0x10 size=2  [ ip sp ];
+# 40bit accumulators
+define register offset=0x0 size=5  [ a0 a1 b0 b1 ];
+define bitrange a0l=a0[0,16]
+                a0h=a0[16,16]
+                a0e=a0[32,8]
+
+                a1l=a1[0,16]
+                a1h=a1[16,16]
+                a1e=a1[32,8]
+
+                b0l=b0[0,16]
+                b0h=b0[16,16]
+                b0e=b0[32,8]
+
+                b1l=b1[0,16]
+                b1h=b1[16,16]
+                b1e=b1[32,8]
+;
+
+# GPR
+define register offset=0x20 size=2  [ r0 r1 r2 r3 r4 r5 r6 r7 ];
+
+# 32bit Multiply parms & results
+define register offset=0x40 size=2  [ x0 y0 x1 y1 p0h ];
+define register offset=0x50 size=4  [ p0 p1 ]; # todo: 33bit
+
+# Misc
+define register offset=0x60 size=3  [ pc ]; # todo: 18bit pc
+define register offset=0x70 size=2  [ sp sv mixp lc repc dvm vtr0 vtr1 ];
+define register offset=0x80 size=1  [ prpage ];
+
+# User defined
+define register offset=0x90 size=2  [ ext0 ext1 ext2 ext3 ];
+# todo: shadow
+
+# Control & status
+#  TL
+define register offset=0x100 size=2 [ st0 st1 st2 icr ];
+#  TL II
+define register offset=0x110 size=2 [ stt0 stt1 stt2 mod0 mod1 mod2 mod3 ];
+#todo define bitrange ...
+
+# Address conf
+define register offset=0x120 size=2 [ ar0 ar1 arp0 arp1 arp2 arp3 ];
+#todo define bitrange ...
+
+define register offset=0x130 size=2 [ cfgi cfgj stepi0 stepj0 ];
+#todo define bitrange ...
 
 #TOKENS
 define token teakop (16)
@@ -17,7 +63,7 @@ define token teakop (16)
     op12_15 = (12,15)
 ;
 
-# VARIABKES
+# VARIABLES
 attach variables [ Ab_10 ] [ b0 b1 a0 a1 ];
 attach variables [ Bx_0 ] [ b0 b1 ];
 # Instructions
