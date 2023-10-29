@@ -1,10 +1,10 @@
-# sleigh specification file for MOS 6502
+# sleigh specification file for TeakLite
 
 define endian=little;
 define alignment=2;
 
-define space RAM     type=ram_space      size=2  default;
-define space register type=register_space size=2;
+define space RAM    type=ram_space    size=2     wordsize=2      default;
+define space register type=register_space size=4;
 
 # 40bit accumulators
 define register offset=0x0 size=5  [ a0 a1 b0 b1 ];
