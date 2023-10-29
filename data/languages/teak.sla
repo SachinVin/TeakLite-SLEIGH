@@ -8,7 +8,7 @@
 <space name="RAM" index="3" bigendian="false" delay="1" size="2" wordsize="2" physical="true"/>
 <space name="register" index="4" bigendian="false" delay="0" size="4" physical="true"/>
 </spaces>
-<symbol_table scopesize="2" symbolsize="76">
+<symbol_table scopesize="2" symbolsize="214">
 <scope id="0x0" parent="0x0"/>
 <scope id="0x1" parent="0x0"/>
 <subtable_sym_head name="instruction" id="0x0" scope="0x0"/>
@@ -82,15 +82,153 @@
 <varnode_sym_head name="stepi0" id="0x44" scope="0x0"/>
 <varnode_sym_head name="stepj0" id="0x45" scope="0x0"/>
 <value_sym_head name="op1_9" id="0x46" scope="0x0"/>
-<varlist_sym_head name="Ab_10" id="0x47" scope="0x0"/>
-<varlist_sym_head name="Bx_0" id="0x48" scope="0x0"/>
-<value_sym_head name="op12_15" id="0x49" scope="0x0"/>
-<operand_sym_head name="Ab_10" id="0x4a" scope="0x1"/>
-<operand_sym_head name="Bx_0" id="0x4b" scope="0x1"/>
+<value_sym_head name="op12_15" id="0x47" scope="0x0"/>
+<value_sym_head name="Ab_0" id="0x48" scope="0x0"/>
+<varlist_sym_head name="Ab_10" id="0x49" scope="0x0"/>
+<value_sym_head name="Ab_11" id="0x4a" scope="0x0"/>
+<value_sym_head name="Ab_2" id="0x4b" scope="0x0"/>
+<value_sym_head name="Ab_3" id="0x4c" scope="0x0"/>
+<value_sym_head name="Ab_4" id="0x4d" scope="0x0"/>
+<value_sym_head name="Ab_5" id="0x4e" scope="0x0"/>
+<value_sym_head name="Ab_7" id="0x4f" scope="0x0"/>
+<value_sym_head name="Abe_0" id="0x50" scope="0x0"/>
+<value_sym_head name="Abe_1" id="0x51" scope="0x0"/>
+<value_sym_head name="Abh_10" id="0x52" scope="0x0"/>
+<value_sym_head name="Abh_2" id="0x53" scope="0x0"/>
+<value_sym_head name="Abh_3" id="0x54" scope="0x0"/>
+<value_sym_head name="Abh_4" id="0x55" scope="0x0"/>
+<value_sym_head name="Abh_8" id="0x56" scope="0x0"/>
+<value_sym_head name="Abl_0" id="0x57" scope="0x0"/>
+<value_sym_head name="Abl_10" id="0x58" scope="0x0"/>
+<value_sym_head name="Abl_3" id="0x59" scope="0x0"/>
+<value_sym_head name="Ablh_10" id="0x5a" scope="0x0"/>
+<value_sym_head name="Ablh_9" id="0x5b" scope="0x0"/>
+<value_sym_head name="ArArpSttMod_0" id="0x5c" scope="0x0"/>
+<value_sym_head name="ArArpSttMod_8" id="0x5d" scope="0x0"/>
+<value_sym_head name="ArArp_0" id="0x5e" scope="0x0"/>
+<value_sym_head name="ArArp_8" id="0x5f" scope="0x0"/>
+<value_sym_head name="Ar_0" id="0x60" scope="0x0"/>
+<value_sym_head name="Ar_2" id="0x61" scope="0x0"/>
+<value_sym_head name="Arp_0" id="0x62" scope="0x0"/>
+<value_sym_head name="Ax_0" id="0x63" scope="0x0"/>
+<value_sym_head name="Ax_1" id="0x64" scope="0x0"/>
+<value_sym_head name="Ax_11" id="0x65" scope="0x0"/>
+<value_sym_head name="Ax_12" id="0x66" scope="0x0"/>
+<value_sym_head name="Ax_3" id="0x67" scope="0x0"/>
+<value_sym_head name="Ax_4" id="0x68" scope="0x0"/>
+<value_sym_head name="Ax_5" id="0x69" scope="0x0"/>
+<value_sym_head name="Ax_6" id="0x6a" scope="0x0"/>
+<value_sym_head name="Ax_8" id="0x6b" scope="0x0"/>
+<value_sym_head name="Axh_0" id="0x6c" scope="0x0"/>
+<value_sym_head name="Axh_1" id="0x6d" scope="0x0"/>
+<value_sym_head name="Axh_11" id="0x6e" scope="0x0"/>
+<value_sym_head name="Axh_12" id="0x6f" scope="0x0"/>
+<value_sym_head name="Axh_3" id="0x70" scope="0x0"/>
+<value_sym_head name="Axh_4" id="0x71" scope="0x0"/>
+<value_sym_head name="Axh_6" id="0x72" scope="0x0"/>
+<value_sym_head name="Axh_8" id="0x73" scope="0x0"/>
+<value_sym_head name="Axl_0" id="0x74" scope="0x0"/>
+<value_sym_head name="Axl_12" id="0x75" scope="0x0"/>
+<value_sym_head name="Axl_4" id="0x76" scope="0x0"/>
+<value_sym_head name="Axl_8" id="0x77" scope="0x0"/>
+<value_sym_head name="BankFlags6_0" id="0x78" scope="0x0"/>
+<varlist_sym_head name="Bx_0" id="0x79" scope="0x0"/>
+<value_sym_head name="Bx_1" id="0x7a" scope="0x0"/>
+<value_sym_head name="Bx_10" id="0x7b" scope="0x0"/>
+<value_sym_head name="Bx_12" id="0x7c" scope="0x0"/>
+<value_sym_head name="Bx_3" id="0x7d" scope="0x0"/>
+<value_sym_head name="Bx_4" id="0x7e" scope="0x0"/>
+<value_sym_head name="Bx_5" id="0x7f" scope="0x0"/>
+<value_sym_head name="Bx_8" id="0x80" scope="0x0"/>
+<value_sym_head name="Bxh_0" id="0x81" scope="0x0"/>
+<value_sym_head name="Bxh_10" id="0x82" scope="0x0"/>
+<value_sym_head name="Bxh_3" id="0x83" scope="0x0"/>
+<value_sym_head name="Bxh_4" id="0x84" scope="0x0"/>
+<value_sym_head name="Bxh_5" id="0x85" scope="0x0"/>
+<value_sym_head name="Cond_0" id="0x86" scope="0x0"/>
+<value_sym_head name="Imm2u_0" id="0x87" scope="0x0"/>
+<value_sym_head name="Imm2u_1" id="0x88" scope="0x0"/>
+<value_sym_head name="Imm4bitno_8" id="0x89" scope="0x0"/>
+<value_sym_head name="Imm4u_0" id="0x8a" scope="0x0"/>
+<value_sym_head name="Imm5s_0" id="0x8b" scope="0x0"/>
+<value_sym_head name="Imm5u_0" id="0x8c" scope="0x0"/>
+<value_sym_head name="Imm6s_0" id="0x8d" scope="0x0"/>
+<value_sym_head name="Imm7s_0" id="0x8e" scope="0x0"/>
+<value_sym_head name="Imm8s_0" id="0x8f" scope="0x0"/>
+<value_sym_head name="Imm8u_0" id="0x90" scope="0x0"/>
+<value_sym_head name="Imm9u_0" id="0x91" scope="0x0"/>
+<value_sym_head name="MemR0123_0" id="0x92" scope="0x0"/>
+<value_sym_head name="MemR0123_4" id="0x93" scope="0x0"/>
+<value_sym_head name="MemR0123_5" id="0x94" scope="0x0"/>
+<value_sym_head name="MemR01_0" id="0x95" scope="0x0"/>
+<value_sym_head name="MemR01_2" id="0x96" scope="0x0"/>
+<value_sym_head name="MemR01_3" id="0x97" scope="0x0"/>
+<value_sym_head name="MemR01_4" id="0x98" scope="0x0"/>
+<value_sym_head name="MemR01_5" id="0x99" scope="0x0"/>
+<value_sym_head name="MemR01_8" id="0x9a" scope="0x0"/>
+<value_sym_head name="MemR01_9" id="0x9b" scope="0x0"/>
+<value_sym_head name="MemR0425_0" id="0x9c" scope="0x0"/>
+<value_sym_head name="MemR0425_10" id="0x9d" scope="0x0"/>
+<value_sym_head name="MemR0425_2" id="0x9e" scope="0x0"/>
+<value_sym_head name="MemR0425_3" id="0x9f" scope="0x0"/>
+<value_sym_head name="MemR0425_4" id="0xa0" scope="0x0"/>
+<value_sym_head name="MemR04_1" id="0xa1" scope="0x0"/>
+<value_sym_head name="MemR04_3" id="0xa2" scope="0x0"/>
+<value_sym_head name="MemR04_4" id="0xa3" scope="0x0"/>
+<value_sym_head name="MemR04_8" id="0xa4" scope="0x0"/>
+<value_sym_head name="MemR4567_4" id="0xa5" scope="0x0"/>
+<value_sym_head name="MemR4567_8" id="0xa6" scope="0x0"/>
+<value_sym_head name="MemR45_0" id="0xa7" scope="0x0"/>
+<value_sym_head name="MemR45_2" id="0xa8" scope="0x0"/>
+<value_sym_head name="MemR45_3" id="0xa9" scope="0x0"/>
+<value_sym_head name="MemR45_4" id="0xaa" scope="0x0"/>
+<value_sym_head name="MemR45_5" id="0xab" scope="0x0"/>
+<value_sym_head name="MemR45_8" id="0xac" scope="0x0"/>
+<value_sym_head name="MemImm8_0" id="0xad" scope="0x0"/>
+<value_sym_head name="MemR7Imm7s_0" id="0xae" scope="0x0"/>
+<value_sym_head name="MemRn_0" id="0xaf" scope="0x0"/>
+<value_sym_head name="ProgMemAx_5" id="0xb0" scope="0x0"/>
+<value_sym_head name="ProgMemAxl_5" id="0xb1" scope="0x0"/>
+<value_sym_head name="ProgMemRn_0" id="0xb2" scope="0x0"/>
+<value_sym_head name="Px_0" id="0xb3" scope="0x0"/>
+<value_sym_head name="Px_1" id="0xb4" scope="0x0"/>
+<value_sym_head name="Px_4" id="0xb5" scope="0x0"/>
+<value_sym_head name="R0123457y0_10" id="0xb6" scope="0x0"/>
+<value_sym_head name="R0123457y0_9" id="0xb7" scope="0x0"/>
+<value_sym_head name="RegisterP0_0" id="0xb8" scope="0x0"/>
+<value_sym_head name="Register_0" id="0xb9" scope="0x0"/>
+<value_sym_head name="Register_5" id="0xba" scope="0x0"/>
+<value_sym_head name="RelAddr7_4" id="0xbb" scope="0x0"/>
+<value_sym_head name="Rn_0" id="0xbc" scope="0x0"/>
+<value_sym_head name="SttMod_0" id="0xbd" scope="0x0"/>
+<value_sym_head name="SttMod_8" id="0xbe" scope="0x0"/>
+<value_sym_head name="SwapTypes4_0" id="0xbf" scope="0x0"/>
+<value_sym_head name="Unused1_1" id="0xc0" scope="0x0"/>
+<value_sym_head name="Unused1_10" id="0xc1" scope="0x0"/>
+<value_sym_head name="Unused1_5" id="0xc2" scope="0x0"/>
+<value_sym_head name="Unused1_8" id="0xc3" scope="0x0"/>
+<value_sym_head name="Unused2_0" id="0xc4" scope="0x0"/>
+<value_sym_head name="Unused3_0" id="0xc5" scope="0x0"/>
+<value_sym_head name="Unused5_0" id="0xc6" scope="0x0"/>
+<value_sym_head name="Unused6_0" id="0xc7" scope="0x0"/>
+<value_sym_head name="Unused7_0" id="0xc8" scope="0x0"/>
+<value_sym_head name="Unused8_0" id="0xc9" scope="0x0"/>
+<value_sym_head name="Address16_16" id="0xca" scope="0x0"/>
+<value_sym_head name="Address18_0" id="0xcb" scope="0x0"/>
+<value_sym_head name="Address18_4" id="0xcc" scope="0x0"/>
+<value_sym_head name="Address18_5" id="0xcd" scope="0x0"/>
+<value_sym_head name="Address18_16" id="0xce" scope="0x0"/>
+<value_sym_head name="Imm16_16" id="0xcf" scope="0x0"/>
+<value_sym_head name="Imm4bitno_16" id="0xd0" scope="0x0"/>
+<value_sym_head name="MemImm16_16" id="0xd1" scope="0x0"/>
+<value_sym_head name="MemR7Imm16_16" id="0xd2" scope="0x0"/>
+<value_sym_head name="Unused12_20" id="0xd3" scope="0x0"/>
+<operand_sym_head name="Ab_10" id="0xd4" scope="0x1"/>
+<operand_sym_head name="Bx_0" id="0xd5" scope="0x1"/>
 <subtable_sym name="instruction" id="0x0" scope="0x0" numct="1">
-<constructor parent="0x0" first="1" length="2" line="0:74">
-<oper id="0x4a"/>
-<oper id="0x4b"/>
+<constructor parent="0x0" first="1" length="2" line="0:216">
+<oper id="0xd4"/>
+<oper id="0xd5"/>
 <print piece="add"/>
 <print piece=" "/>
 <opprint id="0"/>
@@ -251,25 +389,439 @@
 <value_sym name="op1_9" id="0x46" scope="0x0">
 <tokenfield bigendian="false" signbit="false" bitstart="1" bitend="9" bytestart="0" byteend="1" shift="1"/>
 </value_sym>
-<varlist_sym name="Ab_10" id="0x47" scope="0x0">
+<value_sym name="op12_15" id="0x47" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="12" bitend="15" bytestart="1" byteend="1" shift="4"/>
+</value_sym>
+<value_sym name="Ab_0" id="0x48" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="1" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<varlist_sym name="Ab_10" id="0x49" scope="0x0">
 <tokenfield bigendian="false" signbit="false" bitstart="10" bitend="11" bytestart="1" byteend="1" shift="2"/>
 <var id="0x6"/>
 <var id="0x7"/>
 <var id="0x4"/>
 <var id="0x5"/>
 </varlist_sym>
-<varlist_sym name="Bx_0" id="0x48" scope="0x0">
+<value_sym name="Ab_11" id="0x4a" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="11" bitend="12" bytestart="1" byteend="1" shift="3"/>
+</value_sym>
+<value_sym name="Ab_2" id="0x4b" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="2" bitend="3" bytestart="0" byteend="0" shift="2"/>
+</value_sym>
+<value_sym name="Ab_3" id="0x4c" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="4" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="Ab_4" id="0x4d" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="5" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="Ab_5" id="0x4e" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="6" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="Ab_7" id="0x4f" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="7" bitend="8" bytestart="0" byteend="1" shift="7"/>
+</value_sym>
+<value_sym name="Abe_0" id="0x50" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="1" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Abe_1" id="0x51" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="1" bitend="2" bytestart="0" byteend="0" shift="1"/>
+</value_sym>
+<value_sym name="Abh_10" id="0x52" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="10" bitend="11" bytestart="1" byteend="1" shift="2"/>
+</value_sym>
+<value_sym name="Abh_2" id="0x53" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="2" bitend="3" bytestart="0" byteend="0" shift="2"/>
+</value_sym>
+<value_sym name="Abh_3" id="0x54" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="4" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="Abh_4" id="0x55" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="5" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="Abh_8" id="0x56" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="9" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="Abl_0" id="0x57" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="1" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Abl_10" id="0x58" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="10" bitend="11" bytestart="1" byteend="1" shift="2"/>
+</value_sym>
+<value_sym name="Abl_3" id="0x59" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="4" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="Ablh_10" id="0x5a" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="10" bitend="12" bytestart="1" byteend="1" shift="2"/>
+</value_sym>
+<value_sym name="Ablh_9" id="0x5b" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="9" bitend="11" bytestart="1" byteend="1" shift="1"/>
+</value_sym>
+<value_sym name="ArArpSttMod_0" id="0x5c" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="3" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="ArArpSttMod_8" id="0x5d" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="11" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="ArArp_0" id="0x5e" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="2" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="ArArp_8" id="0x5f" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="10" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="Ar_0" id="0x60" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="0" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Ar_2" id="0x61" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="2" bitend="2" bytestart="0" byteend="0" shift="2"/>
+</value_sym>
+<value_sym name="Arp_0" id="0x62" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="1" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Ax_0" id="0x63" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="0" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Ax_1" id="0x64" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="1" bitend="1" bytestart="0" byteend="0" shift="1"/>
+</value_sym>
+<value_sym name="Ax_11" id="0x65" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="11" bitend="11" bytestart="1" byteend="1" shift="3"/>
+</value_sym>
+<value_sym name="Ax_12" id="0x66" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="12" bitend="12" bytestart="1" byteend="1" shift="4"/>
+</value_sym>
+<value_sym name="Ax_3" id="0x67" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="3" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="Ax_4" id="0x68" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="4" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="Ax_5" id="0x69" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="5" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="Ax_6" id="0x6a" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="6" bitend="6" bytestart="0" byteend="0" shift="6"/>
+</value_sym>
+<value_sym name="Ax_8" id="0x6b" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="8" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="Axh_0" id="0x6c" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="0" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Axh_1" id="0x6d" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="1" bitend="1" bytestart="0" byteend="0" shift="1"/>
+</value_sym>
+<value_sym name="Axh_11" id="0x6e" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="11" bitend="11" bytestart="1" byteend="1" shift="3"/>
+</value_sym>
+<value_sym name="Axh_12" id="0x6f" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="12" bitend="12" bytestart="1" byteend="1" shift="4"/>
+</value_sym>
+<value_sym name="Axh_3" id="0x70" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="3" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="Axh_4" id="0x71" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="4" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="Axh_6" id="0x72" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="6" bitend="6" bytestart="0" byteend="0" shift="6"/>
+</value_sym>
+<value_sym name="Axh_8" id="0x73" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="8" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="Axl_0" id="0x74" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="0" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Axl_12" id="0x75" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="12" bitend="12" bytestart="1" byteend="1" shift="4"/>
+</value_sym>
+<value_sym name="Axl_4" id="0x76" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="4" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="Axl_8" id="0x77" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="8" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="BankFlags6_0" id="0x78" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="6" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<varlist_sym name="Bx_0" id="0x79" scope="0x0">
 <tokenfield bigendian="false" signbit="false" bitstart="0" bitend="0" bytestart="0" byteend="0" shift="0"/>
 <var id="0x6"/>
 <var id="0x7"/>
 </varlist_sym>
-<value_sym name="op12_15" id="0x49" scope="0x0">
-<tokenfield bigendian="false" signbit="false" bitstart="12" bitend="15" bytestart="1" byteend="1" shift="4"/>
+<value_sym name="Bx_1" id="0x7a" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="1" bitend="1" bytestart="0" byteend="0" shift="1"/>
 </value_sym>
-<operand_sym name="Ab_10" id="0x4a" scope="0x1" subsym="0x47" off="0" base="-1" minlen="2" index="0">
+<value_sym name="Bx_10" id="0x7b" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="10" bitend="10" bytestart="1" byteend="1" shift="2"/>
+</value_sym>
+<value_sym name="Bx_12" id="0x7c" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="12" bitend="12" bytestart="1" byteend="1" shift="4"/>
+</value_sym>
+<value_sym name="Bx_3" id="0x7d" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="3" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="Bx_4" id="0x7e" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="4" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="Bx_5" id="0x7f" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="5" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="Bx_8" id="0x80" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="8" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="Bxh_0" id="0x81" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="0" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Bxh_10" id="0x82" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="10" bitend="10" bytestart="1" byteend="1" shift="2"/>
+</value_sym>
+<value_sym name="Bxh_3" id="0x83" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="3" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="Bxh_4" id="0x84" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="4" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="Bxh_5" id="0x85" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="5" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="Cond_0" id="0x86" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="3" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Imm2u_0" id="0x87" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="1" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Imm2u_1" id="0x88" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="1" bitend="2" bytestart="0" byteend="0" shift="1"/>
+</value_sym>
+<value_sym name="Imm4bitno_8" id="0x89" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="11" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="Imm4u_0" id="0x8a" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="3" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Imm5s_0" id="0x8b" scope="0x0">
+<tokenfield bigendian="false" signbit="true" bitstart="0" bitend="4" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Imm5u_0" id="0x8c" scope="0x0">
+<tokenfield bigendian="false" signbit="true" bitstart="0" bitend="4" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Imm6s_0" id="0x8d" scope="0x0">
+<tokenfield bigendian="false" signbit="true" bitstart="0" bitend="5" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Imm7s_0" id="0x8e" scope="0x0">
+<tokenfield bigendian="false" signbit="true" bitstart="0" bitend="6" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Imm8s_0" id="0x8f" scope="0x0">
+<tokenfield bigendian="false" signbit="true" bitstart="0" bitend="7" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Imm8u_0" id="0x90" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="7" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Imm9u_0" id="0x91" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="8" bytestart="0" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="MemR0123_0" id="0x92" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="1" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="MemR0123_4" id="0x93" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="5" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="MemR0123_5" id="0x94" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="6" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="MemR01_0" id="0x95" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="0" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="MemR01_2" id="0x96" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="2" bitend="2" bytestart="0" byteend="0" shift="2"/>
+</value_sym>
+<value_sym name="MemR01_3" id="0x97" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="3" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="MemR01_4" id="0x98" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="4" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="MemR01_5" id="0x99" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="5" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="MemR01_8" id="0x9a" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="8" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="MemR01_9" id="0x9b" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="9" bitend="9" bytestart="1" byteend="1" shift="1"/>
+</value_sym>
+<value_sym name="MemR0425_0" id="0x9c" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="1" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="MemR0425_10" id="0x9d" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="10" bitend="11" bytestart="1" byteend="1" shift="2"/>
+</value_sym>
+<value_sym name="MemR0425_2" id="0x9e" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="2" bitend="3" bytestart="0" byteend="0" shift="2"/>
+</value_sym>
+<value_sym name="MemR0425_3" id="0x9f" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="4" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="MemR0425_4" id="0xa0" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="5" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="MemR04_1" id="0xa1" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="1" bitend="1" bytestart="0" byteend="0" shift="1"/>
+</value_sym>
+<value_sym name="MemR04_3" id="0xa2" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="3" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="MemR04_4" id="0xa3" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="4" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="MemR04_8" id="0xa4" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="8" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="MemR4567_4" id="0xa5" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="5" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="MemR4567_8" id="0xa6" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="9" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="MemR45_0" id="0xa7" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="0" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="MemR45_2" id="0xa8" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="2" bitend="2" bytestart="0" byteend="0" shift="2"/>
+</value_sym>
+<value_sym name="MemR45_3" id="0xa9" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="3" bitend="3" bytestart="0" byteend="0" shift="3"/>
+</value_sym>
+<value_sym name="MemR45_4" id="0xaa" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="4" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="MemR45_5" id="0xab" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="5" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="MemR45_8" id="0xac" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="8" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="MemImm8_0" id="0xad" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="7" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="MemR7Imm7s_0" id="0xae" scope="0x0">
+<tokenfield bigendian="false" signbit="true" bitstart="0" bitend="7" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="MemRn_0" id="0xaf" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="2" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="ProgMemAx_5" id="0xb0" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="5" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="ProgMemAxl_5" id="0xb1" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="5" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="ProgMemRn_0" id="0xb2" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="2" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Px_0" id="0xb3" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="0" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Px_1" id="0xb4" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="1" bitend="1" bytestart="0" byteend="0" shift="1"/>
+</value_sym>
+<value_sym name="Px_4" id="0xb5" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="4" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="R0123457y0_10" id="0xb6" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="10" bitend="12" bytestart="1" byteend="1" shift="2"/>
+</value_sym>
+<value_sym name="R0123457y0_9" id="0xb7" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="9" bitend="11" bytestart="1" byteend="1" shift="1"/>
+</value_sym>
+<value_sym name="RegisterP0_0" id="0xb8" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="4" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Register_0" id="0xb9" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="4" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Register_5" id="0xba" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="9" bytestart="0" byteend="1" shift="5"/>
+</value_sym>
+<value_sym name="RelAddr7_4" id="0xbb" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="7" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="Rn_0" id="0xbc" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="2" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="SttMod_0" id="0xbd" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="2" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="SttMod_8" id="0xbe" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="10" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="SwapTypes4_0" id="0xbf" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="4" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Unused1_1" id="0xc0" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="1" bitend="1" bytestart="0" byteend="0" shift="1"/>
+</value_sym>
+<value_sym name="Unused1_10" id="0xc1" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="10" bitend="10" bytestart="1" byteend="1" shift="2"/>
+</value_sym>
+<value_sym name="Unused1_5" id="0xc2" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="5" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="Unused1_8" id="0xc3" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="8" bitend="8" bytestart="1" byteend="1" shift="0"/>
+</value_sym>
+<value_sym name="Unused2_0" id="0xc4" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="1" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Unused3_0" id="0xc5" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="2" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Unused5_0" id="0xc6" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="4" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Unused6_0" id="0xc7" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="5" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Unused7_0" id="0xc8" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="6" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Unused8_0" id="0xc9" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="7" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Address16_16" id="0xca" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="16" bitend="31" bytestart="2" byteend="3" shift="0"/>
+</value_sym>
+<value_sym name="Address18_0" id="0xcb" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="0" bitend="2" bytestart="0" byteend="0" shift="0"/>
+</value_sym>
+<value_sym name="Address18_4" id="0xcc" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="4" bitend="6" bytestart="0" byteend="0" shift="4"/>
+</value_sym>
+<value_sym name="Address18_5" id="0xcd" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="5" bitend="7" bytestart="0" byteend="0" shift="5"/>
+</value_sym>
+<value_sym name="Address18_16" id="0xce" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="16" bitend="31" bytestart="2" byteend="3" shift="0"/>
+</value_sym>
+<value_sym name="Imm16_16" id="0xcf" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="16" bitend="31" bytestart="2" byteend="3" shift="0"/>
+</value_sym>
+<value_sym name="Imm4bitno_16" id="0xd0" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="16" bitend="19" bytestart="2" byteend="2" shift="0"/>
+</value_sym>
+<value_sym name="MemImm16_16" id="0xd1" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="16" bitend="31" bytestart="2" byteend="3" shift="0"/>
+</value_sym>
+<value_sym name="MemR7Imm16_16" id="0xd2" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="16" bitend="31" bytestart="2" byteend="3" shift="0"/>
+</value_sym>
+<value_sym name="Unused12_20" id="0xd3" scope="0x0">
+<tokenfield bigendian="false" signbit="false" bitstart="20" bitend="31" bytestart="2" byteend="3" shift="4"/>
+</value_sym>
+<operand_sym name="Ab_10" id="0xd4" scope="0x1" subsym="0x49" off="0" base="-1" minlen="2" index="0">
 <operand_exp index="0" table="0x0" ct="0x0"/>
 </operand_sym>
-<operand_sym name="Bx_0" id="0x4b" scope="0x1" subsym="0x48" off="0" base="-1" minlen="2" index="1">
+<operand_sym name="Bx_0" id="0xd5" scope="0x1" subsym="0x79" off="0" base="-1" minlen="2" index="1">
 <operand_exp index="1" table="0x0" ct="0x0"/>
 </operand_sym>
 </symbol_table>
