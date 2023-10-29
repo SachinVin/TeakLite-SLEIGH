@@ -196,10 +196,8 @@
   8520h TL  macuu y0, MemRn@0, Ax@11 || Rn@0stepZIDS@3
   8540h TL  macuu y0, Register@0, Ax@11
   5EAAh TL2 macuu y0, r6, Ax@0
-  8460h TL  max  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, ge,
-             Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY >= aX
-  8660h TL  max  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, gt,
-             Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY > aX
+  8460h TL  max  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, ge, Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY >= aX
+  8660h TL  max  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, gt, Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY > aX
   5E21h TL2 max  a0h, a1h || max a0l, a1l || vtrshr
   5F21h TL2 max  a1h, a0h || max a1l, a0l || vtrshr
   D784h TL2 max  Axh@1, Bxh@0 || max Axl@1, Bxl@0 || vtrshr
@@ -221,10 +219,8 @@
              || R0stepZIDS@3   ;when (r0) >= aX
   8260h TL  maxd NoReverse, Ax@8, MemR0, gt, Implied mixp, Implied r0
              || R0stepZIDS@3   ;when (r0) > aX
-  8860h TL  min  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, le,
-             Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY <= aX
-  8A60h TL  min  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, lt,
-             Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY < aX
+  8860h TL  min  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, le, Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY <= aX
+  8A60h TL  min  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, lt, Implied mixp, Implied r0 || R0stepZIDS@3   ;when aY < aX
   43C2h TL2 min  Axh@0, Axh@not0 || min Axl@0, Axl@not0 || vtrshr
   D2B8h TL2 min  Axh@11, Bxh@10 || min Axl@11, Bxl@10
              || mov Axh@not11, MemR01@2 || mov Axl@not11, MemR45@2
@@ -575,11 +571,11 @@
              || mpyus MemR45@5offsZI@4, MemR01@5offsZI@3
              || add3aa p0, p1, Ab@6 || R01@5stepII2@3, R45@5stepII2@4
   5EA2h TL2 mpysu y0, r6
-  D080h TL  msu  MemR45@2,MemR0123@0,Ax@8 || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  D080h TL  msu  MemR45@2, MemR0123@0, Ax@8 || R0123@0stepZIDS@3, R45@2stepZIDS@5
   90C0h TL  msu  MemRn@0, Imm16@16,  Ax@8 || Rn@0stepZIDS@3 ;multiply, subtract
   9080h TL  msu  y0, MemRn@0, Ax@8 || Rn@0stepZIDS@3
   90A0h TL  msu  y0, Register@0, Ax@8
-  B000h TL  msu  y0,MemImm8@0, Ax@8
+  B000h TL  msu  y0, MemImm8@0, Ax@8
   9462h TL2 msu  y0, r6, Ax@0
   8264h TL2 msusu y0, MemR0425@3, Ax@8 || R0425@3stepII2D2S@0
   6790h TL  neg  Ax@12, Cond@0 ;aX=0-aX
