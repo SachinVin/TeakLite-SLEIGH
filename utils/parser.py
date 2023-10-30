@@ -32,7 +32,8 @@ token_len_map = {
 
     "Cond": 4,
     "ArArpSttMod": 4,
-    "SwapTypes": 4,
+    "SwapTypes4": 4,
+    
 
     "Register": 5,
     "RegisterP0": 5,
