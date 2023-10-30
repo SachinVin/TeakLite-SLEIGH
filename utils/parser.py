@@ -65,6 +65,7 @@ def get_tok_len(tok: str):
 
 
 tok_set=set()
+attach_dict=dict()
 with open('./opcodes.txt', 'r') as f:
     for line in f:
         if line.startswith('#'):
@@ -108,7 +109,24 @@ with open('./opcodes.txt', 'r') as f:
                 continue
 
 
-        
-for t in sorted(tok_set):
+sorted_tok_set = sorted(tok_set)
+
+for t in sorted_tok_set:
     print(f"    {t}")
-        
+
+prev_a = ''
+set_same_tok = set()
+for t in sorted_tok_set:
+    [a, b] = t.split('_')
+    if prev_a != a:
+        # print(f"set_a={set_a}")
+        attach_dict.update({a : set_same_tok.copy()})
+        set_same_tok.clear()
+        prev_a = a
+    set_same_tok.add(t.split('=')[0])
+
+for same_tok in attach_dict.values():
+    print("attach variables [ ", end="") 
+    for t in sorted(same_tok):
+        print(f"{t}", end="")
+    print("]") 

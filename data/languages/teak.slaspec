@@ -210,10 +210,88 @@ define token teakop_expanded (32)
 ;
 
 # VARIABLES
-attach variables [ Ab_10 ] [ b0 b1 a0 a1 ];
-attach variables [ Bx_0 ] [ b0 b1 ];
-# Instructions
+attach variables [ Ab_0 Ab_10 Ab_11 Ab_2 Ab_3 Ab_4 Ab_5 Ab_7 ] [ b0 b1 a0 a1 ];
+attach variables [ Abe_0 Abe_1 ] [ b0e b1e a0e a1e ];
+attach variables [ Abh_10 Abh_2 Abh_3 Abh_4 Abh_8 ] [ b0h b1h a0h a1h ];
+attach variables [ Abl_0 Abl_10 Abl_3 ] [ b0l b1l a0l a1l ];
+attach variables [ Ablh_10 Ablh_9 ] [ b0l b0h b1l b1h a0l a0h a1l a1h ];
+# attach variables [ Address16_16 ];
+# attach variables [ Address18_0 Address18_16 Address18_4 Address18_5 ];
+attach variables [ ArArpSttMod_0 ArArpSttMod_8 ] [ ar0 ar1 arp0 arp1 arp2 arp3 _ _ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3];
+attach variables [ ArArp_0 ArArp_8 ] [ar0 ar1 arp0 arp1 arp2 arp3 _ _];
+attach variables [ Ar_0 Ar_2 ] [ ar0 ar1 ];
+attach variables [ Arp_0 ] [ arp0 arp1 arp2 arp3 ];
+attach variables [ Ax_0 Ax_1 Ax_11 Ax_12 Ax_3 Ax_4 Ax_5 Ax_6 Ax_8 ] [ a0 a1 ];
+attach variables [ Ax_not12 Ax_not8 ] [ a1 a0 ];
+attach variables [ Axh_0 Axh_1 Axh_11 Axh_12 Axh_3 Axh_4 Axh_6 Axh_8 ] [ a0h a1h ];
+attach variables [ Axh_not0 ] [ a1h a0h ];
+attach variables [ Axl_0 Axl_12 Axl_4 Axl_8 ] [ a0l a1l];
+# attach variables [ BankFlags6_0 ] [];
+attach variables [ Bx_0 Bx_1 Bx_10 Bx_12 Bx_3 Bx_4 Bx_5 Bx_8 ] [ b0 b1 ];
+attach variables [ Bxh_0 Bxh_10 Bxh_3 Bxh_4 Bxh_5 ] [ b0h b1h ];
+# attach variables [ Cond_0 ]
+# attach variables [ Imm16_16 ]
+# attach variables [ Imm2u_0 Imm2u_1 ]
+# attach variables [ Imm4bitno_16 Imm4bitno_8 ]
+# attach variables [ Imm4u_0 ]
+# attach variables [ Imm5s_0 ]
+# attach variables [ Imm5u_0 ]
+# attach variables [ Imm6s_0 ]
+# attach variables [ Imm7s_0 ]
+# attach variables [ Imm8s_0 ]
+# attach variables [ Imm8u_0 ]
+# attach variables [ Imm9u_0 ]
+# attach variables [ MemImm16_16 ]
+# attach variables [ MemImm8_0 ]
+attach variables [ MemR0123_0 MemR0123_4 MemR0123_5 ] [ r0 r1 r2 r3 ];
+attach variables [ MemR01_0 MemR01_2 MemR01_3 MemR01_4 MemR01_5 MemR01_8 MemR01_9 ] [ r0 r1 ];
+attach variables [ MemR0425_0 MemR0425_10 MemR0425_2 MemR0425_3 MemR0425_4 ] [ r0 r4 r2 r5 ];
+attach variables [ MemR04_1 MemR04_3 MemR04_4 MemR04_8 ] [ r0 r4 ];
+attach variables [ MemR4567_4 MemR4567_8 ] [ r4 r5 r6 r7 ];
+attach variables [ MemR45_0 MemR45_2 MemR45_3 MemR45_4 MemR45_5 MemR45_8 ] [ r4 r5 ];
+# attach variables [ MemR7Imm16_16 ]
+# attach variables [ MemR7Imm7s_0 ]
+attach variables [ MemRn_0 ] [ r0 r1 r2 r3 r4 r5 r6 r7 ];
+attach variables [ ProgMemAx_5 ] [ a0 a1 ];
+attach variables [ ProgMemAxl_5 ] [ a0l a1l ];
+attach variables [ ProgMemRn_0 ] [ r0 r1 r2 r3 r4 r5 r6 r7 ];
+attach variables [ Px_0 Px_1 Px_4 ] [ p0 p1 ];
+attach variables [ R0123457y0_10 R0123457y0_9 ] [ r0 r1 r2 r3 r4 r5 r7 y0 ];
+attach variables [ RegisterP0_0 ] [ r0 r1 r2 r3 r4 r5 r7 y0
+                                    st0 st1 st2
+                                    p0
+                                    _ # todo: pc 
+                                    sp
+                                    cfgi cfgj
+                                    b0h b1h b0l b1l
+                                    ext0 ext1 ext2 ext3
+                                    _ _ # todo: a0 a1 
+                                    a0l a1l a0h a1h
+                                    lc sv ];
+attach variables [ Register_0 Register_5 ] [ r0 r1 r2 r3 r4 r5 r7 y0
+                                             st0 st1 st2
+                                             p0h
+                                             _ # todo: pc
+                                             sp
+                                             cfgi cfgj
+                                             b0h b1h b0l b1l
+                                             ext0 ext1 ext2 ext3
+                                             _ _ # todo: a0 a1
+                                             a0l a1l a0h a1h
+                                             lc sv ];
+# attach variables [ RelAddr7_4 ]
+attach variables [ Rn_0 ] [ r0 r1 r2 r3 r4 r5 r6 r7 ];
+attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
+# attach variables [ SwapTypes4_0 ]
+# attach variables [ Unused12_20 ]
+# attach variables [ Unused1_0 Unused1_1 Unused1_10 Unused1_5 Unused1_8 ]
+# attach variables [ Unused2_0 ]
+# attach variables [ Unused3_0 ]
+# attach variables [ Unused5_0 ]
+# attach variables [ Unused6_0 ]
+# attach variables [ Unused7_0 ]
 
+# Instructions
 # D2DAh TL2 add  Ab@10, Bx@0
 # 1101 --10 1101 101-
 # op9_1 op15_12
