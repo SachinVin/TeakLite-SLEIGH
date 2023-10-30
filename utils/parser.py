@@ -88,21 +88,25 @@ with open('./opcodes.txt', 'r') as f:
                 length = get_tok_len(operand)
 
                 if (start.find('not')) != -1:
+                    start = start.strip('not')
+                    tok_set.add(f"{operand}_not{start} = ({start},{int(start)+length-1})")
                     continue
-                if (start.find('and')) == -1:
-                    if (length == 0):
-                        length = int(start)
-                        print("Unhandled")
-                    tok_set.add(f"{operand}_{start} = ({start},{int(start)+length-1})")
+                if (start.find('and')) != -1:
+                    # eg Address18@16and5
+                    [s1, s2] = start.split('and')
+                    if s1 != '16':
+                        print(f"Unknown s={s}")
+                        continue
+                    tok_set.add(f"{operand}_{s1} = ({s1},{int(s1)+16})")
+                    tok_set.add(f"{operand}_{s2} = ({s2},{int(s2)+2})")
                     continue
+                if (length == 0):
+                    length = int(start)
+                    print("Unhandled")
+                tok_set.add(f"{operand}_{start} = ({start},{int(start)+length-1})")
+                continue
 
-                # eg Address18@16and5
-                [s1, s2] = start.split('and')
-                if s1 != '16':
-                    print(f"Unknown s={s}")
-                    continue
-                tok_set.add(f"{operand}_{s1} = ({s1},{int(s1)+16})")
-                tok_set.add(f"{operand}_{s2} = ({s2},{int(s2)+2})")
+
         
 for t in sorted(tok_set):
     print(f"    {t}")
