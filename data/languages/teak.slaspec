@@ -259,7 +259,7 @@ attach variables [ Px_0 Px_1 Px_4 ] [ p0 p1 ];
 attach variables [ R0123457y0_10 R0123457y0_9 ] [ r0 r1 r2 r3 r4 r5 r7 y0 ];
 attach variables [ RegisterP0_0 ] [ r0 r1 r2 r3 r4 r5 r7 y0
                                     st0 st1 st2
-                                    p0
+                                    _ # todo: p0
                                     _ # todo: pc 
                                     sp
                                     cfgi cfgj
