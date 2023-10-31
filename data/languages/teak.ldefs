@@ -9,7 +9,7 @@
             version="1.0"
             slafile="teak.sla"
             processorspec="teak.pspec"
-            manualindexfile="../manuals/6502.idx"
+            manualindexfile="../manuals/teak.idx"
             id="teak:LE:16:default">
     <description>TeakLite Family</description>
     <compiler name="default" spec="teak.cspec" id="default"/>
