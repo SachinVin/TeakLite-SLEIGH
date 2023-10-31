@@ -71,9 +71,29 @@ def get_tok_len(tok: str):
     length = token_len_map.get(operand, 0)
     return length
 
+def set_bits(frm : int, to : int):
+    return (0xFFFFFFFF >> (32 - (to - frm + 1))) << frm
 
+op_set = set()
+def populate_op_set(mask : int)
+    start = -1
+    prev_bit = 1
+    end = -1
+    for i in range(16):
+        if mask & (1 << i) == 0:
+            if prev_bit == 1:
+                start = i
+            prev_bit = 0
+            end = i
+            continue
+        # else:
+        if prev_bit == 0:
+            op_set.add(f"op_{start:02}{end:02} = ({start},{end})")
+            prev_bit = 1
+    if prev_bit == 0:
+        op_set.add(f"op_{start:02}{end:02} = ({start},{end})")
+        prev_bit = 1
 tok_set=set()
-attach_dict=dict()
 with open('./opcodes.txt', 'r') as f:
     for line in f:
         if line.startswith('#'):
@@ -89,7 +109,7 @@ with open('./opcodes.txt', 'r') as f:
         if len(sp) < 3:
             print("wut...")
             continue
-        
+        mask = 0
         for s in sp:
             s=s.strip(',')
             #print(s)
@@ -102,7 +122,9 @@ with open('./opcodes.txt', 'r') as f:
 
             if (start.find('not')) != -1:
                 start = start.strip('not')
-                tok_set.add(f"{operand}_not{start} = ({start},{int(start)+length-1})")
+                to = int(start)+length-1
+                mask |=  set_bits(int(start), int(to))
+                tok_set.add(f"{operand}_not{start} = ({start},{to})")
                 continue
             if (start.find('and')) != -1:
                 # eg Address18@16and5
@@ -110,14 +132,22 @@ with open('./opcodes.txt', 'r') as f:
                 if s1 != '16':
                     print(f"Unknown s={s}")
                     continue
+                to = int(s2)+2
+                mask |= set_bits(int(s2), int(to))
                 tok_set.add(f"{operand}_{s1} = ({s1},{int(s1)+16})")
                 tok_set.add(f"{operand}_{s2} = ({s2},{int(s2)+2})")
                 continue
             if (length == 0):
                 length = int(start)
                 print(f"Unhandled: {s}")
-            tok_set.add(f"{operand}_{start} = ({start},{int(start)+length-1})")
+
+            to = int(start)+length-1
+            mask |= set_bits(int(start), int(to))
+            tok_set.add(f"{operand}_{start} = ({start},{to})")
             continue
+        
+        #print(f"base_op={base_op:X},mask={mask:X}")
+        populate_op_set(mask)
 
 
 sorted_tok_set = sorted(tok_set)
@@ -129,9 +159,11 @@ def print_operands():
 def print_attachments():
     prev_a = ''
     set_same_tok = set()
+    attach_dict=dict()
     for t in sorted_tok_set:
         [a, b] = t.split('_')
         if prev_a != a:
+            
             # print(f"set_a={set_a}")
             attach_dict.update({a : set_same_tok.copy()})
             set_same_tok.clear()
@@ -144,5 +176,11 @@ def print_attachments():
             print(f"{t}", end="")
         print("]") 
 
-def print_instructions():
+def print_ops():
+    sorted_op_set = sorted(op_set)
+    for o in sorted_op_set:
+        print(f"    {o}")
     pass
+
+
+print_ops()
