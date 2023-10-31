@@ -74,8 +74,15 @@ def get_tok_len(tok: str):
 def set_bits(frm : int, to : int):
     return (0xFFFFFFFF >> (32 - (to - frm + 1))) << frm
 
+def extract_bits(inp: int, frm : int, to : int):
+    mask = (0xFFFF >> (16 - (to - frm + 1)))
+    inp = inp >> (frm)
+
+    return mask & inp
+
+
 op_set = set()
-def populate_op_set(mask : int)
+def populate_op_set(mask : int):
     start = -1
     prev_bit = 1
     end = -1
@@ -88,12 +95,15 @@ def populate_op_set(mask : int)
             continue
         # else:
         if prev_bit == 0:
+            extract_bits()
             op_set.add(f"op_{start:02}{end:02} = ({start},{end})")
             prev_bit = 1
     if prev_bit == 0:
         op_set.add(f"op_{start:02}{end:02} = ({start},{end})")
         prev_bit = 1
+
 tok_set=set()
+outf = open('./out.txt', 'w')
 with open('./opcodes.txt', 'r') as f:
     for line in f:
         if line.startswith('#'):
@@ -104,12 +114,16 @@ with open('./opcodes.txt', 'r') as f:
             continue
         sp = line.split()
         #print(sp)
+        op_constructor = []
+        op_mnemonic = ""
         base_op = int(sp[0][:4], 16)
+        op_mnemonic += (f"{sp[2]}    ")
         #print(base_op)
         if len(sp) < 3:
             print("wut...")
             continue
         mask = 0
+        expanded_token=""
         for s in sp:
             s=s.strip(',')
             #print(s)
@@ -124,7 +138,10 @@ with open('./opcodes.txt', 'r') as f:
                 start = start.strip('not')
                 to = int(start)+length-1
                 mask |=  set_bits(int(start), int(to))
-                tok_set.add(f"{operand}_not{start} = ({start},{to})")
+                token = f"{operand}_not{start}"
+                op_constructor.append(token)
+                op_mnemonic += (f"{token},")
+                tok_set.add(f"{token} = ({start},{to})")
                 continue
             if (start.find('and')) != -1:
                 # eg Address18@16and5
@@ -134,8 +151,13 @@ with open('./opcodes.txt', 'r') as f:
                     continue
                 to = int(s2)+2
                 mask |= set_bits(int(s2), int(to))
-                tok_set.add(f"{operand}_{s1} = ({s1},{int(s1)+16})")
-                tok_set.add(f"{operand}_{s2} = ({s2},{int(s2)+2})")
+                token = f"{operand}_{start}"
+                op_mnemonic += (f"{token},")
+                op_constructor.append(token)
+                token1 = f"{operand}_{s1}"
+                token2 = f"{operand}_{s2}"
+                tok_set.add(f"{token1} = ({s1},{int(s1)+16})")
+                tok_set.add(f"{token2} = ({s2},{int(s2)+2})")
                 continue
             if (length == 0):
                 length = int(start)
@@ -143,12 +165,55 @@ with open('./opcodes.txt', 'r') as f:
 
             to = int(start)+length-1
             mask |= set_bits(int(start), int(to))
-            tok_set.add(f"{operand}_{start} = ({start},{to})")
+            token = f"{operand}_{start}"
+            if(int(start) > 15):
+                expanded_token = (f"; {token}")
+            else:
+                op_mnemonic += (f"{token},")
+                op_constructor.append(token)
+            tok_set.add(f"{token} = ({start},{to})")
             continue
         
+        op_mnemonic = op_mnemonic.strip(',')
         #print(f"base_op={base_op:X},mask={mask:X}")
-        populate_op_set(mask)
+        #populate_op_set(mask)
+        start = -1
+        prev_bit = 1
+        end = -1
+        for i in range(16):
+            if mask & (1 << i) == 0:
+                if prev_bit == 1:
+                    start = i
+                prev_bit = 0
+                end = i
+                continue
+            # else:
+            if prev_bit == 0:
+                bits=extract_bits(base_op, start, end)
+                token = f"op_{start:02}{end:02}"
+                op_constructor.append(f"{token}=0x{bits:X}")
+                op_set.add(f"op_{start:02}{end:02} = ({start},{end})")
+                prev_bit = 1
+        if prev_bit == 0:
+            bits=extract_bits(base_op, start, end)
+            token = f"op_{start:02}{end:02}"
+            op_constructor.append(f"{token}=0x{bits:X}")
+            op_set.add(f"{token} = ({start},{end})")
+            prev_bit = 1
+        
+        outf.write(f"# {line.strip().split('||')[0]}\n")
+        outf.write(f":{op_mnemonic} is ",) 
+        first = 1
+        for op in op_constructor:
+            if first:
+                first = 0
+            else:
+                outf.write("& ")
+            outf.write(f"{op} ")
 
+        outf.write(expanded_token)
+        
+        outf.write("{ }\n\n")
 
 sorted_tok_set = sorted(tok_set)
 
@@ -183,4 +248,4 @@ def print_ops():
     pass
 
 
-print_ops()
+#print_ops()
