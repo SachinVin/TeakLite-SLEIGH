@@ -342,19 +342,19 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 
 # Instructions
 # D4FBh TL  add  MemImm16@16, Ax@8
-:add    Ax_8 is Ax_8 & op_0007=0xFB & op_0915=0x6A ; MemImm16_16{ }
+:add    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xFB & op_0915=0x6A ; MemImm16_16{ }
 
 # A600h TL  add  MemImm8@0, Ax@8
 :add    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x53 { }
 
 # 86C0h TL  add  Imm16@16, Ax@8
-:add    Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x43 ; Imm16_16{ }
+:add    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x43 ; Imm16_16{ }
 
 # C600h TL  add  Imm8u@0, Ax@8
 :add    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x63 { }
 
 # D4DBh TL  add  MemR7Imm16@16, Ax@8
-:add    Ax_8 is Ax_8 & op_0007=0xDB & op_0915=0x6A ; MemR7Imm16_16{ }
+:add    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xDB & op_0915=0x6A ; MemR7Imm16_16{ }
 
 # 4600h TL  add  MemR7Imm7s@0, Ax@8
 :add    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x23 { }
@@ -450,31 +450,31 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :addsuba    Ab_4 is Ab_4 & op_0003=0x3 & op_0615=0x127 { }
 
 # E700h TL  addv Imm16@16, MemImm8@0
-:addv    MemImm8_0 is MemImm8_0 & op_0815=0xE7 ; Imm16_16{ }
+:addv    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xE7 ; Imm16_16{ }
 
 # 86E0h TL  addv Imm16@16, MemRn@0 
-:addv    MemRn_0 is MemRn_0 & op_0315=0x10DC ; Imm16_16{ }
+:addv    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x10DC ; Imm16_16{ }
 
 # 87E0h TL  addv Imm16@16, Register@0
-:addv    Register_0 is Register_0 & op_0515=0x43F ; Imm16_16{ }
+:addv    Imm16_16,Register_0 is Register_0 & op_0515=0x43F ; Imm16_16{ }
 
 # 47BBh TL2 addv Imm16@16, r6
-:addv     is op_0015=0x47BB ; Imm16_16{ }
+:addv    Imm16_16 is op_0015=0x47BB ; Imm16_16{ }
 
 # D4F9h TL  and  MemImm16@16, Ax@8
-:and    Ax_8 is Ax_8 & op_0007=0xF9 & op_0915=0x6A ; MemImm16_16{ }
+:and    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xF9 & op_0915=0x6A ; MemImm16_16{ }
 
 # A200h TL  and  MemImm8@0, Ax@8
 :and    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x51 { }
 
 # 82C0h TL  and  Imm16@16, Ax@8
-:and    Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x41 ; Imm16_16{ }
+:and    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x41 ; Imm16_16{ }
 
 # C200h TL  and  Imm8u@0, Ax@8
 :and    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x61 { }
 
 # D4D9h TL  and  MemR7Imm16@16, Ax@8
-:and    Ax_8 is Ax_8 & op_0007=0xD9 & op_0915=0x6A ; MemR7Imm16_16{ }
+:and    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xD9 & op_0915=0x6A ; MemR7Imm16_16{ }
 
 # 4200h TL  and  MemR7Imm7s@0, Ax@8
 :and    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x21 { }
@@ -516,7 +516,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :bitrev    Rn_0 is Rn_0 & op_0315=0x1AFC { }
 
 # 5C00h TL  bkrep NoReverse, Imm8u@0, Address16@16
-:bkrep    Imm8u_0 is Imm8u_0 & op_0815=0x5C ; Address16_16{ }
+:bkrep    Imm8u_0,Address16_16 is Imm8u_0 & op_0815=0x5C ; Address16_16{ }
 
 # 5D00h TL  bkrep NoReverse, Register@0, Address18@16and5
 # :bkrep    Register_0,Address18_16and5 is Register_0 & Address18_16and5 & op_0815=0x5D { }
@@ -576,19 +576,19 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :cbs    MemR01_2,MemR45_2 is MemR01_2 & MemR45_2 & op_0001=0x0 & op_0315=0x1AB9 { }
 
 # E500h TL  chng Imm16@16, MemImm8@0
-:chng    MemImm8_0 is MemImm8_0 & op_0815=0xE5 ; Imm16_16{ }
+:chng    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xE5 ; Imm16_16{ }
 
 # 84E0h TL  chng Imm16@16, MemRn@0 
-:chng    MemRn_0 is MemRn_0 & op_0315=0x109C ; Imm16_16{ }
+:chng    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x109C ; Imm16_16{ }
 
 # 85E0h TL  chng Imm16@16, Register@0
-:chng    Register_0 is Register_0 & op_0515=0x42F ; Imm16_16{ }
+:chng    Imm16_16,Register_0 is Register_0 & op_0515=0x42F ; Imm16_16{ }
 
 # 47BAh TL2 chng Imm16@16, r6
-:chng     is op_0015=0x47BA ; Imm16_16{ }
+:chng    Imm16_16 is op_0015=0x47BA ; Imm16_16{ }
 
 # 0038h TL2 chng Imm16@16, SttMod@0
-:chng    SttMod_0 is SttMod_0 & op_0315=0x7 ; Imm16_16{ }
+:chng    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x7 ; Imm16_16{ }
 
 # 6760h TL  clr  Implied ConstZero, Ax@12, Cond@0  ;aX=0
 :clr    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x76 & op_1315=0x3 { }
@@ -618,19 +618,19 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :clrr    Ab_2,Ab_0 is Ab_2 & Ab_0 & op_0415=0x8DD { }
 
 # D4FEh TL  cmp  MemImm16@16, Ax@8
-:cmp    Ax_8 is Ax_8 & op_0007=0xFE & op_0915=0x6A ; MemImm16_16{ }
+:cmp    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xFE & op_0915=0x6A ; MemImm16_16{ }
 
 # AC00h TL  cmp  MemImm8@0, Ax@8
 :cmp    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x56 { }
 
 # 8CC0h TL  cmp  Imm16@16, Ax@8
-:cmp    Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x46 ; Imm16_16{ }
+:cmp    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x46 ; Imm16_16{ }
 
 # CC00h TL  cmp  Imm8u@0, Ax@8
 :cmp    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x66 { }
 
 # D4DEh TL  cmp  MemR7Imm16@16, Ax@8
-:cmp    Ax_8 is Ax_8 & op_0007=0xDE & op_0915=0x6A ; MemR7Imm16_16{ }
+:cmp    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xDE & op_0915=0x6A ; MemR7Imm16_16{ }
 
 # 4C00h TL  cmp  MemR7Imm7s@0, Ax@8
 :cmp    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x26 { }
@@ -672,16 +672,16 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :cmpu    Ax_3 is Ax_3 & op_0002=0x3 & op_0415=0x8A6 { }
 
 # ED00h TL  cmpv Imm16@16, MemImm8@0
-:cmpv    MemImm8_0 is MemImm8_0 & op_0815=0xED ; Imm16_16{ }
+:cmpv    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xED ; Imm16_16{ }
 
 # 8CE0h TL  cmpv Imm16@16, MemRn@0 
-:cmpv    MemRn_0 is MemRn_0 & op_0315=0x119C ; Imm16_16{ }
+:cmpv    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x119C ; Imm16_16{ }
 
 # 8DE0h TL  cmpv Imm16@16, Register@0
-:cmpv    Register_0 is Register_0 & op_0515=0x46F ; Imm16_16{ }
+:cmpv    Imm16_16,Register_0 is Register_0 & op_0515=0x46F ; Imm16_16{ }
 
 # 47BEh TL2 cmpv Imm16@16, r6
-:cmpv     is op_0015=0x47BE ; Imm16_16{ }
+:cmpv    Imm16_16 is op_0015=0x47BE ; Imm16_16{ }
 
 # D390h TL  cntx r  ;restore shadows
 :cntx     is op_0015=0xD390 { }
@@ -771,7 +771,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :maa    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0x80 & op_1215=0xD { }
 
 # 8400h TL  maa  MemRn@0, Imm16@16, Ax@11 
-:maa    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x80 & op_1215=0x8 ; Imm16_16{ }
+:maa    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x80 & op_1215=0x8 ; Imm16_16{ }
 
 # 8420h TL  maa  y0, MemRn@0, Ax@11 
 :maa    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x84 & op_1215=0x8 { }
@@ -789,7 +789,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :maasu    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0xE0 & op_1215=0xD { }
 
 # 8700h TL  maasu MemRn@0, Imm16@16, Ax@11 
-:maasu    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xE0 & op_1215=0x8 ; Imm16_16{ }
+:maasu    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xE0 & op_1215=0x8 ; Imm16_16{ }
 
 # 8720h TL  maasu y0, MemRn@0, Ax@11 
 :maasu    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xE4 & op_1215=0x8 { }
@@ -804,7 +804,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :mac    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0x40 & op_1215=0xD { }
 
 # 8200h TL  mac  MemRn@0, Imm16@16, Ax@11 
-:mac    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x40 & op_1215=0x8 ; Imm16_16{ }
+:mac    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x40 & op_1215=0x8 ; Imm16_16{ }
 
 # 8220h TL  mac  y0, MemRn@0, Ax@11 
 :mac    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x44 & op_1215=0x8 { }
@@ -828,7 +828,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :macsu    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0xC0 & op_1215=0xD { }
 
 # 8600h TL  macsu MemRn@0, Imm16@16, Ax@11 
-:macsu    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xC0 & op_1215=0x8 ; Imm16_16{ }
+:macsu    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xC0 & op_1215=0x8 ; Imm16_16{ }
 
 # E600h TL  macsu y0, MemImm8@0, Ax@11
 :macsu    MemImm8_0,Ax_11 is MemImm8_0 & Ax_11 & op_0810=0x6 & op_1215=0xE { }
@@ -846,7 +846,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :macus    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0x60 & op_1215=0xD { }
 
 # 8300h TL  macus MemRn@0, Imm16@16, Ax@11 
-:macus    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x60 & op_1215=0x8 ; Imm16_16{ }
+:macus    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x60 & op_1215=0x8 ; Imm16_16{ }
 
 # 8320h TL  macus y0, MemRn@0, Ax@11 
 :macus    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x64 & op_1215=0x8 { }
@@ -861,7 +861,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :macuu    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0xA0 & op_1215=0xD { }
 
 # 8500h TL  macuu MemRn@0, Imm16@16, Ax@11 
-:macuu    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xA0 & op_1215=0x8 ; Imm16_16{ }
+:macuu    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xA0 & op_1215=0x8 ; Imm16_16{ }
 
 # 8520h TL  macuu y0, MemRn@0, Ax@11 
 :macuu    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xA4 & op_1215=0x8 { }
@@ -960,16 +960,16 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :mov    Ablh_9,MemImm8_0 is Ablh_9 & MemImm8_0 & op_0808=0x0 & op_1215=0x3 { }
 
 # D4BCh TL  mov  Axl@8, MemImm16@16
-:mov    Axl_8 is Axl_8 & op_0007=0xBC & op_0915=0x6A ; MemImm16_16{ }
+:mov    Axl_8,MemImm16_16 is Axl_8 & op_0007=0xBC & op_0915=0x6A ; MemImm16_16{ }
 
 # D49Ch TL  mov  Axl@8, MemR7Imm16@16
-:mov    Axl_8 is Axl_8 & op_0007=0x9C & op_0915=0x6A ; MemR7Imm16_16{ }
+:mov    Axl_8,MemR7Imm16_16 is Axl_8 & op_0007=0x9C & op_0915=0x6A ; MemR7Imm16_16{ }
 
 # DC80h TL  mov  Axl@8, MemR7Imm7s@0
 :mov    Axl_8,MemR7Imm7s_0 is Axl_8 & MemR7Imm7s_0 & op_0707=0x1 & op_0915=0x6E { }
 
 # D4B8h TL  mov  MemImm16@16, Ax@8
-:mov    Ax_8 is Ax_8 & op_0007=0xB8 & op_0915=0x6A ; MemImm16_16{ }
+:mov    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xB8 & op_0915=0x6A ; MemImm16_16{ }
 
 # 6100h TL  mov  MemImm8@0, Ab@11
 :mov    MemImm8_0,Ab_11 is MemImm8_0 & Ab_11 & op_0810=0x1 & op_1315=0x3 { }
@@ -993,10 +993,10 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :mov    Ab_5 is Ab_5 & op_0004=0x12 & op_0715=0x1A9 { }
 
 # 5E20h TL  mov  Imm16@16, Bx@8
-:mov    Bx_8 is Bx_8 & op_0007=0x20 & op_0915=0x2F ; Imm16_16{ }
+:mov    Imm16_16,Bx_8 is Bx_8 & op_0007=0x20 & op_0915=0x2F ; Imm16_16{ }
 
 # 5E00h TL  mov  Imm16@16, Register@0
-:mov    Register_0 is Register_0 & op_0515=0x2F0 ; Imm16_16{ }
+:mov    Imm16_16,Register_0 is Register_0 & op_0515=0x2F0 ; Imm16_16{ }
 
 # 4F80h TL  mov  Imm5u@0, icr    ;uh, but icr is 8bit wide (only 4bit are R/W)?
 :mov    Imm5u_0 is Imm5u_0 & op_0515=0x27C { }
@@ -1026,7 +1026,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :mov    Imm8u_0,Axl_12 is Imm8u_0 & Axl_12 & op_0811=0x1 & op_1315=0x1 { }
 
 # D498h TL  mov  MemR7Imm16@16, Ax@8
-:mov    Ax_8 is Ax_8 & op_0007=0x98 & op_0915=0x6A ; MemR7Imm16_16{ }
+:mov    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0x98 & op_0915=0x6A ; MemR7Imm16_16{ }
 
 # D880h TL  mov  MemR7Imm7s@0, Ax@8
 :mov    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x1 & op_0915=0x6C { }
@@ -1119,7 +1119,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :mov    ArArp_0,MemR04_8 is ArArp_0 & MemR04_8 & op_0307=0x11 & op_0915=0x6A { }
 
 # 5F50h TL2 mov  ArArpSttMod@0, MemR7Imm16@16
-:mov    ArArpSttMod_0 is ArArpSttMod_0 & op_0415=0x5F5 ; MemR7Imm16_16{ }
+:mov    ArArpSttMod_0,MemR7Imm16_16 is ArArpSttMod_0 & op_0415=0x5F5 ; MemR7Imm16_16{ }
 
 # 886Bh TL2 mov  Ax@8, pc
 :mov    Ax_8 is Ax_8 & op_0007=0x6B & op_0915=0x44 { }
@@ -1140,22 +1140,22 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :mov    Bx_8 is Bx_8 & op_0007=0x63 & op_0915=0x44 { }
 
 # 0008h TL2 mov  Imm16@16, ArArp@0
-:mov    ArArp_0 is ArArp_0 & op_0315=0x1 ; Imm16_16{ }
+:mov    Imm16_16,ArArp_0 is ArArp_0 & op_0315=0x1 ; Imm16_16{ }
 
 # 0023h TL2 mov  Imm16@16, r6
-:mov     is op_0015=0x23 ; Imm16_16{ }
+:mov    Imm16_16 is op_0015=0x23 ; Imm16_16{ }
 
 # 0001h TL2 mov  Imm16@16, repc
-:mov     is op_0015=0x1 ; Imm16_16{ }
+:mov    Imm16_16 is op_0015=0x1 ; Imm16_16{ }
 
 # 8971h TL2 mov  Imm16@16, stepi0
-:mov     is op_0015=0x8971 ; Imm16_16{ }
+:mov    Imm16_16 is op_0015=0x8971 ; Imm16_16{ }
 
 # 8979h TL2 mov  Imm16@16, stepj0
-:mov     is op_0015=0x8979 ; Imm16_16{ }
+:mov    Imm16_16 is op_0015=0x8979 ; Imm16_16{ }
 
 # 0030h TL2 mov  Imm16@16, SttMod@0
-:mov    SttMod_0 is SttMod_0 & op_0315=0x6 ; Imm16_16{ }
+:mov    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x6 ; Imm16_16{ }
 
 # 5DD0h TL2 mov  Imm4u@0, prpage
 :mov    Imm4u_0 is Imm4u_0 & op_0415=0x5DD { }
@@ -1206,10 +1206,10 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :mov    MemR45_5,Abh_2 is MemR45_5 & Abh_2 & op_0001=0x0 & op_0404=0x0 & op_0615=0x353 { }
 
 # 4D90h TL2 mov  MemR7Imm16@16, ArArpSttMod@0
-:mov    ArArpSttMod_0 is ArArpSttMod_0 & op_0415=0x4D9 ; MemR7Imm16_16{ }
+:mov    MemR7Imm16_16,ArArpSttMod_0 is ArArpSttMod_0 & op_0415=0x4D9 ; MemR7Imm16_16{ }
 
 # D2DCh TL2 mov  MemR7Imm16@16, repc, Unused2@0, Unused1@10
-:mov    Unused2_0,Unused1_10 is Unused2_0 & Unused1_10 & op_0209=0xB7 & op_1115=0x1A ; MemR7Imm16_16{ }
+:mov    MemR7Imm16_16,Unused2_0,Unused1_10 is Unused2_0 & Unused1_10 & op_0209=0xB7 & op_1115=0x1A ; MemR7Imm16_16{ }
 
 # 1B20h TL2 mov  MemRn@0, r6 
 :mov    MemRn_0 is MemRn_0 & op_0315=0x364 { }
@@ -1257,7 +1257,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :mov    MemR04_1 is MemR04_1 & op_0000=0x0 & op_0215=0x35F4 { }
 
 # D3C8h TL2 mov  repc, MemR7Imm16@16, Unused3@0
-:mov    Unused3_0 is Unused3_0 & op_0315=0x1A79 ; MemR7Imm16_16{ }
+:mov    MemR7Imm16_16,Unused3_0 is Unused3_0 & op_0315=0x1A79 ; MemR7Imm16_16{ }
 
 # D482h TL2 mov  stepi0, a0h
 :mov     is op_0015=0xD482 { }
@@ -1323,7 +1323,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :mpy    MemR45_2,MemR0123_0 is MemR45_2 & MemR0123_0 & op_0315=0x1A00 { }
 
 # 8000h TL  mpy  MemRn@0, Imm16@16    
-:mpy    MemRn_0 is MemRn_0 & op_0315=0x1000 ; Imm16_16{ }
+:mpy    MemRn_0,Imm16_16 is MemRn_0 & op_0315=0x1000 ; Imm16_16{ }
 
 # 8020h TL  mpy  y0, MemRn@0          
 :mpy    MemRn_0 is MemRn_0 & op_0315=0x1004 { }
@@ -1557,7 +1557,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :mpysu    MemR45_2,MemR0123_0 is MemR45_2 & MemR0123_0 & op_0315=0x1A20 { }
 
 # 8100h TL  mpysu MemRn@0, Imm16@16    
-:mpysu    MemRn_0 is MemRn_0 & op_0315=0x1020 ; Imm16_16{ }
+:mpysu    MemRn_0,Imm16_16 is MemRn_0 & op_0315=0x1020 ; Imm16_16{ }
 
 # 8120h TL  mpysu y0, MemRn@0          
 :mpysu    MemRn_0 is MemRn_0 & op_0315=0x1024 { }
@@ -1596,7 +1596,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :msu    MemR45_2,MemR0123_0,Ax_8 is MemR45_2 & MemR0123_0 & Ax_8 & op_0307=0x10 & op_0915=0x68 { }
 
 # 90C0h TL  msu  MemRn@0, Imm16@16,  Ax@8 
-:msu    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x18 & op_0915=0x48 ; Imm16_16{ }
+:msu    MemRn_0,Imm16_16,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x18 & op_0915=0x48 ; Imm16_16{ }
 
 # 9080h TL  msu  y0, MemRn@0, Ax@8 
 :msu    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x48 { }
@@ -1626,19 +1626,19 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :not    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x78 & op_1315=0x3 { }
 
 # D4F8h TL  or   MemImm16@16, Ax@8
-:or    Ax_8 is Ax_8 & op_0007=0xF8 & op_0915=0x6A ; MemImm16_16{ }
+:or    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xF8 & op_0915=0x6A ; MemImm16_16{ }
 
 # A000h TL  or   MemImm8@0, Ax@8
 :or    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x50 { }
 
 # 80C0h TL  or   Imm16@16, Ax@8
-:or    Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x40 ; Imm16_16{ }
+:or    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x40 ; Imm16_16{ }
 
 # C000h TL  or   Imm8u@0, Ax@8
 :or    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x60 { }
 
 # D4D8h TL  or   MemR7Imm16@16, Ax@8
-:or    Ax_8 is Ax_8 & op_0007=0xD8 & op_0915=0x6A ; MemR7Imm16_16{ }
+:or    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xD8 & op_0915=0x6A ; MemR7Imm16_16{ }
 
 # 4000h TL  or   MemR7Imm7s@0, Ax@8
 :or    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x20 { }
@@ -1707,7 +1707,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :popa    Ab_0 is Ab_0 & op_0215=0x11EC { }
 
 # 5F40h TL  push Imm16@16
-:push     is op_0015=0x5F40 ; Imm16_16{ }
+:push    Imm16_16 is op_0015=0x5F40 ; Imm16_16{ }
 
 # 5E40h TL  push Register@0
 :push    Register_0 is Register_0 & op_0515=0x2F2 { }
@@ -1791,34 +1791,34 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :ror    Bx_12,Cond_0 is Bx_12 & Cond_0 & op_0411=0xF4 & op_1315=0x3 { }
 
 # E300h TL  rst  Imm16@16, MemImm8@0
-:rst    MemImm8_0 is MemImm8_0 & op_0815=0xE3 ; Imm16_16{ }
+:rst    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xE3 ; Imm16_16{ }
 
 # 82E0h TL  rst  Imm16@16, MemRn@0 
-:rst    MemRn_0 is MemRn_0 & op_0315=0x105C ; Imm16_16{ }
+:rst    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x105C ; Imm16_16{ }
 
 # 83E0h TL  rst  Imm16@16, Register@0
-:rst    Register_0 is Register_0 & op_0515=0x41F ; Imm16_16{ }
+:rst    Imm16_16,Register_0 is Register_0 & op_0515=0x41F ; Imm16_16{ }
 
 # 47B9h TL2 rst  Imm16@16, r6
-:rst     is op_0015=0x47B9 ; Imm16_16{ }
+:rst    Imm16_16 is op_0015=0x47B9 ; Imm16_16{ }
 
 # 4388h TL2 rst  Imm16@16, SttMod@0
-:rst    SttMod_0 is SttMod_0 & op_0315=0x871 ; Imm16_16{ }
+:rst    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x871 ; Imm16_16{ }
 
 # E100h TL  set  Imm16@16, MemImm8@0
-:set    MemImm8_0 is MemImm8_0 & op_0815=0xE1 ; Imm16_16{ }
+:set    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xE1 ; Imm16_16{ }
 
 # 80E0h TL  set  Imm16@16, MemRn@0 
-:set    MemRn_0 is MemRn_0 & op_0315=0x101C ; Imm16_16{ }
+:set    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x101C ; Imm16_16{ }
 
 # 81E0h TL  set  Imm16@16, Register@0
-:set    Register_0 is Register_0 & op_0515=0x40F ; Imm16_16{ }
+:set    Imm16_16,Register_0 is Register_0 & op_0515=0x40F ; Imm16_16{ }
 
 # 47B8h TL2 set  Imm16@16, r6
-:set     is op_0015=0x47B8 ; Imm16_16{ }
+:set    Imm16_16 is op_0015=0x47B8 ; Imm16_16{ }
 
 # 43C8h TL2 set  Imm16@16, SttMod@0
-:set    SttMod_0 is SttMod_0 & op_0315=0x879 ; Imm16_16{ }
+:set    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x879 ; Imm16_16{ }
 
 # D280h TL  shfc Implied sv, Ab@10, Ab@5, Cond@0
 :shfc    Ab_10,Ab_5,Cond_0 is Ab_10 & Ab_5 & Cond_0 & op_0404=0x0 & op_0709=0x5 & op_1215=0xD { }
@@ -1884,19 +1884,19 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :sqra    Ax_8,Unused1_0 is Ax_8 & Unused1_0 & op_0107=0x31 & op_0915=0x48 { }
 
 # D4FFh TL  sub  MemImm16@16, Ax@8
-:sub    Ax_8 is Ax_8 & op_0007=0xFF & op_0915=0x6A ; MemImm16_16{ }
+:sub    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xFF & op_0915=0x6A ; MemImm16_16{ }
 
 # AE00h TL  sub  MemImm8@0, Ax@8
 :sub    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x57 { }
 
 # 8EC0h TL  sub  Imm16@16, Ax@8
-:sub    Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x47 ; Imm16_16{ }
+:sub    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x47 ; Imm16_16{ }
 
 # CE00h TL  sub  Imm8u@0, Ax@8
 :sub    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x67 { }
 
 # D4DFh TL  sub  MemR7Imm16@16, Ax@8
-:sub    Ax_8 is Ax_8 & op_0007=0xDF & op_0915=0x6A ; MemR7Imm16_16{ }
+:sub    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xDF & op_0915=0x6A ; MemR7Imm16_16{ }
 
 # 4E00h TL  sub  MemR7Imm7s@0, Ax@8
 :sub    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x27 { }
@@ -1977,16 +1977,16 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :subl    Ax_8 is Ax_8 & op_0007=0x22 & op_0915=0x2F { }
 
 # EF00h TL  subv Imm16@16, MemImm8@0
-:subv    MemImm8_0 is MemImm8_0 & op_0815=0xEF ; Imm16_16{ }
+:subv    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xEF ; Imm16_16{ }
 
 # 8EE0h TL  subv Imm16@16, MemRn@0 
-:subv    MemRn_0 is MemRn_0 & op_0315=0x11DC ; Imm16_16{ }
+:subv    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x11DC ; Imm16_16{ }
 
 # 8FE0h TL  subv Imm16@16, Register@0
-:subv    Register_0 is Register_0 & op_0515=0x47F ; Imm16_16{ }
+:subv    Imm16_16,Register_0 is Register_0 & op_0515=0x47F ; Imm16_16{ }
 
 # 47BFh TL2 subv Imm16@16, r6
-:subv     is op_0015=0x47BF ; Imm16_16{ }
+:subv    Imm16_16 is op_0015=0x47BF ; Imm16_16{ }
 
 # 4980h TL  swap SwapTypes4@0
 :swap    SwapTypes4_0 is SwapTypes4_0 & op_0415=0x498 { }
@@ -2004,22 +2004,22 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :tst0    Axl_8,Register_0 is Axl_8 & Register_0 & op_0507=0x5 & op_0915=0x44 { }
 
 # E900h TL  tst0 Imm16@16, MemImm8@0
-:tst0    MemImm8_0 is MemImm8_0 & op_0815=0xE9 ; Imm16_16{ }
+:tst0    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xE9 ; Imm16_16{ }
 
 # 88E0h TL  tst0 Imm16@16, MemRn@0 
-:tst0    MemRn_0 is MemRn_0 & op_0315=0x111C ; Imm16_16{ }
+:tst0    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x111C ; Imm16_16{ }
 
 # 89E0h TL  tst0 Imm16@16, Register@0
-:tst0    Register_0 is Register_0 & op_0515=0x44F ; Imm16_16{ }
+:tst0    Imm16_16,Register_0 is Register_0 & op_0515=0x44F ; Imm16_16{ }
 
 # D38Ch TL2 tst0 Axl@4, r6
 :tst0    Axl_4 is Axl_4 & op_0003=0xC & op_0515=0x69C { }
 
 # 47BCh TL2 tst0 Imm16@16, r6
-:tst0     is op_0015=0x47BC ; Imm16_16{ }
+:tst0    Imm16_16 is op_0015=0x47BC ; Imm16_16{ }
 
 # 9470h TL2 tst0 Imm16@16, SttMod@0
-:tst0    SttMod_0 is SttMod_0 & op_0315=0x128E ; Imm16_16{ }
+:tst0    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x128E ; Imm16_16{ }
 
 # AA00h TL  tst1 Axl@8, MemImm8@0 Implied Not
 :tst1    Axl_8,MemImm8_0 is Axl_8 & MemImm8_0 & op_0915=0x55 { }
@@ -2031,22 +2031,22 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :tst1    Axl_8,Register_0 is Axl_8 & Register_0 & op_0507=0x5 & op_0915=0x45 { }
 
 # EB00h TL  tst1 Imm16@16, MemImm8@0 Implied Not
-:tst1    MemImm8_0 is MemImm8_0 & op_0815=0xEB ; Imm16_16{ }
+:tst1    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xEB ; Imm16_16{ }
 
 # 8AE0h TL  tst1 Imm16@16, MemRn@0 Implied Not 
-:tst1    MemRn_0 is MemRn_0 & op_0315=0x115C ; Imm16_16{ }
+:tst1    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x115C ; Imm16_16{ }
 
 # 8BE0h TL  tst1 Imm16@16, Register@0 Implied Not
-:tst1    Register_0 is Register_0 & op_0515=0x45F ; Imm16_16{ }
+:tst1    Imm16_16,Register_0 is Register_0 & op_0515=0x45F ; Imm16_16{ }
 
 # D38Dh TL2 tst1 Axl@4, r6 Implied Not
 :tst1    Axl_4 is Axl_4 & op_0003=0xD & op_0515=0x69C { }
 
 # 47BDh TL2 tst1 Imm16@16, r6 Implied Not
-:tst1     is op_0015=0x47BD ; Imm16_16{ }
+:tst1    Imm16_16 is op_0015=0x47BD ; Imm16_16{ }
 
 # 9478h TL2 tst1 Imm16@16, SttMod@0 Implied Not
-:tst1    SttMod_0 is SttMod_0 & op_0315=0x128F ; Imm16_16{ }
+:tst1    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x128F ; Imm16_16{ }
 
 # 80C1h TL2 tst4b a0l, MemR0425@10 
 :tst4b    MemR0425_10 is MemR0425_10 & op_0009=0xC1 & op_1215=0x8 { }
@@ -2067,7 +2067,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :tstb    Imm4bitno_8 is Imm4bitno_8 & op_0007=0x18 & op_1215=0x9 { }
 
 # 0028h TL2 tstb NoReverse, Implied Not SttMod@0, Imm4bitno@16, Unused12@20
-:tstb    SttMod_0 is SttMod_0 & op_0315=0x5 ; Unused12_20{ }
+:tstb    SttMod_0,Imm4bitno_16,Unused12_20 is SttMod_0 & op_0315=0x5 ; Imm4bitno_16 & Unused12_20 { }
 
 # 5F45h TL2 vtrclr vtr0         ;vtr0=0           ;for Viterbi decoding...
 :vtrclr     is op_0015=0x5F45 { }
@@ -2091,19 +2091,19 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :vtrshr     is op_0015=0xD781 { }
 
 # D4FAh TL  xor  MemImm16@16, Ax@8
-:xor    Ax_8 is Ax_8 & op_0007=0xFA & op_0915=0x6A ; MemImm16_16{ }
+:xor    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xFA & op_0915=0x6A ; MemImm16_16{ }
 
 # A400h TL  xor  MemImm8@0, Ax@8
 :xor    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x52 { }
 
 # 84C0h TL  xor  Imm16@16, Ax@8
-:xor    Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x42 ; Imm16_16{ }
+:xor    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x42 ; Imm16_16{ }
 
 # C400h TL  xor  Imm8u@0, Ax@8
 :xor    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x62 { }
 
 # D4DAh TL  xor  MemR7Imm16@16, Ax@8
-:xor    Ax_8 is Ax_8 & op_0007=0xDA & op_0915=0x6A ; MemR7Imm16_16{ }
+:xor    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xDA & op_0915=0x6A ; MemR7Imm16_16{ }
 
 # 4400h TL  xor  MemR7Imm7s@0, Ax@8
 :xor    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x22 { }
@@ -2152,3 +2152,4 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 
 # 5EB4h TL2 undefined Unused2@0
 :undefined    Unused2_0 is Unused2_0 & op_0215=0x17AD { }
+

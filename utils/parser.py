@@ -169,8 +169,8 @@ with open('./opcodes.txt', 'r') as f:
             if(int(start) > 15):
                 expanded_token = (f"; {token}")
             else:
-                op_mnemonic += (f"{token},")
                 op_constructor.append(token)
+            op_mnemonic += (f"{token},")
             tok_set.add(f"{token} = ({start},{to})")
             continue
         
