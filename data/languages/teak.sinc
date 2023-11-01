@@ -1,0 +1,1813 @@
+# Instructions
+# D4FBh TL  add  MemImm16@16, Ax@8
+:add    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xFB & op_0915=0x6A ; MemImm16_16{ }
+
+# A600h TL  add  MemImm8@0, Ax@8
+:add    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x53 { }
+
+# 86C0h TL  add  Imm16@16, Ax@8
+:add    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x43 ; Imm16_16{ }
+
+# C600h TL  add  Imm8u@0, Ax@8
+:add    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x63 { }
+
+# D4DBh TL  add  MemR7Imm16@16, Ax@8
+:add    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xDB & op_0915=0x6A ; MemR7Imm16_16{ }
+
+# 4600h TL  add  MemR7Imm7s@0, Ax@8
+:add    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x23 { }
+
+# 8680h TL  add  MemRn@0, Ax@8
+:add    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x43 { }
+
+# 86A0h TL  add  RegisterP0@0, Ax@8
+:add    RegisterP0_0,Ax_8 is RegisterP0_0 & Ax_8 & op_0507=0x5 & op_0915=0x43 { }
+
+# D2DAh TL2 add  Ab@10, Bx@0
+:add    Ab_10,Bx_0 is Ab_10 & Bx_0 & op_0109=0x16D & op_1215=0xD { }
+
+# 5DF0h TL2 add  Bx@1, Ax@0
+:add    Bx_1,Ax_0 is Bx_1 & Ax_0 & op_0215=0x177C { }
+
+# 9070h TL2 add  MemR01@8, sv, Abh@2
+:add    MemR01_8,Abh_2 is MemR01_8 & Abh_2 & op_0001=0x0 & op_0407=0x7 & op_0915=0x48 { }
+
+# 5DB0h TL2 add  MemR04@1, sv, Abh@2
+:add    MemR04_1,Abh_2 is MemR04_1 & Abh_2 & op_0000=0x0 & op_0415=0x5DB { }
+
+# 6F80h TL2 add  MemR45@2, MemR01@2, Abh@3
+:add    MemR45_2,MemR01_2,Abh_3 is MemR45_2 & MemR01_2 & Abh_3 & op_0001=0x0 & op_0515=0x37C { }
+
+# 6FA0h TL2 add  MemR45@2, MemR01@2, Abh@3
+:add    MemR45_2,MemR01_2,Abh_3 is MemR45_2 & MemR01_2 & Abh_3 & op_0001=0x0 & op_0515=0x37D { }
+
+# 5E30h TL2 add  MemR45@8, sv, Abh@2
+:add    MemR45_8,Abh_2 is MemR45_8 & Abh_2 & op_0001=0x0 & op_0407=0x3 & op_0915=0x2F { }
+
+# 5DC0h TL2 add  p0, p1, Ab@2
+:add    Ab_2 is Ab_2 & op_0001=0x0 & op_0415=0x5DC { }
+
+# D782h TL2 add  p1, Ax@0
+:add    Ax_0 is Ax_0 & op_0115=0x6BC1 { }
+
+# 5DF8h TL2 add  Px@1, Bx@0
+:add    Px_1,Bx_0 is Px_1 & Bx_0 & op_0215=0x177E { }
+
+# D38Bh TL2 add  r6, Ax@4
+:add    Ax_4 is Ax_4 & op_0003=0xB & op_0515=0x69C { }
+
+# 4590h TL2 add3 p0, p1, Ab@2
+:add3    Ab_2 is Ab_2 & op_0001=0x0 & op_0415=0x459 { }
+
+# 4592h TL2 add3a p0, p1, Ab@2
+:add3a    Ab_2 is Ab_2 & op_0001=0x2 & op_0415=0x459 { }
+
+# 4593h TL2 add3aa p0, p1, Ab@2
+:add3aa    Ab_2 is Ab_2 & op_0001=0x3 & op_0415=0x459 { }
+
+# 5DC1h TL2 adda p0, p1, Ab@2
+:adda    Ab_2 is Ab_2 & op_0001=0x1 & op_0415=0x5DC { }
+
+# B200h TL  addh MemImm8@0, Ax@8
+:addh    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x59 { }
+
+# 9280h TL  addh MemRn@0, Ax@8 
+:addh    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x49 { }
+
+# 92A0h TL  addh Register@0, Ax@8
+:addh    Register_0,Ax_8 is Register_0 & Ax_8 & op_0507=0x5 & op_0915=0x49 { }
+
+# 9464h TL2 addh r6, Ax@0
+:addh    Ax_0 is Ax_0 & op_0115=0x4A32 { }
+
+# 90E0h TL2 addhp MemR0425@2, Px@4, Ax@8 
+:addhp    MemR0425_2,Px_4,Ax_8 is MemR0425_2 & Px_4 & Ax_8 & op_0001=0x0 & op_0507=0x7 & op_0915=0x48 { }
+
+# B400h TL  addl MemImm8@0, Ax@8
+:addl    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x5A { }
+
+# 9480h TL  addl MemRn@0, Ax@8 
+:addl    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x4A { }
+
+# 94A0h TL  addl Register@0, Ax@8
+:addl    Register_0,Ax_8 is Register_0 & Ax_8 & op_0507=0x5 & op_0915=0x4A { }
+
+# 9466h TL2 addl r6, Ax@0
+:addl    Ax_0 is Ax_0 & op_0115=0x4A33 { }
+
+# 906Ch TL2 addsub  p0, p1, Ab@0
+:addsub    Ab_0 is Ab_0 & op_0215=0x241B { }
+
+# 49C2h TL2 addsub  p1, p0, Ab@4
+:addsub    Ab_4 is Ab_4 & op_0003=0x2 & op_0615=0x127 { }
+
+# 916Ch TL2 addsuba p0, p1, Ab@0
+:addsuba    Ab_0 is Ab_0 & op_0215=0x245B { }
+
+# 49C3h TL2 addsuba p1, p0, Ab@4
+:addsuba    Ab_4 is Ab_4 & op_0003=0x3 & op_0615=0x127 { }
+
+# E700h TL  addv Imm16@16, MemImm8@0
+:addv    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xE7 ; Imm16_16{ }
+
+# 86E0h TL  addv Imm16@16, MemRn@0 
+:addv    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x10DC ; Imm16_16{ }
+
+# 87E0h TL  addv Imm16@16, Register@0
+:addv    Imm16_16,Register_0 is Register_0 & op_0515=0x43F ; Imm16_16{ }
+
+# 47BBh TL2 addv Imm16@16, r6
+:addv    Imm16_16 is op_0015=0x47BB ; Imm16_16{ }
+
+# D4F9h TL  and  MemImm16@16, Ax@8
+:and    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xF9 & op_0915=0x6A ; MemImm16_16{ }
+
+# A200h TL  and  MemImm8@0, Ax@8
+:and    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x51 { }
+
+# 82C0h TL  and  Imm16@16, Ax@8
+:and    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x41 ; Imm16_16{ }
+
+# C200h TL  and  Imm8u@0, Ax@8
+:and    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x61 { }
+
+# D4D9h TL  and  MemR7Imm16@16, Ax@8
+:and    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xD9 & op_0915=0x6A ; MemR7Imm16_16{ }
+
+# 4200h TL  and  MemR7Imm7s@0, Ax@8
+:and    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x21 { }
+
+# 8280h TL  and  MemRn@0, Ax@8 
+:and    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x41 { }
+
+# 82A0h TL  and  RegisterP0@0, Ax@8
+:and    RegisterP0_0,Ax_8 is RegisterP0_0 & Ax_8 & op_0507=0x5 & op_0915=0x41 { }
+
+# 6770h TL2 and  Ab@2, Ab@0, Ax@12                ;TL2 only
+:and    Ab_2,Ab_0,Ax_12 is Ab_2 & Ab_0 & Ax_12 & op_0411=0x77 & op_1315=0x3 { }
+
+# D389h TL2 and  r6, Ax@4
+:and    Ax_4 is Ax_4 & op_0003=0x9 & op_0515=0x69C { }
+
+# 4B80h TL  banke BankFlags6@0  ;{r0}{,r1}{,r4}{,cfgi}{,r7}{,cfgj}
+:banke    BankFlags6_0 is BankFlags6_0 & op_0615=0x12E { }
+
+# 8CDFh TL2 bankr       ;without operand ?
+:bankr     is op_0015=0x8CDF { }
+
+# 8CDCh TL2 bankr Ar@0
+:bankr    Ar_0 is Ar_0 & op_0115=0x466E { }
+
+# 8CD0h TL2 bankr Ar@2, Arp@0
+:bankr    Ar_2,Arp_0 is Ar_2 & Arp_0 & op_0315=0x119A { }
+
+# 8CD8h TL2 bankr Arp@0
+:bankr    Arp_0 is Arp_0 & op_0215=0x2336 { }
+
+# 5EB8h TL2 bitrev Rn@0
+:bitrev    Rn_0 is Rn_0 & op_0315=0xBD7 { }
+
+# D7E8h TL2 bitrev Rn@0, dbrv
+:bitrev    Rn_0 is Rn_0 & op_0315=0x1AFD { }
+
+# D7E0h TL2 bitrev Rn@0, ebrv
+:bitrev    Rn_0 is Rn_0 & op_0315=0x1AFC { }
+
+# 5C00h TL  bkrep NoReverse, Imm8u@0, Address16@16
+:bkrep    Imm8u_0,Address16_16 is Imm8u_0 & op_0815=0x5C ; Address16_16{ }
+
+# 5D00h TL  bkrep NoReverse, Register@0, Address18@16and5
+:bkrep    Register_0,Address18_16and5 is ( Register_0 & op_0715=0xBA ) ... & Address18_16and5{ }
+
+# 8FDCh TL2 bkrep NoReverse, r6, Address18@16and0
+:bkrep    Address18_16and0 is ( op_0215=0x23F7 ) ... & Address18_16and0{ }
+
+# DA9Ch TL2 bkreprst MemR0425@0
+:bkreprst    MemR0425_0 is MemR0425_0 & op_0215=0x36A7 { }
+
+# 5F48h TL2 bkreprst MemSp, Unused2@0
+:bkreprst    Unused2_0 is Unused2_0 & op_0215=0x17D2 { }
+
+# DADCh TL2 bkrepsto MemR0425@0, Unused1@10
+:bkrepsto    MemR0425_0,Unused1_10 is MemR0425_0 & Unused1_10 & op_0209=0xB7 & op_1115=0x1B { }
+
+# 9468h TL2 bkrepsto MemSp, Unused3@0
+:bkrepsto    Unused3_0 is Unused3_0 & op_0315=0x128D { }
+
+# 4180h TL  br   Address18@16and4, Cond@0
+:br    Address18_16and4,Cond_0 is ( Cond_0 & op_0615=0x106 ) ... & Address18_16and4{ }
+
+# D3C0h TL  break               ;break
+:break     is op_0015=0xD3C0 { }
+
+# 5000h TL  brr  RelAddr7@4, Cond@0
+:brr    RelAddr7_4,Cond_0 is RelAddr7_4 & Cond_0 & op_1115=0xA { }
+
+# 41C0h TL  call Address18@16and4, Cond@0
+:call    Address18_16and4,Cond_0 is ( Cond_0 & op_0615=0x107 ) ... & Address18_16and4{ }
+
+# D480h TL  calla Axl@8
+:calla    Axl_8 is Axl_8 & op_0007=0x80 & op_0915=0x6A { }
+
+# D381h TL2 calla Ax@4
+:calla    Ax_4 is Ax_4 & op_0003=0x1 & op_0515=0x69C { }
+
+# 1000h TL  callr RelAddr7@4, Cond@0
+:callr    RelAddr7_4,Cond_0 is RelAddr7_4 & Cond_0 & op_1115=0x2 { }
+
+# 9068h TL2 cbs  Axh@0, Axh@not0, r0, ge
+:cbs    Axh_0,Axh_not0 is Axh_0 & Axh_not0 & op_0115=0x4834 { }
+
+# 9168h TL2 cbs  Axh@0, Axh@not0, r0, gt
+:cbs    Axh_0,Axh_not0 is Axh_0 & Axh_not0 & op_0115=0x48B4 { }
+
+# D49Eh TL2 cbs  Axh@8, Bxh@5, r0, ge
+:cbs    Axh_8,Bxh_5 is Axh_8 & Bxh_5 & op_0004=0x1E & op_0607=0x2 & op_0915=0x6A { }
+
+# D49Fh TL2 cbs  Axh@8, Bxh@5, r0, gt
+:cbs    Axh_8,Bxh_5 is Axh_8 & Bxh_5 & op_0004=0x1F & op_0607=0x2 & op_0915=0x6A { }
+
+# D5C0h TL2 cbs  MemR01@2, MemR45@2, ge 
+:cbs    MemR01_2,MemR45_2 is MemR01_2 & MemR45_2 & op_0001=0x0 & op_0315=0x1AB8 { }
+
+# D5C8h TL2 cbs  MemR01@2, MemR45@2, gt 
+:cbs    MemR01_2,MemR45_2 is MemR01_2 & MemR45_2 & op_0001=0x0 & op_0315=0x1AB9 { }
+
+# E500h TL  chng Imm16@16, MemImm8@0
+:chng    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xE5 ; Imm16_16{ }
+
+# 84E0h TL  chng Imm16@16, MemRn@0 
+:chng    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x109C ; Imm16_16{ }
+
+# 85E0h TL  chng Imm16@16, Register@0
+:chng    Imm16_16,Register_0 is Register_0 & op_0515=0x42F ; Imm16_16{ }
+
+# 47BAh TL2 chng Imm16@16, r6
+:chng    Imm16_16 is op_0015=0x47BA ; Imm16_16{ }
+
+# 0038h TL2 chng Imm16@16, SttMod@0
+:chng    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x7 ; Imm16_16{ }
+
+# 6760h TL  clr  Implied ConstZero, Ax@12, Cond@0  ;aX=0
+:clr    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x76 & op_1315=0x3 { }
+
+# 6F60h TL  clr  Implied ConstZero, Bx@12, Cond@0  ;bX=0
+:clr    Bx_12,Cond_0 is Bx_12 & Cond_0 & op_0411=0xF6 & op_1315=0x3 { }
+
+# 8ED0h TL2 clr  Implied ConstZero, Ab@2, Ab@0
+:clr    Ab_2,Ab_0 is Ab_2 & Ab_0 & op_0415=0x8ED { }
+
+# 5DFEh TL2 clrp p0
+:clrp     is op_0015=0x5DFE { }
+
+# 5DFFh TL2 clrp p0, p1
+:clrp     is op_0015=0x5DFF { }
+
+# 5DFDh TL2 clrp p1
+:clrp     is op_0015=0x5DFD { }
+
+# 67C0h TL  clrr Implied Const8000h, Ax@12, Cond@0 ;aX=8000h
+:clrr    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x7C & op_1315=0x3 { }
+
+# 6F70h TL2 clrr Implied Const8000h, Bx@12, Cond@0 ;bX=8000h
+:clrr    Bx_12,Cond_0 is Bx_12 & Cond_0 & op_0411=0xF7 & op_1315=0x3 { }
+
+# 8DD0h TL2 clrr Implied Const8000h, Ab@2, Ab@0
+:clrr    Ab_2,Ab_0 is Ab_2 & Ab_0 & op_0415=0x8DD { }
+
+# D4FEh TL  cmp  MemImm16@16, Ax@8
+:cmp    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xFE & op_0915=0x6A ; MemImm16_16{ }
+
+# AC00h TL  cmp  MemImm8@0, Ax@8
+:cmp    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x56 { }
+
+# 8CC0h TL  cmp  Imm16@16, Ax@8
+:cmp    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x46 ; Imm16_16{ }
+
+# CC00h TL  cmp  Imm8u@0, Ax@8
+:cmp    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x66 { }
+
+# D4DEh TL  cmp  MemR7Imm16@16, Ax@8
+:cmp    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xDE & op_0915=0x6A ; MemR7Imm16_16{ }
+
+# 4C00h TL  cmp  MemR7Imm7s@0, Ax@8
+:cmp    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x26 { }
+
+# 8C80h TL  cmp  MemRn@0, Ax@8 
+:cmp    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x46 { }
+
+# 8CA0h TL  cmp  RegisterP0@0, Ax@8
+:cmp    RegisterP0_0,Ax_8 is RegisterP0_0 & Ax_8 & op_0507=0x5 & op_0915=0x46 { }
+
+# 4D8Ch TL2 cmp  Ax@1, Bx@0
+:cmp    Ax_1,Bx_0 is Ax_1 & Bx_0 & op_0215=0x1363 { }
+
+# D483h TL2 cmp  b0, b1
+:cmp     is op_0015=0xD483 { }
+
+# D583h TL2 cmp  b1, b0
+:cmp     is op_0015=0xD583 { }
+
+# DA9Ah TL2 cmp  Bx@10, Ax@0
+:cmp    Bx_10,Ax_0 is Bx_10 & Ax_0 & op_0109=0x14D & op_1115=0x1B { }
+
+# 8B63h TL2 cmp  p1, Ax@4
+:cmp    Ax_4 is Ax_4 & op_0003=0x3 & op_0515=0x45B { }
+
+# D38Eh TL2 cmp  r6, Ax@4
+:cmp    Ax_4 is Ax_4 & op_0003=0xE & op_0515=0x69C { }
+
+# BE00h TL  cmpu MemImm8@0, Ax@8
+:cmpu    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x5F { }
+
+# 9E80h TL  cmpu MemRn@0, Ax@8 
+:cmpu    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x4F { }
+
+# 9EA0h TL  cmpu Register@0, Ax@8
+:cmpu    Register_0,Ax_8 is Register_0 & Ax_8 & op_0507=0x5 & op_0915=0x4F { }
+
+# 8A63h TL2 cmpu r6, Ax@3
+:cmpu    Ax_3 is Ax_3 & op_0002=0x3 & op_0415=0x8A6 { }
+
+# ED00h TL  cmpv Imm16@16, MemImm8@0
+:cmpv    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xED ; Imm16_16{ }
+
+# 8CE0h TL  cmpv Imm16@16, MemRn@0 
+:cmpv    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x119C ; Imm16_16{ }
+
+# 8DE0h TL  cmpv Imm16@16, Register@0
+:cmpv    Imm16_16,Register_0 is Register_0 & op_0515=0x46F ; Imm16_16{ }
+
+# 47BEh TL2 cmpv Imm16@16, r6
+:cmpv    Imm16_16 is op_0015=0x47BE ; Imm16_16{ }
+
+# D390h TL  cntx r  ;restore shadows
+:cntx     is op_0015=0xD390 { }
+
+# D380h TL  cntx s  ;store shadows
+:cntx     is op_0015=0xD380 { }
+
+# 67F0h TL  copy Implied Ax@not12,   Ax@12, Cond@0 ;aX=aY
+:copy    Ax_not12,Ax_12,Cond_0 is Ax_not12 & Ax_12 & Cond_0 & op_0411=0x7F & op_1315=0x3 { }
+
+# 67E0h TL  dec  Implied Const1,     Ax@12, Cond@0 ;aX=aX-1
+:dec    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x7E & op_1315=0x3 { }
+
+# 43C0h TL  dint        ;IE=0, interrupt disable
+:dint     is op_0015=0x43C0 { }
+
+# 0E00h TL  divs MemImm8@0, Ax@8
+:divs    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x7 { }
+
+# 4380h TL  eint        ;IE=1, interrupt enable
+:eint     is op_0015=0x4380 { }
+
+# 9460h TL  exp  Bx@0, Implied sv
+:exp    Bx_0 is Bx_0 & op_0115=0x4A30 { }
+
+# 9060h TL  exp  Bx@0, Implied sv, Ax@8
+:exp    Bx_0,Ax_8 is Bx_0 & Ax_8 & op_0107=0x30 & op_0915=0x48 { }
+
+# 9C40h TL  exp  MemRn@0, Implied sv 
+:exp    MemRn_0 is MemRn_0 & op_0315=0x1388 { }
+
+# 9840h TL  exp  MemRn@0, Implied sv, Ax@8 
+:exp    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x8 & op_0915=0x4C { }
+
+# 9040h TL  exp  RegisterP0@0, Implied sv, Ax@8
+:exp    RegisterP0_0,Ax_8 is RegisterP0_0 & Ax_8 & op_0507=0x2 & op_0915=0x48 { }
+
+# 9440h TL  exp  RegisterP0@0, Implied sv
+:exp    RegisterP0_0 is RegisterP0_0 & op_0515=0x4A2 { }
+
+# D7C1h TL2 exp  r6, Implied sv
+:exp     is op_0015=0xD7C1 { }
+
+# D382h TL2 exp  r6, Implied sv, Ax@4
+:exp    Ax_4 is Ax_4 & op_0003=0x2 & op_0515=0x69C { }
+
+# 67D0h TL  inc  Implied Const1,     Ax@12, Cond@0 ;aX=aX+1
+:inc    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x7D & op_1315=0x3 { }
+
+# 49C0h TL  lim  a0     ;aka a0,a0
+:lim     is op_0015=0x49C0 { }
+
+# 49D0h TL  lim  a0, a1
+:lim     is op_0015=0x49D0 { }
+
+# 49F0h TL  lim  a1     ;aka a1,a1
+:lim     is op_0015=0x49F0 { }
+
+# 49E0h TL  lim  a1, a0
+:lim     is op_0015=0x49E0 { }
+
+# 4D80h TL  load Imm2u@0, ps               ;st1.bit11-10=imm2
+:load    Imm2u_0 is Imm2u_0 & op_0215=0x1360 { }
+
+# DB80h TL  load Imm7s@0, stepi            ;cfgi.LSB=imm7
+:load    Imm7s_0 is Imm7s_0 & op_0715=0x1B7 { }
+
+# DF80h TL  load Imm7s@0, stepj            ;cfgj.LSB=imm7
+:load    Imm7s_0 is Imm7s_0 & op_0715=0x1BF { }
+
+# 0400h TL  load Imm8u@0, page             ;st1.LSBs=imm8 ;aka "lpg"
+:load    Imm8u_0 is Imm8u_0 & op_0815=0x4 { }
+
+# 0200h TL  load Imm9u@0, modi             ;cfgi.MSB=imm9
+:load    Imm9u_0 is Imm9u_0 & op_0915=0x1 { }
+
+# 0A00h TL  load Imm9u@0, modj             ;cfgj.MSB=imm9
+:load    Imm9u_0 is Imm9u_0 & op_0915=0x5 { }
+
+# D7D8h TL2 load Imm2u@1, movpd, Unused1@0 ;stt2.bit6.7 (page for ProgMem)
+:load    Imm2u_1,Unused1_0 is Imm2u_1 & Unused1_0 & op_0315=0x1AFB { }
+
+# 0010h TL2 load Imm4u@0, ps01             ;mod0.bit10-11,13-14 and st1.10-11 ?
+:load    Imm4u_0 is Imm4u_0 & op_0415=0x1 { }
+
+# D400h TL  maa  MemR45@2, MemR0123@0, Ax@11
+:maa    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0x80 & op_1215=0xD { }
+
+# 8400h TL  maa  MemRn@0, Imm16@16, Ax@11 
+:maa    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x80 & op_1215=0x8 ; Imm16_16{ }
+
+# 8420h TL  maa  y0, MemRn@0, Ax@11 
+:maa    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x84 & op_1215=0x8 { }
+
+# 8440h TL  maa  y0, Register@0, Ax@11
+:maa    Register_0,Ax_11 is Register_0 & Ax_11 & op_0510=0x22 & op_1215=0x8 { }
+
+# E400h TL  maa  y0, MemImm8@0, Ax@11
+:maa    MemImm8_0,Ax_11 is MemImm8_0 & Ax_11 & op_0810=0x4 & op_1215=0xE { }
+
+# 5EA8h TL2 maa  y0, r6, Ax@0
+:maa    Ax_0 is Ax_0 & op_0115=0x2F54 { }
+
+# D700h TL  maasu MemR45@2, MemR0123@0, Ax@11
+:maasu    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0xE0 & op_1215=0xD { }
+
+# 8700h TL  maasu MemRn@0, Imm16@16, Ax@11 
+:maasu    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xE0 & op_1215=0x8 ; Imm16_16{ }
+
+# 8720h TL  maasu y0, MemRn@0, Ax@11 
+:maasu    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xE4 & op_1215=0x8 { }
+
+# 8740h TL  maasu y0, Register@0, Ax@11
+:maasu    Register_0,Ax_11 is Register_0 & Ax_11 & op_0510=0x3A & op_1215=0x8 { }
+
+# 5EAEh TL2 maasu y0, r6, Ax@0
+:maasu    Ax_0 is Ax_0 & op_0115=0x2F57 { }
+
+# D200h TL  mac  MemR45@2, MemR0123@0, Ax@11
+:mac    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0x40 & op_1215=0xD { }
+
+# 8200h TL  mac  MemRn@0, Imm16@16, Ax@11 
+:mac    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x40 & op_1215=0x8 ; Imm16_16{ }
+
+# 8220h TL  mac  y0, MemRn@0, Ax@11 
+:mac    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x44 & op_1215=0x8 { }
+
+# 8240h TL  mac  y0, Register@0, Ax@11
+:mac    Register_0,Ax_11 is Register_0 & Ax_11 & op_0510=0x12 & op_1215=0x8 { }
+
+# E200h TL  mac  y0, MemImm8@0, Ax@11
+:mac    MemImm8_0,Ax_11 is MemImm8_0 & Ax_11 & op_0810=0x2 & op_1215=0xE { }
+
+# 5EA4h TL2 mac  y0, r6, Ax@0
+:mac    Ax_0 is Ax_0 & op_0115=0x2F52 { }
+
+# 4D84h TL2 mac  y0, x1, Ax@1, Unused1@0
+:mac    Ax_1,Unused1_0 is Ax_1 & Unused1_0 & op_0215=0x1361 { }
+
+# 5E28h TL2 mac1 MemR45@2, MemR01@2, Ax@8 
+:mac1    MemR45_2,MemR01_2,Ax_8 is MemR45_2 & MemR01_2 & Ax_8 & op_0001=0x0 & op_0307=0x5 & op_0915=0x2F { }
+
+# D600h TL  macsu MemR45@2, MemR0123@0, Ax@11
+:macsu    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0xC0 & op_1215=0xD { }
+
+# 8600h TL  macsu MemRn@0, Imm16@16, Ax@11 
+:macsu    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xC0 & op_1215=0x8 ; Imm16_16{ }
+
+# E600h TL  macsu y0, MemImm8@0, Ax@11
+:macsu    MemImm8_0,Ax_11 is MemImm8_0 & Ax_11 & op_0810=0x6 & op_1215=0xE { }
+
+# 8620h TL  macsu y0, MemRn@0, Ax@11 
+:macsu    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xC4 & op_1215=0x8 { }
+
+# 8640h TL  macsu y0, Register@0, Ax@11
+:macsu    Register_0,Ax_11 is Register_0 & Ax_11 & op_0510=0x32 & op_1215=0x8 { }
+
+# 5EACh TL2 macsu y0, r6, Ax@0
+:macsu    Ax_0 is Ax_0 & op_0115=0x2F56 { }
+
+# D300h TL  macus MemR45@2, MemR0123@0, Ax@11
+:macus    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0x60 & op_1215=0xD { }
+
+# 8300h TL  macus MemRn@0, Imm16@16, Ax@11 
+:macus    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x60 & op_1215=0x8 ; Imm16_16{ }
+
+# 8320h TL  macus y0, MemRn@0, Ax@11 
+:macus    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0x64 & op_1215=0x8 { }
+
+# 8340h TL  macus y0, Register@0, Ax@11
+:macus    Register_0,Ax_11 is Register_0 & Ax_11 & op_0510=0x1A & op_1215=0x8 { }
+
+# 5EA6h TL2 macus y0, r6, Ax@0
+:macus    Ax_0 is Ax_0 & op_0115=0x2F53 { }
+
+# D500h TL  macuu MemR45@2, MemR0123@0, Ax@11
+:macuu    MemR45_2,MemR0123_0,Ax_11 is MemR45_2 & MemR0123_0 & Ax_11 & op_0310=0xA0 & op_1215=0xD { }
+
+# 8500h TL  macuu MemRn@0, Imm16@16, Ax@11 
+:macuu    MemRn_0,Imm16_16,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xA0 & op_1215=0x8 ; Imm16_16{ }
+
+# 8520h TL  macuu y0, MemRn@0, Ax@11 
+:macuu    MemRn_0,Ax_11 is MemRn_0 & Ax_11 & op_0310=0xA4 & op_1215=0x8 { }
+
+# 8540h TL  macuu y0, Register@0, Ax@11
+:macuu    Register_0,Ax_11 is Register_0 & Ax_11 & op_0510=0x2A & op_1215=0x8 { }
+
+# 5EAAh TL2 macuu y0, r6, Ax@0
+:macuu    Ax_0 is Ax_0 & op_0115=0x2F55 { }
+
+# 8460h TL  max  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, ge, Implied mixp, Implied r0 
+:max    Ax_8,Ax_not8 is Ax_8 & Ax_not8 & op_0007=0x60 & op_0915=0x42 { }
+
+# 8660h TL  max  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, gt, Implied mixp, Implied r0 
+:max    Ax_8,Ax_not8 is Ax_8 & Ax_not8 & op_0007=0x60 & op_0915=0x43 { }
+
+# 5E21h TL2 max  a0h, a1h 
+:max     is op_0015=0x5E21 { }
+
+# 5F21h TL2 max  a1h, a0h 
+:max     is op_0015=0x5F21 { }
+
+# D784h TL2 max  Axh@1, Bxh@0 
+:max    Axh_1,Bxh_0 is Axh_1 & Bxh_0 & op_0215=0x35E1 { }
+
+# 4A40h TL2 max  Axh@3, Bxh@4 
+:max    Axh_3,Bxh_4 is Axh_3 & Bxh_4 & op_0002=0x0 & op_0515=0x252 { }
+
+# 4A44h TL2 max  Axh@3, Bxh@4 
+:max    Axh_3,Bxh_4 is Axh_3 & Bxh_4 & op_0002=0x4 & op_0515=0x252 { }
+
+# 45A0h TL2 max  Axh@4, Bxh@3 
+:max    Axh_4,Bxh_3 is Axh_4 & Bxh_3 & op_0002=0x0 & op_0515=0x22D { }
+
+# D590h TL2 max  Axh@6, Bxh@5 
+:max    Axh_6,Bxh_5 is Axh_6 & Bxh_5 & op_0004=0x10 & op_0715=0x1AB { }
+
+# 4A60h TL2 max  Bxh@4, Axh@3 
+:max    Bxh_4,Axh_3 is Bxh_4 & Axh_3 & op_0002=0x0 & op_0515=0x253 { }
+
+# 4A64h TL2 max  Bxh@4, Axh@3 
+:max    Bxh_4,Axh_3 is Bxh_4 & Axh_3 & op_0002=0x4 & op_0515=0x253 { }
+
+# 8060h TL  maxd NoReverse, Ax@8, MemR0, ge, Implied mixp, Implied r0
+:maxd    Ax_8 is Ax_8 & op_0007=0x60 & op_0915=0x40 { }
+
+# 8260h TL  maxd NoReverse, Ax@8, MemR0, gt, Implied mixp, Implied r0
+:maxd    Ax_8 is Ax_8 & op_0007=0x60 & op_0915=0x41 { }
+
+# 8860h TL  min  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, le, Implied mixp, Implied r0 
+:min    Ax_8,Ax_not8 is Ax_8 & Ax_not8 & op_0007=0x60 & op_0915=0x44 { }
+
+# 8A60h TL  min  NoReverse, Ax@8, Implied Ax@not8, Bogus MemR0, lt, Implied mixp, Implied r0 
+:min    Ax_8,Ax_not8 is Ax_8 & Ax_not8 & op_0007=0x60 & op_0915=0x45 { }
+
+# 43C2h TL2 min  Axh@0, Axh@not0 
+:min    Axh_0,Axh_not0 is Axh_0 & Axh_not0 & op_0115=0x21E1 { }
+
+# D2B8h TL2 min  Axh@11, Bxh@10 
+:min    Axh_11,Bxh_10 is Axh_11 & Bxh_10 & op_0009=0x2B8 & op_1215=0xD { }
+
+# 4A00h TL2 min  Axh@3, Bxh@4 
+:min    Axh_3,Bxh_4 is Axh_3 & Bxh_4 & op_0002=0x0 & op_0515=0x250 { }
+
+# 4A04h TL2 min  Axh@3, Bxh@4 
+:min    Axh_3,Bxh_4 is Axh_3 & Bxh_4 & op_0002=0x4 & op_0515=0x250 { }
+
+# 45E0h TL2 min  Axh@4, Bxh@3 
+:min    Axh_4,Bxh_3 is Axh_4 & Bxh_3 & op_0002=0x0 & op_0515=0x22F { }
+
+# D4BAh TL2 min  Axh@8, Bxh@0 
+:min    Axh_8,Bxh_0 is Axh_8 & Bxh_0 & op_0107=0x5D & op_0915=0x6A { }
+
+# 4A20h TL2 min  Bxh@4, Axh@3 
+:min    Bxh_4,Axh_3 is Bxh_4 & Axh_3 & op_0002=0x0 & op_0515=0x251 { }
+
+# 4A24h TL2 min  Bxh@4, Axh@3 
+:min    Bxh_4,Axh_3 is Bxh_4 & Axh_3 & op_0002=0x4 & op_0515=0x251 { }
+
+# 47A0h TL2 mind NoReverse, Ax@3, MemR0, le, Implied mixp, Implied r0
+:mind    Ax_3 is Ax_3 & op_0002=0x0 & op_0415=0x47A { }
+
+# 47A4h TL2 mind NoReverse, Ax@3, MemR0, lt, Implied mixp, Implied r0
+:mind    Ax_3 is Ax_3 & op_0002=0x4 & op_0415=0x47A { }
+
+# D290h TL  mov  Ab@10, Ab@5
+:mov    Ab_10,Ab_5 is Ab_10 & Ab_5 & op_0004=0x10 & op_0709=0x5 & op_1215=0xD { }
+
+# D298h TL  mov  Abl@10, dvm
+:mov    Abl_10 is Abl_10 & op_0009=0x298 & op_1215=0xD { }
+
+# D2D8h TL  mov  Abl@10, x0
+:mov    Abl_10 is Abl_10 & op_0009=0x2D8 & op_1215=0xD { }
+
+# 3000h TL  mov  Ablh@9, MemImm8@0
+:mov    Ablh_9,MemImm8_0 is Ablh_9 & MemImm8_0 & op_0808=0x0 & op_1215=0x3 { }
+
+# D4BCh TL  mov  Axl@8, MemImm16@16
+:mov    Axl_8,MemImm16_16 is Axl_8 & op_0007=0xBC & op_0915=0x6A ; MemImm16_16{ }
+
+# D49Ch TL  mov  Axl@8, MemR7Imm16@16
+:mov    Axl_8,MemR7Imm16_16 is Axl_8 & op_0007=0x9C & op_0915=0x6A ; MemR7Imm16_16{ }
+
+# DC80h TL  mov  Axl@8, MemR7Imm7s@0
+:mov    Axl_8,MemR7Imm7s_0 is Axl_8 & MemR7Imm7s_0 & op_0707=0x1 & op_0915=0x6E { }
+
+# D4B8h TL  mov  MemImm16@16, Ax@8
+:mov    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xB8 & op_0915=0x6A ; MemImm16_16{ }
+
+# 6100h TL  mov  MemImm8@0, Ab@11
+:mov    MemImm8_0,Ab_11 is MemImm8_0 & Ab_11 & op_0810=0x1 & op_1315=0x3 { }
+
+# 6200h TL  mov  MemImm8@0, Ablh@10
+:mov    MemImm8_0,Ablh_10 is MemImm8_0 & Ablh_10 & op_0809=0x2 & op_1315=0x3 { }
+
+# 6500h TL  mov  MemImm8@0, Axh@12, eu   ;aka Axheu
+:mov    MemImm8_0,Axh_12 is MemImm8_0 & Axh_12 & op_0811=0x5 & op_1315=0x3 { }
+
+# 6000h TL  mov  MemImm8@0, R0123457y0@10
+:mov    MemImm8_0,R0123457y0_10 is MemImm8_0 & R0123457y0_10 & op_0809=0x0 & op_1315=0x3 { }
+
+# 6D00h TL  mov  MemImm8@0, sv
+:mov    MemImm8_0 is MemImm8_0 & op_0815=0x6D { }
+
+# D491h TL  mov  dvm, Ab@5
+:mov    Ab_5 is Ab_5 & op_0004=0x11 & op_0715=0x1A9 { }
+
+# D492h TL  mov  icr, Ab@5
+:mov    Ab_5 is Ab_5 & op_0004=0x12 & op_0715=0x1A9 { }
+
+# 5E20h TL  mov  Imm16@16, Bx@8
+:mov    Imm16_16,Bx_8 is Bx_8 & op_0007=0x20 & op_0915=0x2F ; Imm16_16{ }
+
+# 5E00h TL  mov  Imm16@16, Register@0
+:mov    Imm16_16,Register_0 is Register_0 & op_0515=0x2F0 ; Imm16_16{ }
+
+# 4F80h TL  mov  Imm5u@0, icr    ;uh, but icr is 8bit wide (only 4bit are R/W)?
+:mov    Imm5u_0 is Imm5u_0 & op_0515=0x27C { }
+
+# 2500h TL  mov  Imm8s@0, Axh@12         ;signed!
+:mov    Imm8s_0,Axh_12 is Imm8s_0 & Axh_12 & op_0811=0x5 & op_1315=0x1 { }
+
+# 2900h TL  mov  Imm8s@0, ext0
+:mov    Imm8s_0 is Imm8s_0 & op_0815=0x29 { }
+
+# 2D00h TL  mov  Imm8s@0, ext1
+:mov    Imm8s_0 is Imm8s_0 & op_0815=0x2D { }
+
+# 3900h TL  mov  Imm8s@0, ext2
+:mov    Imm8s_0 is Imm8s_0 & op_0815=0x39 { }
+
+# 3D00h TL  mov  Imm8s@0, ext3
+:mov    Imm8s_0 is Imm8s_0 & op_0815=0x3D { }
+
+# 2300h TL  mov  Imm8s@0, R0123457y0@10  ;signed!
+:mov    Imm8s_0,R0123457y0_10 is Imm8s_0 & R0123457y0_10 & op_0809=0x3 & op_1315=0x1 { }
+
+# 0500h TL  mov  Imm8s@0, sv
+:mov    Imm8s_0 is Imm8s_0 & op_0815=0x5 { }
+
+# 2100h TL  mov  Imm8u@0, Axl@12         ;unsigned!
+:mov    Imm8u_0,Axl_12 is Imm8u_0 & Axl_12 & op_0811=0x1 & op_1315=0x1 { }
+
+# D498h TL  mov  MemR7Imm16@16, Ax@8
+:mov    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0x98 & op_0915=0x6A ; MemR7Imm16_16{ }
+
+# D880h TL  mov  MemR7Imm7s@0, Ax@8
+:mov    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x1 & op_0915=0x6C { }
+
+# 98C0h TL  mov  MemRn@0, Bx@8 
+:mov    MemRn_0,Bx_8 is MemRn_0 & Bx_8 & op_0307=0x18 & op_0915=0x4C { }
+
+# 1C00h TL  mov  MemRn@0, Register@5 
+:mov    MemRn_0,Register_5 is MemRn_0 & Register_5 & op_0304=0x0 & op_1015=0x7 { }
+
+# 47E0h TL  mov  MemSp, Register@0
+:mov    Register_0 is Register_0 & op_0515=0x23F { }
+
+# 47C0h TL  mov  mixp, Register@0
+:mov    Register_0 is Register_0 & op_0515=0x23E { }
+
+# 2000h TL  mov  R0123457y0@9, MemImm8@0
+:mov    R0123457y0_9,MemImm8_0 is R0123457y0_9 & MemImm8_0 & op_0808=0x0 & op_1215=0x2 { }
+
+# 4FC0h TL  mov  Register@0, icr
+:mov    Register_0 is Register_0 & op_0515=0x27E { }
+
+# 5E80h TL  mov  Register@0, mixp
+:mov    Register_0 is Register_0 & op_0515=0x2F4 { }
+
+# 1800h TL  mov  Register@5, MemRn@0 
+:mov    Register_5,MemRn_0 is Register_5 & MemRn_0 & op_0304=0x0 & op_1015=0x6 { }
+
+# 5EC0h TL  mov  RegisterP0@0, Bx@5
+:mov    RegisterP0_0,Bx_5 is RegisterP0_0 & Bx_5 & op_0615=0x17B { }
+
+# 5800h TL  mov  RegisterP0@0, Register@5
+:mov    RegisterP0_0,Register_5 is RegisterP0_0 & Register_5 & op_1015=0x16 { }
+
+# D490h TL  mov  repc, Ab@5
+:mov    Ab_5 is Ab_5 & op_0004=0x10 & op_0715=0x1A9 { }
+
+# 7D00h TL  mov  sv, MemImm8@0
+:mov    MemImm8_0 is MemImm8_0 & op_0815=0x7D { }
+
+# D493h TL  mov  x0, Ab@5
+:mov    Ab_5 is Ab_5 & op_0004=0x13 & op_0715=0x1A9 { }
+
+# D49Bh TL2 mov  a0h, stepi0
+:mov     is op_0015=0xD49B { }
+
+# D59Bh TL2 mov  a0h, stepj0
+:mov     is op_0015=0xD59B { }
+
+# 4390h TL2 mov  a0h, MemR0425@2 
+:mov    MemR0425_2 is MemR0425_2 & op_0001=0x0 & op_0415=0x439 { }
+
+# 43D0h TL2 mov  a1h, MemR0425@2 
+:mov    MemR0425_2 is MemR0425_2 & op_0001=0x0 & op_0415=0x43D { }
+
+# 8FD4h TL2 mov  Ab@0, p0
+:mov    Ab_0 is Ab_0 & op_0215=0x23F5 { }
+
+# 43A0h TL2 mov  Abh@3, MemR01@2 
+:mov    Abh_3,MemR01_2 is Abh_3 & MemR01_2 & op_0001=0x0 & op_0515=0x21D { }
+
+# 43E0h TL2 mov  Abh@3, MemR45@2 
+:mov    Abh_3,MemR45_2 is Abh_3 & MemR45_2 & op_0001=0x0 & op_0515=0x21F { }
+
+# 9D40h TL2 mov  Abh@4, MemR04@1 
+:mov    Abh_4,MemR04_1 is Abh_4 & MemR04_1 & op_0000=0x0 & op_0203=0x0 & op_0615=0x275 { }
+
+# 9164h TL2 mov  Abl@0, prpage
+:mov    Abl_0 is Abl_0 & op_0215=0x2459 { }
+
+# 9064h TL2 mov  Abl@0, repc
+:mov    Abl_0 is Abl_0 & op_0215=0x2419 { }
+
+# D394h TL2 mov  Abl@0, x1
+:mov    Abl_0 is Abl_0 & op_0215=0x34E5 { }
+
+# D384h TL2 mov  Abl@0, y1
+:mov    Abl_0 is Abl_0 & op_0215=0x34E1 { }
+
+# 9540h TL2 mov  Abl@3, ArArp@0
+:mov    Abl_3,ArArp_0 is Abl_3 & ArArp_0 & op_0515=0x4AA { }
+
+# 9C60h TL2 mov  Abl@3, SttMod@0
+:mov    Abl_3,SttMod_0 is Abl_3 & SttMod_0 & op_0515=0x4E3 { }
+
+# 9560h TL2 mov  ArArp@0, Abl@3
+:mov    ArArp_0,Abl_3 is ArArp_0 & Abl_3 & op_0515=0x4AB { }
+
+# D488h TL2 mov  ArArp@0, MemR04@8 
+:mov    ArArp_0,MemR04_8 is ArArp_0 & MemR04_8 & op_0307=0x11 & op_0915=0x6A { }
+
+# 5F50h TL2 mov  ArArpSttMod@0, MemR7Imm16@16
+:mov    ArArpSttMod_0,MemR7Imm16_16 is ArArpSttMod_0 & op_0415=0x5F5 ; MemR7Imm16_16{ }
+
+# 886Bh TL2 mov  Ax@8, pc
+:mov    Ax_8 is Ax_8 & op_0007=0x6B & op_0915=0x44 { }
+
+# 8C60h TL2 mov  Axh@4, MemR4567@8 
+:mov    Axh_4,MemR4567_8 is Axh_4 & MemR4567_8 & op_0003=0x0 & op_0507=0x3 & op_1015=0x23 { }
+
+# 4800h TL2 mov  Axh@6, MemR0123@4 
+:mov    Axh_6,MemR0123_4 is Axh_6 & MemR0123_4 & op_0003=0x0 & op_0715=0x90 { }
+
+# 4900h TL2 mov  Axh@6, MemR0123@4 
+:mov    Axh_6,MemR0123_4 is Axh_6 & MemR0123_4 & op_0003=0x0 & op_0715=0x92 { }
+
+# 7F80h TL2 mov  Axh@6, MemR4567@4 
+:mov    Axh_6,MemR4567_4 is Axh_6 & MemR4567_4 & op_0003=0x0 & op_0715=0xFF { }
+
+# 8863h TL2 mov  Bx@8, pc
+:mov    Bx_8 is Bx_8 & op_0007=0x63 & op_0915=0x44 { }
+
+# 0008h TL2 mov  Imm16@16, ArArp@0
+:mov    Imm16_16,ArArp_0 is ArArp_0 & op_0315=0x1 ; Imm16_16{ }
+
+# 0023h TL2 mov  Imm16@16, r6
+:mov    Imm16_16 is op_0015=0x23 ; Imm16_16{ }
+
+# 0001h TL2 mov  Imm16@16, repc
+:mov    Imm16_16 is op_0015=0x1 ; Imm16_16{ }
+
+# 8971h TL2 mov  Imm16@16, stepi0
+:mov    Imm16_16 is op_0015=0x8971 ; Imm16_16{ }
+
+# 8979h TL2 mov  Imm16@16, stepj0
+:mov    Imm16_16 is op_0015=0x8979 ; Imm16_16{ }
+
+# 0030h TL2 mov  Imm16@16, SttMod@0
+:mov    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x6 ; Imm16_16{ }
+
+# 5DD0h TL2 mov  Imm4u@0, prpage
+:mov    Imm4u_0 is Imm4u_0 & op_0415=0x5DD { }
+
+# 80C4h TL2 mov  MemR01@9, Abh@10 
+:mov    MemR01_9,Abh_10 is MemR01_9 & Abh_10 & op_0008=0xC4 & op_1215=0x8 { }
+
+# D7D4h TL2 mov  MemR04@1, repc 
+:mov    MemR04_1 is MemR04_1 & op_0000=0x0 & op_0215=0x35F5 { }
+
+# 5F4Ch TL2 mov  MemR04@1, sv 
+:mov    MemR04_1 is MemR04_1 & op_0000=0x0 & op_0215=0x17D3 { }
+
+# D4B4h TL2 mov  MemR04@1, sv 
+:mov    MemR04_1 is MemR04_1 & op_0000=0x0 & op_0215=0x352D { }
+
+# DE9Ch TL2 mov  MemR04@1, sv 
+:mov    MemR04_1 is MemR04_1 & op_0000=0x0 & op_0215=0x37A7 { }
+
+# 4B40h TL2 mov  MemR04@3, sv 
+:mov    MemR04_3 is MemR04_3 & op_0002=0x0 & op_0415=0x4B4 { }
+
+# 4B42h TL2 mov  MemR04@3, sv 
+:mov    MemR04_3 is MemR04_3 & op_0002=0x2 & op_0415=0x4B4 { }
+
+# 8062h TL2 mov  MemR04@4, ArArp@8  
+:mov    MemR04_4,ArArp_8 is MemR04_4 & ArArp_8 & op_0003=0x2 & op_0507=0x3 & op_1115=0x10 { }
+
+# 8063h TL2 mov  MemR04@4, SttMod@8 
+:mov    MemR04_4,SttMod_8 is MemR04_4 & SttMod_8 & op_0003=0x3 & op_0507=0x3 & op_1115=0x10 { }
+
+# 9960h TL2 mov  MemR04@4, sv 
+:mov    MemR04_4 is MemR04_4 & op_0003=0x0 & op_0515=0x4CB { }
+
+# 99E0h TL2 mov  MemR04@4, sv 
+:mov    MemR04_4 is MemR04_4 & op_0003=0x0 & op_0515=0x4CF { }
+
+# 9860h TL2 mov  MemR04@4, sv 
+:mov    MemR04_4 is MemR04_4 & op_0003=0x0 & op_0515=0x4C3 { }
+
+# 98E0h TL2 mov  MemR04@4, sv 
+:mov    MemR04_4 is MemR04_4 & op_0003=0x0 & op_0515=0x4C7 { }
+
+# 8873h TL2 mov  MemR04@8, sv 
+:mov    MemR04_8 is MemR04_8 & op_0007=0x73 & op_0915=0x44 { }
+
+# D4C0h TL2 mov  MemR45@5, Abh@2 
+:mov    MemR45_5,Abh_2 is MemR45_5 & Abh_2 & op_0001=0x0 & op_0404=0x0 & op_0615=0x353 { }
+
+# 4D90h TL2 mov  MemR7Imm16@16, ArArpSttMod@0
+:mov    MemR7Imm16_16,ArArpSttMod_0 is ArArpSttMod_0 & op_0415=0x4D9 ; MemR7Imm16_16{ }
+
+# D2DCh TL2 mov  MemR7Imm16@16, repc, Unused2@0, Unused1@10
+:mov    MemR7Imm16_16,Unused2_0,Unused1_10 is Unused2_0 & Unused1_10 & op_0209=0xB7 & op_1115=0x1A ; MemR7Imm16_16{ }
+
+# 1B20h TL2 mov  MemRn@0, r6 
+:mov    MemRn_0 is MemRn_0 & op_0315=0x364 { }
+
+# D29Ch TL2 mov  MemSp, r6, Unused2@0, Unused1@10
+:mov    Unused2_0,Unused1_10 is Unused2_0 & Unused1_10 & op_0209=0xA7 & op_1115=0x1A { }
+
+# 8A73h TL2 mov  mixp, Bx@3
+:mov    Bx_3 is Bx_3 & op_0002=0x3 & op_0415=0x8A7 { }
+
+# 4381h TL2 mov  mixp, r6
+:mov     is op_0015=0x4381 { }
+
+# 4382h TL2 mov  p0h, Bx@0
+:mov    Bx_0 is Bx_0 & op_0115=0x21C1 { }
+
+# D3C2h TL2 mov  p0h, r6
+:mov     is op_0015=0xD3C2 { }
+
+# 4B60h TL2 mov  p0h, Register@0     ;<-- here "p0h" as source
+:mov    Register_0 is Register_0 & op_0515=0x25B { }
+
+# 8FD8h TL2 mov  p1, Ab@0
+:mov    Ab_0 is Ab_0 & op_0215=0x23F6 { }
+
+# D481h TL2 mov  r6, Bx@8
+:mov    Bx_8 is Bx_8 & op_0007=0x81 & op_0915=0x6A { }
+
+# 1B00h TL2 mov  r6, MemRn@0 
+:mov    MemRn_0 is MemRn_0 & op_0315=0x360 { }
+
+# 43C1h TL2 mov  r6, mixp
+:mov     is op_0015=0x43C1 { }
+
+# 5F00h TL2 mov  r6, Register@0
+:mov    Register_0 is Register_0 & op_0515=0x2F8 { }
+
+# 5F60h TL2 mov  Register@0, r6
+:mov    Register_0 is Register_0 & op_0515=0x2FB { }
+
+# D2D9h TL2 mov  repc, Abl@10
+:mov    Abl_10 is Abl_10 & op_0009=0x2D9 & op_1215=0xD { }
+
+# D7D0h TL2 mov  repc, MemR04@1 
+:mov    MemR04_1 is MemR04_1 & op_0000=0x0 & op_0215=0x35F4 { }
+
+# D3C8h TL2 mov  repc, MemR7Imm16@16, Unused3@0
+:mov    MemR7Imm16_16,Unused3_0 is Unused3_0 & op_0315=0x1A79 ; MemR7Imm16_16{ }
+
+# D482h TL2 mov  stepi0, a0h
+:mov     is op_0015=0xD482 { }
+
+# D582h TL2 mov  stepj0, a0h
+:mov     is op_0015=0xD582 { }
+
+# D2F8h TL2 mov  SttMod@0, Abl@10
+:mov    SttMod_0,Abl_10 is SttMod_0 & Abl_10 & op_0309=0x5F & op_1215=0xD { }
+
+# 49C1h TL2 mov  x1, Ab@4
+:mov    Ab_4 is Ab_4 & op_0003=0x1 & op_0615=0x127 { }
+
+# D299h TL2 mov  y1, Ab@10
+:mov    Ab_10 is Ab_10 & op_0009=0x299 & op_1215=0xD { }
+
+# 5EB0h TL2 mov  prpage, Abl@0
+:mov    Abl_0 is Abl_0 & op_0215=0x17AC { }
+
+# 49A0h TL2 mov  SttMod@0, MemR04@4 
+:mov    SttMod_0,MemR04_4 is SttMod_0 & MemR04_4 & op_0303=0x0 & op_0515=0x24D { }
+
+# 0040h TL  movp ProgMemAxl@5, Register@0
+:movp    ProgMemAxl_5,Register_0 is ProgMemAxl_5 & Register_0 & op_0615=0x1 { }
+
+# 0D40h TL2 movp ProgMemAx@5, Register@0
+:movp    ProgMemAx_5,Register_0 is ProgMemAx_5 & Register_0 & op_0615=0x35 { }
+
+# 0600h TL  movp ProgMemRn@0, MemR0123@5 
+:movp    ProgMemRn_0,MemR0123_5 is ProgMemRn_0 & MemR0123_5 & op_0304=0x0 & op_0715=0xC { }
+
+# 8864h TL  movr MemR0425@3, Abh@8 
+:movr    MemR0425_3,Abh_8 is MemR0425_3 & Abh_8 & op_0002=0x4 & op_0507=0x3 & op_1015=0x22 { }
+
+# 9CE0h TL  movr MemRn@0, Ax@8 
+:movr    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x1C & op_0915=0x4E { }
+
+# 9CC0h TL  movr RegisterP0@0, Ax@8
+:movr    RegisterP0_0,Ax_8 is RegisterP0_0 & Ax_8 & op_0507=0x6 & op_0915=0x4E { }
+
+# 5DF4h TL2 movr Bx@1, Ax@0
+:movr    Bx_1,Ax_0 is Bx_1 & Ax_0 & op_0215=0x177D { }
+
+# 8961h TL2 movr r6, Ax@3
+:movr    Ax_3 is Ax_3 & op_0002=0x1 & op_0415=0x896 { }
+
+# 6300h TL  movs Implied sv, MemImm8@0, Ab@11
+:movs    MemImm8_0,Ab_11 is MemImm8_0 & Ab_11 & op_0810=0x3 & op_1315=0x3 { }
+
+# 0180h TL  movs Implied sv, MemRn@0, Ab@5 
+:movs    MemRn_0,Ab_5 is MemRn_0 & Ab_5 & op_0304=0x0 & op_0715=0x3 { }
+
+# 0100h TL  movs Implied sv, RegisterP0@0, Ab@5
+:movs    RegisterP0_0,Ab_5 is RegisterP0_0 & Ab_5 & op_0715=0x2 { }
+
+# 5F42h TL2 movs Implied sv, r6, Ax@0
+:movs    Ax_0 is Ax_0 & op_0115=0x2FA1 { }
+
+# 4080h TL  movsi Implied Imm5s@0, R0123457y0@9, Ab@5, Bogus Imm5s@0
+:movsi    Imm5s_0,R0123457y0_9,Ab_5 is Imm5s_0 & R0123457y0_9 & Ab_5 & op_0708=0x1 & op_1215=0x4 { }
+
+# D000h TL  mpy  MemR45@2, MemR0123@0 
+:mpy    MemR45_2,MemR0123_0 is MemR45_2 & MemR0123_0 & op_0315=0x1A00 { }
+
+# 8000h TL  mpy  MemRn@0, Imm16@16    
+:mpy    MemRn_0,Imm16_16 is MemRn_0 & op_0315=0x1000 ; Imm16_16{ }
+
+# 8020h TL  mpy  y0, MemRn@0          
+:mpy    MemRn_0 is MemRn_0 & op_0315=0x1004 { }
+
+# 8040h TL  mpy  y0, Register@0
+:mpy    Register_0 is Register_0 & op_0515=0x402 { }
+
+# E000h TL  mpy  y0, MemImm8@0
+:mpy    MemImm8_0 is MemImm8_0 & op_0815=0xE0 { }
+
+# 5EA0h TL2 mpy  y0, r6
+:mpy     is op_0015=0x5EA0 { }
+
+# CB00h TL2 mpy  MemR45@5, MemR01@5 
+:mpy    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x0 & op_0615=0x32C { }
+
+# CB01h TL2 mpy  MemR45@5, MemR01@5 
+:mpy    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x1 & op_0615=0x32C { }
+
+# CB02h TL2 mpy  MemR45@5, MemR01@5 
+:mpy    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x2 & op_0615=0x32C { }
+
+# CB03h TL2 mpy  MemR45@5, MemR01@5 
+:mpy    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x3 & op_0615=0x32C { }
+
+# CB04h TL2 mpy  MemR45@5, MemR01@5 
+:mpy    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x4 & op_0615=0x32C { }
+
+# CB05h TL2 mpy  MemR45@5, MemR01@5 
+:mpy    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x5 & op_0615=0x32C { }
+
+# CB06h TL2 mpy  MemR45@5, MemR01@5 
+:mpy    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x6 & op_0615=0x32C { }
+
+# CB07h TL2 mpy  MemR45@5, MemR01@5 
+:mpy    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x7 & op_0615=0x32C { }
+
+# D5E0h TL2 mpy  MemR04@1, x1 
+:mpy    MemR04_1 is MemR04_1 & op_0000=0x0 & op_0215=0x3578 { }
+
+# D5E4h TL2 mpy  MemR04@1, x1 
+:mpy    MemR04_1 is MemR04_1 & op_0000=0x0 & op_0215=0x3579 { }
+
+# C800h TL2 mpy  MemR4567@4, MemR0123@4
+:mpy    MemR4567_4,MemR0123_4 is MemR4567_4 & MemR0123_4 & op_0003=0x0 & op_0615=0x320 { }
+
+# C900h TL2 mpy  MemR4567@4, MemR0123@4
+:mpy    MemR4567_4,MemR0123_4 is MemR4567_4 & MemR0123_4 & op_0003=0x0 & op_0615=0x324 { }
+
+# 80C2h TL2 mpy  MemR45@0, MemR01@0 
+:mpy    MemR45_0,MemR01_0 is MemR45_0 & MemR01_0 & op_0115=0x4061 { }
+
+# 49C8h TL2 mpy  MemR45@2, MemR01@2 
+:mpy    MemR45_2,MemR01_2 is MemR45_2 & MemR01_2 & op_0001=0x0 & op_0315=0x939 { }
+
+# 80C8h TL2 mpy  MemR45@2, MemR01@2 
+:mpy    MemR45_2,MemR01_2 is MemR45_2 & MemR01_2 & op_0001=0x0 & op_0315=0x1019 { }
+
+# 81C8h TL2 mpy  MemR45@2, MemR01@2 
+:mpy    MemR45_2,MemR01_2 is MemR45_2 & MemR01_2 & op_0001=0x0 & op_0315=0x1039 { }
+
+# 82C8h TL2 mpy  MemR45@2, MemR01@2 
+:mpy    MemR45_2,MemR01_2 is MemR45_2 & MemR01_2 & op_0001=0x0 & op_0315=0x1059 { }
+
+# 83C8h TL2 mpy  MemR45@2, MemR01@2 
+:mpy    MemR45_2,MemR01_2 is MemR45_2 & MemR01_2 & op_0001=0x0 & op_0315=0x1079 { }
+
+# 00C0h TL2 mpy  MemR45@3, MemR01@3 
+:mpy    MemR45_3,MemR01_3 is MemR45_3 & MemR01_3 & op_0002=0x0 & op_0415=0xC { }
+
+# 00C1h TL2 mpy  MemR45@3, MemR01@3 
+:mpy    MemR45_3,MemR01_3 is MemR45_3 & MemR01_3 & op_0002=0x1 & op_0415=0xC { }
+
+# 0D20h TL2 mpy  MemR45@3, MemR01@3 
+:mpy    MemR45_3,MemR01_3 is MemR45_3 & MemR01_3 & op_0002=0x0 & op_0415=0xD2 { }
+
+# 0D30h TL2 mpy  MemR45@3, MemR01@3 
+:mpy    MemR45_3,MemR01_3 is MemR45_3 & MemR01_3 & op_0002=0x0 & op_0415=0xD3 { }
+
+# 4B50h TL2 mpy  MemR45@3, MemR01@3 
+:mpy    MemR45_3,MemR01_3 is MemR45_3 & MemR01_3 & op_0002=0x0 & op_0415=0x4B5 { }
+
+# D7A0h TL2 mpy  MemR45@3, MemR01@3 
+:mpy    MemR45_3,MemR01_3 is MemR45_3 & MemR01_3 & op_0002=0x0 & op_0415=0xD7A { }
+
+# D7A1h TL2 mpy  MemR45@3, MemR01@3 
+:mpy    MemR45_3,MemR01_3 is MemR45_3 & MemR01_3 & op_0002=0x1 & op_0415=0xD7A { }
+
+# 9861h TL2 mpy  MemR45@4, MemR01@4 
+:mpy    MemR45_4,MemR01_4 is MemR45_4 & MemR01_4 & op_0003=0x1 & op_0515=0x4C3 { }
+
+# 9862h TL2 mpy  MemR45@4, MemR01@4 
+:mpy    MemR45_4,MemR01_4 is MemR45_4 & MemR01_4 & op_0003=0x2 & op_0515=0x4C3 { }
+
+# 9863h TL2 mpy  MemR45@4, MemR01@4 
+:mpy    MemR45_4,MemR01_4 is MemR45_4 & MemR01_4 & op_0003=0x3 & op_0515=0x4C3 { }
+
+# 98E1h TL2 mpy  MemR45@4, MemR01@4 
+:mpy    MemR45_4,MemR01_4 is MemR45_4 & MemR01_4 & op_0003=0x1 & op_0515=0x4C7 { }
+
+# 98E2h TL2 mpy  MemR45@4, MemR01@4 
+:mpy    MemR45_4,MemR01_4 is MemR45_4 & MemR01_4 & op_0003=0x2 & op_0515=0x4C7 { }
+
+# 98E3h TL2 mpy  MemR45@4, MemR01@4 
+:mpy    MemR45_4,MemR01_4 is MemR45_4 & MemR01_4 & op_0003=0x3 & op_0515=0x4C7 { }
+
+# 4DA0h TL2 mpy  y0, MemR04@3 
+:mpy    MemR04_3 is MemR04_3 & op_0002=0x0 & op_0415=0x4DA { }
+
+# 4DA1h TL2 mpy  y0, MemR04@3 
+:mpy    MemR04_3 is MemR04_3 & op_0002=0x1 & op_0415=0x4DA { }
+
+# 4DA2h TL2 mpy  y0, MemR04@3 
+:mpy    MemR04_3 is MemR04_3 & op_0002=0x2 & op_0415=0x4DA { }
+
+# 4DA3h TL2 mpy  y0, MemR04@3 
+:mpy    MemR04_3 is MemR04_3 & op_0002=0x3 & op_0415=0x4DA { }
+
+# 94E0h TL2 mpy  y0, MemR04@4 
+:mpy    MemR04_4 is MemR04_4 & op_0003=0x0 & op_0515=0x4A7 { }
+
+# 94E2h TL2 mpy  y0, MemR04@4 
+:mpy    MemR04_4 is MemR04_4 & op_0003=0x2 & op_0515=0x4A7 { }
+
+# 94E4h TL2 mpy  y0, MemR04@4 
+:mpy    MemR04_4 is MemR04_4 & op_0003=0x4 & op_0515=0x4A7 { }
+
+# 94E6h TL2 mpy  y0, MemR04@4 
+:mpy    MemR04_4 is MemR04_4 & op_0003=0x6 & op_0515=0x4A7 { }
+
+# 94E1h TL2 mpy  y0, MemR04@4 
+:mpy    MemR04_4 is MemR04_4 & op_0003=0x1 & op_0515=0x4A7 { }
+
+# 94E3h TL2 mpy  y0, MemR04@4 
+:mpy    MemR04_4 is MemR04_4 & op_0003=0x3 & op_0515=0x4A7 { }
+
+# 94E5h TL2 mpy  y0, MemR04@4 
+:mpy    MemR04_4 is MemR04_4 & op_0003=0x5 & op_0515=0x4A7 { }
+
+# 94E7h TL2 mpy  y0, MemR04@4 
+:mpy    MemR04_4 is MemR04_4 & op_0003=0x7 & op_0515=0x4A7 { }
+
+# 8862h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x8862 { }
+
+# 8A62h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x8A62 { }
+
+# 4D88h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x4D88 { }
+
+# 5E24h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x5E24 { }
+
+# 8061h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x8061 { }
+
+# 8071h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x8071 { }
+
+# 8461h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x8461 { }
+
+# 8471h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x8471 { }
+
+# D484h TL2 mpy  y0, x1 
+:mpy     is op_0015=0xD484 { }
+
+# D49Dh TL2 mpy  y0, x1 
+:mpy     is op_0015=0xD49D { }
+
+# D4A0h TL2 mpy  y0, x1 
+:mpy     is op_0015=0xD4A0 { }
+
+# 4FA0h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x4FA0 { }
+
+# 5818h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x5818 { }
+
+# 5838h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x5838 { }
+
+# 80D0h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x80D0 { }
+
+# 80D1h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x80D1 { }
+
+# 80D2h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x80D2 { }
+
+# 80D3h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x80D3 { }
+
+# D3A0h TL2 mpy  y0, x1 
+:mpy     is op_0015=0xD3A0 { }
+
+# 4D89h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x4D89 { }
+
+# 5F24h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x5F24 { }
+
+# 8069h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x8069 { }
+
+# 8079h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x8079 { }
+
+# 8469h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x8469 { }
+
+# 8479h TL2 mpy  y0, x1 
+:mpy     is op_0015=0x8479 { }
+
+# D584h TL2 mpy  y0, x1 
+:mpy     is op_0015=0xD584 { }
+
+# D59Dh TL2 mpy  y0, x1 
+:mpy     is op_0015=0xD59D { }
+
+# D5A0h TL2 mpy  y0, x1 
+:mpy     is op_0015=0xD5A0 { }
+
+# 0800h TL  mpyi NoReverse, Implied p0, y0, Imm8s@0   ;multiply  ;aka "mpys"
+:mpyi    Imm8s_0 is Imm8s_0 & op_0815=0x8 { }
+
+# D100h TL  mpysu MemR45@2, MemR0123@0 
+:mpysu    MemR45_2,MemR0123_0 is MemR45_2 & MemR0123_0 & op_0315=0x1A20 { }
+
+# 8100h TL  mpysu MemRn@0, Imm16@16    
+:mpysu    MemRn_0,Imm16_16 is MemRn_0 & op_0315=0x1020 ; Imm16_16{ }
+
+# 8120h TL  mpysu y0, MemRn@0          
+:mpysu    MemRn_0 is MemRn_0 & op_0315=0x1024 { }
+
+# 8140h TL  mpysu y0, Register@0
+:mpysu    Register_0 is Register_0 & op_0515=0x40A { }
+
+# CA00h TL2 mpysu MemR45@5, MemR01@5
+:mpysu    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x0 & op_0615=0x328 { }
+
+# CA01h TL2 mpysu MemR45@5, MemR01@5
+:mpysu    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x1 & op_0615=0x328 { }
+
+# CA02h TL2 mpysu MemR45@5, MemR01@5
+:mpysu    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x2 & op_0615=0x328 { }
+
+# CA03h TL2 mpysu MemR45@5, MemR01@5
+:mpysu    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x3 & op_0615=0x328 { }
+
+# CA04h TL2 mpysu MemR45@5, MemR01@5
+:mpysu    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x4 & op_0615=0x328 { }
+
+# CA05h TL2 mpysu MemR45@5, MemR01@5
+:mpysu    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x5 & op_0615=0x328 { }
+
+# CA06h TL2 mpysu MemR45@5, MemR01@5
+:mpysu    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x6 & op_0615=0x328 { }
+
+# CA07h TL2 mpysu MemR45@5, MemR01@5
+:mpysu    MemR45_5,MemR01_5 is MemR45_5 & MemR01_5 & op_0004=0x7 & op_0615=0x328 { }
+
+# 5EA2h TL2 mpysu y0, r6
+:mpysu     is op_0015=0x5EA2 { }
+
+# D080h TL  msu  MemR45@2, MemR0123@0, Ax@8 
+:msu    MemR45_2,MemR0123_0,Ax_8 is MemR45_2 & MemR0123_0 & Ax_8 & op_0307=0x10 & op_0915=0x68 { }
+
+# 90C0h TL  msu  MemRn@0, Imm16@16,  Ax@8 
+:msu    MemRn_0,Imm16_16,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x18 & op_0915=0x48 ; Imm16_16{ }
+
+# 9080h TL  msu  y0, MemRn@0, Ax@8 
+:msu    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x48 { }
+
+# 90A0h TL  msu  y0, Register@0, Ax@8
+:msu    Register_0,Ax_8 is Register_0 & Ax_8 & op_0507=0x5 & op_0915=0x48 { }
+
+# B000h TL  msu  y0, MemImm8@0, Ax@8
+:msu    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x58 { }
+
+# 9462h TL2 msu  y0, r6, Ax@0
+:msu    Ax_0 is Ax_0 & op_0115=0x4A31 { }
+
+# 8264h TL2 msusu y0, MemR0425@3, Ax@8 
+:msusu    MemR0425_3,Ax_8 is MemR0425_3 & Ax_8 & op_0002=0x4 & op_0507=0x3 & op_0915=0x41 { }
+
+# 6790h TL  neg  Ax@12, Cond@0 ;aX=0-aX
+:neg    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x79 & op_1315=0x3 { }
+
+# 0000h TL  nop
+:nop     is op_0015=0x0 { }
+
+# 94C0h TL  norm Ax@8, Bogus MemRn@0 
+:norm    Ax_8,MemRn_0 is Ax_8 & MemRn_0 & op_0307=0x18 & op_0915=0x4A { }
+
+# 6780h TL  not  Ax@12, Cond@0 ;aX=not aX
+:not    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x78 & op_1315=0x3 { }
+
+# D4F8h TL  or   MemImm16@16, Ax@8
+:or    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xF8 & op_0915=0x6A ; MemImm16_16{ }
+
+# A000h TL  or   MemImm8@0, Ax@8
+:or    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x50 { }
+
+# 80C0h TL  or   Imm16@16, Ax@8
+:or    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x40 ; Imm16_16{ }
+
+# C000h TL  or   Imm8u@0, Ax@8
+:or    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x60 { }
+
+# D4D8h TL  or   MemR7Imm16@16, Ax@8
+:or    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xD8 & op_0915=0x6A ; MemR7Imm16_16{ }
+
+# 4000h TL  or   MemR7Imm7s@0, Ax@8
+:or    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x20 { }
+
+# 8080h TL  or   MemRn@0, Ax@8 
+:or    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x40 { }
+
+# 80A0h TL  or   RegisterP0@0, Ax@8
+:or    RegisterP0_0,Ax_8 is RegisterP0_0 & Ax_8 & op_0507=0x5 & op_0915=0x40 { }
+
+# D291h TL2 or   Ab@10, Ax@6, Ax@5
+:or    Ab_10,Ax_6,Ax_5 is Ab_10 & Ax_6 & Ax_5 & op_0004=0x11 & op_0709=0x5 & op_1215=0xD { }
+
+# D4A4h TL2 or   Ax@8, Bx@1, Ax@0
+:or    Ax_8,Bx_1,Ax_0 is Ax_8 & Bx_1 & Ax_0 & op_0207=0x29 & op_0915=0x6A { }
+
+# D3C4h TL2 or   b0, Bx@1, Ax@0
+:or    Bx_1,Ax_0 is Bx_1 & Ax_0 & op_0215=0x34F1 { }
+
+# D7C4h TL2 or   b1, Bx@1, Ax@0
+:or    Bx_1,Ax_0 is Bx_1 & Ax_0 & op_0215=0x35F1 { }
+
+# D388h TL2 or   r6, Ax@4
+:or    Ax_4 is Ax_4 & op_0003=0x8 & op_0515=0x69C { }
+
+# 67B0h TL  pacr Implied Const8000h, Implied p0, Ax@12, Cond@0 ;aX=shfP+8000h
+:pacr    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x7B & op_1315=0x3 { }
+
+# D7C2h TL2 pacr1 Implied Const8000h, Implied p1, Ax@0
+:pacr1    Ax_0 is Ax_0 & op_0115=0x6BE1 { }
+
+# 5E60h TL  pop  Register@0
+:pop    Register_0 is Register_0 & op_0515=0x2F3 { }
+
+# 47B4h TL2 pop  Abe@0
+:pop    Abe_0 is Abe_0 & op_0215=0x11ED { }
+
+# 80C7h TL2 pop  ArArpSttMod@8
+:pop    ArArpSttMod_8 is ArArpSttMod_8 & op_0007=0xC7 & op_1215=0x8 { }
+
+# 0006h TL2 pop  Bx@5, Unused1@0
+:pop    Bx_5,Unused1_0 is Bx_5 & Unused1_0 & op_0104=0x3 & op_0615=0x0 { }
+
+# D7F4h TL2 pop  prpage, Unused2@0
+:pop    Unused2_0 is Unused2_0 & op_0215=0x35FD { }
+
+# D496h TL2 pop  Px@0
+:pop    Px_0 is Px_0 & op_0115=0x6A4B { }
+
+# 0024h TL2 pop  r6, Unused1@0
+:pop    Unused1_0 is Unused1_0 & op_0115=0x12 { }
+
+# D7F0h TL2 pop  repc, Unused2@0
+:pop    Unused2_0 is Unused2_0 & op_0215=0x35FC { }
+
+# D494h TL2 pop  x0
+:pop     is op_0015=0xD494 { }
+
+# D495h TL2 pop  x1
+:pop     is op_0015=0xD495 { }
+
+# 0004h TL2 pop  y1, Unused1@0
+:pop    Unused1_0 is Unused1_0 & op_0115=0x2 { }
+
+# 47B0h TL2 popa Ab@0
+:popa    Ab_0 is Ab_0 & op_0215=0x11EC { }
+
+# 5F40h TL  push Imm16@16
+:push    Imm16_16 is op_0015=0x5F40 ; Imm16_16{ }
+
+# 5E40h TL  push Register@0
+:push    Register_0 is Register_0 & op_0515=0x2F2 { }
+
+# D7C8h TL2 push Abe@1, Unused1@0
+:push    Abe_1,Unused1_0 is Abe_1 & Unused1_0 & op_0315=0x1AF9 { }
+
+# D3D0h TL2 push ArArpSttMod@0
+:push    ArArpSttMod_0 is ArArpSttMod_0 & op_0415=0xD3D { }
+
+# D7FCh TL2 push prpage, Unused2@0
+:push    Unused2_0 is Unused2_0 & op_0215=0x35FF { }
+
+# D78Ch TL2 push Px@1, Unused1@0
+:push    Px_1,Unused1_0 is Px_1 & Unused1_0 & op_0215=0x35E3 { }
+
+# D4D7h TL2 push r6, Unused1@5
+:push    Unused1_5 is Unused1_5 & op_0004=0x17 & op_0615=0x353 { }
+
+# D7F8h TL2 push repc, Unused2@0
+:push    Unused2_0 is Unused2_0 & op_0215=0x35FE { }
+
+# D4D4h TL2 push x0, Unused1@5
+:push    Unused1_5 is Unused1_5 & op_0004=0x14 & op_0615=0x353 { }
+
+# D4D5h TL2 push x1, Unused1@5
+:push    Unused1_5 is Unused1_5 & op_0004=0x15 & op_0615=0x353 { }
+
+# D4D6h TL2 push y1, Unused1@5
+:push    Unused1_5 is Unused1_5 & op_0004=0x16 & op_0615=0x353 { }
+
+# 4384h TL2 pusha Ax@6, Unused2@0
+:pusha    Ax_6,Unused2_0 is Ax_6 & Unused2_0 & op_0205=0x1 & op_0715=0x87 { }
+
+# D788h TL2 pusha Bx@1, Unused1@0
+:pusha    Bx_1,Unused1_0 is Bx_1 & Unused1_0 & op_0215=0x35E2 { }
+
+# 0C00h TL  rep  Imm8u@0    ;repeat next opcode N+1 times
+:rep    Imm8u_0 is Imm8u_0 & op_0815=0xC { }
+
+# 0D00h TL  rep  Register@0 ;repeat next opcode N+1 times
+:rep    Register_0 is Register_0 & op_0515=0x68 { }
+
+# 0002h TL2 rep  r6, Unused1@0
+:rep    Unused1_0 is Unused1_0 & op_0115=0x1 { }
+
+# 4580h TL  ret  Cond@0      ;=pop pc
+:ret    Cond_0 is Cond_0 & op_0415=0x458 { }
+
+# D780h TL  retd    ;delayed return (after 2 clks)
+:retd     is op_0015=0xD780 { }
+
+# 45C0h TL  reti Cond@0          ;Don't context switch
+:reti    Cond_0 is Cond_0 & op_0415=0x45C { }
+
+# 45D0h TL  reti Cond@0, context ;Do context switch
+:reti    Cond_0 is Cond_0 & op_0415=0x45D { }
+
+# D7C0h TL  retid   ;delayed, from interrupt
+:retid     is op_0015=0xD7C0 { }
+
+# D3C3h TL2 retid context
+:retid     is op_0015=0xD3C3 { }
+
+# 0900h TL  rets Imm8u@0          ;ret+dealloc sp (for INCOMING pushed params)
+:rets    Imm8u_0 is Imm8u_0 & op_0815=0x9 { }
+
+# 67A0h TL  rnd  Implied Const8000h, Ax@12, Cond@0 ;aX=aX+8000h
+:rnd    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x7A & op_1315=0x3 { }
+
+# 6750h TL  rol  Implied Const1,     Ax@12, Cond@0 ;aX=aX rcl 1 (37bit rotate)
+:rol    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x75 & op_1315=0x3 { }
+
+# 6F50h TL  rol  Implied Const1,     Bx@12, Cond@0 ;bX=bX rcl 1 (37bit rotate)
+:rol    Bx_12,Cond_0 is Bx_12 & Cond_0 & op_0411=0xF5 & op_1315=0x3 { }
+
+# 6740h TL  ror  Implied Const1,     Ax@12, Cond@0 ;aX=aX rcr 1 (37bit rotate)
+:ror    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x74 & op_1315=0x3 { }
+
+# 6F40h TL  ror  Implied Const1,     Bx@12, Cond@0 ;bX=bX rcr 1 (37bit rotate)
+:ror    Bx_12,Cond_0 is Bx_12 & Cond_0 & op_0411=0xF4 & op_1315=0x3 { }
+
+# E300h TL  rst  Imm16@16, MemImm8@0
+:rst    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xE3 ; Imm16_16{ }
+
+# 82E0h TL  rst  Imm16@16, MemRn@0 
+:rst    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x105C ; Imm16_16{ }
+
+# 83E0h TL  rst  Imm16@16, Register@0
+:rst    Imm16_16,Register_0 is Register_0 & op_0515=0x41F ; Imm16_16{ }
+
+# 47B9h TL2 rst  Imm16@16, r6
+:rst    Imm16_16 is op_0015=0x47B9 ; Imm16_16{ }
+
+# 4388h TL2 rst  Imm16@16, SttMod@0
+:rst    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x871 ; Imm16_16{ }
+
+# E100h TL  set  Imm16@16, MemImm8@0
+:set    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xE1 ; Imm16_16{ }
+
+# 80E0h TL  set  Imm16@16, MemRn@0 
+:set    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x101C ; Imm16_16{ }
+
+# 81E0h TL  set  Imm16@16, Register@0
+:set    Imm16_16,Register_0 is Register_0 & op_0515=0x40F ; Imm16_16{ }
+
+# 47B8h TL2 set  Imm16@16, r6
+:set    Imm16_16 is op_0015=0x47B8 ; Imm16_16{ }
+
+# 43C8h TL2 set  Imm16@16, SttMod@0
+:set    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x879 ; Imm16_16{ }
+
+# D280h TL  shfc Implied sv, Ab@10, Ab@5, Cond@0
+:shfc    Ab_10,Ab_5,Cond_0 is Ab_10 & Ab_5 & Cond_0 & op_0404=0x0 & op_0709=0x5 & op_1215=0xD { }
+
+# 9240h TL  shfi Implied Imm6s@0, Ab@10, Ab@7, Bogus Imm6s@0
+:shfi    Imm6s_0,Ab_10,Ab_7 is Imm6s_0 & Ab_10 & Ab_7 & op_0606=0x1 & op_0909=0x1 & op_1215=0x9 { }
+
+# 6720h TL  shl  Implied Const1,     Ax@12, Cond@0 ;aX=aX*2
+:shl    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x72 & op_1315=0x3 { }
+
+# 6F20h TL  shl  Implied Const1,     Bx@12, Cond@0 ;bX=bX*2
+:shl    Bx_12,Cond_0 is Bx_12 & Cond_0 & op_0411=0xF2 & op_1315=0x3 { }
+
+# 6730h TL  shl4 Implied Const4,     Ax@12, Cond@0 ;aX=aX*10h
+:shl4    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x73 & op_1315=0x3 { }
+
+# 6F30h TL  shl4 Implied Const4,     Bx@12, Cond@0 ;bX=bX*10h
+:shl4    Bx_12,Cond_0 is Bx_12 & Cond_0 & op_0411=0xF3 & op_1315=0x3 { }
+
+# 6700h TL  shr  Implied Const1,     Ax@12, Cond@0 ;aX=aX/2
+:shr    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x70 & op_1315=0x3 { }
+
+# 6F00h TL  shr  Implied Const1,     Bx@12, Cond@0 ;bX=bX/2
+:shr    Bx_12,Cond_0 is Bx_12 & Cond_0 & op_0411=0xF0 & op_1315=0x3 { }
+
+# 6710h TL  shr4 Implied Const4,     Ax@12, Cond@0 ;aX=aX/10h
+:shr4    Ax_12,Cond_0 is Ax_12 & Cond_0 & op_0411=0x71 & op_1315=0x3 { }
+
+# 6F10h TL  shr4 Implied Const4,     Bx@12, Cond@0 ;bX=bX/10h
+:shr4    Bx_12,Cond_0 is Bx_12 & Cond_0 & op_0411=0xF1 & op_1315=0x3 { }
+
+# BA00h TL  sqr  MemImm8@0
+:sqr    MemImm8_0 is MemImm8_0 & op_0815=0xBA { }
+
+# 9A80h TL  sqr  MemRn@0 
+:sqr    MemRn_0 is MemRn_0 & op_0315=0x1350 { }
+
+# 9AA0h TL  sqr  Register@0
+:sqr    Register_0 is Register_0 & op_0515=0x4D5 { }
+
+# D790h TL2 sqr  Abh@2 
+:sqr    Abh_2 is Abh_2 & op_0001=0x0 & op_0415=0xD79 { }
+
+# 49C4h TL2 sqr  Abh@4 
+:sqr    Abh_4 is Abh_4 & op_0003=0x4 & op_0615=0x127 { }
+
+# 4B00h TL2 sqr  MemR0425@4 
+:sqr    MemR0425_4 is MemR0425_4 & op_0003=0x0 & op_0615=0x12C { }
+
+# 5F41h TL2 sqr  r6
+:sqr     is op_0015=0x5F41 { }
+
+# BC00h TL  sqra MemImm8@0, Ax@8
+:sqra    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x5E { }
+
+# 9C80h TL  sqra MemRn@0, Ax@8 
+:sqra    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x4E { }
+
+# 9CA0h TL  sqra Register@0, Ax@8
+:sqra    Register_0,Ax_8 is Register_0 & Ax_8 & op_0507=0x5 & op_0915=0x4E { }
+
+# 9062h TL2 sqra r6, Ax@8, Unused1@0
+:sqra    Ax_8,Unused1_0 is Ax_8 & Unused1_0 & op_0107=0x31 & op_0915=0x48 { }
+
+# D4FFh TL  sub  MemImm16@16, Ax@8
+:sub    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xFF & op_0915=0x6A ; MemImm16_16{ }
+
+# AE00h TL  sub  MemImm8@0, Ax@8
+:sub    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x57 { }
+
+# 8EC0h TL  sub  Imm16@16, Ax@8
+:sub    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x47 ; Imm16_16{ }
+
+# CE00h TL  sub  Imm8u@0, Ax@8
+:sub    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x67 { }
+
+# D4DFh TL  sub  MemR7Imm16@16, Ax@8
+:sub    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xDF & op_0915=0x6A ; MemR7Imm16_16{ }
+
+# 4E00h TL  sub  MemR7Imm7s@0, Ax@8
+:sub    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x27 { }
+
+# 8E80h TL  sub  MemRn@0, Ax@8 
+:sub    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x47 { }
+
+# 8EA0h TL  sub  RegisterP0@0, Ax@8
+:sub    RegisterP0_0,Ax_8 is RegisterP0_0 & Ax_8 & op_0507=0x5 & op_0915=0x47 { }
+
+# 8A61h TL2 sub  Ab@3, Bx@8
+:sub    Ab_3,Bx_8 is Ab_3 & Bx_8 & op_0002=0x1 & op_0507=0x3 & op_0915=0x45 { }
+
+# 8861h TL2 sub  Bx@4, Ax@3
+:sub    Bx_4,Ax_3 is Bx_4 & Ax_3 & op_0002=0x1 & op_0515=0x443 { }
+
+# 8064h TL2 sub  MemR01@8, sv, Abh@3 
+:sub    MemR01_8,Abh_3 is MemR01_8 & Abh_3 & op_0002=0x4 & op_0507=0x3 & op_0915=0x40 { }
+
+# 5DE0h TL2 sub  MemR04@1, sv, Abh@2 
+:sub    MemR04_1,Abh_2 is MemR04_1 & Abh_2 & op_0000=0x0 & op_0415=0x5DE { }
+
+# 6FC0h TL2 sub  MemR45@2, MemR01@2, Abh@3
+:sub    MemR45_2,MemR01_2,Abh_3 is MemR45_2 & MemR01_2 & Abh_3 & op_0001=0x0 & op_0515=0x37E { }
+
+# 6FE0h TL2 sub  MemR45@2, MemR01@2, Abh@3
+:sub    MemR45_2,MemR01_2,Abh_3 is MemR45_2 & MemR01_2 & Abh_3 & op_0001=0x0 & op_0515=0x37F { }
+
+# 5D80h TL2 sub  MemR45@2, sv, Abh@3 
+:sub    MemR45_2,Abh_3 is MemR45_2 & Abh_3 & op_0001=0x0 & op_0515=0x2EC { }
+
+# 5DC2h TL2 sub  p0, p1, Ab@2
+:sub    Ab_2 is Ab_2 & op_0001=0x2 & op_0415=0x5DC { }
+
+# D4B9h TL2 sub  p1, Ax@8
+:sub    Ax_8 is Ax_8 & op_0007=0xB9 & op_0915=0x6A { }
+
+# 8FD0h TL2 sub  Px@1, Bx@0
+:sub    Px_1,Bx_0 is Px_1 & Bx_0 & op_0215=0x23F4 { }
+
+# D38Fh TL2 sub  r6, Ax@4
+:sub    Ax_4 is Ax_4 & op_0003=0xF & op_0515=0x69C { }
+
+# 80C6h TL2 sub3 p0, p1, Ab@10
+:sub3    Ab_10 is Ab_10 & op_0009=0xC6 & op_1215=0x8 { }
+
+# 82C6h TL2 sub3a p0, p1, Ab@10
+:sub3a    Ab_10 is Ab_10 & op_0009=0x2C6 & op_1215=0x8 { }
+
+# 83C6h TL2 sub3aa p0, p1, Ab@10
+:sub3aa    Ab_10 is Ab_10 & op_0009=0x3C6 & op_1215=0x8 { }
+
+# 5DC3h TL2 suba p0, p1, Ab@2
+:suba    Ab_2 is Ab_2 & op_0001=0x3 & op_0415=0x5DC { }
+
+# B600h TL  subh MemImm8@0, Ax@8
+:subh    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x5B { }
+
+# 9680h TL  subh MemRn@0, Ax@8 
+:subh    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x4B { }
+
+# 96A0h TL  subh Register@0, Ax@8
+:subh    Register_0,Ax_8 is Register_0 & Ax_8 & op_0507=0x5 & op_0915=0x4B { }
+
+# 5E23h TL2 subh r6, Ax@8
+:subh    Ax_8 is Ax_8 & op_0007=0x23 & op_0915=0x2F { }
+
+# B800h TL  subl MemImm8@0, Ax@8
+:subl    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x5C { }
+
+# 9880h TL  subl MemRn@0, Ax@8 
+:subl    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x4C { }
+
+# 98A0h TL  subl Register@0, Ax@8
+:subl    Register_0,Ax_8 is Register_0 & Ax_8 & op_0507=0x5 & op_0915=0x4C { }
+
+# 5E22h TL2 subl r6, Ax@8
+:subl    Ax_8 is Ax_8 & op_0007=0x22 & op_0915=0x2F { }
+
+# EF00h TL  subv Imm16@16, MemImm8@0
+:subv    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xEF ; Imm16_16{ }
+
+# 8EE0h TL  subv Imm16@16, MemRn@0 
+:subv    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x11DC ; Imm16_16{ }
+
+# 8FE0h TL  subv Imm16@16, Register@0
+:subv    Imm16_16,Register_0 is Register_0 & op_0515=0x47F ; Imm16_16{ }
+
+# 47BFh TL2 subv Imm16@16, r6
+:subv    Imm16_16 is op_0015=0x47BF ; Imm16_16{ }
+
+# 4980h TL  swap SwapTypes4@0
+:swap    SwapTypes4 is SwapTypes4 & op_0415=0x498 { }
+
+# 0020h TL  trap                  ;software interrupt
+:trap     is op_0015=0x20 { }
+
+# A800h TL  tst0 Axl@8, MemImm8@0
+:tst0    Axl_8,MemImm8_0 is Axl_8 & MemImm8_0 & op_0915=0x54 { }
+
+# 8880h TL  tst0 Axl@8, MemRn@0 
+:tst0    Axl_8,MemRn_0 is Axl_8 & MemRn_0 & op_0307=0x10 & op_0915=0x44 { }
+
+# 88A0h TL  tst0 Axl@8, Register@0
+:tst0    Axl_8,Register_0 is Axl_8 & Register_0 & op_0507=0x5 & op_0915=0x44 { }
+
+# E900h TL  tst0 Imm16@16, MemImm8@0
+:tst0    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xE9 ; Imm16_16{ }
+
+# 88E0h TL  tst0 Imm16@16, MemRn@0 
+:tst0    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x111C ; Imm16_16{ }
+
+# 89E0h TL  tst0 Imm16@16, Register@0
+:tst0    Imm16_16,Register_0 is Register_0 & op_0515=0x44F ; Imm16_16{ }
+
+# D38Ch TL2 tst0 Axl@4, r6
+:tst0    Axl_4 is Axl_4 & op_0003=0xC & op_0515=0x69C { }
+
+# 47BCh TL2 tst0 Imm16@16, r6
+:tst0    Imm16_16 is op_0015=0x47BC ; Imm16_16{ }
+
+# 9470h TL2 tst0 Imm16@16, SttMod@0
+:tst0    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x128E ; Imm16_16{ }
+
+# AA00h TL  tst1 Axl@8, MemImm8@0 Implied Not
+:tst1    Axl_8,MemImm8_0 is Axl_8 & MemImm8_0 & op_0915=0x55 { }
+
+# 8A80h TL  tst1 Axl@8, MemRn@0 Implied Not 
+:tst1    Axl_8,MemRn_0 is Axl_8 & MemRn_0 & op_0307=0x10 & op_0915=0x45 { }
+
+# 8AA0h TL  tst1 Axl@8, Register@0 Implied Not
+:tst1    Axl_8,Register_0 is Axl_8 & Register_0 & op_0507=0x5 & op_0915=0x45 { }
+
+# EB00h TL  tst1 Imm16@16, MemImm8@0 Implied Not
+:tst1    Imm16_16,MemImm8_0 is MemImm8_0 & op_0815=0xEB ; Imm16_16{ }
+
+# 8AE0h TL  tst1 Imm16@16, MemRn@0 Implied Not 
+:tst1    Imm16_16,MemRn_0 is MemRn_0 & op_0315=0x115C ; Imm16_16{ }
+
+# 8BE0h TL  tst1 Imm16@16, Register@0 Implied Not
+:tst1    Imm16_16,Register_0 is Register_0 & op_0515=0x45F ; Imm16_16{ }
+
+# D38Dh TL2 tst1 Axl@4, r6 Implied Not
+:tst1    Axl_4 is Axl_4 & op_0003=0xD & op_0515=0x69C { }
+
+# 47BDh TL2 tst1 Imm16@16, r6 Implied Not
+:tst1    Imm16_16 is op_0015=0x47BD ; Imm16_16{ }
+
+# 9478h TL2 tst1 Imm16@16, SttMod@0 Implied Not
+:tst1    Imm16_16,SttMod_0 is SttMod_0 & op_0315=0x128F ; Imm16_16{ }
+
+# 80C1h TL2 tst4b a0l, MemR0425@10 
+:tst4b    MemR0425_10 is MemR0425_10 & op_0009=0xC1 & op_1215=0x8 { }
+
+# 4780h TL2 tst4b a0l, MemR0425@2, Ax@4 
+:tst4b    MemR0425_2,Ax_4 is MemR0425_2 & Ax_4 & op_0001=0x0 & op_0515=0x23C { }
+
+# F000h TL  tstb NoReverse, Implied Not MemImm8@0, Imm4bitno@8
+:tstb    MemImm8_0,Imm4bitno_8 is MemImm8_0 & Imm4bitno_8 & op_1215=0xF { }
+
+# 9020h TL  tstb NoReverse, Implied Not MemRn@0, Imm4bitno@8 
+:tstb    MemRn_0,Imm4bitno_8 is MemRn_0 & Imm4bitno_8 & op_0307=0x4 & op_1215=0x9 { }
+
+# 9000h TL  tstb NoReverse, Implied Not Register@0, Imm4bitno@8
+:tstb    Register_0,Imm4bitno_8 is Register_0 & Imm4bitno_8 & op_0507=0x0 & op_1215=0x9 { }
+
+# 9018h TL2 tstb NoReverse, Implied Not r6, Imm4bitno@8  ;override tstb a0,Imm4
+:tstb    Imm4bitno_8 is Imm4bitno_8 & op_0007=0x18 & op_1215=0x9 { }
+
+# 0028h TL2 tstb NoReverse, Implied Not SttMod@0, Imm4bitno@16, Unused12@20
+:tstb    SttMod_0,Imm4bitno_16,Unused12_20 is SttMod_0 & op_0315=0x5 ; Imm4bitno_16 & Unused12_20 { }
+
+# 5F45h TL2 vtrclr vtr0         ;vtr0=0           ;for Viterbi decoding...
+:vtrclr     is op_0015=0x5F45 { }
+
+# 5F47h TL2 vtrclr vtr0, vtr1   ;vtr0=0, vtr1=0   ;(saved C/C1 carry flags)
+:vtrclr     is op_0015=0x5F47 { }
+
+# 5F46h TL2 vtrclr vtr1         ;vtr1=0
+:vtrclr     is op_0015=0x5F46 { }
+
+# D383h TL2 vtrmov Axl@4        ;Axl=(vtr1 and FF00h)+(vtr0/100h)
+:vtrmov    Axl_4 is Axl_4 & op_0003=0x3 & op_0515=0x69C { }
+
+# D29Ah TL2 vtrmov vtr0, Axl@0  ;Axl=vtr0
+:vtrmov    Axl_0 is Axl_0 & op_0115=0x694D { }
+
+# D69Ah TL2 vtrmov vtr1, Axl@0  ;Axl=vtr1
+:vtrmov    Axl_0 is Axl_0 & op_0115=0x6B4D { }
+
+# D781h TL2 vtrshr              ;vtr0=vtr0/2+C*8000h, vtr1=vtr1/2+C1*8000h
+:vtrshr     is op_0015=0xD781 { }
+
+# D4FAh TL  xor  MemImm16@16, Ax@8
+:xor    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xFA & op_0915=0x6A ; MemImm16_16{ }
+
+# A400h TL  xor  MemImm8@0, Ax@8
+:xor    MemImm8_0,Ax_8 is MemImm8_0 & Ax_8 & op_0915=0x52 { }
+
+# 84C0h TL  xor  Imm16@16, Ax@8
+:xor    Imm16_16,Ax_8 is Ax_8 & op_0007=0xC0 & op_0915=0x42 ; Imm16_16{ }
+
+# C400h TL  xor  Imm8u@0, Ax@8
+:xor    Imm8u_0,Ax_8 is Imm8u_0 & Ax_8 & op_0915=0x62 { }
+
+# D4DAh TL  xor  MemR7Imm16@16, Ax@8
+:xor    MemR7Imm16_16,Ax_8 is Ax_8 & op_0007=0xDA & op_0915=0x6A ; MemR7Imm16_16{ }
+
+# 4400h TL  xor  MemR7Imm7s@0, Ax@8
+:xor    MemR7Imm7s_0,Ax_8 is MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_0915=0x22 { }
+
+# 8480h TL  xor  MemRn@0, Ax@8 
+:xor    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x42 { }
+
+# 84A0h TL  xor  RegisterP0@0, Ax@8
+:xor    RegisterP0_0,Ax_8 is RegisterP0_0 & Ax_8 & op_0507=0x5 & op_0915=0x42 { }
+
+# D38Ah TL2 xor  r6, Ax@4
+:xor    Ax_4 is Ax_4 & op_0003=0xA & op_0515=0x69C { }
+
+# 8800h TL  undefined Unused5@0, Unused1@8 ;(mpy/mpys without A in bit11)
+:undefined    Unused5_0,Unused1_8 is Unused5_0 & Unused1_8 & op_0507=0x0 & op_0915=0x44 { }
+
+# 8820h TL  undefined Unused5@0, Unused1@8 ;(mpy/mpys without A in bit11)
+:undefined    Unused5_0,Unused1_8 is Unused5_0 & Unused1_8 & op_0507=0x1 & op_0915=0x44 { }
+
+# 8840h TL  undefined Unused5@0, Unused1@8 ;(mpy/mpys without A in bit11)
+:undefined    Unused5_0,Unused1_8 is Unused5_0 & Unused1_8 & op_0507=0x2 & op_0915=0x44 { }
+
+# D800h TL  undefined Unused7@0, Unused1@8 ;(mpy/mpys without A in bit11)
+:undefined    Unused7_0,Unused1_8 is Unused7_0 & Unused1_8 & op_0707=0x0 & op_0915=0x6C { }
+
+# 9B80h TL  undefined Unused6@0  ;(sqr without A in bit8)
+:undefined    Unused6_0 is Unused6_0 & op_0615=0x26E { }
+
+# BB00h TL  undefined Unused8@0  ;(sqr without A in bit8)
+:undefined    Unused8_0 is Unused8_0 & op_0815=0xBB { }
+
+# E800h TL  undefined Unused8@0  ;(mpy without A in bit11)
+:undefined    Unused8_0 is Unused8_0 & op_0815=0xE8 { }
+
+# 5EA1h TL2 undefined Unused1@1  ;(mpy/mpys without A in bit11)
+:undefined    Unused1_1 is Unused1_1 & op_0000=0x1 & op_0215=0x17A8 { }
+
+# 5DFCh TL2 undefined
+:undefined     is op_0015=0x5DFC { }
+
+# 8CDEh TL2 undefined
+:undefined     is op_0015=0x8CDE { }
+
+# D3C1h TL2 undefined
+:undefined     is op_0015=0xD3C1 { }
+
+# 5EB4h TL2 undefined Unused2@0
+:undefined    Unused2_0 is Unused2_0 & op_0215=0x17AD { }
+
