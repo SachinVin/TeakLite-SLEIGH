@@ -282,9 +282,11 @@ def print_swap_types():
         # SwapTypes4: "(a0,b0)"    is SwapTypes4_0=0    { local tmp:5 = a0; a0 = b0; b0 = tmp; }
         parms = sp[1].split(",")
         expr = ""
+        regs = ""
         if len(parms) == 2:
             parms[0] = parms[0].strip("(")
             parms[1] = parms[1].strip(")")
+            regs = f"{parms[0]} & {parms[1]}"
             expr = f"""
     local tmp:5 = {parms[0]};
     {parms[0]} = {parms[1]};
@@ -295,6 +297,7 @@ def print_swap_types():
             parms[0] = parms[0].strip("(")
             #parms[1] = parms[1].strip(")")
             parms[2] = parms[2].strip(")")
+            regs = f"{parms[0]} & {parms[1]} & {parms[2]}"
             expr = f"""
     local tmp:5 = {parms[2]};
     {parms[2]} = {parms[1]};
@@ -307,6 +310,7 @@ def print_swap_types():
             parms[1] = parms[1].strip(")")
             parms[2] = parms[2].strip("(")
             parms[3] = parms[3].strip(")")
+            regs = f"{parms[0]} & {parms[1]} & {parms[2]} & {parms[3]}"
             expr = f"""
     local tmp:5 = {parms[0]};
     {parms[0]} = {parms[1]};
@@ -317,8 +321,8 @@ def print_swap_types():
     # todo: update flags
 """
 
-        print(f"SwapTypes4: \"{sp[1]}\"    is SwapTypes4_0=0x{sp[0][:1]}    \n{{{expr}}} ")
+        print(f"SwapTypes4_0: {sp[1]}    is {regs} & SwapTypes4_0003=0x{sp[0][:1]}    \n{{{expr}}} ")
 
 #print_ops()
-# print_swap_types()
+print_swap_types()
 

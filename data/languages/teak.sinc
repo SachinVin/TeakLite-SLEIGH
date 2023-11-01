@@ -1645,8 +1645,8 @@
 # 47BFh TL2 subv Imm16@16, r6
 :subv    Imm16_16 is op_0015=0x47BF ; Imm16_16 unimpl
 
-# 4980h TL  swap SwapTypes4@0
-:swap    SwapTypes4 is SwapTypes4 & op_0415=0x498 {}
+# 4980h TL  swap SwapTypes4_0@0
+:swap    SwapTypes4_0 is SwapTypes4_0 & op_0415=0x498 {}
 
 # 0020h TL  trap                  ;software interrupt
 :trap     is op_0015=0x20 unimpl
