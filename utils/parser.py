@@ -254,5 +254,71 @@ def print_ops():
         print(f"    {o}")
     pass
 
+def print_swap_types():
+    swap_types_str = r'''
+   val native           nocash         ;meaning
+   0:  (a0,b0)          a0,b0          ;a0 <--> b0                ;flags(a0)
+   1:  (a0,b1)          a0,b1          ;a0 <--> b1                ;flags(a0)
+   2:  (a1,b0)          a1,b0          ;a1 <--> b0                ;flags(a1)
+   3:  (a1,b1)          a1,b1          ;a1 <--> b1                ;flags(a1)
+   4:  (a0,b0),(a1,b1)  a0:a1,b0:b1    ;a0 <--> b0 and a1 <--> b1 ;flags(a0)
+   5:  (a0,b1),(a1,b0)  a0:a1,b1:b0    ;a0 <--> b1 and a1 <--> b0 ;flags(a0)
+   6:  (a0,b0,a1)       a1,b0,a0       ;a0 --> b0 --> a1          ;flags(a1)
+   7:  (a0,b1,a1)       a1,b1,a0       ;a0 --> b1 --> a1          ;flags(a1)
+   8:  (a1,b0,a0)       a0,b0,a1       ;a1 --> b0 --> a0          ;flags(a0)
+   9:  (a1,b1,a0)       a0,b1,a1       ;a1 --> b1 --> a0          ;flags(a0)
+   A:  (b0,a0,b1)       b1,a0,b0       ;b0 --> a0 --> b1          ;flags(a0)!
+   B:  (b0,a1,b1)       b1,a1,b0       ;b0 --> a1 --> b1          ;flags(a1)!
+   C:  (b1,a0,b0)       b0,a0,b1       ;b1 --> a0 --> b0          ;flags(a0)!
+   D:  (b1,a1,b0)       b0,a1,b1       ;b1 --> a1 --> b0          ;flags(a1)!
+   E:  reserved         reserved       ;-                         ;-
+   F:  reserved         reserved       ;-                         ;-
+'''.split("\n")
+
+    for s in swap_types_str:
+        if s =="":
+            continue
+        sp = s.split()
+        # SwapTypes4: "(a0,b0)"    is SwapTypes4_0=0    { local tmp:5 = a0; a0 = b0; b0 = tmp; }
+        parms = sp[1].split(",")
+        expr = ""
+        if len(parms) == 2:
+            parms[0] = parms[0].strip("(")
+            parms[1] = parms[1].strip(")")
+            expr = f"""
+    local tmp:5 = {parms[0]};
+    {parms[0]} = {parms[1]};
+    {parms[1]} = tmp;
+    # todo: update flags
+"""
+        if len(parms) == 3:
+            parms[0] = parms[0].strip("(")
+            #parms[1] = parms[1].strip(")")
+            parms[2] = parms[2].strip(")")
+            expr = f"""
+    local tmp:5 = {parms[2]};
+    {parms[2]} = {parms[1]};
+    {parms[1]} = {parms[0]};
+    {parms[0]} = tmp;
+    # todo: update flags
+"""
+        if len(parms) == 4:
+            parms[0] = parms[0].strip("(")
+            parms[1] = parms[1].strip(")")
+            parms[2] = parms[2].strip("(")
+            parms[3] = parms[3].strip(")")
+            expr = f"""
+    local tmp:5 = {parms[0]};
+    {parms[0]} = {parms[1]};
+    {parms[1]} = tmp;
+    tmp = {parms[2]};
+    {parms[2]} = {parms[3]};
+    {parms[3]} = tmp;
+    # todo: update flags
+"""
+
+        print(f"SwapTypes4: \"{sp[1]}\"    is SwapTypes4_0=0x{sp[0][:1]}    \n{{{expr}}} ")
 
 #print_ops()
+# print_swap_types()
+
