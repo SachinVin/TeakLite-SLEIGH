@@ -153,7 +153,7 @@ with open('./opcodes.txt', 'r') as f:
                 if s1 != '16':
                     print(f"Unknown s={s}")
                     continue
-                to = int(s2)+1
+                to2 = int(s2)+1
                 mask |= set_bits(int(s2), int(to))
                 token = f"{operand}_{start}"
                 op_mnemonic += (f"{token},")
@@ -161,8 +161,8 @@ with open('./opcodes.txt', 'r') as f:
                 expanded_tokens.append(f") ... & {token}") # todo: open bracket ..
                 token1 = f"{operand}_{s1}"
                 token2 = f"{operand}_{s2}"
-                tok_set.add(f"{token1} = ({s1},{int(s1)+16})")
-                tok_set.add(f"{token2} = ({s2},{int(s2)+2})")
+                tok_set.add(f"{token1} = ({s1},{int(s1)+15})")
+                tok_set.add(f"{token2} = ({s2},{to2})")
                 continue
             if (length == 0):
                 length = int(start)
