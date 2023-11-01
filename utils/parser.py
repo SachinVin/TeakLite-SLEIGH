@@ -13,6 +13,9 @@ token_len_map = {
     "R04": 1,
     "R45": 1,
     "Ar": 1,
+    "offsZI": 1,
+    "stepD2S": 1,
+    "stepII2": 1,
 
     "Ab": 2,
     "Abl": 2,
@@ -22,6 +25,12 @@ token_len_map = {
     "R0425": 2,
     "R4567": 2,
     "Arp": 2,
+    "offsZIDZ": 2,
+    "stepZIDS": 2,
+    "modrstepZIDS": 2,
+    "stepII2D2S": 2,
+    "stepII2D2S0": 2,
+    "modrstepII2D2S0": 2,
 
     "Ablh": 3,
     "R0123457y0": 3,
@@ -135,7 +144,12 @@ with open('./opcodes.txt', 'r') as f:
                 break
             if s.find('@') < 0 :
                 continue
-            [operand, start] = s.split('@')
+            op_split = s.split('@')
+            if len(op_split) == 4:
+                # eg MemR0425@10_MemR0425@10offsZIDZ@5
+                op_split = [op_split[0],op_split[2], op_split[3]]
+            [operand, start] = op_split[:2]
+
             length = get_tok_len(operand)
 
             if (start.find('not')) != -1:
@@ -164,6 +178,28 @@ with open('./opcodes.txt', 'r') as f:
                 tok_set.add(f"{token1} = ({s1},{int(s1)+15})")
                 tok_set.add(f"{token2} = ({s2},{to2})")
                 continue
+            step_mnemonic = ""
+            if (start.find('step')) != -1 or (start.find('offs')) != -1:
+                # 8stepII2D2S0
+                step = ""
+                #print(f"start={start}")
+                if (start.find('step')) != -1:
+                    [start, step] = start.split('step')
+                    step = f"step{step}"
+                else:
+                    [start, step] = start.split('offs')
+                    step = f"offs{step}"
+                token = ""
+                if len(op_split) > 2:
+                    step_start = op_split[2]
+                    step_length = get_tok_len(step)
+                    to = int(step_start)+step_length-1
+                    mask |= set_bits(int(start), int(to))
+                    token = f"{step}_{step_start}"
+                    tok_set.add(f"{token} = ({step_start},{to})")
+                else:
+                    token = step
+                step_mnemonic = f"{token}"
             if (length == 0):
                 length = int(start)
                 print(f"Unhandled: {s}")
@@ -176,6 +212,9 @@ with open('./opcodes.txt', 'r') as f:
             else:
                 op_constructor.append(token)
             op_mnemonic += (f"{token},")
+            if step_mnemonic != "":
+                op_constructor.append(step_mnemonic)
+                op_mnemonic += (f"{step_mnemonic},")
             tok_set.add(f"{token} = ({start},{to})")
             continue
         
@@ -323,6 +362,6 @@ def print_swap_types():
 
         print(f"SwapTypes4_0: {sp[1]}    is {regs} & SwapTypes4_0003=0x{sp[0][:1]}    \n{{{expr}}} ")
 
-#print_ops()
-print_swap_types()
-
+print_ops()
+#print_swap_types()
+#print_operands()

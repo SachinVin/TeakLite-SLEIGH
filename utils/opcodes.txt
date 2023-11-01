@@ -315,17 +315,17 @@
              || R0stepZIDS@0
   47A4h TL2 mind NoReverse, Ax@3, MemR0, lt, Implied mixp, Implied r0
              || R0stepZIDS@0
-#  0080h TL  modr MemRn@0stepZIDS@3
-#  00A0h TL  modr MemRn@0stepZIDS@3, dmod  ;Disable modulo
-#  D294h TL2 modr MemR0123@10stepII2D2S0@0 || modr MemR4567@10stepII2D2S0@5
-#  0D80h TL2 modr MemR0123@5stepII2D2S0@1  || modr MemR4567@5stepII2D2S0@3, dmod
-#  0D81h TL2 modr MemR0123@5stepII2D2S0@1, dmod
-#             || modr MemR4567@5stepII2D2S0@3, dmod
-#  8464h TL2 modr MemR0123@8stepII2D2S0@0, dmod || modr MemR4567@8stepII2D2S0@3
-#  5DA0h TL2 modr MemRn@0stepD2
-#  5DA8h TL2 modr MemRn@0stepD2, dmod
-#  4990h TL2 modr MemRn@0stepI2
-#  4998h TL2 modr MemRn@0stepI2, dmod
+  0080h TL  modr MemRn@0stepZIDS@3
+  00A0h TL  modr MemRn@0stepZIDS@3, dmod  ;Disable modulo
+  D294h TL2 modr MemR0123@10stepII2D2S0@0 || modr MemR4567@10stepII2D2S0@5
+  0D80h TL2 modr MemR0123@5stepII2D2S0@1  || modr MemR4567@5stepII2D2S0@3, dmod
+  0D81h TL2 modr MemR0123@5stepII2D2S0@1, dmod
+             || modr MemR4567@5stepII2D2S0@3, dmod
+  8464h TL2 modr MemR0123@8stepII2D2S0@0, dmod || modr MemR4567@8stepII2D2S0@3
+  5DA0h TL2 modr MemRn@0stepD2
+  5DA8h TL2 modr MemRn@0stepD2, dmod
+  4990h TL2 modr MemRn@0stepI2
+  4998h TL2 modr MemRn@0stepI2, dmod
   D290h TL  mov  Ab@10, Ab@5
   D298h TL  mov  Abl@10, dvm
   D2D8h TL  mov  Abl@10, x0
@@ -408,7 +408,7 @@
   5DD0h TL2 mov  Imm4u@0, prpage
   80C4h TL2 mov  MemR01@9, Abh@10 || mov MemR45@9, Abl@10
              || R01@9stepII2@0, R45@9stepII2@8
-#  D292h TL2 mov  MemR0425@10_MemR0425@10offsZIDZ@5, Px@0
+  D292h TL2 mov  MemR0425@10_MemR0425@10offsZIDZ@5, Px@0
              || R0425@10stepII2D2S@5
   D7D4h TL2 mov  MemR04@1, repc || R04@1stepII2@0
   5F4Ch TL2 mov  MemR04@1, sv || sub3 MemR04@1, p0, p1, b0 || R04@1stepII2@0
@@ -441,8 +441,8 @@
   D3C2h TL2 mov  p0h, r6
   4B60h TL2 mov  p0h, Register@0     ;<-- here "p0h" as source
   8FD8h TL2 mov  p1, Ab@0
-#  88D0h TL2 mov  Px@1, MemR0425@8_MemR0425@8offsZIDZ@2   || R0425@8stepII2D2S@2
-#  88D1h TL2 mov  Px@1, MemR0425@8_MemR0425@8offsZIDZ@2,s || R0425@8stepII2D2S@2
+  88D0h TL2 mov  Px@1, MemR0425@8_MemR0425@8offsZIDZ@2   || R0425@8stepII2D2S@2
+  88D1h TL2 mov  Px@1, MemR0425@8_MemR0425@8offsZIDZ@2, s || R0425@8stepII2D2S@2
   D481h TL2 mov  r6, Bx@8
   1B00h TL2 mov  r6, MemRn@0 || Rn@0stepZIDS@3 ;override 1800h (mov a0,MemRn@0)
   43C1h TL2 mov  r6, mixp
@@ -458,13 +458,13 @@
   D299h TL2 mov  y1, Ab@10
   5EB0h TL2 mov  prpage, Abl@0
   49A0h TL2 mov  SttMod@0, MemR04@4 || R04@4stepII2@3
-#  4DC0h TL2 mova Ab@4, MemR0425@2_MemR0425@2offsZIDZ@0 || R0425@2stepII2D2S@0
-#  4BC0h TL2 mova MemR0425@2_MemR0425@2offsZIDZ@0, Ab@4 || R0425@2stepII2D2S@0
-#  5F80h TL  movd MemR0123@0, ProgMemAx@8_ProgMemAx@8offsIProgMemR45@2 || R0123@0stepZIDS@3, R45@2stepZIDS@5
+  4DC0h TL2 mova Ab@4, MemR0425@2_MemR0425@2offsZIDZ@0 || R0425@2stepII2D2S@0
+  4BC0h TL2 mova MemR0425@2_MemR0425@2offsZIDZ@0, Ab@4 || R0425@2stepII2D2S@0
+  5F80h TL  movd MemR0123@0, ProgMemAx@8offsI ProgMemR45@2 || R0123@0stepZIDS@3, R45@2stepZIDS@5
   0040h TL  movp ProgMemAxl@5, Register@0
   0D40h TL2 movp ProgMemAx@5, Register@0
   0600h TL  movp ProgMemRn@0, MemR0123@5 || R0123@5stepZIDS@7, Rn@0stepZIDS@3
-#  D499h TL2 movpdw ProgMemAx@8_ProgMemAx@8offsI, pc
+  D499h TL2 movpdw ProgMemAx@8offsI, pc
   8864h TL  movr MemR0425@3, Abh@8 || R0425@3stepII2D2S@0   ;op*10000h+8000h
   9CE0h TL  movr MemRn@0, Ax@8 || Rn@0stepZIDS@3
   9CC0h TL  movr RegisterP0@0, Ax@8

@@ -604,6 +604,36 @@
 # 47A4h TL2 mind NoReverse, Ax@3, MemR0, lt, Implied mixp, Implied r0
 :mind    Ax_3 is Ax_3 & op_0002=0x4 & op_0415=0x47A unimpl
 
+# 0080h TL  modr MemRn@0stepZIDS@3
+:modr    MemRn_0,stepZIDS_3 is MemRn_0 & stepZIDS_3 & op_0515=0x4 unimpl
+
+# 00A0h TL  modr MemRn@0stepZIDS@3, dmod  ;Disable modulo
+:modr    MemRn_0,stepZIDS_3,"dmod" is MemRn_0 & stepZIDS_3 & op_0515=0x5 unimpl
+
+# D294h TL2 modr MemR0123@10stepII2D2S0@0 
+:modr    MemR0123_10,stepII2D2S0_0 is MemR0123_10 & stepII2D2S0_0 & op_0009=0x294 & op_1215=0xD unimpl
+
+# 0D80h TL2 modr MemR0123@5stepII2D2S0@1  
+:modr    MemR0123_5,stepII2D2S0_1 is MemR0123_5 & stepII2D2S0_1 & op_0004=0x0 & op_0715=0x1B unimpl
+
+# 0D81h TL2 modr MemR0123@5stepII2D2S0@1, dmod
+:modr    MemR0123_5,stepII2D2S0_1,"dmod" is MemR0123_5 & stepII2D2S0_1 & op_0004=0x1 & op_0715=0x1B unimpl
+
+# 8464h TL2 modr MemR0123@8stepII2D2S0@0, dmod 
+:modr    MemR0123_8,stepII2D2S0_0,"dmod" is MemR0123_8 & stepII2D2S0_0 & op_0007=0x64 & op_1015=0x21 unimpl
+
+# 5DA0h TL2 modr MemRn@0stepD2
+:modr    MemRn_0,"stepD2" is MemRn_0 & op_0315=0xBB4 unimpl
+
+# 5DA8h TL2 modr MemRn@0stepD2, dmod
+:modr    MemRn_0,"stepD2","dmod" is MemRn_0 & op_0315=0xBB5 unimpl
+
+# 4990h TL2 modr MemRn@0stepI2
+:modr    MemRn_0,"stepI2" is MemRn_0 & op_0315=0x932 unimpl
+
+# 4998h TL2 modr MemRn@0stepI2, dmod
+:modr    MemRn_0,"stepI2","dmod" is MemRn_0 & op_0315=0x933 unimpl
+
 # D290h TL  mov  Ab@10, Ab@5
 :mov    Ab_10,Ab_5 is Ab_10 & Ab_5 & op_0004=0x10 & op_0709=0x5 & op_1215=0xD unimpl
 
@@ -820,6 +850,9 @@
 # 80C4h TL2 mov  MemR01@9, Abh@10 
 :mov    MemR01_9,Abh_10 is MemR01_9 & Abh_10 & op_0008=0xC4 & op_1215=0x8 unimpl
 
+# D292h TL2 mov  MemR0425@10_MemR0425@10offsZIDZ@5, Px@0
+:mov    MemR0425_10,offsZIDZ_5,Px_0 is MemR0425_10 & offsZIDZ_5 & Px_0 & op_0109=0x149 & op_1215=0xD unimpl
+
 # D7D4h TL2 mov  MemR04@1, repc 
 :mov    MemR04_1 is MemR04_1 & op_0000=0x0 & op_0215=0x35F5 unimpl
 
@@ -892,6 +925,12 @@
 # 8FD8h TL2 mov  p1, Ab@0
 :mov    Ab_0 is Ab_0 & op_0215=0x23F6 unimpl
 
+# 88D0h TL2 mov  Px@1, MemR0425@8_MemR0425@8offsZIDZ@2   
+:mov    Px_1,MemR0425_8,offsZIDZ_2 is Px_1 & MemR0425_8 & offsZIDZ_2 & op_0000=0x0 & op_0207=0x34 & op_1015=0x22 unimpl
+
+# 88D1h TL2 mov  Px@1, MemR0425@8_MemR0425@8offsZIDZ@2, s 
+:mov    Px_1,MemR0425_8,offsZIDZ_2 is Px_1 & MemR0425_8 & offsZIDZ_2 & op_0000=0x1 & op_0207=0x34 & op_1015=0x22 unimpl
+
 # D481h TL2 mov  r6, Bx@8
 :mov    Bx_8 is Bx_8 & op_0007=0x81 & op_0915=0x6A unimpl
 
@@ -937,6 +976,15 @@
 # 49A0h TL2 mov  SttMod@0, MemR04@4 
 :mov    SttMod_0,MemR04_4 is SttMod_0 & MemR04_4 & op_0303=0x0 & op_0515=0x24D unimpl
 
+# 4DC0h TL2 mova Ab@4, MemR0425@2_MemR0425@2offsZIDZ@0 
+:mova    Ab_4,MemR0425_2,offsZIDZ_0 is Ab_4 & MemR0425_2 & offsZIDZ_0 & op_0001=0x0 & op_0615=0x137 unimpl
+
+# 4BC0h TL2 mova MemR0425@2_MemR0425@2offsZIDZ@0, Ab@4 
+:mova    MemR0425_2,offsZIDZ_0,Ab_4 is MemR0425_2 & offsZIDZ_0 & Ab_4 & op_0001=0x0 & op_0615=0x12F unimpl
+
+# 5F80h TL  movd MemR0123@0, ProgMemAx@8offsI ProgMemR45@2 
+:movd    MemR0123_0,ProgMemAx_8,"offsI",ProgMemR45_2 is MemR0123_0 & ProgMemAx_8 & ProgMemR45_2 & op_0307=0x10 & op_0915=0x2F unimpl
+
 # 0040h TL  movp ProgMemAxl@5, Register@0
 :movp    ProgMemAxl_5,Register_0 is ProgMemAxl_5 & Register_0 & op_0615=0x1 unimpl
 
@@ -945,6 +993,9 @@
 
 # 0600h TL  movp ProgMemRn@0, MemR0123@5 
 :movp    ProgMemRn_0,MemR0123_5 is ProgMemRn_0 & MemR0123_5 & op_0304=0x0 & op_0715=0xC unimpl
+
+# D499h TL2 movpdw ProgMemAx@8offsI, pc
+:movpdw    ProgMemAx_8,"offsI", pc is ProgMemAx_8 & pc & op_0007=0x99 & op_0915=0x6A unimpl
 
 # 8864h TL  movr MemR0425@3, Abh@8 
 :movr    MemR0425_3,Abh_8 is MemR0425_3 & Abh_8 & op_0002=0x4 & op_0507=0x3 & op_1015=0x22 unimpl
@@ -1645,7 +1696,7 @@
 # 47BFh TL2 subv Imm16@16, r6
 :subv    Imm16_16 is op_0015=0x47BF ; Imm16_16 unimpl
 
-# 4980h TL  swap SwapTypes4_0@0
+# 4980h TL  swap SwapTypes4@0
 :swap    SwapTypes4_0 is SwapTypes4_0 & op_0415=0x498 {}
 
 # 0020h TL  trap                  ;software interrupt
