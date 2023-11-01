@@ -168,7 +168,7 @@ with open('./opcodes.txt', 'r') as f:
                     print(f"Unknown s={s}")
                     continue
                 to2 = int(s2)+1
-                mask |= set_bits(int(s2), int(to))
+                mask |= set_bits(int(s2), int(to2))
                 token = f"{operand}_{start}"
                 op_mnemonic += (f"{token},")
                 expanded_tokens_prefix = ("( ")
