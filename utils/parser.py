@@ -158,7 +158,7 @@ with open('./opcodes.txt', 'r') as f:
                 token = f"{operand}_{start}"
                 op_mnemonic += (f"{token},")
                 expanded_tokens_prefix = ("( ")
-                expanded_tokens.append(f") ... & {token}") # todo: open bracket ..
+                expanded_tokens.append(f") ... & {token} ") # todo: open bracket ..
                 token1 = f"{operand}_{s1}"
                 token2 = f"{operand}_{s2}"
                 tok_set.add(f"{token1} = ({s1},{int(s1)+15})")
@@ -172,7 +172,7 @@ with open('./opcodes.txt', 'r') as f:
             mask |= set_bits(int(start), int(to))
             token = f"{operand}_{start}"
             if(int(start) > 15):
-                expanded_tokens.append(f"; {token}")
+                expanded_tokens.append(f"; {token} ")
             else:
                 op_constructor.append(token)
             op_mnemonic += (f"{token},")
@@ -220,7 +220,7 @@ with open('./opcodes.txt', 'r') as f:
         for e in expanded_tokens:
             outf.write(e)
         
-        outf.write("{ }\n\n")
+        outf.write("unimpl\n\n")
 
 sorted_tok_set = sorted(tok_set)
 
