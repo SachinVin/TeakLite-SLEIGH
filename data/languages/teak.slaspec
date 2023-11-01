@@ -227,9 +227,9 @@ define token teakop (16)
     Px_4 = (4,4)
     R0123457y0_10 = (10,12)
     R0123457y0_9 = (9,11)
-    RegisterP0_0 = (0,4)
-    Register_0 = (0,4)
-    Register_5 = (5,9)
+    RegisterP0_0004 = (0,4)
+    Register_0004 = (0,4)
+    Register_0509 = (5,9)
     RelAddr7_4 = (4,7)
     Rn_0 = (0,2)
     SttMod_0 = (0,2)
@@ -306,7 +306,7 @@ attach variables [ ProgMemAxl_5 ] [ a0l a1l ];
 attach variables [ ProgMemRn_0 ] [ r0 r1 r2 r3 r4 r5 r6 r7 ];
 attach variables [ Px_0 Px_1 Px_4 ] [ p0 p1 ];
 attach variables [ R0123457y0_10 R0123457y0_9 ] [ r0 r1 r2 r3 r4 r5 r7 y0 ];
-attach variables [ RegisterP0_0 ] [ r0 r1 r2 r3 r4 r5 r7 y0
+attach variables [ RegisterP0_0004 ] [ r0 r1 r2 r3 r4 r5 r7 y0
                                     st0 st1 st2
                                     _ # todo: p0
                                     _ # todo: pc 
@@ -317,7 +317,7 @@ attach variables [ RegisterP0_0 ] [ r0 r1 r2 r3 r4 r5 r7 y0
                                     _ _ # todo: a0 a1 
                                     a0l a1l a0h a1h
                                     lc sv ];
-attach variables [ Register_0 Register_5 ] [ r0 r1 r2 r3 r4 r5 r7 y0
+attach variables [ Register_0004 Register_0509 ] [ r0 r1 r2 r3 r4 r5 r7 y0
                                              st0 st1 st2
                                              p0h
                                              _ # todo: pc
@@ -339,6 +339,22 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 # attach variables [ Unused5_0 ]
 # attach variables [ Unused6_0 ]
 # attach variables [ Unused7_0 ]
+
+Register_0: Register_0004    is Register_0004 { export Register_0004; }
+Register_0: pc    is pc & Register_0004=0x0C unimpl
+Register_0: a0    is a0 & Register_0004=0x18 unimpl
+Register_0: a1    is a1 & Register_0004=0x19 unimpl
+
+Register_5: Register_0509    is Register_0509 { export Register_0509; }
+Register_5: pc    is pc & Register_0509=0x0C unimpl
+Register_5: a0    is a0 & Register_0509=0x18 unimpl
+Register_5: a1    is a1 & Register_0509=0x19 unimpl
+
+RegisterP0_0: RegisterP0_0004    is RegisterP0_0004 { export RegisterP0_0004; }
+RegisterP0_0: p0    is p0 & RegisterP0_0004=0x0B unimpl
+RegisterP0_0: pc    is pc & RegisterP0_0004=0x0C unimpl
+RegisterP0_0: a0    is a0 & RegisterP0_0004=0x18 unimpl
+RegisterP0_0: a1    is a1 & RegisterP0_0004=0x19 unimpl
 
 Address18_16and0: Address18    is Address18_0 ; Address18_16
   [ Address18 = ((Address18_0<<16) | (Address18_16)); ]
