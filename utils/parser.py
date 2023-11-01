@@ -75,9 +75,12 @@ def set_bits(frm : int, to : int):
     return (0xFFFFFFFF >> (32 - (to - frm + 1))) << frm
 
 def extract_bits(inp: int, frm : int, to : int):
+
+    #print(f"1 {inp:x} {frm} {to}")
     mask = (0xFFFF >> (16 - (to - frm + 1)))
     inp = inp >> (frm)
 
+    #print(f"2 {inp:x} {mask} {frm} {to}")
     return mask & inp
 
 
@@ -103,7 +106,7 @@ def populate_op_set(mask : int):
         prev_bit = 1
 
 tok_set=set()
-outf = open('./out.txt', 'w')
+outf = open('./out.sinc', 'w')
 with open('./opcodes.txt', 'r') as f:
     for line in f:
         if line.startswith('#'):
@@ -123,7 +126,8 @@ with open('./opcodes.txt', 'r') as f:
             print("wut...")
             continue
         mask = 0
-        expanded_token=""
+        expanded_tokens_prefix=""
+        expanded_tokens=[]
         for s in sp:
             s=s.strip(',')
             #print(s)
@@ -149,11 +153,12 @@ with open('./opcodes.txt', 'r') as f:
                 if s1 != '16':
                     print(f"Unknown s={s}")
                     continue
-                to = int(s2)+2
+                to = int(s2)+1
                 mask |= set_bits(int(s2), int(to))
                 token = f"{operand}_{start}"
                 op_mnemonic += (f"{token},")
-                op_constructor.append(token)
+                expanded_tokens_prefix = ("( ")
+                expanded_tokens.append(f") ... & {token}") # todo: open bracket ..
                 token1 = f"{operand}_{s1}"
                 token2 = f"{operand}_{s2}"
                 tok_set.add(f"{token1} = ({s1},{int(s1)+16})")
@@ -167,7 +172,7 @@ with open('./opcodes.txt', 'r') as f:
             mask |= set_bits(int(start), int(to))
             token = f"{operand}_{start}"
             if(int(start) > 15):
-                expanded_token = (f"; {token}")
+                expanded_tokens.append(f"; {token}")
             else:
                 op_constructor.append(token)
             op_mnemonic += (f"{token},")
@@ -202,7 +207,8 @@ with open('./opcodes.txt', 'r') as f:
             prev_bit = 1
         
         outf.write(f"# {line.strip().split('||')[0]}\n")
-        outf.write(f":{op_mnemonic} is ",) 
+        #outf.write(f"# mask 0x{mask:04X}\n")
+        outf.write(f":{op_mnemonic} is {expanded_tokens_prefix}",) 
         first = 1
         for op in op_constructor:
             if first:
@@ -211,7 +217,8 @@ with open('./opcodes.txt', 'r') as f:
                 outf.write("& ")
             outf.write(f"{op} ")
 
-        outf.write(expanded_token)
+        for e in expanded_tokens:
+            outf.write(e)
         
         outf.write("{ }\n\n")
 

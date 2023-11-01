@@ -340,6 +340,27 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 # attach variables [ Unused6_0 ]
 # attach variables [ Unused7_0 ]
 
+Address18_16and0: Address18    is Address18_0 ; Address18_16
+  [ Address18 = ((Address18_0<<16) | (Address18_16)); ]
+{
+  # don't export as an address, may be PIC code, and would add spurious symbols.
+  export *[const]:4 Address18;
+}
+
+Address18_16and4: Address18    is Address18_4 ; Address18_16
+  [ Address18 = ((Address18_4<<16) | (Address18_16)); ]
+{
+  # don't export as an address, may be PIC code, and would add spurious symbols.
+  export *[const]:4 Address18;
+}
+
+Address18_16and5: Address18    is Address18_5 ; Address18_16
+  [ Address18 = ((Address18_5<<16) | (Address18_16)); ]
+{
+  # don't export as an address, may be PIC code, and would add spurious symbols.
+  export *[const]:4 Address18;
+}
+
 # Instructions
 # D4FBh TL  add  MemImm16@16, Ax@8
 :add    MemImm16_16,Ax_8 is Ax_8 & op_0007=0xFB & op_0915=0x6A ; MemImm16_16{ }
@@ -519,10 +540,10 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :bkrep    Imm8u_0,Address16_16 is Imm8u_0 & op_0815=0x5C ; Address16_16{ }
 
 # 5D00h TL  bkrep NoReverse, Register@0, Address18@16and5
-# :bkrep    Register_0,Address18_16and5 is Register_0 & Address18_16and5 & op_0815=0x5D { }
+:bkrep    Register_0,Address18_16and5 is ( Register_0 & op_0715=0xBA ) ... & Address18_16and5{ }
 
 # 8FDCh TL2 bkrep NoReverse, r6, Address18@16and0
-# :bkrep    Address18_16and0 is Address18_16and0 & op_0315=0x11FB { }
+:bkrep    Address18_16and0 is ( op_0215=0x23F7 ) ... & Address18_16and0{ }
 
 # DA9Ch TL2 bkreprst MemR0425@0
 :bkreprst    MemR0425_0 is MemR0425_0 & op_0215=0x36A7 { }
@@ -537,7 +558,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :bkrepsto    Unused3_0 is Unused3_0 & op_0315=0x128D { }
 
 # 4180h TL  br   Address18@16and4, Cond@0
-# :br    Address18_16and4,Cond_0 is Address18_16and4 & Cond_0 & op_0715=0x83 { }
+:br    Address18_16and4,Cond_0 is ( Cond_0 & op_0615=0x106 ) ... & Address18_16and4{ }
 
 # D3C0h TL  break               ;break
 :break     is op_0015=0xD3C0 { }
@@ -546,7 +567,7 @@ attach variables [ SttMod_0 SttMod_8 ] [ stt0 stt1 stt2 _ mod0 mod1 mod2 mod3 ];
 :brr    RelAddr7_4,Cond_0 is RelAddr7_4 & Cond_0 & op_1115=0xA { }
 
 # 41C0h TL  call Address18@16and4, Cond@0
-# :call    Address18_16and4,Cond_0 is Address18_16and4 & Cond_0 & op_0715=0x83 { }
+:call    Address18_16and4,Cond_0 is ( Cond_0 & op_0615=0x107 ) ... & Address18_16and4{ }
 
 # D480h TL  calla Axl@8
 :calla    Axl_8 is Axl_8 & op_0007=0x80 & op_0915=0x6A { }
