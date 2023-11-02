@@ -194,11 +194,11 @@ with open('./opcodes.txt', 'r') as f:
                     step_start = op_split[2]
                     step_length = get_tok_len(step)
                     to = int(step_start)+step_length-1
-                    mask |= set_bits(int(start), int(to))
+                    mask |= set_bits(int(step_start), int(to))
                     token = f"{step}_{step_start}"
                     tok_set.add(f"{token} = ({step_start},{to})")
                 else:
-                    token = step
+                    token = f"\"{step}\""
                 step_mnemonic = f"{token}"
             if (length == 0):
                 length = int(start)
