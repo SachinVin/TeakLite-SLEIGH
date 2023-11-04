@@ -5,7 +5,7 @@
 :norm    Ax_8,Rn_0,StepZIDS_3    is Ax_8 & Rn_0 & StepZIDS_3 & op_0507=0x6 & op_0915=0x4A 
 {
     if(N) goto inst_next;
-    local tmp:5 = sext(Ax_8[0,39]);
+    local tmp = sext(Ax_8[0,39]);
     V = (tmp != Ax_8);
     VL = VL || V;
     Ax_8 = Ax_8 << 1;
@@ -322,10 +322,20 @@
 :bitrev_ebrv    Rn_0    is Rn_0 & op_0315=0x1AFC unimpl
 
 # 0x4180 0xFFFF003F    br At<Address18_16, 16>,At<Address18_2, 4>,At<Cond, 0>,
-:br    Address18_16_16,Address18_2_4,Cond_0    is Address18_2_4 & Cond_0 & op_0615=0x106 ; Address18_16_16 unimpl
+:br    Address18_16and4,Cond_0    is (Cond_0 & op_0615=0x106) ... & Address18_16and4
+{
+    if(!Cond_0) goto inst_next;
+    
+    goto Address18_16and4;
+} 
+
 
 # 0x5000 0x07FF    brr At<RelAddr7, 4>,At<Cond, 0>,
-:brr    RelAddr7_4,Cond_0    is RelAddr7_4 & Cond_0 & op_1115=0xA unimpl
+:brr    RelAddr7_4,Cond_0    is RelAddr7_4 & Cond_0 & op_1115=0xA 
+{
+    if(!Cond_0) goto inst_next;
+    goto RelAddr7_4;
+}
 
 # 0xD3C0 0x0000    break_ 
 :break_        is op_0015=0xD3C0 unimpl
