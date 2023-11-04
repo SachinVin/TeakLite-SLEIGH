@@ -1,14 +1,25 @@
 # 0x0000 0x0000    nop 
-:nop        is op_0015=0x0 unimpl
+:nop        is op_0015=0x0 {}
 
 # 0x94C0 0x011F    norm At<Ax, 8>,At<Rn, 0>,At<StepZIDS, 3>,
-:norm    Ax_8,Rn_0,StepZIDS_3    is Ax_8 & Rn_0 & StepZIDS_3 & op_0507=0x6 & op_0915=0x4A unimpl
+:norm    Ax_8,Rn_0,StepZIDS_3    is Ax_8 & Rn_0 & StepZIDS_3 & op_0507=0x6 & op_0915=0x4A 
+{
+    if(N) goto inst_next;
+    local tmp:5 = sext(Ax_8[0,39]);
+    V = (tmp != Ax_8);
+    VL = VL || V;
+    Ax_8 = Ax_8 << 1;
+    C = (Ax_8 & (1 << 40)) != 0;
+    SetAccFlag(Ax_8);
+    RnAndModify(Rn_0, StepZIDS_3, 0);
+    R = Rn_0 == 0;
+}
 
 # 0x4980 0x000F    swap At<SwapType, 0>,
-:swap    SwapType_0    is SwapType_0 & op_0415=0x498 unimpl
+:swap    SwapType_0    is SwapType_0 & op_0415=0x498 { }
 
 # 0x0020 0x0000    trap 
-:trap        is op_0015=0x20 unimpl
+:trap        is op_0015=0x20 { debug_trap(); }
 
 # 0xA000 0x1FFF    alm At<Alm, 9>,At<MemImm8, 0>,At<Ax, 8>,
 :alm    Alm_9,MemImm8_0,Ax_8    is Alm_9 & MemImm8_0 & Ax_8 & op_1315=0x5 unimpl

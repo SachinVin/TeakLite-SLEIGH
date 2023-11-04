@@ -46,7 +46,6 @@ define register offset=0x90 size=2  [ ext0 ext1 ext2 ext3 ];
 define register offset=0x100 size=2 [ st0 st1 st2 icr ];
 #  TL II
 define register offset=0x110 size=2 [ stt0 stt1 stt2 mod0 mod1 mod2 mod3 ];
-#todo define bitrange ...
 
 # Address conf
 define register offset=0x120 size=2 [ ar0 ar1 arp0 arp1 arp2 arp3 ];
@@ -54,6 +53,14 @@ define register offset=0x120 size=2 [ ar0 ar1 arp0 arp1 arp2 arp3 ];
 
 define register offset=0x130 size=2 [ cfgi cfgj stepi0 stepj0 ];
 #todo define bitrange ...
+
+define register offset=0x200 size=1 [ LM VL E C V N M Z C1  # stt0
+                                    R P0E P1E               # stt1
+                                                            # todo: stt2
+                                                            # todo: mod0
+                                    PAGE STP16 CMD EPI EPJ  # mod1
+                                    ]
+;
 
 # TOKENS
 define token teakop (16)
@@ -496,4 +503,35 @@ SwapType_0: (b1,a1,b0)    is b1 & a1 & b0 & SwapType_0003=0xD
     # todo: update flags
 }
 
+# PCODEOPs
+define pcodeop debug_trap;
+
+# MACROs
+macro SetAccFlag(value)
+{
+    Z = value == 0;
+    M = (value >> 39) != 0;
+    E = value != sext(value);
+    local bit31 = (value >> 31) & 1;
+    local bit30 = (value >> 30) & 1;
+    N = Z || (!E && (bit31 ^ bit30) != 0);
+}
+
+macro StepAddress(unit, address, step, dmod)
+{
+    #todo
+}
+
+macro RnAndModify(unit, step, dmod)
+{
+    # local ret = regs.r[unit];
+    # todo ... 
+    # if ((unit == 3 && regs.epi) || (unit == 7 && regs.epj)) {
+    #     if (step != StepValue::Increase2Mode1 && step != StepValue::Decrease2Mode1 &&
+    #         step != StepValue::Increase2Mode2 && step != StepValue::Decrease2Mode2) {
+    #         regs.r[unit] = 0;
+    #         return ret;
+    #     }
+    # }
+}
 @include "teak.sinc"
