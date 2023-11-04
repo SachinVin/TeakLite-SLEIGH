@@ -63,7 +63,7 @@ define register offset=0x300 size=1 [ LM VL E C V N M Z C1  # stt0
                                                             # todo: mod0
                                     PAGE STP16 CMD EPI EPJ  # mod1
                                                             # mod2
-                                    CPC                     # mod3
+                                    IE CPC                  # mod3
                                     ]
 ;
 
@@ -552,7 +552,23 @@ macro PushPC()
     <end>
 }
 macro PopPC()
-{}
+{
+    l:3 = 0;
+    h:3 = 0;
+
+    if (CPC  == 0) goto <l_cpc0>;
+    # (CPC  == 1)
+    l = *:2 sp; sp = sp + 1;
+    h = *:2 sp; sp = sp + 1;
+    goto <end>;
+    <l_cpc0>
+    # (CPC  == 0)
+    h = *:2 sp; sp = sp + 1;
+    l = *:2 sp; sp = sp + 1;
+    <end>
+
+    pc = (h << 16) | l;
+}
 macro SetAccFlag(value)
 {
     Z = value == 0;

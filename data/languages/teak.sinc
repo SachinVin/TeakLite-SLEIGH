@@ -379,13 +379,24 @@
 :cntx_r        is op_0015=0xD390 unimpl
 
 # 0x4580 0x000F    ret At<Cond, 0>,
-:ret    Cond_0    is Cond_0 & op_0415=0x458 unimpl
+:ret    Cond_0    is Cond_0 & op_0415=0x458 
+{
+    PopPC();
+    return [pc];
+}
 
 # 0xD780 0x0000    retd 
 :retd        is op_0015=0xD780 unimpl
 
 # 0x45C0 0x000F    reti At<Cond, 0>,
-:reti    Cond_0    is Cond_0 & op_0415=0x45C unimpl
+:reti    Cond_0    is Cond_0 & op_0415=0x45C 
+{
+    if(!Cond_0) goto inst_next;
+
+    IE = 1;
+    PopPC();
+    return [pc];
+}
 
 # 0x45D0 0x000F    retic At<Cond, 0>,
 :retic    Cond_0    is Cond_0 & op_0415=0x45D unimpl
@@ -397,7 +408,12 @@
 :retidc        is op_0015=0xD3C3 unimpl
 
 # 0x0900 0x00FF    rets At<Imm8, 0>,
-:rets    Imm8_0    is Imm8_0 & op_0815=0x9 unimpl
+:rets    Imm8_0    is Imm8_0 & op_0815=0x9
+{
+    PopPC();
+    sp = sp + Imm8_0;
+    return [pc];
+}
 
 # 0x4D80 0x0003    load_ps At<Imm2, 0>,
 :load_ps    Imm2_0    is Imm2_0 & op_0215=0x1360 unimpl

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <processor_spec>
-  <programcounter register="ip"/>
+  <programcounter register="pc"/>
   
   <default_symbols>
     <symbol name="NMI" address="FFFA" entry="true" type="code_ptr"/>
