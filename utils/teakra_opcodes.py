@@ -109,7 +109,18 @@ class Operand:
         self.op_type = op_type
 
     def __str__(self):
-        return f"{self.op_type}<{self.name}, {begin}, {end}>"
+        comment = ""
+        if self.op_type == "At":
+            comment += f"At<{self.name}, {self.begin}>"
+        elif self.op_type == "Const":
+            comment += f"Const<{self.name}, {self.begin}>"
+        elif self.op_type == "Unused":
+            comment += f"Unused<{self.begin}>"
+        elif self.op_type == "AtConst":
+            comment += f"AtConst<{self.begin}, {self.begin}>"
+        else:
+            comment += str(self.op_type)
+        return comment
 
 SX = Operand("SX")
 SY = Operand("SY")
@@ -129,6 +140,7 @@ DMod = Operand("DMod")
 class INST:
     name = ""
     base = 0
+    mask = 0
     args = []
     def __init__(self, name:str, base: int, *args):
         self.name = name
@@ -784,7 +796,7 @@ def print_operand_tokens():
     for i in instr:
         #print(i.name)
         for op in i.args:
-            if op.op_type != "At":
+            if op.op_type != "At" and op.op_type != "Unused" :
                 continue
             if op.name == "op":
                 continue
@@ -810,7 +822,7 @@ def append_opcode_tokens():
         #print(i.name)
         mask = 0
         for op in ins.args:
-            if op.op_type == "At":
+            if op.op_type == "At" or op.op_type == "Unused":
                 mask |= set_bits(op.begin, op.end)
 
         start = -1
@@ -839,6 +851,8 @@ def append_opcode_tokens():
             oper.end = end
             ins.args += (oper,)
             prev_bit = 1
+        
+        ins.mask = mask
             # :add    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x43 unimpl
 
 def print_opcode_tokens():
@@ -851,7 +865,7 @@ def print_opcode_tokens():
             if op.name != "op":
                 continue
             token = f"op_{op.begin:02}{op.end:02}"
-            op_set.add(f"   {token} = ({op.begin},{op.end})")
+            op_set.add(f"    {token} = ({op.begin},{op.end})")
 
     for o in sorted(op_set):
         print(o) 
@@ -859,9 +873,9 @@ def print_opcode_tokens():
 def print_slaspec_tokens():
     print("# TOKENS")
     print("define token teakop (16)")
-    print("# opcodes")
+    print("# Opcodes")
     print_opcode_tokens()
-    print("\n# operands")
+    print("\n# Operands")
     print_operand_tokens()
     print(";")
 
@@ -927,22 +941,65 @@ def print_attachments():
         print(att_str)
 
 def write_sinc():
+    outf = open("out.sinc", "w")
     append_opcode_tokens()
     # :add    MemRn_0,Ax_8 is MemRn_0 & Ax_8 & op_0307=0x10 & op_0915=0x43 unimpl
 
     for i in instr:
-        mnemonic = i.name + "    "
+        mnemonic = ":" + i.name + "    "
+        constructor = ""
+        constructor_expanded = ""
+        comment = f"# 0x{i.base:04X} 0x{i.mask:04X}    {i.name} "
+        first_constructor = 1
+        first_mnemonic = 1
+        first_expanded = 1
         for op in i.args:
-            if op.op_type != "At":
+            if op.name != "op":
+                comment += str(op) + ","
+            
+            if op.op_type != "Unused" and op.op_type != "At":
                 continue
+            
             if op.name == "op":
+                if not first_constructor:
+                    constructor += ("& ")
+                else :
+                    first_constructor = 0
+                bits=extract_bits(i.base, op.begin, op.end)
+                constructor += (f"{op.name}_{op.begin:02}{op.end:02}=0x{bits:X} ")
                 continue
+            if op.begin > 15:
+                if not first_expanded:
+                    first_expanded += ("& ")
+                else:
+                    first_expanded = 0
+                constructor_expanded += (f"{op.name}_{op.begin} ")
+            else:
+                if not first_constructor:
+                    constructor += ("& ")
+                else :
+                    first_constructor = 0
+                constructor += (f"{op.name}_{op.begin} ")
+            
+            if op.op_type == "Unused":
+                continue
+            if first_mnemonic:
+                first_mnemonic = 0
+            else:
+                mnemonic += (",")
+        
+            mnemonic += f"{op.name}_{op.begin}"
 
-            opset.add(f"{op.name}_{op.begin}")
 
+        outf.write(comment+"\n")
+        if constructor_expanded != "":
+            constructor = f"{constructor}; {constructor_expanded}"
+        outf.write(f"{mnemonic}    is {constructor}unimpl\n\n")
 
+write_sinc()
 
-#print_slaspec_tokens()
-print_attachments()
+#print_operand_tokens()
+print_slaspec_tokens()
+#print_attachments()
 
 #    operand_set.add(f"    {op.name}_{op.begin} = ({op.begin},{op.end}){signed}")

@@ -63,7 +63,6 @@ define token teakop (16)
     op_0002 = (0,2)
     op_0003 = (0,3)
     op_0004 = (0,4)
-    op_0005 = (0,5)
     op_0007 = (0,7)
     op_0009 = (0,9)
     op_0015 = (0,15)
@@ -76,6 +75,7 @@ define token teakop (16)
     op_0202 = (2,2)
     op_0203 = (2,3)
     op_0204 = (2,4)
+    op_0205 = (2,5)
     op_0207 = (2,7)
     op_0209 = (2,9)
     op_0215 = (2,15)
@@ -267,7 +267,12 @@ define token teakop (16)
     StepZIDS_7 = (7,8)
     SttMod_0 = (0,2)
     SttMod_8 = (8,10)
-    SwapTypes_0003 = (0,3)
+    SwapType_0003 = (0,3)
+    Unused_0 = (0,0)
+    Unused_1 = (1,1)
+    Unused_10 = (10,10)
+    Unused_2 = (2,2)
+    Unused_5 = (5,5)
 
     Address16_16 = (0,15)
     Address18_16_16 = (0,15)
@@ -372,41 +377,41 @@ Address18_16and4: Address18    is Address18_2_4 ; Address18_16_16
 }
 
 Address18_16and5: Address18    is Address18_2_5 ; Address18_16_16
-  [ Address18 = ((Address18_2_5<<16) | (Address18_16)); ]
+  [ Address18 = ((Address18_2_5<<16) | (Address18_16_16)); ]
 {
   # don't export as an address, may be PIC code, and would add spurious symbols.
   export *[const]:4 Address18;
 }
 
-SwapTypes4_0: (a0,b0)    is a0 & b0 & SwapTypes_0003=0x0
+SwapType_0: (a0,b0)    is a0 & b0 & SwapType_0003=0x0
 {
     local tmp:5 = a0;
     a0 = b0;
     b0 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (a0,b1)    is a0 & b1 & SwapTypes_0003=0x1
+SwapType_0: (a0,b1)    is a0 & b1 & SwapType_0003=0x1
 {
     local tmp:5 = a0;
     a0 = b1;
     b1 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (a1,b0)    is a1 & b0 & SwapTypes_0003=0x2
+SwapType_0: (a1,b0)    is a1 & b0 & SwapType_0003=0x2
 {
     local tmp:5 = a1;
     a1 = b0;
     b0 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (a1,b1)    is a1 & b1 & SwapTypes_0003=0x3
+SwapType_0: (a1,b1)    is a1 & b1 & SwapType_0003=0x3
 {
     local tmp:5 = a1;
     a1 = b1;
     b1 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (a0,b0),(a1,b1)    is a0 & b0 & a1 & b1 & SwapTypes_0003=0x4      
+SwapType_0: (a0,b0),(a1,b1)    is a0 & b0 & a1 & b1 & SwapType_0003=0x4      
 {
     local tmp:5 = a0;
     a0 = b0;
@@ -416,7 +421,7 @@ SwapTypes4_0: (a0,b0),(a1,b1)    is a0 & b0 & a1 & b1 & SwapTypes_0003=0x4
     b1 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (a0,b1),(a1,b0)    is a0 & b1 & a1 & b0 & SwapTypes_0003=0x5      
+SwapType_0: (a0,b1),(a1,b0)    is a0 & b1 & a1 & b0 & SwapType_0003=0x5      
 {
     local tmp:5 = a0;
     a0 = b1;
@@ -426,7 +431,7 @@ SwapTypes4_0: (a0,b1),(a1,b0)    is a0 & b1 & a1 & b0 & SwapTypes_0003=0x5
     b0 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (a0,b0,a1)    is a0 & b0 & a1 & SwapTypes_0003=0x6    
+SwapType_0: (a0,b0,a1)    is a0 & b0 & a1 & SwapType_0003=0x6    
 {
     local tmp:5 = a1;
     a1 = b0;
@@ -434,7 +439,7 @@ SwapTypes4_0: (a0,b0,a1)    is a0 & b0 & a1 & SwapTypes_0003=0x6
     a0 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (a0,b1,a1)    is a0 & b1 & a1 & SwapTypes_0003=0x7
+SwapType_0: (a0,b1,a1)    is a0 & b1 & a1 & SwapType_0003=0x7
 {
     local tmp:5 = a1;
     a1 = b1;
@@ -442,7 +447,7 @@ SwapTypes4_0: (a0,b1,a1)    is a0 & b1 & a1 & SwapTypes_0003=0x7
     a0 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (a1,b0,a0)    is a1 & b0 & a0 & SwapTypes_0003=0x8
+SwapType_0: (a1,b0,a0)    is a1 & b0 & a0 & SwapType_0003=0x8
 {
     local tmp:5 = a0;
     a0 = b0;
@@ -450,7 +455,7 @@ SwapTypes4_0: (a1,b0,a0)    is a1 & b0 & a0 & SwapTypes_0003=0x8
     a1 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (a1,b1,a0)    is a1 & b1 & a0 & SwapTypes_0003=0x9
+SwapType_0: (a1,b1,a0)    is a1 & b1 & a0 & SwapType_0003=0x9
 {
     local tmp:5 = a0;
     a0 = b1;
@@ -458,7 +463,7 @@ SwapTypes4_0: (a1,b1,a0)    is a1 & b1 & a0 & SwapTypes_0003=0x9
     a1 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (b0,a0,b1)    is b0 & a0 & b1 & SwapTypes_0003=0xA
+SwapType_0: (b0,a0,b1)    is b0 & a0 & b1 & SwapType_0003=0xA
 {
     local tmp:5 = b1;
     b1 = a0;
@@ -466,7 +471,7 @@ SwapTypes4_0: (b0,a0,b1)    is b0 & a0 & b1 & SwapTypes_0003=0xA
     b0 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (b0,a1,b1)    is b0 & a1 & b1 & SwapTypes_0003=0xB
+SwapType_0: (b0,a1,b1)    is b0 & a1 & b1 & SwapType_0003=0xB
 {
     local tmp:5 = b1;
     b1 = a1;
@@ -474,7 +479,7 @@ SwapTypes4_0: (b0,a1,b1)    is b0 & a1 & b1 & SwapTypes_0003=0xB
     b0 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (b1,a0,b0)    is b1 & a0 & b0 & SwapTypes_0003=0xC
+SwapType_0: (b1,a0,b0)    is b1 & a0 & b0 & SwapType_0003=0xC
 {
     local tmp:5 = b0;
     b0 = a0;
@@ -482,7 +487,7 @@ SwapTypes4_0: (b1,a0,b0)    is b1 & a0 & b0 & SwapTypes_0003=0xC
     b1 = tmp;
     # todo: update flags
 }
-SwapTypes4_0: (b1,a1,b0)    is b1 & a1 & b0 & SwapTypes_0003=0xD
+SwapType_0: (b1,a1,b0)    is b1 & a1 & b0 & SwapType_0003=0xD
 {
     local tmp:5 = b0;
     b0 = a1;
