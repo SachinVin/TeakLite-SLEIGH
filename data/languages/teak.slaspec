@@ -54,11 +54,16 @@ define register offset=0x120 size=2 [ ar0 ar1 arp0 arp1 arp2 arp3 ];
 define register offset=0x130 size=2 [ cfgi cfgj stepi0 stepj0 ];
 #todo define bitrange ...
 
-define register offset=0x200 size=1 [ LM VL E C V N M Z C1  # stt0
+define register offset=0x200 size=1 [ IU0 IU1               # st2
+                                    ]
+;
+define register offset=0x300 size=1 [ LM VL E C V N M Z C1  # stt0
                                     R P0E P1E               # stt1
                                                             # todo: stt2
                                                             # todo: mod0
                                     PAGE STP16 CMD EPI EPJ  # mod1
+                                                            # mod2
+                                    CPC                     # mod3
                                     ]
 ;
 
@@ -237,7 +242,7 @@ define token teakop (16)
     CbsCond_0 = (0,0)
     CbsCond_3 = (3,3)
     CbsCond_8 = (8,8)
-    Cond_0 = (0,3)
+    Cond_0003 = (0,3)
     Imm2_0 = (0,1)
     Imm2_1 = (1,2)
     Imm4_0 = (0,3)
@@ -264,7 +269,7 @@ define token teakop (16)
     R45_2 = (2,2)
     Register_0004 = (0,4)
     Register_0509 = (5,9)
-    RelAddr7_4 = (4,10)
+    RelAddr7_0410 = (4,10) signed
     RnOld_10 = (10,12)
     RnOld_9 = (9,11)
     Rn_0 = (0,2)
@@ -390,6 +395,12 @@ Address18_16and5: Address18    is Address18_2_5 ; Address18_16_16
   export *[const]:4 Address18;
 }
 
+RelAddr7_4: reloc is RelAddr7_0410
+    [ reloc = inst_start + RelAddr7_0410 + 1; ]
+{
+    export *[const]:4 reloc;
+}
+
 SwapType_0: (a0,b0)    is a0 & b0 & SwapType_0003=0x0
 {
     local tmp:5 = a0;
@@ -503,10 +514,45 @@ SwapType_0: (b1,a1,b0)    is b1 & a1 & b0 & SwapType_0003=0xD
     # todo: update flags
 }
 
+Cond_0: ""       is Cond_0003=0x0 { local tmp:1 = (1); export tmp; } # Always
+Cond_0: "eq"     is Cond_0003=0x1 { local tmp:1 = (Z==1); export tmp; } # Equal to zero
+Cond_0: "neq"    is Cond_0003=0x2 { local tmp:1 = (Z==0); export tmp; } # Not equal to zero
+Cond_0: "gt"     is Cond_0003=0x3 { local tmp:1 = (M==0 && Z==0); export tmp; } # Greater than zero
+Cond_0: "ge"     is Cond_0003=0x4 { local tmp:1 = (M==0); export tmp; } # Greater or equal to zero
+Cond_0: "lt"     is Cond_0003=0x5 { local tmp:1 = (M==1); export tmp; } # Less than zero
+Cond_0: "le"     is Cond_0003=0x6 { local tmp:1 = (M==1 || Z==1); export tmp; } # Less or equal to zero
+Cond_0: "nn"     is Cond_0003=0x7 { local tmp:1 = (N==0); export tmp; } # Normalize flag is cleared
+Cond_0: "c"      is Cond_0003=0x8 { local tmp:1 = (C==1); export tmp; } # Carry flag is set
+Cond_0: "v"      is Cond_0003=0x9 { local tmp:1 = (V==1); export tmp; } # Overflow flag is set
+Cond_0: "e"      is Cond_0003=0xA { local tmp:1 = (E==1); export tmp; } # Extension flag is set
+Cond_0: "l"      is Cond_0003=0xB { local tmp:1 = (LM==1); export tmp; } # Limit flag is set
+Cond_0: "nr"     is Cond_0003=0xC { local tmp:1 = (R==0); export tmp; } # R flag is cleared
+Cond_0: "niu0"   is Cond_0003=0xD { local tmp:1 = (IU0==0); export tmp; } # Input user pin 0 cleared
+Cond_0: "iu0"    is Cond_0003=0xE { local tmp:1 = (IU0==1); export tmp; } # Input user pin 0 set
+Cond_0: "iu1"    is Cond_0003=0xF { local tmp:1 = (IU1==1); export tmp; } # Input user pin 1 set
+
 # PCODEOPs
 define pcodeop debug_trap;
 
 # MACROs
+macro PushPC()
+{
+    l:2 = inst_next & 0xFFFF;
+    h:2 = inst_next >> 16;
+
+    if (CPC  == 0) goto <l_cpc0>;
+    # (CPC  == 1)
+    sp = sp - 1; *:2 sp = h;
+    sp = sp - 1; *:2 sp = l;
+    goto <end>;
+    <l_cpc0>
+    # (CPC  == 0)
+    sp = sp - 1; *:2 sp = l;
+    sp = sp - 1; *:2 sp = h;
+    <end>
+}
+macro PopPC()
+{}
 macro SetAccFlag(value)
 {
     Z = value == 0;

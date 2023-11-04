@@ -331,16 +331,36 @@
 :break_        is op_0015=0xD3C0 unimpl
 
 # 0x41C0 0xFFFF003F    call At<Address18_16, 16>,At<Address18_2, 4>,At<Cond, 0>,
-:call    Address18_16_16,Address18_2_4,Cond_0    is Address18_2_4 & Cond_0 & op_0615=0x107 ; Address18_16_16 unimpl
+:call    Address18_16and4,Cond_0    is (Cond_0 & op_0615=0x107) ... & Address18_16and4 
+{
+    if(!Cond_0) goto inst_next;
+
+    PushPC();
+    call Address18_16and4;
+}
 
 # 0xD480 0x0100    calla At<Axl, 8>,
-:calla    Axl_8    is Axl_8 & op_0007=0x80 & op_0915=0x6A unimpl
+:calla    Axl_8    is Axl_8 & op_0007=0x80 & op_0915=0x6A 
+{
+    PushPC();
+    call [Axl_8];
+}
 
 # 0xD381 0x0010    calla At<Ax, 4>,
-:calla    Ax_4    is Ax_4 & op_0003=0x1 & op_0515=0x69C unimpl
+:calla    Ax_4    is Ax_4 & op_0003=0x1 & op_0515=0x69C
+{
+    PushPC();
+    call [Ax_4 & 0x3FFFF];
+}
 
 # 0x1000 0x07FF    callr At<RelAddr7, 4>,At<Cond, 0>,
-:callr    RelAddr7_4,Cond_0    is RelAddr7_4 & Cond_0 & op_1115=0x2 unimpl
+:callr    RelAddr7_4,Cond_0    is RelAddr7_4 & Cond_0 & op_1115=0x2
+{
+    if(!Cond_0) goto inst_next;
+
+    PushPC();
+    call RelAddr7_4;
+}
 
 # 0xD380 0x0000    cntx_s 
 :cntx_s        is op_0015=0xD380 unimpl
