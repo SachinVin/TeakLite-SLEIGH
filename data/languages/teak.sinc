@@ -62,7 +62,7 @@ with : op_0415=0x498 {
         b1 = tmp;
         SetAccFlag(a1);
     }
-    :swap (a0,b0),(a1,b1)    is a0 & b0 & a1 & b1 & SwapType_0=0x4      
+    :swap (a0,b0),(a1,b1)    is a0 & b0 & a1 & b1 & SwapType_0=0x4
     {
         local tmp:5 = a0;
         a0 = b0;
@@ -72,7 +72,7 @@ with : op_0415=0x498 {
         b1 = tmp;
         SetAccFlag(a0);
     }
-    :swap (a0,b1),(a1,b0)    is a0 & b1 & a1 & b0 & SwapType_0=0x5      
+    :swap (a0,b1),(a1,b0)    is a0 & b1 & a1 & b0 & SwapType_0=0x5
     {
         local tmp:5 = a0;
         a0 = b1;
@@ -82,7 +82,7 @@ with : op_0415=0x498 {
         b0 = tmp;
         SetAccFlag(a0);
     }
-    :swap (a0,b0,a1)    is a0 & b0 & a1 & SwapType_0=0x6    
+    :swap (a0,b0,a1)    is a0 & b0 & a1 & SwapType_0=0x6
     {
         local tmp:5 = a1;
         a1 = b0;
@@ -150,170 +150,6 @@ with : op_0415=0x498 {
 
 # 0x0020 0x0000    trap 
 :trap        is op_0015=0x20 { debug_trap(); }
-
-# 0xA000 0x1FFF    alm At<Alm, 9>,At<MemImm8, 0>,At<Ax, 8>,
-# enum class AlmOp {
-#     Or,
-#     And,
-#     Xor,
-#     Add,
-#     Tst0,
-#     Tst1,
-#     Cmp,
-#     Sub,
-#     Msu,
-#     Addh,
-#     Addl,
-#     Subh,
-#     Subl,
-#     Sqr,
-#     Sqra,
-#     Cmpu,
-#     Reserved
-# };
-with : op_1315=0x5 
-{
-    :alm_or    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x0 & MemImm8_0 & Ax_8 
-    {
-        Ax_8 = zext(MemImm8_0) | Ax_8;
-        SetAccFlag(Ax_8);
-    }
-    :alm_and    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x1 & MemImm8_0 & Ax_8 
-    {
-        Ax_8 = zext(MemImm8_0) & Ax_8;
-        SetAccFlag(Ax_8);
-    }
-    :alm_xor    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x2 & MemImm8_0 & Ax_8 
-    {
-        Ax_8 = zext(MemImm8_0) ^ Ax_8;
-        SetAccFlag(Ax_8);
-    }
-    :alm_add    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x3 & MemImm8_0 & Ax_8 
-    {
-        V = scarry(sext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = sext(MemImm8_0) + Ax_8;
-        SetAccFlag(Ax_8);
-    }
-    :alm_tst0    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x4 & MemImm8_0 & Ax_8 
-    {
-        local tmp:2 = MemImm8_0 & Ax_8:2;
-        Z = tmp == 0;
-    }
-    :alm_tst1    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x5 & MemImm8_0 & Ax_8 
-    {
-        local tmp:2 = MemImm8_0:2 & ~Ax_8:2;
-        Z = tmp == 0;
-    }
-    :alm_cmp    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x6 & MemImm8_0 & Ax_8 
-    {
-        V = sborrow(sext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        local tmp:5 = sext(MemImm8_0) - Ax_8;
-        SetAccFlag(tmp);
-    }
-    :alm_sub    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x7 & MemImm8_0 & Ax_8 
-    {
-        V = sborrow(sext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = sext(MemImm8_0) - Ax_8;
-        SetAccFlag(Ax_8);
-    }
-    :alm_msu    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x8 & MemImm8_0 & Ax_8 unimpl
-    :alm_addh    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x9 & MemImm8_0 & Ax_8 
-    {
-        local MemImm8h:5 = sext(MemImm8_0) << 16;
-        V = scarry(MemImm8h, Ax_8);
-        VL = VL || V;
-        Ax_8 = MemImm8h + Ax_8;
-        SetAccFlag(Ax_8);
-    }
-    :alm_addl    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xA & MemImm8_0 & Ax_8 
-    {
-        V = scarry(zext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = zext(MemImm8_0) + Ax_8;
-        SetAccFlag(Ax_8);
-    }
-    :alm_subh    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xB & MemImm8_0 & Ax_8 
-    {
-        local MemImm8h:5 = sext(MemImm8_0) << 16;
-        V = sborrow(sext(MemImm8h), Ax_8);
-        VL = VL || V;
-        Ax_8 = sext(MemImm8h) - Ax_8;
-        SetAccFlag(Ax_8);
-    }
-    :alm_subl    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xC & MemImm8_0 & Ax_8
-    {
-        V = sborrow(zext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = zext(MemImm8_0) - Ax_8;
-        SetAccFlag(Ax_8);
-    }
-    :alm_sqr    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xD & MemImm8_0 & Ax_8 unimpl
-    :alm_sqra    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xE & MemImm8_0 & Ax_8 unimpl
-    :alm_cmpu    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xF & MemImm8_0 & Ax_8 
-    {
-        V = sborrow(zext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        local tmp:5 = zext(MemImm8_0) - Ax_8;
-        SetAccFlag(tmp);
-    }
-}
-
-# 0x8080 0x1F1F    alm At<Alm, 9>,At<Rn, 0>,At<StepZIDS, 3>,At<Ax, 8>,
-:alm    Alm_9,Rn_0,StepZIDS_3,Ax_8    is Alm_9 & Rn_0 & StepZIDS_3 & Ax_8 & op_0507=0x4 & op_1315=0x4 unimpl
-
-# 0x80A0 0x1F1F    alm At<Alm, 9>,At<Register, 0>,At<Ax, 8>,
-:alm    Alm_9,Register_0,Ax_8    is Alm_9 & Register_0 & Ax_8 & op_0507=0x5 & op_1315=0x4 unimpl
-
-# 0xD388 0x0010    alm_r6 Const<Alm, 0>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0x8 & op_0515=0x69C unimpl
-
-# 0xD389 0x0010    alm_r6 Const<Alm, 1>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0x9 & op_0515=0x69C unimpl
-
-# 0xD38A 0x0010    alm_r6 Const<Alm, 2>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xA & op_0515=0x69C unimpl
-
-# 0xD38B 0x0010    alm_r6 Const<Alm, 3>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xB & op_0515=0x69C unimpl
-
-# 0xD38C 0x0010    alm_r6 Const<Alm, 4>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xC & op_0515=0x69C unimpl
-
-# 0xD38D 0x0010    alm_r6 Const<Alm, 5>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xD & op_0515=0x69C unimpl
-
-# 0xD38E 0x0010    alm_r6 Const<Alm, 6>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xE & op_0515=0x69C unimpl
-
-# 0xD38F 0x0010    alm_r6 Const<Alm, 7>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xF & op_0515=0x69C unimpl
-
-# 0x9462 0x0001    alm_r6 Const<Alm, 8>,At<Ax, 0>,
-:alm_r6    Ax_0    is Ax_0 & op_0115=0x4A31 unimpl
-
-# 0x9464 0x0001    alm_r6 Const<Alm, 9>,At<Ax, 0>,
-:alm_r6    Ax_0    is Ax_0 & op_0115=0x4A32 unimpl
-
-# 0x9466 0x0001    alm_r6 Const<Alm, 10>,At<Ax, 0>,
-:alm_r6    Ax_0    is Ax_0 & op_0115=0x4A33 unimpl
-
-# 0x5E23 0x0100    alm_r6 Const<Alm, 11>,At<Ax, 8>,
-:alm_r6    Ax_8    is Ax_8 & op_0007=0x23 & op_0915=0x2F unimpl
-
-# 0x5E22 0x0100    alm_r6 Const<Alm, 12>,At<Ax, 8>,
-:alm_r6    Ax_8    is Ax_8 & op_0007=0x22 & op_0915=0x2F unimpl
-
-# 0x5F41 0x0000    alm_r6 Const<Alm, 13>,Const<Ax, 0>,
-:alm_r6        is op_0015=0x5F41 unimpl
-
-# 0x9062 0x0101    alm_r6 Const<Alm, 14>,At<Ax, 8>,Unused<0>,
-:alm_r6    Ax_8    is Ax_8 & Unused_0 & op_0107=0x31 & op_0915=0x48 unimpl
-
-# 0x8A63 0x0008    alm_r6 Const<Alm, 15>,At<Ax, 3>,
-:alm_r6    Ax_3    is Ax_3 & op_0002=0x3 & op_0415=0x8A6 unimpl
 
 # 0xD4F8 0xFFFF0107    alu At<Alu, 0>,At<MemImm16, 16>,At<Ax, 8>,
 :alu    Alu_0,MemImm16_16,Ax_8    is Alu_0 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
