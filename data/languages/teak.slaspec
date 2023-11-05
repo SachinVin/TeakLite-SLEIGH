@@ -62,7 +62,7 @@ define register offset=0x300 size=1 [ LM VL E C V N M Z C1  # stt0
                                                             # todo: stt2
                                                             # todo: mod0
                                     PAGE STP16 CMD EPI EPJ  # mod1
-                                                            # mod2
+                                                            # todo: mod2
                                     IE CPC                  # mod3
                                     ]
 ;
@@ -279,7 +279,7 @@ define token teakop (16)
     StepZIDS_7 = (7,8)
     SttMod_0 = (0,2)
     SttMod_8 = (8,10)
-    SwapType_0003 = (0,3)
+    SwapType_0 = (0,3)
     Unused_0 = (0,0)
     Unused_1 = (1,1)
     Unused_10 = (10,10)
@@ -405,119 +405,6 @@ MemImm8_0: reloc is MemImm8_0007
     [ reloc = (PAGE << 8) + MemImm8_0007; ]
 {
     export *[const]:2 reloc;
-}
-
-SwapType_0: (a0,b0)    is a0 & b0 & SwapType_0003=0x0
-{
-    local tmp:5 = a0;
-    a0 = b0;
-    b0 = tmp;
-    # todo: update flags
-}
-SwapType_0: (a0,b1)    is a0 & b1 & SwapType_0003=0x1
-{
-    local tmp:5 = a0;
-    a0 = b1;
-    b1 = tmp;
-    # todo: update flags
-}
-SwapType_0: (a1,b0)    is a1 & b0 & SwapType_0003=0x2
-{
-    local tmp:5 = a1;
-    a1 = b0;
-    b0 = tmp;
-    # todo: update flags
-}
-SwapType_0: (a1,b1)    is a1 & b1 & SwapType_0003=0x3
-{
-    local tmp:5 = a1;
-    a1 = b1;
-    b1 = tmp;
-    # todo: update flags
-}
-SwapType_0: (a0,b0),(a1,b1)    is a0 & b0 & a1 & b1 & SwapType_0003=0x4      
-{
-    local tmp:5 = a0;
-    a0 = b0;
-    b0 = tmp;
-    tmp = a1;
-    a1 = b1;
-    b1 = tmp;
-    # todo: update flags
-}
-SwapType_0: (a0,b1),(a1,b0)    is a0 & b1 & a1 & b0 & SwapType_0003=0x5      
-{
-    local tmp:5 = a0;
-    a0 = b1;
-    b1 = tmp;
-    tmp = a1;
-    a1 = b0;
-    b0 = tmp;
-    # todo: update flags
-}
-SwapType_0: (a0,b0,a1)    is a0 & b0 & a1 & SwapType_0003=0x6    
-{
-    local tmp:5 = a1;
-    a1 = b0;
-    b0 = a0;
-    a0 = tmp;
-    # todo: update flags
-}
-SwapType_0: (a0,b1,a1)    is a0 & b1 & a1 & SwapType_0003=0x7
-{
-    local tmp:5 = a1;
-    a1 = b1;
-    b1 = a0;
-    a0 = tmp;
-    # todo: update flags
-}
-SwapType_0: (a1,b0,a0)    is a1 & b0 & a0 & SwapType_0003=0x8
-{
-    local tmp:5 = a0;
-    a0 = b0;
-    b0 = a1;
-    a1 = tmp;
-    # todo: update flags
-}
-SwapType_0: (a1,b1,a0)    is a1 & b1 & a0 & SwapType_0003=0x9
-{
-    local tmp:5 = a0;
-    a0 = b1;
-    b1 = a1;
-    a1 = tmp;
-    # todo: update flags
-}
-SwapType_0: (b0,a0,b1)    is b0 & a0 & b1 & SwapType_0003=0xA
-{
-    local tmp:5 = b1;
-    b1 = a0;
-    a0 = b0;
-    b0 = tmp;
-    # todo: update flags
-}
-SwapType_0: (b0,a1,b1)    is b0 & a1 & b1 & SwapType_0003=0xB
-{
-    local tmp:5 = b1;
-    b1 = a1;
-    a1 = b0;
-    b0 = tmp;
-    # todo: update flags
-}
-SwapType_0: (b1,a0,b0)    is b1 & a0 & b0 & SwapType_0003=0xC
-{
-    local tmp:5 = b0;
-    b0 = a0;
-    a0 = b1;
-    b1 = tmp;
-    # todo: update flags
-}
-SwapType_0: (b1,a1,b0)    is b1 & a1 & b0 & SwapType_0003=0xD
-{
-    local tmp:5 = b0;
-    b0 = a1;
-    a1 = b1;
-    b1 = tmp;
-    # todo: update flags
 }
 
 Cond_0: ""       is Cond_0003=0x0 { local tmp:1 = (1); export tmp; } # Always
