@@ -87,9 +87,9 @@ with : op_1315=0x5
     :alm_subh    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xB & MemImm8_0 & Ax_8 
     {
         local MemImm8h:5 = sext(MemImm8_0) << 16;
-        V = sborrow(sext(MemImm8h), Ax_8);
+        V = sborrow(MemImm8h, Ax_8);
         VL = VL || V;
-        Ax_8 = sext(MemImm8h) - Ax_8;
+        Ax_8 = MemImm8h - Ax_8;
         SetAccFlag(Ax_8);
     }
     :alm_subl    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xC & MemImm8_0 & Ax_8
@@ -116,22 +116,92 @@ with : op_1315=0x5
 # 0x80A0 0x1F1F    alm At<Alm, 9>,At<Register, 0>,At<Ax, 8>,
 with :op_0507=0x5 & op_1315=0x4
 {
-    :alm_or    Register_0,Ax_8    is Alm_9=0x0 & Register_0 & Ax_8 unimpl
-    :alm_and    Register_0,Ax_8    is Alm_9=0x1 & Register_0 & Ax_8 unimpl
-    :alm_xor    Register_0,Ax_8    is Alm_9=0x2 & Register_0 & Ax_8 unimpl
-    :alm_add    Register_0,Ax_8    is Alm_9=0x3 & Register_0 & Ax_8 unimpl
-    :alm_tst0    Register_0,Ax_8    is Alm_9=0x4 & Register_0 & Ax_8 unimpl
-    :alm_tst1    Register_0,Ax_8    is Alm_9=0x5 & Register_0 & Ax_8 unimpl
-    :alm_cmp    Register_0,Ax_8    is Alm_9=0x6 & Register_0 & Ax_8 unimpl
-    :alm_sub    Register_0,Ax_8    is Alm_9=0x7 & Register_0 & Ax_8 unimpl
+    :alm_or    Register_0,Ax_8    is Alm_9=0x0 & Register_0 & Ax_8 
+    {
+        Ax_8 = zext(Register_0) | Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_and    Register_0,Ax_8    is Alm_9=0x1 & Register_0 & Ax_8 
+    {
+        Ax_8 = zext(Register_0) & Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_xor    Register_0,Ax_8    is Alm_9=0x2 & Register_0 & Ax_8 
+    {
+        Ax_8 = zext(Register_0) ^ Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_add    Register_0,Ax_8    is Alm_9=0x3 & Register_0 & Ax_8 
+    {
+        V = scarry(sext(Register_0), Ax_8);
+        VL = VL || V;
+        Ax_8 = sext(Register_0) + Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_tst0    Register_0,Ax_8    is Alm_9=0x4 & Register_0 & Ax_8 
+    {
+        local tmp:2 = Register_0 & Ax_8:2;
+        Z = tmp == 0;
+    }
+    :alm_tst1    Register_0,Ax_8    is Alm_9=0x5 & Register_0 & Ax_8 
+    {
+        local tmp:2 = Register_0:2 & ~Ax_8:2;
+        Z = tmp == 0;
+    }
+    :alm_cmp    Register_0,Ax_8    is Alm_9=0x6 & Register_0 & Ax_8 
+    {
+        V = sborrow(sext(Register_0), Ax_8);
+        VL = VL || V;
+        local tmp:5 = sext(Register_0) - Ax_8;
+        SetAccFlag(tmp);
+    }
+    :alm_sub    Register_0,Ax_8    is Alm_9=0x7 & Register_0 & Ax_8 
+    {
+        V = sborrow(sext(Register_0), Ax_8);
+        VL = VL || V;
+        Ax_8 = sext(Register_0) - Ax_8;
+        SetAccFlag(Ax_8);
+    }
     :alm_msu    Register_0,Ax_8    is Alm_9=0x8 & Register_0 & Ax_8 unimpl
-    :alm_addh    Register_0,Ax_8    is Alm_9=0x9 & Register_0 & Ax_8 unimpl
-    :alm_addl    Register_0,Ax_8    is Alm_9=0xA & Register_0 & Ax_8 unimpl
-    :alm_subh    Register_0,Ax_8    is Alm_9=0xB & Register_0 & Ax_8 unimpl
-    :alm_subl    Register_0,Ax_8    is Alm_9=0xC & Register_0 & Ax_8 unimpl
+    :alm_addh    Register_0,Ax_8    is Alm_9=0x9 & Register_0 & Ax_8 
+    {
+        local Register_0h:5 = sext(Register_0) << 16;
+        V = scarry(Register_0h, Ax_8);
+        VL = VL || V;
+        Ax_8 = Register_0h + Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_addl    Register_0,Ax_8    is Alm_9=0xA & Register_0 & Ax_8 
+    {
+        V = scarry(zext(Register_0), Ax_8);
+        VL = VL || V;
+        Ax_8 = zext(Register_0) + Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_subh    Register_0,Ax_8    is Alm_9=0xB & Register_0 & Ax_8 
+    {
+        local Register_0h:5 = sext(Register_0) << 16;
+        V = sborrow(Register_0h, Ax_8);
+        VL = VL || V;
+        Ax_8 = Register_0h - Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_subl    Register_0,Ax_8    is Alm_9=0xC & Register_0 & Ax_8
+    {
+        V = sborrow(zext(Register_0), Ax_8);
+        VL = VL || V;
+        Ax_8 = zext(Register_0) - Ax_8;
+        SetAccFlag(Ax_8);
+    }
     :alm_sqr    Register_0,Ax_8    is Alm_9=0xD & Register_0 & Ax_8 unimpl
     :alm_sqra    Register_0,Ax_8    is Alm_9=0xE & Register_0 & Ax_8 unimpl
-    :alm_cmpu    Register_0,Ax_8    is Alm_9=0xF & Register_0 & Ax_8 unimpl
+    :alm_cmpu    Register_0,Ax_8    is Alm_9=0xF & Register_0 & Ax_8 
+    {
+        V = sborrow(zext(Register_0), Ax_8);
+        VL = VL || V;
+        local tmp:5 = zext(Register_0) - Ax_8;
+        SetAccFlag(tmp);
+    }
 }
 
 # <<< ALM r6 >>>
