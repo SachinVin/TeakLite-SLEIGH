@@ -252,6 +252,13 @@ with : op_1315=0x5
     }
     :alm_sqr    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xD & MemImm8_0 & Ax_8 unimpl
     :alm_sqra    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xE & MemImm8_0 & Ax_8 unimpl
+    :alm_cmpu    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xF & MemImm8_0 & Ax_8 
+    {
+        V = sborrow(zext(MemImm8_0), Ax_8);
+        VL = VL || V;
+        local tmp:5 = zext(MemImm8_0) - Ax_8;
+        SetAccFlag(tmp);
+    }
 }
 
 # 0x8080 0x1F1F    alm At<Alm, 9>,At<Rn, 0>,At<StepZIDS, 3>,At<Ax, 8>,
