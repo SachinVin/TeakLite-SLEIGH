@@ -5,11 +5,10 @@
 :norm    Ax_8,Rn_0,StepZIDS_3    is Ax_8 & Rn_0 & StepZIDS_3 & op_0507=0x6 & op_0915=0x4A 
 {
     if(N) goto inst_next;
-    local tmp = sext(Ax_8[0,39]);
-    V = (tmp != Ax_8);
+    V = (Ax_8[38,1] != Ax_8[39,1]);
     VL = VL || V;
     Ax_8 = Ax_8 << 1;
-    C = (Ax_8 & (1 << 40)) != 0;
+    C = (Ax_8[39,1]) != 0;
     SetAccFlag(Ax_8);
     RnAndModify(Rn_0, StepZIDS_3, 0);
     R = Rn_0 == 0;
