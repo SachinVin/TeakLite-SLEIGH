@@ -21,7 +21,107 @@
 :trap        is op_0015=0x20 { debug_trap(); }
 
 # 0xA000 0x1FFF    alm At<Alm, 9>,At<MemImm8, 0>,At<Ax, 8>,
-:alm    Alm_9,MemImm8_0,Ax_8    is Alm_9 & MemImm8_0 & Ax_8 & op_1315=0x5 unimpl
+# enum class AlmOp {
+#     Or,
+#     And,
+#     Xor,
+#     Add,
+#     Tst0,
+#     Tst1,
+#     Cmp,
+#     Sub,
+#     Msu,
+#     Addh,
+#     Addl,
+#     Subh,
+#     Subl,
+#     Sqr,
+#     Sqra,
+#     Cmpu,
+#     Reserved
+# };
+with : op_1315=0x5 
+{
+    :alm_or    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0x0 & MemImm8_0 & Ax_8 
+    {
+        Ax_8 = zext(MemImm8_0) | Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_and    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0x1 & MemImm8_0 & Ax_8 
+    {
+        Ax_8 = zext(MemImm8_0) & Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_xor    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0x2 & MemImm8_0 & Ax_8 
+    {
+        Ax_8 = zext(MemImm8_0) ^ Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_add    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0x3 & MemImm8_0 & Ax_8 
+    {
+        V = scarry(sext(MemImm8_0), Ax_8);
+        VL = VL || V;
+        Ax_8 = sext(MemImm8_0) + Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_tst0    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0x4 & MemImm8_0 & Ax_8 
+    {
+        local tmp:2 = MemImm8_0 & Ax_8:2;
+        Z = tmp == 0;
+    }
+    :alm_tst1    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0x5 & MemImm8_0 & Ax_8 
+    {
+        local tmp:2 = MemImm8_0:2 & ~Ax_8:2;
+        Z = tmp == 0;
+    }
+    :alm_cmp    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0x6 & MemImm8_0 & Ax_8 
+    {
+        V = sborrow(sext(MemImm8_0), Ax_8);
+        VL = VL || V;
+        local tmp:5 = sext(MemImm8_0) - Ax_8;
+        SetAccFlag(tmp);
+    }
+    :alm_sub    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0x7 & MemImm8_0 & Ax_8 
+    {
+        V = sborrow(sext(MemImm8_0), Ax_8);
+        VL = VL || V;
+        Ax_8 = sext(MemImm8_0) - Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_msu    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0x8 & MemImm8_0 & Ax_8 unimpl
+    :alm_addh    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0x9 & MemImm8_0 & Ax_8 
+    {
+        local MemImm8h:5 = sext(MemImm8_0) << 16;
+        V = scarry(MemImm8h, Ax_8);
+        VL = VL || V;
+        Ax_8 = MemImm8h + Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_addl    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0xA & MemImm8_0 & Ax_8 
+    {
+        V = scarry(zext(MemImm8_0), Ax_8);
+        VL = VL || V;
+        Ax_8 = zext(MemImm8_0) + Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_subh    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0xB & MemImm8_0 & Ax_8 
+    {
+        local MemImm8h:5 = sext(MemImm8_0) << 16;
+        V = sborrow(sext(MemImm8h), Ax_8);
+        VL = VL || V;
+        Ax_8 = sext(MemImm8h) - Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_subl    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0xC & MemImm8_0 & Ax_8
+    {
+        V = sborrow(zext(MemImm8_0), Ax_8);
+        VL = VL || V;
+        Ax_8 = zext(MemImm8_0) - Ax_8;
+        SetAccFlag(Ax_8);
+    }
+    :alm_sqr    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0xD & MemImm8_0 & Ax_8 unimpl
+    :alm_sqra    "[PAGE:"^MemImm8_0^"]",Ax_8    is Alm_9=0xE & MemImm8_0 & Ax_8 unimpl
+}
 
 # 0x8080 0x1F1F    alm At<Alm, 9>,At<Rn, 0>,At<StepZIDS, 3>,At<Ax, 8>,
 :alm    Alm_9,Rn_0,StepZIDS_3,Ax_8    is Alm_9 & Rn_0 & StepZIDS_3 & Ax_8 & op_0507=0x4 & op_1315=0x4 unimpl

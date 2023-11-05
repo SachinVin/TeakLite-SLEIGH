@@ -254,7 +254,7 @@ define token teakop (16)
     Imm8_0 = (0,7)
     Imm8s_0 = (0,7) signed
     Imm9_0 = (0,8)
-    MemImm8_0 = (0,7)
+    MemImm8_0007 = (0,7)
     MemR7Imm7s_0 = (0,6) signed
     Moda3_4 = (4,6)
     Moda4_4 = (4,7)
@@ -399,6 +399,12 @@ RelAddr7_4: reloc is RelAddr7_0410
     [ reloc = inst_start + RelAddr7_0410 + 1; ]
 {
     export *[const]:4 reloc;
+}
+
+MemImm8_0: reloc is MemImm8_0007
+    [ reloc = (PAGE << 8) + MemImm8_0007; ]
+{
+    export *[const]:2 reloc;
 }
 
 SwapType_0: (a0,b0)    is a0 & b0 & SwapType_0003=0x0
