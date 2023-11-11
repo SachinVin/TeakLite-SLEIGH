@@ -378,33 +378,33 @@ Address18_16and0: Address18    is Address18_2_0 ; Address18_16_16
   [ Address18 = ((Address18_2_0<<16) | (Address18_16_16)); ]
 {
   # don't export as an address, may be PIC code, and would add spurious symbols.
-  export *[const]:4 Address18;
+  export *:4 Address18;
 }
 
 Address18_16and4: Address18    is Address18_2_4 ; Address18_16_16
   [ Address18 = ((Address18_2_4<<16) | (Address18_16_16)); ]
 {
   # don't export as an address, may be PIC code, and would add spurious symbols.
-  export *[const]:4 Address18;
+  export *:4 Address18;
 }
 
 Address18_16and5: Address18    is Address18_2_5 ; Address18_16_16
   [ Address18 = ((Address18_2_5<<16) | (Address18_16_16)); ]
 {
   # don't export as an address, may be PIC code, and would add spurious symbols.
-  export *[const]:4 Address18;
+  export *:4 Address18;
 }
 
 RelAddr7_4: reloc is RelAddr7_0410
     [ reloc = inst_start + RelAddr7_0410 + 1; ]
 {
-    export *[const]:4 reloc;
+    export *:4 reloc;
 }
 
 MemImm8_0: reloc is MemImm8_0007
     [ reloc = (PAGE << 8) + MemImm8_0007; ]
 {
-    export *[const]:2 reloc;
+    export *:2 reloc;
 }
 
 Cond_0: ""       is Cond_0003=0x0 { local tmp:1 = (1); export tmp; } # Always
