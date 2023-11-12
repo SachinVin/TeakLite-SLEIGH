@@ -218,6 +218,7 @@ define token teakop (16)
     Axh_0 = (0,0)
     Axh_12 = (12,12)
     Axh_4 = (4,4)
+    Axh_5 = (5,5)
     Axh_6 = (6,6)
     Axh_8 = (8,8)
     Axh_9 = (9,9)
@@ -318,7 +319,7 @@ attach variables [ Ar_0 Ar_2 ] [ ar0 ar1 ];
 # attach variables [ ArpStep2_0 ArpStep2_1 ArpStep2_2 ArpStep2_3 ArpStep2_5 ]
 attach variables [ Arp_0 ] [ arp0 arp1 arp2 arp3 ];
 attach variables [ Ax_0 Ax_1 Ax_10 Ax_11 Ax_12 Ax_3 Ax_4 Ax_5 Ax_6 Ax_8 ] [ a0 a1 ];
-attach variables [ Axh_0 Axh_12 Axh_4 Axh_6 Axh_8 Axh_9 ] [ a0h a1h ];
+attach variables [ Axh_0 Axh_12 Axh_4 Axh_5 Axh_6 Axh_8 Axh_9 ] [ a0h a1h ];
 attach variables [ Axl_0 Axl_12 Axl_4 Axl_5 Axl_8 ] [ a0l a1l ];
 # attach variables [ BankFlags_0 ]
 attach variables [ Bx_0 Bx_1 Bx_10 Bx_12 Bx_2 Bx_3 Bx_4 Bx_5 Bx_8 ] [ b0 b1 ];
@@ -367,23 +368,43 @@ Register_0: Register_0004    is Register_0004 { export Register_0004; }
 # Placeholders
 Register_0: p0    is p0 & Register_0004=0x0B unimpl
 Register_0: pc    is pc & Register_0004=0x0C unimpl
-Register_0: a0    is a0 & Register_0004=0x18 unimpl
-Register_0: a1    is a1 & Register_0004=0x19 unimpl
-Register_0: a0l    is a0l & Register_0004=0x1A unimpl
-Register_0: a1l    is a1l & Register_0004=0x1B unimpl
-Register_0: a0h    is a0h & Register_0004=0x1C unimpl
-Register_0: a1h    is a1h & Register_0004=0x1D unimpl
+Register_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19) unimpl
+
+RegToBus16_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19) 
+{ 
+    local tmp:2 = Ax_0[0,16];
+    export tmp; 
+}
+
+RegToBus16Sat_0: Axl_0    is Ax_0 & Axl_0 & (Register_0004=0x1A | Register_0004=0x1B) 
+{ 
+    local tmp:2 = Axl_0;
+    # todo: consider using pcodeop 
+    if (SAT == 1 || Ax_0 == sext(Ax_0[0,32])) goto <end>;
+    # !regs.sat && value != SignExtend<32>(value)
+        LM = 1;
+        tmp = ~sext(Ax_0[39,1]);
+    <end>
+    export tmp;
+}
+
+RegToBus16Sat_0: Axh_0    is Ax_0 & Axh_0 & (Register_0004=0x1C | Register_0004=0x1D) {
+  local tmp:2 = Axh_0;
+  # todo: consider using pcodeop 
+  if (SAT == 1 || Ax_0 == sext(Ax_0[0,32])) goto <end>;
+    # !regs.sat && value != SignExtend<32>(value)
+      LM = 1;
+      tmp = ~sext(Ax_0[39,1]);
+      tmp[15,1] = Ax_0[39,1];
+  <end>
+  export tmp; 
+}
 
 Register_5: Register_0509    is Register_0509 { export Register_0509; }
 # Placeholders
 Register_5: p0    is p0 & Register_0509=0x0B unimpl
 Register_5: pc    is pc & Register_0509=0x0C unimpl
-Register_5: a0    is a0 & Register_0509=0x18 unimpl
-Register_5: a1    is a1 & Register_0509=0x19 unimpl
-Register_5: a0l    is a0l & Register_0509=0x1A unimpl
-Register_5: a1l    is a1l & Register_0509=0x1B unimpl
-Register_5: a0h    is a0h & Register_0509=0x1C unimpl
-Register_5: a1h    is a1h & Register_0509=0x1D unimpl
+Register_5: Ax_5    is Ax_5 & (Register_0509=0x18 | Register_0509=0x19) unimpl
 
 
 Address18_16and0: Address18    is Address18_2_0 ; Address18_16_16
@@ -502,6 +523,16 @@ macro SetAccFlag(Ab)
 macro StepAddress(unit, address, step, dmod)
 {
     #todo
+}
+
+macro ProductToBus40(Px, ret)
+{
+    
+    index:4 = &Px - &p0;
+    PxE = *[register]:4 (&P0E + index);
+    tmp:5 = sext(PxE[0,1]);
+
+    ret = tmp & zext(Px);
 }
 
 macro ProductFromBus32(Px, value)
