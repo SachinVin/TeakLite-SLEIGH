@@ -30,7 +30,7 @@ define register offset=0x20 size=2  [ r0 r1 r2 r3 r4 r5 r6 r7 ];
 
 # 32bit Multiply parms & results
 define register offset=0x40 size=2  [ x0 y0 x1 y1 p0h ];
-define register offset=0x50 size=4  [ p0 p1 ]; # todo: 33bit
+define register offset=0x50 size=4  [ p0 p1 ];
 
 # Misc
 define register offset=0x60 size=3  [ pc ]; # todo: 18bit pc
@@ -57,13 +57,13 @@ define register offset=0x130 size=2 [ cfgi cfgj stepi0 stepj0 ];
 define register offset=0x200 size=1 [ IU0 IU1               # st2
                                     ]
 ;
-define register offset=0x300 size=1 [ LM VL E C V N M Z C1  # stt0
-                                    R P0E P1E               # stt1
-                                                            # todo: stt2
-                                                            # todo: mod0
-                                    PAGE STP16 CMD EPI EPJ  # mod1
-                                                            # todo: mod2
-                                    IE CPC                  # mod3
+define register offset=0x300 size=1 [ LM VL E C V N M Z C1             # stt0
+                                    R P0E P1E                          # stt1
+                                                                       # todo: stt2
+                                    SAT SATA HWM S OU0 OU1 PS0 PS1     # mod0
+                                    PAGE STP16 CMD EPI EPJ             # mod1
+                                                                       # todo: mod2
+                                    IE CPC                             # mod3
                                     ]
 ;
 
@@ -355,7 +355,7 @@ attach variables [ Register_0004 Register_0509 ] [ r0 r1 r2 r3 r4 r5 r7 y0
                                              b0h b1h b0l b1l
                                              ext0 ext1 ext2 ext3
                                              _ _ # a0 a1 
-                                             _ _ _ _ # a0l a1l a0h a1h
+                                             a0l a1l a0h a1h
                                              lc sv ];
 # attach variables [ RelAddr7_4 ]
 attach variables [ RnOld_10 RnOld_9 ] [ r0 r1 r2 r3 r4 r5 r7 y0 ];
@@ -461,12 +461,12 @@ macro PushPC()
     l:2 = inst_next & 0xFFFF;
     h:2 = inst_next >> 16;
 
-    if (CPC  == 0) goto <l_cpc0>;
+    if (CPC  == 0) goto <cpc0>;
     # (CPC  == 1)
     Push(h);
     Push(l);
     goto <end>;
-    <l_cpc0>
+    <cpc0>
     # (CPC  == 0)
     Push(l);
     Push(h);
@@ -477,12 +477,12 @@ macro PopPC()
     l:3 = 0;
     h:3 = 0;
 
-    if (CPC  == 0) goto <l_cpc0>;
+    if (CPC  == 0) goto <cpc0>;
     # (CPC  == 1)
     Pop(l);
     Pop(h);
     goto <end>;
-    <l_cpc0>
+    <cpc0>
     # (CPC  == 0)
     Pop(h);
     Pop(l);
