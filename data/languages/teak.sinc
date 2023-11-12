@@ -513,37 +513,64 @@ with : op_0415=0x498 {
 :load_ps01    Imm4_0    is Imm4_0 & op_0415=0x1 unimpl
 
 # 0x5F40 0xFFFF0000    push At<Imm16, 16>,
-:push    Imm16_16    is op_0015=0x5F40 ; Imm16_16 unimpl
+:push    Imm16_16    is op_0015=0x5F40 ; Imm16_16 
+{
+    Push(Imm16_16:2);
+}
 
 # 0x5E40 0x001F    push At<Register, 0>,
-:push    Register_0    is Register_0 & op_0515=0x2F2 unimpl
+:push    Register_0    is Register_0 & op_0515=0x2F2 
+{
+    Push(Register_0);
+}
 
 # 0xD7C8 0x0007    push At<Abe, 1>,Unused<0>,
 :push    Abe_1    is Abe_1 & Unused_0 & op_0315=0x1AF9 unimpl
 
 # 0xD3D0 0x000F    push At<ArArpSttMod, 0>,
-:push    ArArpSttMod_0    is ArArpSttMod_0 & op_0415=0xD3D unimpl
+:push    ArArpSttMod_0    is ArArpSttMod_0 & op_0415=0xD3D 
+{
+    Push(ArArpSttMod_0);
+}
 
 # 0xD7FC 0x0003    push_prpage Unused<0>,Unused<1>,
-:push_prpage        is Unused_0 & Unused_1 & op_0215=0x35FF unimpl
+:push   prpage    is prpage & Unused_0 & Unused_1 & op_0215=0x35FF 
+{
+    Push(prpage);
+}
 
 # 0xD78C 0x0003    push At<Px, 1>,Unused<0>,
 :push    Px_1    is Px_1 & Unused_0 & op_0215=0x35E3 unimpl
 
 # 0xD4D7 0x0020    push_r6 Unused<5>,
-:push_r6        is Unused_5 & op_0004=0x17 & op_0615=0x353 unimpl
+:push_r6        is Unused_5 & op_0004=0x17 & op_0615=0x353 
+{
+    Push(r6);
+}
 
 # 0xD7F8 0x0003    push_repc Unused<0>,Unused<1>,
-:push_repc        is Unused_0 & Unused_1 & op_0215=0x35FE unimpl
+:push_repc        is Unused_0 & Unused_1 & op_0215=0x35FE 
+{
+    Push(repc);
+}
 
 # 0xD4D4 0x0020    push_x0 Unused<5>,
-:push_x0        is Unused_5 & op_0004=0x14 & op_0615=0x353 unimpl
+:push_x0        is Unused_5 & op_0004=0x14 & op_0615=0x353 
+{
+    Push(x0);
+}
 
 # 0xD4D5 0x0020    push_x1 Unused<5>,
-:push_x1        is Unused_5 & op_0004=0x15 & op_0615=0x353 unimpl
+:push_x1        is Unused_5 & op_0004=0x15 & op_0615=0x353 
+{
+    Push(x1);
+}
 
 # 0xD4D6 0x0020    push_y1 Unused<5>,
-:push_y1        is Unused_5 & op_0004=0x16 & op_0615=0x353 unimpl
+:push_y1        is Unused_5 & op_0004=0x16 & op_0615=0x353 
+{
+    Push(y1);
+}
 
 # 0x4384 0x0043    pusha At<Ax, 6>,Unused<0>,Unused<1>,
 :pusha    Ax_6    is Ax_6 & Unused_0 & Unused_1 & op_0205=0x1 & op_0715=0x87 unimpl
@@ -552,37 +579,73 @@ with : op_0415=0x498 {
 :pusha    Bx_1    is Bx_1 & Unused_0 & op_0215=0x35E2 unimpl
 
 # 0x5E60 0x001F    pop At<Register, 0>,
-:pop    Register_0    is Register_0 & op_0515=0x2F3 unimpl
+:pop    Register_0    is Register_0 & op_0515=0x2F3 
+{
+    Pop(Register_0);
+}
 
 # 0x47B4 0x0003    pop At<Abe, 0>,
 :pop    Abe_0    is Abe_0 & op_0215=0x11ED unimpl
 
 # 0x80C7 0x0F00    pop At<ArArpSttMod, 8>,
-:pop    ArArpSttMod_8    is ArArpSttMod_8 & op_0007=0xC7 & op_1215=0x8 unimpl
+:pop    ArArpSttMod_8    is ArArpSttMod_8 & op_0007=0xC7 & op_1215=0x8 
+{
+    Pop(ArArpSttMod_8);
+}
 
 # 0x0006 0x0021    pop At<Bx, 5>,Unused<0>,
-:pop    Bx_5    is Bx_5 & Unused_0 & op_0104=0x3 & op_0615=0x0 unimpl
+:pop    Bx_5    is Bx_5 & Unused_0 & op_0104=0x3 & op_0615=0x0 
+{
+    Pop(Bx_5);
+}
 
 # 0xD7F4 0x0003    pop_prpage Unused<0>,Unused<1>,
-:pop_prpage        is Unused_0 & Unused_1 & op_0215=0x35FD unimpl
+:pop    prpage    is prpage & Unused_0 & Unused_1 & op_0215=0x35FD 
+{
+    Pop(prpage);
+}
 
 # 0xD496 0x0001    pop At<Px, 0>,
-:pop    Px_0    is Px_0 & op_0115=0x6A4B unimpl
+:pop    Px_0    is Px_0 & op_0115=0x6A4B 
+{
+    local h:2;
+    local l:2;
+    Pop(h);
+    Pop(l);
+
+    local value:4 = (zext(h) << 16) | zext(l);
+    ProductFromBus32(Px_0, value);
+}
 
 # 0x0024 0x0001    pop_r6 Unused<0>,
-:pop_r6        is Unused_0 & op_0115=0x12 unimpl
+:pop    r6    is r6 & Unused_0 & op_0115=0x12 
+{
+    Pop(r6);
+}
 
 # 0xD7F0 0x0003    pop_repc Unused<0>,Unused<1>,
-:pop_repc        is Unused_0 & Unused_1 & op_0215=0x35FC unimpl
+:pop    repc    is repc & Unused_0 & Unused_1 & op_0215=0x35FC 
+{
+    Pop(repc);
+}
 
 # 0xD494 0x0000    pop_x0 
-:pop_x0        is op_0015=0xD494 unimpl
+:pop    x0    is x0 & op_0015=0xD494 
+{
+    Pop(x0);
+}
 
 # 0xD495 0x0000    pop_x1 
-:pop_x1        is op_0015=0xD495 unimpl
+:pop    x1    is x1 & op_0015=0xD495 
+{
+    Pop(x1);
+}
 
 # 0x0004 0x0001    pop_y1 Unused<0>,
-:pop_y1        is Unused_0 & op_0115=0x2 unimpl
+:pop    y1    is y1 & Unused_0 & op_0115=0x2 
+{
+    Pop(y1);
+}
 
 # 0x47B0 0x0003    popa At<Ab, 0>,
 :popa    Ab_0    is Ab_0 & op_0215=0x11EC unimpl
