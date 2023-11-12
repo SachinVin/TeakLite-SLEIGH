@@ -489,13 +489,13 @@ macro PopPC()
     <end>
     pc = (h << 16) | l;
 }
-macro SetAccFlag(value)
+macro SetAccFlag(Ab)
 {
-    Z = value == 0;
-    M = (value >> 39) != 0;
-    E = value != sext(value);
-    local bit31 = (value >> 31) & 1;
-    local bit30 = (value >> 30) & 1;
+    Z = Ab == 0;
+    M = (Ab[39,1]) != 0;
+    E = Ab != sext(Ab[0,32]);
+    local bit31 = Ab[31,1];
+    local bit30 = Ab[30,1];
     N = Z || (!E && (bit31 ^ bit30) != 0);
 }
 
