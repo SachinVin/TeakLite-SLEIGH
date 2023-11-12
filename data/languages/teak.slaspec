@@ -237,9 +237,11 @@ define token teakop (16)
     Bx_4 = (4,4)
     Bx_5 = (5,5)
     Bx_8 = (8,8)
+    Bxh_0 = (0,0)
     Bxh_2 = (2,2)
     Bxh_5 = (5,5)
     Bxh_8 = (8,8)
+    Bxl_0 = (0,0)
     CbsCond_0 = (0,0)
     CbsCond_3 = (3,3)
     CbsCond_8 = (8,8)
@@ -323,7 +325,8 @@ attach variables [ Axh_0 Axh_12 Axh_4 Axh_5 Axh_6 Axh_8 Axh_9 ] [ a0h a1h ];
 attach variables [ Axl_0 Axl_12 Axl_4 Axl_5 Axl_8 ] [ a0l a1l ];
 # attach variables [ BankFlags_0 ]
 attach variables [ Bx_0 Bx_1 Bx_10 Bx_12 Bx_2 Bx_3 Bx_4 Bx_5 Bx_8 ] [ b0 b1 ];
-attach variables [ Bxh_2 Bxh_5 Bxh_8 ] [ b0h b1h ];
+attach variables [ Bxh_0 Bxh_2 Bxh_5 Bxh_8 ] [ b0h b1h ];
+attach variables [ Bxl_0 ] [ b0l b1l ];
 # attach variables [ CbsCond_0 CbsCond_3 CbsCond_8 ]
 # attach variables [ Cond_0 ]
 # attach variables [ Imm16_16 ]
@@ -370,6 +373,13 @@ Register_0: p0    is p0 & Register_0004=0x0B unimpl
 Register_0: pc    is pc & Register_0004=0x0C unimpl
 Register_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19) unimpl
 
+# Prefer for storing to Acc
+RegisterGetAccAx_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19) { export Ax_0; }
+RegisterGetAccAbh_0: Bxh_0    is Bx_0 & Bxh_0 & (Register_0004=0x10 | Register_0004=0x11) { export Bx_0; }
+RegisterGetAccAbh_0: Axh_0    is Ax_0 & Axh_0 & (Register_0004=0x1C | Register_0004=0x1D) { export Ax_0; }
+RegisterGetAccAbl_0: Bxl_0    is Bx_0 & Bxl_0 & (Register_0004=0x12 | Register_0004=0x13) { export Bx_0; }
+RegisterGetAccAbl_0: Axl_0    is Ax_0 & Axl_0 & (Register_0004=0x1A | Register_0004=0x1B) { export Ax_0; }
+
 RegToBus16_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19) 
 { 
     local tmp:2 = Ax_0[0,16];
@@ -379,24 +389,24 @@ RegToBus16_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19)
 RegToBus16Sat_0: Axl_0    is Ax_0 & Axl_0 & (Register_0004=0x1A | Register_0004=0x1B) 
 { 
     local tmp:2 = Axl_0;
-    # todo: consider using pcodeop 
-    if (SAT == 1 || Ax_0 == sext(Ax_0[0,32])) goto <end>;
-    # !regs.sat && value != SignExtend<32>(value)
-        LM = 1;
-        tmp = ~sext(Ax_0[39,1]);
-    <end>
+    # todo: consider using pcodeop, currently produces shitty decomp
+    # if (SAT == 1 || Ax_0 == sext(Ax_0[0,32])) goto <end>;
+    # # !regs.sat && value != SignExtend<32>(value)
+    #     LM = 1;
+    #     tmp = ~sext(Ax_0[39,1]);
+    # <end>
     export tmp;
 }
 
 RegToBus16Sat_0: Axh_0    is Ax_0 & Axh_0 & (Register_0004=0x1C | Register_0004=0x1D) {
   local tmp:2 = Axh_0;
-  # todo: consider using pcodeop 
-  if (SAT == 1 || Ax_0 == sext(Ax_0[0,32])) goto <end>;
-    # !regs.sat && value != SignExtend<32>(value)
-      LM = 1;
-      tmp = ~sext(Ax_0[39,1]);
-      tmp[15,1] = Ax_0[39,1];
-  <end>
+  # todo: consider using pcodeop, currently produces shitty decomp
+  # if (SAT == 1 || Ax_0 == sext(Ax_0[0,32])) goto <end>;
+  #   # !regs.sat && value != SignExtend<32>(value)
+  #     LM = 1;
+  #     tmp = ~sext(Ax_0[39,1]);
+  #     tmp[15,1] = Ax_0[39,1];
+  # <end>
   export tmp; 
 }
 
@@ -463,6 +473,7 @@ define pcodeop debug_trap;
 # MACROs
 macro Push(value)
 {
+    tmp:2 = value; # assert(sizeof(value) == 2)
     tmp_sp:3 = zext(sp);
     tmp_sp = tmp_sp - 1;
     *:3 tmp_sp = value;
@@ -471,6 +482,8 @@ macro Push(value)
 
 macro Pop(value)
 {
+    tmp:2 = value; # assert(sizeof(value) == 2)
+
     tmp_sp:3 = zext(sp);
     value = *:3 tmp_sp;
     tmp_sp = tmp_sp + 1;
@@ -495,8 +508,8 @@ macro PushPC()
 }
 macro PopPC()
 {
-    l:3 = 0;
-    h:3 = 0;
+    l:2 = 0;
+    h:2 = 0;
 
     if (CPC  == 0) goto <cpc0>;
     # (CPC  == 1)
@@ -508,16 +521,34 @@ macro PopPC()
     Pop(h);
     Pop(l);
     <end>
-    pc = (h << 16) | l;
+    pc = zext(h) << 16 | zext(l);
 }
 macro SetAccFlag(Ab)
 {
+    tmp:5 = Ab; # assert(sizeof(Ab) == 5)
+
     Z = Ab == 0;
     M = (Ab[39,1]) != 0;
     E = Ab != sext(Ab[0,32]);
     local bit31 = Ab[31,1];
     local bit30 = Ab[30,1];
     N = Z || (!E && (bit31 ^ bit30) != 0);
+}
+
+macro SetAcc(Ab, value)
+{
+    tmp:5 = value; # assert(sizeof(values) == 5)
+
+    Ab = value;
+}
+
+macro SatAndSetAccAndFlag(Ab, value)
+{
+    tmp:5 = value; # assert(sizeof(values) == 5)
+
+    SetAccFlag(value);
+    #todo: if (!regs.sata) { ... }
+    SetAcc(Ab, value);
 }
 
 macro StepAddress(unit, address, step, dmod)

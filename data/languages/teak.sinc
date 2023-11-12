@@ -519,9 +519,24 @@ with : op_0415=0x498 {
 }
 
 # 0x5E40 0x001F    push At<Register, 0>,
-:push    Register_0    is Register_0 & op_0515=0x2F2 
+with: op_0515=0x2F2
 {
-    Push(Register_0);
+    :push    Register_0    is Register_0
+    {
+        Push(Register_0);
+    }
+
+    # 0x5E40 0x001F    push At<Ax, 0>,
+    :push    RegToBus16_0    is RegToBus16_0
+    {
+        Push(RegToBus16_0);
+    }
+
+    # 0x5E40 0x001F    push At<Axlh, 0>,
+    :push    RegToBus16Sat_0    is RegToBus16Sat_0
+    {
+        Push(RegToBus16Sat_0);
+    }
 }
 
 # 0xD7C8 0x0007    push At<Abe, 1>,Unused<0>,
@@ -536,7 +551,7 @@ with : op_0415=0x498 {
 # 0xD7FC 0x0003    push_prpage Unused<0>,Unused<1>,
 :push   prpage    is prpage & Unused_0 & Unused_1 & op_0215=0x35FF 
 {
-    Push(prpage);
+    Push(sext(prpage));
 }
 
 # 0xD78C 0x0003    push At<Px, 1>,Unused<0>,
@@ -579,9 +594,30 @@ with : op_0415=0x498 {
 :pusha    Bx_1    is Bx_1 & Unused_0 & op_0215=0x35E2 unimpl
 
 # 0x5E60 0x001F    pop At<Register, 0>,
-:pop    Register_0    is Register_0 & op_0515=0x2F3 
+with: op_0515=0x2F3 
 {
-    Pop(Register_0);
+    :pop    Register_0    is Register_0
+    {
+        Pop(Register_0);
+    }
+    :pop    RegisterGetAccAx_0    is RegisterGetAccAx_0
+    {
+        local tmp:2 = 0;
+        Pop(tmp);
+        SatAndSetAccAndFlag(RegisterGetAccAx_0, sext(tmp));
+    }
+    :pop    RegisterGetAccAbl_0    is RegisterGetAccAbl_0
+    {
+        local tmp:2 = 0;
+        Pop(tmp);
+        SatAndSetAccAndFlag(RegisterGetAccAbl_0, zext(tmp));
+    }
+    :pop    RegisterGetAccAbh_0    is RegisterGetAccAbh_0
+    {
+        local tmp:2 = 0;
+        Pop(tmp);
+        SatAndSetAccAndFlag(RegisterGetAccAbh_0, sext(tmp) << 16);
+    }
 }
 
 # 0x47B4 0x0003    pop At<Abe, 0>,
@@ -596,13 +632,17 @@ with : op_0415=0x498 {
 # 0x0006 0x0021    pop At<Bx, 5>,Unused<0>,
 :pop    Bx_5    is Bx_5 & Unused_0 & op_0104=0x3 & op_0615=0x0 
 {
-    Pop(Bx_5);
+    local tmp:2 = 0;
+    Pop(tmp);
+    SatAndSetAccAndFlag(Bx_5, sext(tmp));
 }
 
 # 0xD7F4 0x0003    pop_prpage Unused<0>,Unused<1>,
 :pop    prpage    is prpage & Unused_0 & Unused_1 & op_0215=0x35FD 
 {
-    Pop(prpage);
+    local tmp:2 = 0;
+    Pop(tmp);
+    prpage = tmp[0,8];
 }
 
 # 0xD496 0x0001    pop At<Px, 0>,
