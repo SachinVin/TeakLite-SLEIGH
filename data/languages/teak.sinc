@@ -158,6 +158,12 @@ with : op_0415=0x498 {
 :alu    Alu_0,MemR7Imm16_16,Ax_8    is Alu_0 & Ax_8 & op_0307=0x1B & op_0915=0x6A ; MemR7Imm16_16 unimpl
 
 # 0x80C0 0xFFFF0F00    alu At<Alu, 9>,At<Imm16, 16>,At<Ax, 8>,
+:alu_or    Imm16_16,Ax_8    is Alu_9=0 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16
+{
+    local Imm16:2 = Imm16_16;
+    Ax_8 = zext(Imm16) | Ax_8;
+    SetAccFlag(Ax_8);
+}
 :alu    Alu_9,Imm16_16,Ax_8    is Alu_9 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16 unimpl
 
 # 0xC000 0x0FFF    alu At<Alu, 9>,At<Imm8, 0>,At<Ax, 8>,
