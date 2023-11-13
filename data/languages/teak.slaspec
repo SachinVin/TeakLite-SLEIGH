@@ -57,6 +57,7 @@ define register offset=0x130 size=2 [ cfgi cfgj stepi0 stepj0 ];
 define register offset=0x200 size=1 [ IU0 IU1               # st2
                                     ]
 ;
+#todo: Some of these maybe better as context registers
 define register offset=0x300 size=1 [ LM VL E C V N M Z C1             # stt0
                                     R P0E P1E                          # stt1
                                                                        # todo: stt2
@@ -389,10 +390,10 @@ RegToBus16_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19)
 RegToBus16Sat_0: Axl_0    is Ax_0 & Axl_0 & (Register_0004=0x1A | Register_0004=0x1B) 
 { 
     local tmp:2 = Axl_0;
+    LM = LM || (SAT == 0 && Ax_0 == sext(Ax_0[0,32]));
     # todo: consider using pcodeop, currently produces shitty decomp
     # if (SAT == 1 || Ax_0 == sext(Ax_0[0,32])) goto <end>;
     # # !regs.sat && value != SignExtend<32>(value)
-    #     LM = 1;
     #     tmp = ~sext(Ax_0[39,1]);
     # <end>
     export tmp;
@@ -558,7 +559,6 @@ macro StepAddress(unit, address, step, dmod)
 
 macro ProductToBus40(Px, ret)
 {
-    
     index:4 = &Px - &p0;
     PxE = *[register]:4 (&P0E + index);
     tmp:5 = sext(PxE[0,1]);
