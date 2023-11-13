@@ -709,7 +709,37 @@ with: op_0515=0x2F3
 :shfc    Ab_10,Ab_5,Cond_0    is Ab_10 & Ab_5 & Cond_0 & op_0404=0x0 & op_0709=0x5 & op_1215=0xD unimpl
 
 # 0x9240 0x0DBF    shfi At<Ab, 10>,At<Ab, 7>,At<Imm6s, 0>,
-:shfi    Ab_10,Ab_7,Imm6s_0    is Ab_10 & Ab_7 & Imm6s_0 & op_0606=0x1 & op_0909=0x1 & op_1215=0x9 unimpl
+with :op_0606=0x1 & op_0909=0x1 & op_1215=0x9
+{
+    # op_0505 is the sign bit for Imm6s_0
+    # left shift
+    :shfi    Ab_10,Ab_7,Imm6s_0    is Ab_10 & Ab_7 & Imm6s_0 & op_0505=0x0
+    {
+        V = Ab_10 != 0 && S == 0;
+        VL = VL || V;
+        Ab_7 = Ab_10 << Imm6s_0;
+        C = Ab_7[39,1] != 0;
+        SetAccFlag(Ab_7);
+        LM = LM || ((S == 0) && (SATA == 0) && (V || Ab_7 != sext(Ab_7[0,32])));
+        # todo: saturate;
+    }
+    # right shift
+    :shfi    Ab_10,Ab_7,Imm6s_0    is Ab_10 & Ab_7 & Imm6s_0 & op_0505=0x1
+    {
+        local nsv:2 = 0 - Imm6s_0;
+        C = ((Ab_10 >> nsv - 1) & 1) != 0;
+        Ab_7 = Ab_10 >> nsv;
+        if(S==1) goto <end>;
+            # Arithamatic shift
+            Ab_7 = Ab_10 s>> nsv;
+        <end>
+        V = V && S;
+
+        SetAccFlag(Ab_7);
+        LM = LM || ((S == 0) && (SATA == 0) && (V || Ab_7 != sext(Ab_7[0,32])));
+        # todo: saturate;
+    }
+}
 
 # 0x80C1 0x0F00    tst4b At<ArRn2, 10>,At<ArStep2, 8>,
 :tst4b    ArRn2_10,ArStep2_8    is ArRn2_10 & ArStep2_8 & op_0007=0xC1 & op_1215=0x8 unimpl
@@ -850,7 +880,25 @@ with: op_0515=0x2F3
 :mov    Imm16_16,Bx_8    is Bx_8 & op_0007=0x20 & op_0915=0x2F ; Imm16_16 unimpl
 
 # 0x5E00 0xFFFF001F    mov At<Imm16, 16>,At<Register, 0>,
-:mov    Imm16_16,Register_0    is Register_0 & op_0515=0x2F0 ; Imm16_16 unimpl
+:mov    Imm16_16,Register_0    is Register_0 & op_0515=0x2F0 ; Imm16_16
+{
+    Register_0 = Imm16_16;
+}
+:mov    Imm16_16,RegisterGetAccAx_0    is RegisterGetAccAx_0 & op_0515=0x2F0 ; Imm16_16
+{
+    local tmp:2 = Imm16_16;
+    SatAndSetAccAndFlag(RegisterGetAccAx_0, sext(tmp));
+}
+:mov    Imm16_16,RegisterGetAccAbl_0    is RegisterGetAccAbl_0 & op_0515=0x2F0 ; Imm16_16
+{
+    local tmp:2 = Imm16_16;
+    SatAndSetAccAndFlag(RegisterGetAccAbl_0, zext(tmp));
+}
+:mov    Imm16_16,RegisterGetAccAbh_0    is RegisterGetAccAbh_0 & op_0515=0x2F0 ; Imm16_16
+{
+    local tmp:2 = Imm16_16;
+    SatAndSetAccAndFlag(RegisterGetAccAbh_0, sext(tmp) << 16);
+}
 
 # 0x4F80 0x001F    mov_icr At<Imm5, 0>,
 :mov_icr    Imm5_0    is Imm5_0 & op_0515=0x27C unimpl
