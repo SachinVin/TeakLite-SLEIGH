@@ -442,16 +442,21 @@ Address18_16and5: Address18    is Address18_2_5 ; Address18_16_16
   export *:4 Address18;
 }
 
-RelAddr7_4: reloc is RelAddr7_0410
+RelAddr7_4: [reloc] is RelAddr7_0410
     [ reloc = inst_start + RelAddr7_0410 + 1; ]
 {
     export *:4 reloc;
 }
 
-MemImm8_0: reloc is MemImm8_0007
-    [ reloc = (PAGE << 8) + MemImm8_0007; ]
+MemImm8_0: [PAGE:MemImm8_0007] is PAGE & MemImm8_0007
 {
+    local reloc:3 = (zext(PAGE) << 8) + zext(MemImm8_0007:1);
     export *:2 reloc;
+}
+
+MemImm16_16: [MemImm16_1631] is MemImm16_1631
+{
+    export *:2 MemImm16_1631;
 }
 
 Cond_0: ""       is Cond_0003=0x0 { local tmp:1 = (1); export tmp; } # Always
@@ -553,6 +558,11 @@ macro SatAndSetAccAndFlag(Ab, value)
     SetAcc(Ab, value);
 }
 
+macro SetAccAndFlag(Ab, value) 
+{
+    SetAccFlag(value);
+    SetAcc(Ab, value);
+}
 macro StepAddress(unit, address, step, dmod)
 {
     #todo

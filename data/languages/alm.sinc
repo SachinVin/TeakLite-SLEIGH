@@ -1,112 +1,141 @@
-# enum class AlmOp {
-#     Or,
-#     And,
-#     Xor,
-#     Add,
-#     Tst0,
-#     Tst1,
-#     Cmp,
-#     Sub,
-#     Msu,
-#     Addh,
-#     Addl,
-#     Subh,
-#     Subl,
-#     Sqr,
-#     Sqra,
-#     Cmpu,
-#     Reserved
-# };
+# using Alm = EnumOperand<AlmOp,
+#     AlmOp::Or,
+#     AlmOp::And,
+#     AlmOp::Xor,
+#     AlmOp::Add,
+#     AlmOp::Tst0,
+#     AlmOp::Tst1,
+#     AlmOp::Cmp,
+#     AlmOp::Sub,
+#     AlmOp::Msu,
+#     AlmOp::Addh,
+#     AlmOp::Addl,
+#     AlmOp::Subh,
+#     AlmOp::Subl,
+#     AlmOp::Sqr,
+#     AlmOp::Sqra,
+#     AlmOp::Cmpu
+# >;
+macro AlmGenericOr(a, Ax) 
+{
+    value:5 = a;
 
+    value = value | Ax;
+    SetAccAndFlag(Ax, value);
+}
+macro AlmGenericAnd(a, Ax) 
+{
+    value:5 = a;
+
+    value = value & Ax;
+    SetAccAndFlag(Ax, value);
+}
+macro AlmGenericXor(a, Ax) 
+{
+    value:5 = a;
+
+    value = value ^ Ax;
+    SetAccAndFlag(Ax, value);
+}
+macro AlmGenericAdd(a, Ax) 
+{
+    value:5 = a;
+    V = scarry(value, Ax);
+    VL = VL || V;
+    Ax = value + Ax;
+    SetAccFlag(Ax);
+}
+macro AlmGenericTst0(a, Ax) 
+{
+    value:2 = a;
+    local tmp:2 = value & (Ax:2);
+    Z = tmp == 0;
+}
+macro AlmGenericTst1(a, Ax) 
+{
+    value:2 = a;
+    local tmp:2 = value & ~(Ax:2);
+    Z = tmp == 0;
+}
+macro AlmGenericCmp(a, Ax) 
+{
+    value:5 = a;
+    V = sborrow(value, Ax);
+    VL = VL || V;
+    value = value - Ax;
+    SetAccFlag(value);
+}
+macro AlmGenericSub(a, Ax) 
+{
+    value:5 = a;
+    V = sborrow(value, Ax);
+    VL = VL || V;
+    value = value - Ax;
+    SatAndSetAccAndFlag(Ax, value);
+}
+macro AlmGenericMsu() {}
+macro AlmGenericSqr() {}
+macro AlmGenericSqra() {}
 # <<< ALM normal >>>
 # 0xA000 0x1FFF    alm At<Alm, 9>,At<MemImm8, 0>,At<Ax, 8>,
 with : op_1315=0x5 
 {
-    :alm_or    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x0 & MemImm8_0 & Ax_8 
+    :alm_or    MemImm8_0,Ax_8    is Alm_9=0x0 & MemImm8_0 & Ax_8 
     {
-        Ax_8 = zext(MemImm8_0) | Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericOr(zext(MemImm8_0), Ax_8);
     }
-    :alm_and    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x1 & MemImm8_0 & Ax_8 
+    :alm_and    MemImm8_0,Ax_8    is Alm_9=0x1 & MemImm8_0 & Ax_8 
     {
-        Ax_8 = zext(MemImm8_0) & Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericAnd(zext(MemImm8_0), Ax_8);
     }
-    :alm_xor    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x2 & MemImm8_0 & Ax_8 
+    :alm_xor    MemImm8_0,Ax_8    is Alm_9=0x2 & MemImm8_0 & Ax_8 
     {
-        Ax_8 = zext(MemImm8_0) ^ Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericXor(zext(MemImm8_0), Ax_8);
     }
-    :alm_add    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x3 & MemImm8_0 & Ax_8 
+    :alm_add    MemImm8_0,Ax_8    is Alm_9=0x3 & MemImm8_0 & Ax_8 
     {
-        V = scarry(sext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = sext(MemImm8_0) + Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericAdd(sext(MemImm8_0), Ax_8);
     }
-    :alm_tst0    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x4 & MemImm8_0 & Ax_8 
+    :alm_tst0    MemImm8_0,Ax_8    is Alm_9=0x4 & MemImm8_0 & Ax_8 
     {
-        local tmp:2 = MemImm8_0 & Ax_8:2;
-        Z = tmp == 0;
+        AlmGenericTst0(MemImm8_0, Ax_8);
     }
-    :alm_tst1    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x5 & MemImm8_0 & Ax_8 
+    :alm_tst1    MemImm8_0,Ax_8    is Alm_9=0x5 & MemImm8_0 & Ax_8 
     {
-        local tmp:2 = MemImm8_0:2 & ~Ax_8:2;
-        Z = tmp == 0;
+        AlmGenericTst1(MemImm8_0, Ax_8);
     }
-    :alm_cmp    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x6 & MemImm8_0 & Ax_8 
+    :alm_cmp    MemImm8_0,Ax_8    is Alm_9=0x6 & MemImm8_0 & Ax_8 
     {
-        V = sborrow(sext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        local tmp:5 = sext(MemImm8_0) - Ax_8;
-        SetAccFlag(tmp);
+        AlmGenericCmp(sext(MemImm8_0), Ax_8);
     }
-    :alm_sub    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x7 & MemImm8_0 & Ax_8 
+    :alm_sub    MemImm8_0,Ax_8    is Alm_9=0x7 & MemImm8_0 & Ax_8 
     {
-        V = sborrow(sext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = sext(MemImm8_0) - Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericSub(sext(MemImm8_0), Ax_8);
     }
-    :alm_msu    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x8 & MemImm8_0 & Ax_8 unimpl
-    :alm_addh    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0x9 & MemImm8_0 & Ax_8 
+    :alm_msu    MemImm8_0,Ax_8    is Alm_9=0x8 & MemImm8_0 & Ax_8 unimpl
+    :alm_addh    MemImm8_0,Ax_8    is Alm_9=0x9 & MemImm8_0 & Ax_8 
     {
         local MemImm8h:5 = sext(MemImm8_0) << 16;
-        V = scarry(MemImm8h, Ax_8);
-        VL = VL || V;
-        Ax_8 = MemImm8h + Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericAdd(MemImm8h, Ax_8);
     }
-    :alm_addl    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xA & MemImm8_0 & Ax_8 
+    :alm_addl    MemImm8_0,Ax_8    is Alm_9=0xA & MemImm8_0 & Ax_8 
     {
-        V = scarry(zext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = zext(MemImm8_0) + Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericAdd(zext(MemImm8_0), Ax_8);
     }
-    :alm_subh    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xB & MemImm8_0 & Ax_8 
+    :alm_subh    MemImm8_0,Ax_8    is Alm_9=0xB & MemImm8_0 & Ax_8 
     {
         local MemImm8h:5 = sext(MemImm8_0) << 16;
-        V = sborrow(MemImm8h, Ax_8);
-        VL = VL || V;
-        Ax_8 = MemImm8h - Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericSub(MemImm8h, Ax_8);
     }
-    :alm_subl    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xC & MemImm8_0 & Ax_8
+    :alm_subl    MemImm8_0,Ax_8    is Alm_9=0xC & MemImm8_0 & Ax_8
     {
-        V = sborrow(zext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = zext(MemImm8_0) - Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericSub(zext(MemImm8_0), Ax_8);
     }
-    :alm_sqr    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xD & MemImm8_0 & Ax_8 unimpl
-    :alm_sqra    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xE & MemImm8_0 & Ax_8 unimpl
-    :alm_cmpu    [PAGE:MemImm8_0],Ax_8    is PAGE & Alm_9=0xF & MemImm8_0 & Ax_8 
+    :alm_sqr    MemImm8_0,Ax_8    is Alm_9=0xD & MemImm8_0 & Ax_8 unimpl
+    :alm_sqra    MemImm8_0,Ax_8    is Alm_9=0xE & MemImm8_0 & Ax_8 unimpl
+    :alm_cmpu    MemImm8_0,Ax_8    is Alm_9=0xF & MemImm8_0 & Ax_8 
     {
-        V = sborrow(zext(MemImm8_0), Ax_8);
-        VL = VL || V;
-        local tmp:5 = zext(MemImm8_0) - Ax_8;
-        SetAccFlag(tmp);
+        AlmGenericCmp(zext(MemImm8_0), Ax_8);
     }
 }
 
