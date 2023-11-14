@@ -904,7 +904,12 @@ with :op_0606=0x1 & op_0909=0x1 & op_1215=0x9
 :mov_sv    Imm8s_0    is Imm8s_0 & op_0815=0x5 unimpl
 
 # 0x2100 0x10FF    mov At<Imm8, 0>,At<Axl, 12>,
-:mov    Imm8_0,Axl_12    is Imm8_0 & Axl_12 & op_0811=0x1 & op_1315=0x1 unimpl
+:mov    Imm8_0,GetAccAxl_12    is Imm8_0 & GetAccAxl_12 & op_0811=0x1 & op_1315=0x1 
+{
+    local Imm8:5 = Imm8_0;
+    SetAccFlag(Imm8);
+    GetAccAxl_12 = Imm8;
+}
 
 # 0xD498 0xFFFF0100    mov At<MemR7Imm16, 16>,At<Ax, 8>,
 :mov    MemR7Imm16_16,Ax_8    is Ax_8 & op_0007=0x98 & op_0915=0x6A ; MemR7Imm16_16 unimpl
@@ -940,7 +945,15 @@ with :op_0606=0x1 & op_0909=0x1 & op_1215=0x9
 :mov    Register_0,Bx_5    is Register_0 & Bx_5 & op_0615=0x17B unimpl
 
 # 0x5800 0x03FF    mov At<Register, 0>,At<Register, 5>,
-:mov    Register_0,Register_5    is Register_0 & Register_5 & op_1015=0x16 unimpl
+with: op_1015=0x16 
+{
+    :mov    Register_0,Register_5    is Register_0 & Register_5 unimpl
+
+    :mov    RegToBus16Sat_0,Register_5    is RegToBus16Sat_0 & Register_5 
+    {
+        Register_5 = RegToBus16Sat_0:2;
+    }
+}
 
 # 0xD490 0x0060    mov_repc_to At<Ab, 5>,
 :mov_repc_to    Ab_5    is Ab_5 & op_0004=0x10 & op_0715=0x1A9 unimpl
