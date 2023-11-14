@@ -377,8 +377,8 @@ Register_0: pc    is pc & Register_0004=0x0C unimpl
 Register_0: sp    is sp & Register_0004=0x0D { export sp:2; }
 Register_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19) unimpl
 
-# Prefer for storing to Acc
-RegisterGetAccAx_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19) { export Ax_0; }
+RegisterAx_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19) { export Ax_0; }
+
 RegisterGetAccAbh_0: Bxh_0    is Bx_0 & Bxh_0 & (Register_0004=0x10 | Register_0004=0x11) { export Bx_0; }
 RegisterGetAccAbh_0: Axh_0    is Ax_0 & Axh_0 & (Register_0004=0x1C | Register_0004=0x1D) { export Ax_0; }
 RegisterGetAccAbl_0: Bxl_0    is Bx_0 & Bxl_0 & (Register_0004=0x12 | Register_0004=0x13) { export Bx_0; }

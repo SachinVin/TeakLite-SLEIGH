@@ -606,11 +606,11 @@ with: op_0515=0x2F3
     {
         Pop(Register_0);
     }
-    :pop    RegisterGetAccAx_0    is RegisterGetAccAx_0
+    :pop    RegisterAx_0    is RegisterAx_0
     {
         local tmp:2 = 0;
         Pop(tmp);
-        SatAndSetAccAndFlag(RegisterGetAccAx_0, sext(tmp));
+        SatAndSetAccAndFlag(RegisterAx_0, sext(tmp));
     }
     :pop    RegisterGetAccAbl_0    is RegisterGetAccAbl_0
     {
@@ -882,12 +882,12 @@ with :op_0606=0x1 & op_0909=0x1 & op_1215=0x9
 # 0x5E00 0xFFFF001F    mov At<Imm16, 16>,At<Register, 0>,
 :mov    Imm16_16,Register_0    is Register_0 & op_0515=0x2F0 ; Imm16_16
 {
-    Register_0 = Imm16_16;
+    Register_0 = Imm16_16:2;
 }
-:mov    Imm16_16,RegisterGetAccAx_0    is RegisterGetAccAx_0 & op_0515=0x2F0 ; Imm16_16
+:mov    Imm16_16,RegisterAx_0    is RegisterAx_0 & op_0515=0x2F0 ; Imm16_16
 {
     local tmp:2 = Imm16_16;
-    SatAndSetAccAndFlag(RegisterGetAccAx_0, sext(tmp));
+    SatAndSetAccAndFlag(RegisterAx_0, sext(tmp));
 }
 :mov    Imm16_16,RegisterGetAccAbl_0    is RegisterGetAccAbl_0 & op_0515=0x2F0 ; Imm16_16
 {
