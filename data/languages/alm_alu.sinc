@@ -288,3 +288,51 @@ with :op_0507=0x5 & op_1315=0x4
 
 # 0x8A63 0x0008    alm_r6 Const<Alm, 15>,At<Ax, 3>,
 :alm_r6    Ax_3    is Ax_3 & op_0002=0x3 & op_0415=0x8A6 unimpl
+
+# <<< ALU normal >>>
+# using Alu = EnumOperand<AlmOp,
+#     AlmOp::Or,
+#     AlmOp::And,
+#     AlmOp::Xor,
+#     AlmOp::Add,
+
+#     AlmOp::Reserved,
+#     AlmOp::Reserved,
+#     AlmOp::Cmp,
+#     AlmOp::Sub
+# >;
+
+# 0xD4F8 0xFFFF0107    alu At<Alu, 0>,At<MemImm16, 16>,At<Ax, 8>,
+:alu_or    MemImm16_16,Ax_8    is Alu_0=0x0 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
+:alu_and    MemImm16_16,Ax_8    is Alu_0=0x1 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
+:alu_xor    MemImm16_16,Ax_8    is Alu_0=0x2 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
+
+:alu_add    MemImm16_16,Ax_8    is Alu_0=0x3 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16
+{
+    local Imm16:2 = MemImm16_16;
+
+    V = scarry(sext(Imm16), Ax_8);
+    VL = VL || V;
+    Ax_8 = sext(Imm16) + Ax_8;
+    SetAccFlag(Ax_8);
+}
+:alu_cmp    MemImm16_16,Ax_8    is Alu_0=0x6 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
+:alu_sub    MemImm16_16,Ax_8    is Alu_0=0x7 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
+
+# 0xD4D8 0xFFFF0107    alu At<Alu, 0>,At<MemR7Imm16, 16>,At<Ax, 8>,
+:alu    Alu_0,MemR7Imm16_16,Ax_8    is Alu_0 & Ax_8 & op_0307=0x1B & op_0915=0x6A ; MemR7Imm16_16 unimpl
+
+# 0x80C0 0xFFFF0F00    alu At<Alu, 9>,At<Imm16, 16>,At<Ax, 8>,
+:alu_or    Imm16_16,Ax_8    is Alu_9=0 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16
+{
+    local Imm16:2 = Imm16_16;
+    Ax_8 = zext(Imm16) | Ax_8;
+    SetAccFlag(Ax_8);
+}
+:alu    Alu_9,Imm16_16,Ax_8    is Alu_9 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16 unimpl
+
+# 0xC000 0x0FFF    alu At<Alu, 9>,At<Imm8, 0>,At<Ax, 8>,
+:alu    Alu_9,Imm8_0,Ax_8    is Alu_9 & Imm8_0 & Ax_8 & op_1215=0xC unimpl
+
+# 0x4000 0x0F7F    alu At<Alu, 9>,At<MemR7Imm7s, 0>,At<Ax, 8>,
+:alu    Alu_9,MemR7Imm7s_0,Ax_8    is Alu_9 & MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_1215=0x4 unimpl
