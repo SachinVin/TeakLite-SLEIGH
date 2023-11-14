@@ -4,9 +4,12 @@
   <programcounter register="pc"/>
   
   <default_symbols>
-    <symbol name="NMI" address="FFFA" entry="true" type="code_ptr"/>
-    <symbol name="RES" address="FFFC" entry="true" type="code_ptr"/>
-    <symbol name="IRQ" address="FFFE" entry="true" type="code_ptr"/>
+    <symbol name="_start" address="RAM:0x0" entry="true"/>
+    <symbol name="_trap_handler" address="RAM:0x2" entry="true"/>
+    <symbol name="_nmi_handler" address="RAM:0x4" entry="true"/>
+    <symbol name="_int0_handler" address="RAM:0x6" entry="true"/>
+    <symbol name="_int1_handler" address="RAM:0xe" entry="true"/>
+    <symbol name="_int2_handler" address="RAM:0x16" entry="true"/>
   </default_symbols>
   
   <default_memory_blocks>
