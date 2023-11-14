@@ -374,7 +374,7 @@ Register_0: Register_0004    is Register_0004 { export Register_0004; }
 # Placeholders
 Register_0: p0    is p0 & Register_0004=0x0B unimpl
 Register_0: pc    is pc & Register_0004=0x0C unimpl
-Register_0: sp    is sp & Register_0004=0x0D { export sp:2; }
+Register_0: sp    is sp & Register_0004=0x0D unimpl
 Register_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19) unimpl
 
 RegisterAx_0: Ax_0    is Ax_0 & (Register_0004=0x18 | Register_0004=0x19) { export Ax_0; }
