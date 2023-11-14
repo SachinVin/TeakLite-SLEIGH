@@ -544,14 +544,14 @@ macro SetAccFlag(Ab)
 
 macro SetAcc(Ab, value)
 {
-    tmp:5 = value; # assert(sizeof(values) == 5)
+    tmp:5 = value; # assert(sizeof(value) == 5)
 
-    Ab = value;
+    Ab = tmp;
 }
 
 macro SatAndSetAccAndFlag(Ab, value)
 {
-    tmp:5 = value; # assert(sizeof(values) == 5)
+    tmp:5 = value; # assert(sizeof(value) == 5)
 
     SetAccFlag(value);
     #todo: if (!regs.sata) { ... }
