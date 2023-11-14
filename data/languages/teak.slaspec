@@ -501,7 +501,7 @@ Address18_16and5: Address18    is Address18_2_5 ; Address18_16_16
   export *:4 Address18;
 }
 
-RelAddr7_4: [reloc] is RelAddr7_0410
+RelAddr7_4: reloc is RelAddr7_0410
     [ reloc = inst_start + RelAddr7_0410 + 1; ]
 {
     export *:4 reloc;
