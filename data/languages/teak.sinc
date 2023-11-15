@@ -166,6 +166,16 @@ with : op_0415=0x498 {
 # 0x80E0 0xFFFF0E1F    alb At<Alb, 9>,At<Imm16, 16>,At<Rn, 0>,At<StepZIDS, 3>,
 :alb    Alb_9,Imm16_16,Rn_0,StepZIDS_3    is Alb_9 & Rn_0 & StepZIDS_3 & op_0508=0x7 & op_1215=0x8 ; Imm16_16 unimpl
 
+:alb_set    Imm16_16,[Rn_0,0x0]    is Alb_9=0x0 & Rn_0 & StepZIDS_3=0x0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
+{
+    local Rn:3 = zext(Rn_0);
+    local MemRn:2 = *:2 Rn;
+    local Imm16:2 = Imm16_16;
+    MemRn = Imm16 | MemRn;
+    M = (MemRn < 0);
+    *:2 Rn = MemRn;
+}
+
 # 0x81E0 0xFFFF0E1F    alb At<Alb, 9>,At<Imm16, 16>,At<Register, 0>,
 :alb    Alb_9,Imm16_16,Register_0    is Alb_9 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16 unimpl
 
