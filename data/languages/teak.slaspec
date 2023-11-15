@@ -544,14 +544,14 @@ macro Push(value)
 {
     tmp:2 = value; # assert(sizeof(value) == 2)
     sp = sp - 1;
-    *:3 sp = tmp;
+    *:2 sp = tmp;
 }
 
 macro Pop(value)
 {
     tmp:2 = value; # assert(sizeof(value) == 2)
 
-    tmp = *:3 sp;
+    tmp = *:2 sp;
     sp = sp + 1;
 
     value = tmp;
