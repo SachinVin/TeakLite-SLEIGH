@@ -477,6 +477,7 @@ Register_5: Register_0509    is Register_0509 { export Register_0509; }
 # Placeholders
 Register_5: p0    is p0 & Register_0509=0x0B unimpl
 Register_5: pc    is pc & Register_0509=0x0C unimpl
+Register_5: sp    is sp & Register_0509=0x0D unimpl
 Register_5: Ax_5    is Ax_5 & (Register_0509=0x18 | Register_0509=0x19) unimpl
 
 
