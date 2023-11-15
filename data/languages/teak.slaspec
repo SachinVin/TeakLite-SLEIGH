@@ -562,32 +562,34 @@ macro PushPC()
     l:2 = inst_next & 0xFFFF;
     h:2 = inst_next >> 16;
 
-    if (CPC  == 0) goto <cpc0>;
-    # (CPC  == 1)
-    Push(h);
-    Push(l);
-    goto <end>;
-    <cpc0>
+    # todo: this is left unimplemented to avoid complex decomp
+    # if (CPC  == 0) goto <cpc0>;
+    # # (CPC  == 1)
+    # Push(h);
+    # Push(l);
+    # goto <end>;
+    # <cpc0>
     # (CPC  == 0)
     Push(l);
     Push(h);
-    <end>
+    # <end>
 }
 macro PopPC()
 {
     l:2 = 0;
     h:2 = 0;
 
-    if (CPC  == 0) goto <cpc0>;
-    # (CPC  == 1)
-    Pop(l);
-    Pop(h);
-    goto <end>;
-    <cpc0>
+    # todo: this is left unimplemented to avoid complex decomp
+    # if (CPC  == 0) goto <cpc0>;
+    # # (CPC  == 1)
+    # Pop(l);
+    # Pop(h);
+    # goto <end>;
+    # <cpc0>
     # (CPC  == 0)
     Pop(h);
     Pop(l);
-    <end>
+    # <end>
     pc = zext(h) << 16 | zext(l);
 }
 macro SetAccFlag(Ab)
