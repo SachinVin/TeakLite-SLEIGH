@@ -166,32 +166,23 @@ with :op_0507=0x5 & op_1315=0x4
 {
     :alm_or    Register_0,Ax_8    is Alm_9=0x0 & Register_0 & Ax_8 
     {
-        Ax_8 = zext(Register_0) | Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericOr(zext(Register_0), Ax_8);
     }
     :alm_and    Register_0,Ax_8    is Alm_9=0x1 & Register_0 & Ax_8 
     {
-        Ax_8 = zext(Register_0) & Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericAnd(zext(Register_0), Ax_8);
     }
     :alm_xor    Register_0,Ax_8    is Alm_9=0x2 & Register_0 & Ax_8 
     {
-        Ax_8 = zext(Register_0) ^ Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericXor(zext(Register_0), Ax_8);
     }
     :alm_add    Register_0,Ax_8    is Alm_9=0x3 & Register_0 & Ax_8 
     {
-        V = scarry(sext(Register_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = sext(Register_0) + Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericAdd(sext(Register_0), Ax_8);
     }
     :alm_add    RegisterAx_0,Ax_8    is Alm_9=0x3 & RegisterAx_0 & Ax_8 
     {
-        V = scarry(RegisterAx_0, Ax_8);
-        VL = VL || V;
-        Ax_8 = RegisterAx_0 + Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericAdd(sext(RegisterAx_0), Ax_8);
     }
     :alm_tst0    Register_0,Ax_8    is Alm_9=0x4 & Register_0 & Ax_8 
     {
@@ -205,17 +196,12 @@ with :op_0507=0x5 & op_1315=0x4
     }
     :alm_cmp    Register_0,Ax_8    is Alm_9=0x6 & Register_0 & Ax_8 
     {
-        V = sborrow(sext(Register_0), Ax_8);
-        VL = VL || V;
-        local tmp:5 = sext(Register_0) - Ax_8;
-        SetAccFlag(tmp);
+        AlmGenericCmp(sext(Register_0), Ax_8);
     }
     :alm_sub    Register_0,Ax_8    is Alm_9=0x7 & Register_0 & Ax_8 
     {
-        V = sborrow(sext(Register_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = sext(Register_0) - Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericSub(sext(Register_0), Ax_8);
+    }
     :alm_msu    Register_0,Ax_8    is Alm_9=0x8 & Register_0 & Ax_8 & ProductToBus40p0
     {
         AlmGenericSub(ProductToBus40p0,Ax_8);
@@ -225,32 +211,21 @@ with :op_0507=0x5 & op_1315=0x4
     :alm_addh    Register_0,Ax_8    is Alm_9=0x9 & Register_0 & Ax_8 
     {
         local Register_0h:5 = sext(Register_0) << 16;
-        V = scarry(Register_0h, Ax_8);
-        VL = VL || V;
-        Ax_8 = Register_0h + Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericAdd(Register_0h, Ax_8);
     }
     :alm_addl    Register_0,Ax_8    is Alm_9=0xA & Register_0 & Ax_8 
     {
-        V = scarry(zext(Register_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = zext(Register_0) + Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericAdd(zext(Register_0), Ax_8);
     }
     :alm_subh    Register_0,Ax_8    is Alm_9=0xB & Register_0 & Ax_8 
     {
         local Register_0h:5 = sext(Register_0) << 16;
-        V = sborrow(Register_0h, Ax_8);
-        VL = VL || V;
-        Ax_8 = Register_0h - Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericSub(Register_0h, Ax_8);
     }
     :alm_subl    Register_0,Ax_8    is Alm_9=0xC & Register_0 & Ax_8
     {
-        V = sborrow(zext(Register_0), Ax_8);
-        VL = VL || V;
-        Ax_8 = zext(Register_0) - Ax_8;
-        SetAccFlag(Ax_8);
+        AlmGenericSub(zext(Register_0), Ax_8);
+    }
     :alm_sqr    Register_0,Ax_8    is Alm_9=0xD & Register_0 & Ax_8
     {
         AlmGenericSqr(Register_0);
@@ -262,10 +237,7 @@ with :op_0507=0x5 & op_1315=0x4
     }
     :alm_cmpu    Register_0,Ax_8    is Alm_9=0xF & Register_0 & Ax_8 
     {
-        V = sborrow(zext(Register_0), Ax_8);
-        VL = VL || V;
-        local tmp:5 = zext(Register_0) - Ax_8;
-        SetAccFlag(tmp);
+        AlmGenericCmp(zext(Register_0), Ax_8);
     }
 }
 
