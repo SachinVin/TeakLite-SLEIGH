@@ -3,7 +3,8 @@
 define endian=little;
 define alignment=2;
 
-define space RAM    type=ram_space    size=3     wordsize=2      default;
+define space CODE    type=ram_space    size=3     wordsize=2        default;
+define space DATA    type=ram_space    size=2     wordsize=2;
 define space register type=register_space size=4;
 
 # 40bit accumulators
@@ -34,9 +35,7 @@ define register offset=0x50 size=4  [ p0 p1 ];
 
 # Misc
 define register offset=0x60 size=3  [ pc ]; # todo: 18bit pc
-define register offset=0x63 size=3  [ sp ]; # todo: 16bit sp but ghidra will produce weird decomp when 
-                                            #       sp size doesnt match the ram_space size
-define register offset=0x70 size=2  [ sv mixp lc repc dvm vtr0 vtr1 ];
+define register offset=0x70 size=2  [ sp sv mixp lc repc dvm vtr0 vtr1 ];
 define register offset=0x80 size=1  [ prpage ];
 
 # User defined
@@ -357,7 +356,7 @@ attach variables [ Register_0004 Register_0509 ] [ r0 r1 r2 r3 r4 r5 r7 y0
                                              st0 st1 st2
                                              _ # p0h
                                              _ # pc
-                                             _ # sp
+                                             sp
                                              cfgi cfgj
                                              b0h b1h b0l b1l
                                              ext0 ext1 ext2 ext3
@@ -374,7 +373,6 @@ Register_0: Register_0004    is Register_0004 { export Register_0004; }
 # Placeholders
 Register_0: p0    is p0 & Register_0004=0x0B unimpl
 Register_0: pc    is pc & Register_0004=0x0C unimpl
-Register_0: sp    is sp & Register_0004=0x0D unimpl
 Register_0: Ax_0    is Ax_0 & Register_0004=0x18 unimpl
 Register_0: Ax_0    is Ax_0 & Register_0004=0x19 unimpl
 
@@ -479,7 +477,6 @@ Register_5: Register_0509    is Register_0509 { export Register_0509; }
 # Placeholders
 Register_5: p0    is p0 & Register_0509=0x0B unimpl
 Register_5: pc    is pc & Register_0509=0x0C unimpl
-Register_5: sp    is sp & Register_0509=0x0D unimpl
 Register_5: Ax_5    is Ax_5 & (Register_0509=0x18 | Register_0509=0x19) unimpl
 
 
@@ -487,44 +484,44 @@ Address18_16and0: Address18    is Address18_2_0 ; Address18_16_16
   [ Address18 = ((Address18_2_0<<16) | (Address18_16_16)); ]
 {
   # don't export as an address, may be PIC code, and would add spurious symbols.
-  export *:4 Address18;
+  export *[CODE]:4 Address18;
 }
 
 Address18_16and4: Address18    is Address18_2_4 ; Address18_16_16
   [ Address18 = ((Address18_2_4<<16) | (Address18_16_16)); ]
 {
   # don't export as an address, may be PIC code, and would add spurious symbols.
-  export *:4 Address18;
+  export *[CODE]:4 Address18;
 }
 
 Address18_16and5: Address18    is Address18_2_5 ; Address18_16_16
   [ Address18 = ((Address18_2_5<<16) | (Address18_16_16)); ]
 {
   # don't export as an address, may be PIC code, and would add spurious symbols.
-  export *:4 Address18;
+  export *[CODE]:4 Address18;
 }
 
 RelAddr7_4: reloc is RelAddr7_0410
     [ reloc = inst_start + RelAddr7_0410 + 1; ]
 {
-    export *:4 reloc;
+    export *[CODE]:4 reloc;
 }
 
 MemImm8_0: [PAGE:MemImm8_0007] is PAGE & MemImm8_0007
 {
-    local reloc:3 = (zext(PAGE) << 8) + zext(MemImm8_0007:1);
-    export *:2 reloc;
+    local reloc:2 = (zext(PAGE) << 8) + zext(MemImm8_0007:1);
+    export *[DATA]:2 reloc;
 }
 
 MemImm16_16: [MemImm16_1631] is MemImm16_1631
 {
-    export *:2 MemImm16_1631;
+    export *[DATA]:2 MemImm16_1631;
 }
 
 MemR7Imm16_16: [r7,MemR7Imm16_1631] is r7 & MemR7Imm16_1631
 {
-    local reloc:3 = zext(r7) + zext(MemR7Imm16_1631:2);
-    export *:2 reloc;
+    local reloc:2 = zext(r7) + zext(MemR7Imm16_1631:2);
+    export *[DATA]:2 reloc;
 }
 
 # Rn_0 seems to always be followed by StepZIDS_3 (sane encoding?!)
@@ -544,9 +541,9 @@ RnAndModify_0: Rn_0,-0x1 is Rn_0 & StepZIDS_3=0x2
     Rn_0 = Rn_0 - 1;
     export tmp;
 }
-RnAddressAndModify_0:    is RnAndModify_0
+RnAddressAndModify_0: [RnAndModify_0]    is RnAndModify_0
 {
-    export *:2 RnAndModify_0;
+    export *[DATA]:2 RnAndModify_0;
 }
 
 ProductToBus40p0: p0    is p0
@@ -587,14 +584,14 @@ macro Push(value)
 {
     tmp:2 = value; # assert(sizeof(value) == 2)
     sp = sp - 1;
-    *:2 sp = tmp;
+    *[DATA]:2 sp = tmp;
 }
 
 macro Pop(value)
 {
     tmp:2 = value; # assert(sizeof(value) == 2)
 
-    tmp = *:2 sp;
+    tmp = *[DATA]:2 sp;
     sp = sp + 1;
 
     value = tmp;

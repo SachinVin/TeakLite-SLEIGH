@@ -2,19 +2,20 @@
 
 <processor_spec>
   <programcounter register="pc"/>
+  <data_space space="DATA"/>
   
   <default_symbols>
-    <symbol name="_start" address="RAM:0x0" entry="true"/>
-    <symbol name="_trap_handler" address="RAM:0x2" entry="true"/>
-    <symbol name="_nmi_handler" address="RAM:0x4" entry="true"/>
-    <symbol name="_int0_handler" address="RAM:0x6" entry="true"/>
-    <symbol name="_int1_handler" address="RAM:0xe" entry="true"/>
-    <symbol name="_int2_handler" address="RAM:0x16" entry="true"/>
+    <symbol name="_start" address="CODE:0x0" entry="true"/>
+    <symbol name="_trap_handler" address="CODE:0x2" entry="true"/>
+    <symbol name="_nmi_handler" address="CODE:0x4" entry="true"/>
+    <symbol name="_int0_handler" address="CODE:0x6" entry="true"/>
+    <symbol name="_int1_handler" address="CODE:0xe" entry="true"/>
+    <symbol name="_int2_handler" address="CODE:0x16" entry="true"/>
   </default_symbols>
   
   <default_memory_blocks>
-    <memory_block name="RAM-X" start_address="0x0000" length="0x8000" initialized="false"/>
-    <memory_block name="MMIO-Z" start_address="0x8000" length="0x0800" initialized="false"/>
-    <memory_block name="RAM-Y" start_address="0x0800" length="0x7800" initialized="false"/>
+    <memory_block name="RAM-X" start_address="DATA:0x0000" length="0x8000" initialized="false"/>
+    <memory_block name="MMIO-Z" start_address="DATA:0x8000" length="0x0800" initialized="false"/>
+    <memory_block name="RAM-Y" start_address="DATA:0x0800" length="0x7800" initialized="false"/>
   </default_memory_blocks>
 </processor_spec>

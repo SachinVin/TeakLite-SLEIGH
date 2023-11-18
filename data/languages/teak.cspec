@@ -2,9 +2,10 @@
 
 <compiler_spec>
   <global>
-    <range space="RAM"/>
+    <range space="CODE"/>
+    <range space="DATA"/>
   </global>
-  <stackpointer register="sp" space="RAM" growth="negative"/>
+  <stackpointer register="sp" space="DATA" growth="negative"/>
   <returnaddress>
     <varnode space="stack" offset="1" size="4"/>
   </returnaddress>
