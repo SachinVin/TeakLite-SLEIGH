@@ -684,8 +684,43 @@ macro ProductFromBus32(Px, value)
     *[register]:4 PxE = value[31,1];
 }
 
+macro DoMultiplication(Px, PxE, in_x, in_y, in_x_sign, in_y_sign)
 {
+    # if (regs.hwm == 1 || (regs.hwm == 3 && unit == 0)) {
+    #     y >>= 8;
+    # } else if (regs.hwm == 2 || (regs.hwm == 3 && unit == 1)) {
+    #     y &= 0xFF;
     # }
+
+    x:4 = 0;
+    y:4 = 0;
+    x_sign:1 = in_x_sign;
+    y_sign:1 = in_y_sign;
+    if(x_sign) goto <xsign>;
+      x = zext(in_x);
+      goto <xsign_end>;
+    <xsign>
+      x = sext(in_x);
+    <xsign_end>
+
+    if(y_sign) goto <ysign>;
+      y = zext(in_y);
+      goto <ysign_end>;
+    <ysign>
+      y = sext(in_y);
+    <ysign_end>
+
+    Px = x * y;
+    PxE = (x_sign || y_sign) && Px[31,1];
+}
+
+macro DoMultiplication_unit0(x_sign, y_sign)
+{
+    DoMultiplication(p0, P0E, x0, y0, x_sign, y_sign);
+}
+macro DoMultiplication_unit1(x_sign, y_sign)
+{
+    DoMultiplication(p1, P1E, x1, y1, x_sign, y_sign);
 }
 
 @include "teak.sinc"
