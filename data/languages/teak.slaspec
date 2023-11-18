@@ -296,7 +296,7 @@ define token teakop (16)
     Address18_16_16 = (0,15)
     Imm16_16 = (0,15)
     MemImm16_1631 = (0,15)
-    MemR7Imm16_16 = (0,15)
+    MemR7Imm16_1631 = (0,15)
 ;
 
 # VARIABLES
@@ -519,6 +519,12 @@ MemImm8_0: [PAGE:MemImm8_0007] is PAGE & MemImm8_0007
 MemImm16_16: [MemImm16_1631] is MemImm16_1631
 {
     export *:2 MemImm16_1631;
+}
+
+MemR7Imm16_16: [r7,MemR7Imm16_1631] is r7 & MemR7Imm16_1631
+{
+    local reloc:3 = zext(r7) + zext(MemR7Imm16_1631:2);
+    export *:2 reloc;
 }
 
 # Rn_0 seems to always be followed by StepZIDS_3 (sane encoding?!)
