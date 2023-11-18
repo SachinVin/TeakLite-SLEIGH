@@ -360,21 +360,31 @@ with :op_0507=0x5 & op_1315=0x4
 # >;
 
 # 0xD4F8 0xFFFF0107    alu At<Alu, 0>,At<MemImm16, 16>,At<Ax, 8>,
-:alu_or    MemImm16_16,Ax_8    is Alu_0=0x0 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
-:alu_and    MemImm16_16,Ax_8    is Alu_0=0x1 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
-:alu_xor    MemImm16_16,Ax_8    is Alu_0=0x2 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
+:alu_or    MemImm16_16,Ax_8    is Alu_0=0x0 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 
+{
+    AlmGenericOr(zext(MemImm16_16), Ax_8);
+}
+:alu_and    MemImm16_16,Ax_8    is Alu_0=0x1 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 
+{
+    AlmGenericAnd(zext(MemImm16_16), Ax_8);
+}
+:alu_xor    MemImm16_16,Ax_8    is Alu_0=0x2 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 
+{
+    AlmGenericXor(zext(MemImm16_16), Ax_8);
+}
 
 :alu_add    MemImm16_16,Ax_8    is Alu_0=0x3 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16
 {
-    local Imm16:2 = MemImm16_16;
-
-    V = scarry(sext(Imm16), Ax_8);
-    VL = VL || V;
-    Ax_8 = sext(Imm16) + Ax_8;
-    SetAccFlag(Ax_8);
+    AlmGenericAdd(sext(MemImm16_16), Ax_8);
 }
-:alu_cmp    MemImm16_16,Ax_8    is Alu_0=0x6 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
-:alu_sub    MemImm16_16,Ax_8    is Alu_0=0x7 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 unimpl
+:alu_cmp    MemImm16_16,Ax_8    is Alu_0=0x6 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 
+{
+    AlmGenericCmp(sext(MemImm16_16), Ax_8);
+}
+:alu_sub    MemImm16_16,Ax_8    is Alu_0=0x7 & Ax_8 & op_0307=0x1F & op_0915=0x6A ; MemImm16_16 
+{
+    AlmGenericSub(sext(MemImm16_16), Ax_8);
+}
 
 # 0xD4D8 0xFFFF0107    alu At<Alu, 0>,At<MemR7Imm16, 16>,At<Ax, 8>,
 :alu    Alu_0,MemR7Imm16_16,Ax_8    is Alu_0 & Ax_8 & op_0307=0x1B & op_0915=0x6A ; MemR7Imm16_16 unimpl
