@@ -176,13 +176,16 @@ with :op_0507=0x5 & op_1315=0x4
     {
         AlmGenericXor(zext(Register_0), Ax_8);
     }
-    :alm_add    Register_0,Ax_8    is Alm_9=0x3 & Register_0 & Ax_8 
+    with: Alm_9=0x3
     {
-        AlmGenericAdd(sext(Register_0), Ax_8);
-    }
-    :alm_add    RegisterAx_0,Ax_8    is Alm_9=0x3 & RegisterAx_0 & Ax_8 
-    {
-        AlmGenericAdd(sext(RegisterAx_0), Ax_8);
+        :alm_add    Register_0,Ax_8    is Register_0 & Ax_8 
+        {
+            AlmGenericAdd(sext(Register_0), Ax_8);
+        }
+        :alm_add    RegisterAx_0,Ax_8    is RegisterAx_0 & Ax_8 
+        {
+            AlmGenericAdd(sext(RegisterAx_0), Ax_8);
+        }
     }
     :alm_tst0    Register_0,Ax_8    is Alm_9=0x4 & Register_0 & Ax_8 
     {
@@ -243,52 +246,105 @@ with :op_0507=0x5 & op_1315=0x4
 
 # <<< ALM r6 >>>
 # 0xD388 0x0010    alm_r6 Const<Alm, 0>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0x8 & op_0515=0x69C unimpl
+:alm_or    r6,Ax_4    is r6 & Ax_4 & op_0003=0x8 & op_0515=0x69C 
+{
+    AlmGenericOr(zext(r6), Ax_4);
+}
 
 # 0xD389 0x0010    alm_r6 Const<Alm, 1>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0x9 & op_0515=0x69C unimpl
+:alm_and    r6,Ax_4    is r6 & Ax_4 & op_0003=0x9 & op_0515=0x69C 
+{
+    AlmGenericAnd(zext(r6), Ax_4);
+}
 
 # 0xD38A 0x0010    alm_r6 Const<Alm, 2>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xA & op_0515=0x69C unimpl
+:alm_xor     r6,Ax_4    is r6 & Ax_4 & op_0003=0xA & op_0515=0x69C 
+{
+    AlmGenericXor(zext(r6), Ax_4);
+}
 
 # 0xD38B 0x0010    alm_r6 Const<Alm, 3>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xB & op_0515=0x69C unimpl
+:alm_add    r6,Ax_4    is r6 & Ax_4 & op_0003=0xB & op_0515=0x69C 
+{
+    AlmGenericAdd(sext(r6), Ax_4);
+}
 
 # 0xD38C 0x0010    alm_r6 Const<Alm, 4>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xC & op_0515=0x69C unimpl
+:alm_tst0    r6,Ax_4    is r6 & Ax_4 & op_0003=0xC & op_0515=0x69C 
+{
+    AlmGenericTst0(r6, Ax_4);
+}
 
 # 0xD38D 0x0010    alm_r6 Const<Alm, 5>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xD & op_0515=0x69C unimpl
+:alm_tst1    r6,Ax_4    is r6 & Ax_4 & op_0003=0xD & op_0515=0x69C 
+{
+    AlmGenericTst1(r6, Ax_4);
+}
 
 # 0xD38E 0x0010    alm_r6 Const<Alm, 6>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xE & op_0515=0x69C unimpl
+:alm_cmp    r6,Ax_4    is r6 & Ax_4 & op_0003=0xE & op_0515=0x69C 
+{
+    AlmGenericCmp(sext(r6), Ax_4);
+}
 
 # 0xD38F 0x0010    alm_r6 Const<Alm, 7>,At<Ax, 4>,
-:alm_r6    Ax_4    is Ax_4 & op_0003=0xF & op_0515=0x69C unimpl
+:alm_sub    r6,Ax_4    is r6 & Ax_4 & op_0003=0xF & op_0515=0x69C 
+{
+    AlmGenericSub(sext(r6), Ax_4);
+}
 
 # 0x9462 0x0001    alm_r6 Const<Alm, 8>,At<Ax, 0>,
-:alm_r6    Ax_0    is Ax_0 & op_0115=0x4A31 unimpl
+:alm_msu    r6,Ax_0    is r6 & Ax_0 & op_0115=0x4A31 & ProductToBus40p0
+{
+    AlmGenericSub(ProductToBus40p0,Ax_0);
+    x0 = r6;
+    DoMultiplication_unit0(1,1);
+}
 
 # 0x9464 0x0001    alm_r6 Const<Alm, 9>,At<Ax, 0>,
-:alm_r6    Ax_0    is Ax_0 & op_0115=0x4A32 unimpl
+:alm_addh    r6,Ax_0    is r6 & Ax_0 & op_0115=0x4A32 
+{
+    local r6h:5 = sext(r6) << 16;
+    AlmGenericAdd(r6h, Ax_0);
+}
 
 # 0x9466 0x0001    alm_r6 Const<Alm, 10>,At<Ax, 0>,
-:alm_r6    Ax_0    is Ax_0 & op_0115=0x4A33 unimpl
+:alm_addl    r6,Ax_0    is r6 & Ax_0 & op_0115=0x4A33 
+{
+    AlmGenericAdd(zext(r6), Ax_0);
+}
 
 # 0x5E23 0x0100    alm_r6 Const<Alm, 11>,At<Ax, 8>,
-:alm_r6    Ax_8    is Ax_8 & op_0007=0x23 & op_0915=0x2F unimpl
+:alm_subh    r6,Ax_8    is r6 & Ax_8 & op_0007=0x23 & op_0915=0x2F 
+{
+    local r6h:5 = sext(r6) << 16;
+    AlmGenericSub(r6h, Ax_8);
+}
 
 # 0x5E22 0x0100    alm_r6 Const<Alm, 12>,At<Ax, 8>,
-:alm_r6    Ax_8    is Ax_8 & op_0007=0x22 & op_0915=0x2F unimpl
+:alm_subl    r6,Ax_8    is r6 & Ax_8 & op_0007=0x22 & op_0915=0x2F 
+{
+    AlmGenericSub(zext(r6), Ax_8);
+}
 
 # 0x5F41 0x0000    alm_r6 Const<Alm, 13>,Const<Ax, 0>,
-:alm_r6        is op_0015=0x5F41 unimpl
+:alm_sqr    r6,a0    is r6 & a0 & op_0015=0x5F41 
+{
+    AlmGenericSqr(r6);
+}
 
 # 0x9062 0x0101    alm_r6 Const<Alm, 14>,At<Ax, 8>,Unused<0>,
-:alm_r6    Ax_8    is Ax_8 & Unused_0 & op_0107=0x31 & op_0915=0x48 unimpl
+:alm_sqra    r6,Ax_8    is r6 & Ax_8 & Unused_0 & op_0107=0x31 & op_0915=0x48 & ProductToBus40p0
+{
+    AlmGenericAdd(ProductToBus40p0,Ax_8);
+    AlmGenericSqr(r6);
+}
 
 # 0x8A63 0x0008    alm_r6 Const<Alm, 15>,At<Ax, 3>,
-:alm_r6    Ax_3    is Ax_3 & op_0002=0x3 & op_0415=0x8A6 unimpl
+:alm_cmpu    r6,Ax_3    is r6 & Ax_3 & op_0002=0x3 & op_0415=0x8A6 
+{
+    AlmGenericCmp(zext(r6), Ax_3);
+}
 
 # <<< ALU normal >>>
 # using Alu = EnumOperand<AlmOp,
