@@ -552,15 +552,13 @@ RnAddressAndModify_0:    is RnAndModify_0
 ProductToBus40p0: p0    is p0
 {
     # todo: PS0 state
-    local tmp:5 = zext(p0) | (zext(P0E) << 32);
-    tmp = sext(tmp[0,33]);
+    local tmp:5 = zext(p0) | sext(P0E << 32);
     export tmp;
 }
 ProductToBus40p1: p1    is p1
 {
     # todo: PS1 state
-    local tmp:5 = zext(p1) | (zext(P1E) << 32);
-    tmp = sext(tmp[0,33]);
+    local tmp:5 = zext(p1) | sext(P1E << 32);
     export tmp;
 }
 
