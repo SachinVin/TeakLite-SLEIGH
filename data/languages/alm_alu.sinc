@@ -184,7 +184,7 @@ with :op_0507=0x5 & op_1315=0x4
         }
         :alm_add    RegisterAx_0,Ax_8    is RegisterAx_0 & Ax_8 
         {
-            AlmGenericAdd(sext(RegisterAx_0), Ax_8);
+            AlmGenericAdd(RegisterAx_0, Ax_8);
         }
     }
     :alm_tst0    Register_0,Ax_8    is Alm_9=0x4 & Register_0 & Ax_8 
