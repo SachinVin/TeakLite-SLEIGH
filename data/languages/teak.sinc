@@ -2,7 +2,7 @@
 :nop        is op_0015=0x0 {}
 
 # 0x94C0 0x011F    norm At<Ax, 8>,At<Rn, 0>,At<StepZIDS, 3>,
-:norm    Ax_8,Rn_0,StepZIDS_3    is Ax_8 & Rn_0 & StepZIDS_3 & op_0507=0x6 & op_0915=0x4A 
+:norm    Ax_8,RnAndModify_0    is Ax_8 & RnAndModify_0 & op_0507=0x6 & op_0915=0x4A 
 {
     if(N) goto inst_next;
     V = (Ax_8[38,1] != Ax_8[39,1]);
@@ -10,8 +10,8 @@
     Ax_8 = Ax_8 << 1;
     C = (Ax_8[39,1]) != 0;
     SetAccFlag(Ax_8);
-    RnAndModify(Rn_0, StepZIDS_3, 0);
-    R = Rn_0 == 0;
+    build RnAndModify_0;
+    R = RnAndModify_0 == 0;
 }
 
 # 0x4980 0x000F    swap At<SwapType, 0>,
@@ -166,14 +166,11 @@ with : op_0415=0x498 {
 # 0x80E0 0xFFFF0E1F    alb At<Alb, 9>,At<Imm16, 16>,At<Rn, 0>,At<StepZIDS, 3>,
 :alb    Alb_9,Imm16_16,Rn_0,StepZIDS_3    is Alb_9 & Rn_0 & StepZIDS_3 & op_0508=0x7 & op_1215=0x8 ; Imm16_16 unimpl
 
-:alb_set    Imm16_16,[Rn_0,0x0]    is Alb_9=0x0 & Rn_0 & StepZIDS_3=0x0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
+:alb_set    Imm16_16,RnAddressAndModify_0    is Alb_9=0x0 & RnAddressAndModify_0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
 {
-    local Rn:3 = zext(Rn_0);
-    local MemRn:2 = *:2 Rn;
     local Imm16:2 = Imm16_16;
-    MemRn = Imm16 | MemRn;
-    M = (MemRn < 0);
-    *:2 Rn = MemRn;
+    RnAddressAndModify_0 = Imm16 | RnAddressAndModify_0;
+    M = (RnAddressAndModify_0 < 0);
 }
 
 # 0x81E0 0xFFFF0E1F    alb At<Alb, 9>,At<Imm16, 16>,At<Register, 0>,

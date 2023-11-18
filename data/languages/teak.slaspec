@@ -519,6 +519,43 @@ MemImm16_16: [MemImm16_1631] is MemImm16_1631
     export *:2 MemImm16_1631;
 }
 
+# Rn_0 seems to always be followed by StepZIDS_3 (sane encoding?!)
+RnAndModify_0: Rn_0 is Rn_0 & StepZIDS_3=0x0
+{
+    export Rn_0;
+}
+RnAndModify_0: Rn_0,0x1 is Rn_0 & StepZIDS_3=0x1
+{
+    local tmp:2 = Rn_0;
+    Rn_0 = Rn_0 + 1;
+    export tmp;
+}
+RnAndModify_0: Rn_0,-0x1 is Rn_0 & StepZIDS_3=0x2
+{
+    local tmp:2 = Rn_0;
+    Rn_0 = Rn_0 - 1;
+    export tmp;
+}
+RnAddressAndModify_0:    is RnAndModify_0
+{
+    export *:2 RnAndModify_0;
+}
+
+ProductToBus40p0: p0    is p0
+{
+    # todo: PS0 state
+    local tmp:5 = zext(p0) | (zext(P0E) << 32);
+    tmp = sext(tmp[0,33]);
+    export tmp;
+}
+ProductToBus40p1: p1    is p1
+{
+    # todo: PS1 state
+    local tmp:5 = zext(p1) | (zext(P1E) << 32);
+    tmp = sext(tmp[0,33]);
+    export tmp;
+}
+
 Cond_0: ""       is Cond_0003=0x0 { local tmp:1 = (1); export tmp; } # Always
 Cond_0: "eq"     is Cond_0003=0x1 { local tmp:1 = (Z==1); export tmp; } # Equal to zero
 Cond_0: "neq"    is Cond_0003=0x2 { local tmp:1 = (Z==0); export tmp; } # Not equal to zero
@@ -647,16 +684,7 @@ macro ProductFromBus32(Px, value)
     *[register]:4 PxE = value[31,1];
 }
 
-macro RnAndModify(unit, step, dmod)
 {
-    # local ret = regs.r[unit];
-    # todo ... 
-    # if ((unit == 3 && regs.epi) || (unit == 7 && regs.epj)) {
-    #     if (step != StepValue::Increase2Mode1 && step != StepValue::Decrease2Mode1 &&
-    #         step != StepValue::Increase2Mode2 && step != StepValue::Decrease2Mode2) {
-    #         regs.r[unit] = 0;
-    #         return ret;
-    #     }
     # }
 }
 
