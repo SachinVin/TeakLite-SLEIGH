@@ -543,7 +543,7 @@ with: op_0515=0x2F2
 # 0xD7FC 0x0003    push_prpage Unused<0>,Unused<1>,
 :push   prpage    is prpage & Unused_0 & Unused_1 & op_0215=0x35FF 
 {
-    Push(sext(prpage));
+    Push(zext(prpage));
 }
 
 # 0xD78C 0x0003    push At<Px, 1>,Unused<0>,
