@@ -170,7 +170,7 @@ with : op_0415=0x498 {
 {
     local Imm16:2 = Imm16_16;
     RnAddressAndModify_0 = Imm16 | RnAddressAndModify_0;
-    M = (RnAddressAndModify_0 < 0);
+    M = (RnAddressAndModify_0[15,1] != 0);
 }
 
 # 0x81E0 0xFFFF0E1F    alb At<Alb, 9>,At<Imm16, 16>,At<Register, 0>,
