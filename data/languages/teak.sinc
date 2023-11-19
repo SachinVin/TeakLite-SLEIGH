@@ -447,7 +447,8 @@ with : op_0415=0x498 {
 }
 
 # 0x4D80 0x0003    load_ps At<Imm2, 0>,
-:load_ps    Imm2_0    is Imm2_0 & op_0215=0x1360 unimpl
+:load_ps    Imm2_0    is Imm2_0 & op_0215=0x1360 
+    [ PS0=Imm2_0; globalset(inst_next, PS0); ] {}
 
 # 0xDB80 0x007F    load_stepi At<Imm7s, 0>,
 :load_stepi    Imm7s_0    is Imm7s_0 & op_0715=0x1B7 unimpl
@@ -456,7 +457,8 @@ with : op_0415=0x498 {
 :load_stepj    Imm7s_0    is Imm7s_0 & op_0715=0x1BF unimpl
 
 # 0x0400 0x00FF    load_page At<Imm8, 0>,
-:load_page    Imm8_0    is Imm8_0 & op_0815=0x4 unimpl
+:load_page    Imm8_0    is Imm8_0 & op_0815=0x4 
+    [ PAGE=Imm8_0; globalset(inst_next, PAGE); ] {}
 
 # 0x0200 0x01FF    load_modi At<Imm9, 0>,
 :load_modi    Imm9_0    is Imm9_0 & op_0915=0x1 unimpl
@@ -468,7 +470,10 @@ with : op_0415=0x498 {
 :load_movpd    Imm2_1    is Imm2_1 & Unused_0 & op_0315=0x1AFB unimpl
 
 # 0x0010 0x000F    load_ps01 At<Imm4, 0>,
-:load_ps01    Imm4_0    is Imm4_0 & op_0415=0x1 unimpl
+:load_ps01    Imm4_0    is Imm4_0 & op_0415=0x1 
+    [ PS0=Imm4_0 & 3; globalset(inst_next, PS0); 
+      PS1=Imm4_0 >> 2; globalset(inst_next, PS1); ]
+{}
 
 # 0x5F40 0xFFFF0000    push At<Imm16, 16>,
 :push    Imm16_16    is op_0015=0x5F40 ; Imm16_16 
