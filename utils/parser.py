@@ -362,6 +362,64 @@ def print_swap_types():
 
         print(f"SwapTypes4_0: {sp[1]}    is {regs} & SwapTypes4_0003=0x{sp[0][:1]}    \n{{{expr}}} ")
 
-print_ops()
+def print_status_reg_bitrange():
+    stat_str = """
+  0     LM   R/W Flag: Limit, set if saturation has/had occured    ;st0.5
+  1     VL   R/W Flag: LatchedV, set if overflow has/had occurred  ;st0.5, too
+  2     E    R/W Flag: Extension    ;see Cond e                    ;st0.6
+  3     C    R/W Flag: Carry        ;see Cond c                    ;st0.7
+  4     V    R/W Flag: Overflow     ;see Cond v                    ;st0.8
+  5     N    R/W Flag: Normalized   ;see Cond nn                   ;st0.9
+  6     M    R/W Flag: Minus        ;see Cond gt,ge,lt,le          ;st0.10
+  7     Z    R/W Flag: Zero         ;see Cond eq,neq,gt,le         ;st0.11
+  8-10  -    -   Unknown (reads as zero)
+  11    C1   R/W Flag: Carry1 (2nd carry, for dual-operation opcodes)
+  12-15 -    -   Unknown (reads as zero)
+  """.split("\n")
+
+    print("define bitrange ", end="")
+    for s in stat_str:
+        if s.strip() == '':
+            continue
+        sp = s.split()
+        if sp[0].find('-') != -1:
+            continue
+             # a0l=a0[0,16]
+        print(f"                {sp[1]}=stt0[{sp[0]},1]")
+    
+def print_cond():
+    strn = """
+0: true  ;Always                    ;always
+1: eq    ;Equal to zero             ;Z=1
+2: neq   ;Not equal to zero         ;Z=0
+3: gt    ;Greater than zero         ;M=0 and Z=0
+4: ge    ;Greater or equal to zero  ;M=0
+5: lt    ;Less than zero            ;M=1
+6: le    ;Less or equal to zero     ;M=1 or Z=1
+7: nn    ;Normalize flag is cleared ;N=0
+8: c     ;Carry flag is set         ;C=1
+9: v     ;Overflow flag is set      ;V=1
+A: e     ;Extension flag is set     ;E=1
+B: l     ;Limit flag is set         ;L=1
+C: nr    ;R flag is cleared         ;R=0
+D: niu0  ;Input user pin 0 cleared  ;IUSER0=0
+E: iu0   ;Input user pin 0 set      ;IUSER0=1
+F: iu1   ;Input user pin 1 set      ;IUSER1=1
+  """.split("\n")
+
+    for s in strn:
+        if s.strip() == '':
+            continue
+        sp = s.split()
+
+        # thfcc: "eq"	is cond_full=0	{ local tmp:1 = (ZR!=0); export tmp; }
+        cc= f"\"{sp[1]}\""
+        sp2 = s.split(";")
+        cond = sp2[2]
+        cond_parm = cond.split("=")[0]
+        print(f"Cond_0: {cc:8} is {cond_parm} & Cond_0003=0x{sp[0][0]} {{ local tmp:1 = ({cond}); export tmp; }} # {sp2[1]}")
+    
+#print_ops()
+print_cond()
 #print_swap_types()
 #print_operands()
