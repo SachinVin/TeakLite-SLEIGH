@@ -733,4 +733,5 @@ macro DoMultiplication_unit1(x_sign, y_sign)
 }
 
 @include "teak.sinc"
+@include "alb.sinc"
 @include "alm_alu.sinc"

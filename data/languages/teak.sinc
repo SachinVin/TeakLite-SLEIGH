@@ -160,40 +160,6 @@ with : op_0415=0x498 {
 # 0xD3C4 0x0403    or_ At<Bx, 10>,At<Bx, 1>,At<Ax, 0>,
 :or_    Bx_10,Bx_1,Ax_0    is Bx_10 & Bx_1 & Ax_0 & op_0209=0xF1 & op_1115=0x1A unimpl
 
-# 0xE100 0xFFFF0EFF    alb At<Alb, 9>,At<Imm16, 16>,At<MemImm8, 0>,
-:alb    Alb_9,Imm16_16,MemImm8_0    is Alb_9 & MemImm8_0 & op_0808=0x1 & op_1215=0xE ; Imm16_16 unimpl
-
-# 0x80E0 0xFFFF0E1F    alb At<Alb, 9>,At<Imm16, 16>,At<Rn, 0>,At<StepZIDS, 3>,
-:alb    Alb_9,Imm16_16,Rn_0,StepZIDS_3    is Alb_9 & Rn_0 & StepZIDS_3 & op_0508=0x7 & op_1215=0x8 ; Imm16_16 unimpl
-
-:alb_set    Imm16_16,RnAddressAndModify_0    is Alb_9=0x0 & RnAddressAndModify_0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
-{
-    local Imm16:2 = Imm16_16;
-    RnAddressAndModify_0 = Imm16 | RnAddressAndModify_0;
-    M = (RnAddressAndModify_0[15,1] != 0);
-}
-
-# 0x81E0 0xFFFF0E1F    alb At<Alb, 9>,At<Imm16, 16>,At<Register, 0>,
-:alb    Alb_9,Imm16_16,Register_0    is Alb_9 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16 unimpl
-
-# 0x47B8 0xFFFF0007    alb_r6 At<Alb, 0>,At<Imm16, 16>,
-:alb_r6    Alb_0,Imm16_16    is Alb_0 & op_0315=0x8F7 ; Imm16_16 unimpl
-
-# 0x43C8 0xFFFF0007    alb Const<Alb, 0>,At<Imm16, 16>,At<SttMod, 0>,
-:alb    Imm16_16,SttMod_0    is SttMod_0 & op_0315=0x879 ; Imm16_16 unimpl
-
-# 0x4388 0xFFFF0007    alb Const<Alb, 1>,At<Imm16, 16>,At<SttMod, 0>,
-:alb    Imm16_16,SttMod_0    is SttMod_0 & op_0315=0x871 ; Imm16_16 unimpl
-
-# 0x0038 0xFFFF0007    alb Const<Alb, 2>,At<Imm16, 16>,At<SttMod, 0>,
-:alb    Imm16_16,SttMod_0    is SttMod_0 & op_0315=0x7 ; Imm16_16 unimpl
-
-# 0x9470 0xFFFF0007    alb Const<Alb, 4>,At<Imm16, 16>,At<SttMod, 0>,
-:alb    Imm16_16,SttMod_0    is SttMod_0 & op_0315=0x128E ; Imm16_16 unimpl
-
-# 0x9478 0xFFFF0007    alb Const<Alb, 5>,At<Imm16, 16>,At<SttMod, 0>,
-:alb    Imm16_16,SttMod_0    is SttMod_0 & op_0315=0x128F ; Imm16_16 unimpl
-
 # 0xD2DA 0x0C01    add At<Ab, 10>,At<Bx, 0>,
 :add    Ab_10,Bx_0    is Ab_10 & Bx_0 & op_0109=0x16D & op_1215=0xD unimpl
 
