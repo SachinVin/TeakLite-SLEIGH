@@ -412,13 +412,30 @@ with :op_0507=0x5 & op_1315=0x4
 }
 
 # 0x80C0 0xFFFF0F00    alu At<Alu, 9>,At<Imm16, 16>,At<Ax, 8>,
-:alu_or    Imm16_16,Ax_8    is Alu_9=0 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16
+:alu_or    Imm16_16,Ax_8    is Alu_9=0x0 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16
 {
-    local Imm16:2 = Imm16_16;
-    Ax_8 = zext(Imm16) | Ax_8;
-    SetAccFlag(Ax_8);
+    AlmGenericOr(zext(Imm16_16:2), Ax_8);
 }
-:alu    Alu_9,Imm16_16,Ax_8    is Alu_9 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16 unimpl
+:alu_and    Imm16_16,Ax_8    is Alu_9=0x1 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16 
+{
+    AlmGenericAnd(zext(Imm16_16:2), Ax_8);
+}
+:alu_xor    Imm16_16,Ax_8    is Alu_9=0x2 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16 
+{
+    AlmGenericXor(zext(Imm16_16:2), Ax_8);
+}
+:alu_add    Imm16_16,Ax_8    is Alu_9=0x3 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16 
+{
+    AlmGenericAdd(sext(Imm16_16:2), Ax_8);
+}
+:alu_cmp    Imm16_16,Ax_8    is Alu_9=0x6 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16 
+{
+    AlmGenericCmp(sext(Imm16_16:2), Ax_8);
+}
+:alu_sub    Imm16_16,Ax_8    is Alu_9=0x7 & Ax_8 & op_0007=0xC0 & op_1215=0x8 ; Imm16_16 
+{
+    AlmGenericSub(sext(Imm16_16:2), Ax_8);
+}
 
 # 0xC000 0x0FFF    alu At<Alu, 9>,At<Imm8, 0>,At<Ax, 8>,
 :alu    Alu_9,Imm8_0,Ax_8    is Alu_9 & Imm8_0 & Ax_8 & op_1215=0xC unimpl
