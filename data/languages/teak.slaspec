@@ -46,17 +46,13 @@ define register offset=0x90 size=2  [ ext0 ext1 ext2 ext3 ];
 #  TL
 define register offset=0x100 size=2 [ st0 st1 st2 icr ];
 #  TL II
-
-define register offset=0x110 size=4 [ context_stt0 context_stt1 context_stt2 
-                                      context_mod0 context_mod1 context_mod2 context_mod3 ];
-define register offset=0x110 size=2 [ _ stt0 _ stt1 _ stt2 
-                                      _ mod0 _ mod1 _ mod2 _ mod3 ];
+define register offset=0x110 size=2 [ stt0 stt1 stt2 mod0 mod1 mod2 mod3 ];
 
 # Address conf
-define register offset=0x140 size=2 [ ar0 ar1 arp0 arp1 arp2 arp3 ];
+define register offset=0x120 size=2 [ ar0 ar1 arp0 arp1 arp2 arp3 ];
 #todo define bitrange ...
 
-define register offset=0x150 size=2 [ cfgi cfgj stepi0 stepj0 ];
+define register offset=0x130 size=2 [ cfgi cfgj stepi0 stepj0 ];
 #todo define bitrange ...
 
 define register offset=0x200 size=1 [ IU0 IU1               # st2
@@ -66,20 +62,13 @@ define register offset=0x200 size=1 [ IU0 IU1               # st2
 define register offset=0x300 size=1 [ LM VL E C V N M Z C1             # stt0
                                     R P0E P1E                          # stt1
                                                                        # todo: stt2
-                                    SAT SATA HWM S OU0 OU1             # mod0
-                                    STP16 CMD EPI EPJ             # mod1
+                                    SAT SATA HWM S OU0 OU1 PS0 PS1     # mod0
+                                    PAGE STP16 CMD EPI EPJ             # mod1
                                                                        # todo: mod2
                                     IE CPC                             # mod3
                                     ]
 ;
 
-define context context_mod0
-    PS0 = (10,11)
-    PS1 = (13,14)
-;
-define context context_mod1
-    PAGE = (0,7)
-;
 # TOKENS
 define token teakop (16)
 # Opcodes
@@ -518,9 +507,9 @@ RelAddr7_4: reloc is RelAddr7_0410
     export *[CODE]:4 reloc;
 }
 
-MemImm8_0: ["PAGE":MemImm8_0007] is PAGE & MemImm8_0007
+MemImm8_0: [PAGE:MemImm8_0007] is PAGE & MemImm8_0007
 {
-    local reloc:2 = (zext(PAGE:1) << 8) + zext(MemImm8_0007:1);
+    local reloc:2 = (zext(PAGE) << 8) + zext(MemImm8_0007:1);
     export *[DATA]:2 reloc;
 }
 
