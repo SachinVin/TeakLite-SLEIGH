@@ -229,6 +229,7 @@ define token teakop (16)
     Axl_4 = (4,4)
     Axl_5 = (5,5)
     Axl_8 = (8,8)
+    Ax_not12 = (12,12)
     BankFlags_0 = (0,5)
     Bx_0 = (0,0)
     Bx_1 = (1,1)
@@ -323,6 +324,7 @@ attach variables [ Ar_0 Ar_2 ] [ ar0 ar1 ];
 # attach variables [ ArpStep2_0 ArpStep2_1 ArpStep2_2 ArpStep2_3 ArpStep2_5 ]
 attach variables [ Arp_0 ] [ arp0 arp1 arp2 arp3 ];
 attach variables [ Ax_0 Ax_1 Ax_10 Ax_11 Ax_12 Ax_3 Ax_4 Ax_5 Ax_6 Ax_8 ] [ a0 a1 ];
+attach variables [ Ax_not12 ] [ a1 a0 ];
 attach variables [ Axh_0 Axh_12 Axh_4 Axh_5 Axh_6 Axh_8 Axh_9 ] [ a0h a1h ];
 attach variables [ Axl_0 Axl_12 Axl_4 Axl_5 Axl_8 ] [ a0l a1l ];
 # attach variables [ BankFlags_0 ]
@@ -764,3 +766,4 @@ macro ShiftBus40Right(value, nsv, Ab)
 @include "teak.sinc"
 @include "alb.sinc"
 @include "alm_alu.sinc"
+@include "moda.sinc"

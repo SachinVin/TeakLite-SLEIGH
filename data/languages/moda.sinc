@@ -1,0 +1,249 @@
+macro ModaShr(Ab)
+{
+    tmp:5 = Ab;
+    ShiftBus40Right(tmp, 1, Ab);
+}
+macro ModaShr4(Ab)
+{
+    tmp:5 = Ab;
+    ShiftBus40Right(tmp, 4, Ab);
+}
+macro ModaShl(Ab)
+{
+    tmp:5 = Ab;
+    ShiftBus40Left(tmp, 1, Ab);
+}
+macro ModaShl4(Ab)
+{
+    tmp:5 = Ab;
+    ShiftBus40Left(tmp, 4, Ab);
+}
+macro ModaRor(Ab)
+{
+    tmp:5 = Ab;
+    old_C = C;
+    C = tmp[0,1];
+    tmp = tmp >> 1;
+    tmp[39,1] = old_C[0,1];
+    SetAccAndFlag(Ab, tmp);
+}
+macro ModaRol(Ab)
+{
+    tmp:5 = Ab;
+    old_C:1 = C;
+    C = tmp[39,1];
+    tmp = tmp << 1;
+    tmp[0,1] = old_C[0,1];
+    SetAccAndFlag(Ab, tmp);
+}
+macro ModaClr(Ab)
+{
+    tmp:5 = 0;
+    SatAndSetAccAndFlag(Ab, tmp);
+}
+macro ModaNot(Ab)
+{
+    tmp:5 = ~Ab;
+    SatAndSetAccAndFlag(Ab, tmp);
+}
+macro ModaNeg(Ab)
+{
+    tmp:5 = Ab;
+    C = tmp != 0;
+    V = tmp == 0x8000000000;
+    VL = VL || V;
+    tmp = -tmp;
+    SatAndSetAccAndFlag(Ab, tmp);
+}
+macro ModaRnd(Ab)
+{
+    tmp:5 = Ab;
+    value:5 = 0x8000;
+    C = carry(value, Ab);
+    V = scarry(value, Ab);
+    VL = VL || V;
+    tmp = value + Ab;
+    SatAndSetAccAndFlag(Ab, tmp);
+}
+macro ModaPacr(Ab) {}
+macro ModaClrr(Ab) 
+{
+    tmp:5 = 0x8000;
+    SatAndSetAccAndFlag(Ab, tmp);
+}
+macro ModaInc(Ab)
+{
+    tmp:5 = Ab;
+    value:5 = 1;
+    C = carry(value, Ab);
+    V = scarry(value, Ab);
+    VL = VL || V;
+    tmp = value + Ab;
+    SatAndSetAccAndFlag(Ab, tmp);
+}
+macro ModaDec(Ab)
+{
+    tmp:5 = Ab;
+    value:5 = 1;
+    C = carry(Ab, -value);
+    V = sborrow(Ab, value);
+    VL = VL || V;
+    tmp = Ab - value;
+    SatAndSetAccAndFlag(Ab, tmp);
+}
+macro ModaCopy(Ax_not, Ax) 
+{
+    SatAndSetAccAndFlag(Ax, Ax_not);
+}
+
+
+# using Moda4 = EnumOperand<ModaOp,
+#     ModaOp::Shr,
+#     ModaOp::Shr4,
+#     ModaOp::Shl,
+#     ModaOp::Shl4,
+#     ModaOp::Ror,
+#     ModaOp::Rol,
+#     ModaOp::Clr,
+#     ModaOp::Reserved,
+#     ModaOp::Not,
+#     ModaOp::Neg,
+#     ModaOp::Rnd,
+#     ModaOp::Pacr,
+#     ModaOp::Clrr,
+#     ModaOp::Inc,
+#     ModaOp::Dec,
+#     ModaOp::Copy
+# >;
+# 0x6700 0x10FF    moda4 At<Moda4, 4>,At<Ax, 12>,At<Cond, 0>,
+:moda4    Moda4_4,Ax_12,Cond_0    is Moda4_4 & Ax_12 & Cond_0 & op_0811=0x7 & op_1315=0x3 unimpl
+with: op_0811=0x7 & op_1315=0x3
+{
+    :moda4_shr    Ax_12,Cond_0    is Moda4_4=0x0 & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaShr(Ax_12);
+    }
+    :moda4_shr4    Ax_12,Cond_0    is Moda4_4=0x1 & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaShr4(Ax_12);
+    }
+    :moda4_shl    Ax_12,Cond_0    is Moda4_4=0x2 & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaShl(Ax_12);
+    }
+    :moda4_shl4    Ax_12,Cond_0    is Moda4_4=0x3 & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaShl4(Ax_12);
+    }
+    :moda4_ror    Ax_12,Cond_0    is Moda4_4=0x4 & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaRor(Ax_12);
+    }
+    :moda4_rol    Ax_12,Cond_0    is Moda4_4=0x5 & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaRol(Ax_12);
+    }
+    :moda4_clr    Ax_12,Cond_0    is Moda4_4=0x6 & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaClr(Ax_12);
+    }
+    # :moda4_reserved    Ax_12,Cond_0    is Moda4_4=0x7 & Ax_12 & Cond_0 unimpl
+    :moda4_not    Ax_12,Cond_0    is Moda4_4=0x8 & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaNot(Ax_12);
+    }
+    :moda4_neg    Ax_12,Cond_0    is Moda4_4=0x9 & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaNeg(Ax_12);
+    }
+    :moda4_rnd    Ax_12,Cond_0    is Moda4_4=0xA & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaRnd(Ax_12);
+    }
+    :moda4_pacr    Ax_12,Cond_0    is Moda4_4=0xB & Ax_12 & Cond_0 unimpl
+
+    :moda4_clrr    Ax_12,Cond_0    is Moda4_4=0xC & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaClrr(Ax_12);
+    }
+    :moda4_inc    Ax_12,Cond_0    is Moda4_4=0xD & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaInc(Ax_12);
+    }
+    :moda4_dec    Ax_12,Cond_0    is Moda4_4=0xE & Ax_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaDec(Ax_12);
+    }
+    :moda4_copy    Ax_not12,Ax_12,Cond_0    is Moda4_4=0xF & Ax_12 & Ax_not12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaCopy(Ax_not12,Ax_12);
+    }
+}
+# using Moda3 = EnumOperand<ModaOp,
+#     ModaOp::Shr,
+#     ModaOp::Shr4,
+#     ModaOp::Shl,
+#     ModaOp::Shl4,
+#     ModaOp::Ror,
+#     ModaOp::Rol,
+#     ModaOp::Clr,
+#     ModaOp::Clrr
+# >;
+# 0x6F00 0x107F    moda3 At<Moda3, 4>,At<Bx, 12>,At<Cond, 0>,
+with: op_0711=0x1E & op_1315=0x3
+{
+    :moda3_shr    Bx_12,Cond_0    is Moda3_4=0x0 & Bx_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaShr(Bx_12);
+    }
+    :moda3_shr4    Bx_12,Cond_0    is Moda3_4=0x1 & Bx_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaShr4(Bx_12);
+    }
+    :moda3_shl    Bx_12,Cond_0    is Moda3_4=0x2 & Bx_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaShl(Bx_12);
+    }
+    :moda3_shl4    Bx_12,Cond_0    is Moda3_4=0x3 & Bx_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaShl4(Bx_12);
+    }
+    :moda3_ror    Bx_12,Cond_0    is Moda3_4=0x4 & Bx_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaRor(Bx_12);
+    }
+    :moda3_rol    Bx_12,Cond_0    is Moda3_4=0x5 & Bx_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaRol(Bx_12);
+    }
+    :moda3_clr    Bx_12,Cond_0    is Moda3_4=0x6 & Bx_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaClr(Bx_12);
+    }
+    :moda3_clrr    Bx_12,Cond_0    is Moda3_4=0x7 & Bx_12 & Cond_0
+    {
+        if(!Cond_0) goto inst_next;
+        ModaClrr(Bx_12);
+    }
+}

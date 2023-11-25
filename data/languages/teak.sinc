@@ -292,12 +292,6 @@ with : op_0415=0x498 {
 # 0x5E28 0x0107    mac1 At<ArpRn1, 2>,At<ArpStep1, 0>,At<ArpStep1, 1>,At<Ax, 8>,
 :mac1    ArpRn1_2,ArpStep1_0,ArpStep1_1,Ax_8    is ArpRn1_2 & ArpStep1_0 & ArpStep1_1 & Ax_8 & op_0307=0x5 & op_0915=0x2F unimpl
 
-# 0x6700 0x10FF    moda4 At<Moda4, 4>,At<Ax, 12>,At<Cond, 0>,
-:moda4    Moda4_4,Ax_12,Cond_0    is Moda4_4 & Ax_12 & Cond_0 & op_0811=0x7 & op_1315=0x3 unimpl
-
-# 0x6F00 0x107F    moda3 At<Moda3, 4>,At<Bx, 12>,At<Cond, 0>,
-:moda3    Moda3_4,Bx_12,Cond_0    is Moda3_4 & Bx_12 & Cond_0 & op_0711=0x1E & op_1315=0x3 unimpl
-
 # 0xD7C2 0x0001    pacr1 At<Ax, 0>,
 :pacr1    Ax_0    is Ax_0 & op_0115=0x6BE1 unimpl
 
