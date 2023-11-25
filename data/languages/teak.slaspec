@@ -732,6 +732,35 @@ macro DoMultiplication_unit1(x_sign, y_sign)
     DoMultiplication(p1, P1E, x1, y1, x_sign, y_sign);
 }
 
+macro ShiftBus40Left(value, sv, Ab)
+{
+    tmp:5 = Ab; # assert(sizeof(Ab) == 5)
+
+    V = value != 0 && S == 0;
+    VL = VL || V;
+    Ab = value << sv;
+    C = Ab[39,1] != 0;
+    SetAccFlag(Ab);
+    LM = LM || ((S == 0) && (SATA == 0) && (V || Ab != sext(Ab[0,32])));
+    # todo: saturate;
+}
+
+macro ShiftBus40Right(value, nsv, Ab)
+{
+    tmp:5 = Ab; # assert(sizeof(Ab) == 5)
+
+    C = ((value >> nsv - 1) & 1) != 0;
+    Ab = value >> nsv;
+    if(S==1) goto <end>;
+        # Arithamatic shift
+        Ab = value s>> nsv;
+    <end>
+    V = V && S;
+
+    SetAccFlag(Ab);
+    LM = LM || ((S == 0) && (SATA == 0) && (V || Ab != sext(Ab[0,32])));
+}
+
 @include "teak.sinc"
 @include "alb.sinc"
 @include "alm_alu.sinc"
