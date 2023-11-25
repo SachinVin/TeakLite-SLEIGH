@@ -469,4 +469,30 @@ with: op_1215=0xC
 }
 
 # 0x4000 0x0F7F    alu At<Alu, 9>,At<MemR7Imm7s, 0>,At<Ax, 8>,
-:alu    Alu_9,MemR7Imm7s_0,Ax_8    is Alu_9 & MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_1215=0x4 unimpl
+with: op_0707=0x0 & op_1215=0x4
+{
+    :alu_or    MemR7Imm7s_0,Ax_8    is Alu_9=0x0 & MemR7Imm7s_0 & Ax_8 
+    {
+        AlmGenericOr(zext(MemR7Imm7s_0:2), Ax_8);
+    }
+    :alu_and    MemR7Imm7s_0,Ax_8    is Alu_9=0x1 & MemR7Imm7s_0 & Ax_8 
+    {
+        AlmGenericAnd(zext(MemR7Imm7s_0:2), Ax_8);
+    }
+    :alu_xor    MemR7Imm7s_0,Ax_8    is Alu_9=0x2 & MemR7Imm7s_0 & Ax_8 
+    {
+        AlmGenericXor(zext(MemR7Imm7s_0:2), Ax_8);
+    }
+    :alu_add    MemR7Imm7s_0,Ax_8    is Alu_9=0x3 & MemR7Imm7s_0 & Ax_8 
+    {
+        AlmGenericAdd(sext(MemR7Imm7s_0:2), Ax_8);
+    }
+    :alu_cmp    MemR7Imm7s_0,Ax_8    is Alu_9=0x6 & MemR7Imm7s_0 & Ax_8 
+    {
+        AlmGenericCmp(sext(MemR7Imm7s_0:2), Ax_8);
+    }
+    :alu_sub    MemR7Imm7s_0,Ax_8    is Alu_9=0x7 & MemR7Imm7s_0 & Ax_8 
+    {
+        AlmGenericSub(sext(MemR7Imm7s_0:2), Ax_8);
+    }
+}
