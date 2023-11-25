@@ -352,7 +352,6 @@ with :op_0507=0x5 & op_1315=0x4
 #     AlmOp::And,
 #     AlmOp::Xor,
 #     AlmOp::Add,
-
 #     AlmOp::Reserved,
 #     AlmOp::Reserved,
 #     AlmOp::Cmp,
@@ -438,7 +437,36 @@ with :op_0507=0x5 & op_1315=0x4
 }
 
 # 0xC000 0x0FFF    alu At<Alu, 9>,At<Imm8, 0>,At<Ax, 8>,
-:alu    Alu_9,Imm8_0,Ax_8    is Alu_9 & Imm8_0 & Ax_8 & op_1215=0xC unimpl
+with: op_1215=0xC
+{
+    :alu_or    Imm8_0,Ax_8    is Alu_9=0x0 & Imm8_0 & Ax_8
+    {
+        AlmGenericOr(zext(Imm8_0:1), Ax_8);
+    }
+    :alu_and    Imm8_0,Ax_8    is Alu_9=0x1 & Imm8_0 & Ax_8
+    {
+        Ax_backup:5 = Ax_8 & 0xFF00;
+        AlmGenericAnd(zext(Imm8_0:1), Ax_8);
+        Ax_8[8,8] = Ax_backup[8,8];
+    }
+    :alu_xor    Imm8_0,Ax_8    is Alu_9=0x2 & Imm8_0 & Ax_8
+    {
+        AlmGenericXor(zext(Imm8_0:1), Ax_8);
+    }
+    # Imm8_0 is zero-extended to 16 bits
+    :alu_add    Imm8_0,Ax_8    is Alu_9=0x3 & Imm8_0 & Ax_8
+    {
+        AlmGenericAdd(zext(Imm8_0:1), Ax_8);
+    }
+    :alu_cmp    Imm8_0,Ax_8    is Alu_9=0x6 & Imm8_0 & Ax_8
+    {
+        AlmGenericCmp(zext(Imm8_0:1), Ax_8);
+    }
+    :alu_sub    Imm8_0,Ax_8    is Alu_9=0x7 & Imm8_0 & Ax_8
+    {
+        AlmGenericSub(zext(Imm8_0:1), Ax_8);
+    }
+}
 
 # 0x4000 0x0F7F    alu At<Alu, 9>,At<MemR7Imm7s, 0>,At<Ax, 8>,
 :alu    Alu_9,MemR7Imm7s_0,Ax_8    is Alu_9 & MemR7Imm7s_0 & Ax_8 & op_0707=0x0 & op_1215=0x4 unimpl
