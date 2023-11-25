@@ -450,7 +450,10 @@ with : op_0415=0x498 {
 :load_stepj    Imm7s_0    is Imm7s_0 & op_0715=0x1BF unimpl
 
 # 0x0400 0x00FF    load_page At<Imm8, 0>,
-:load_page    Imm8_0    is Imm8_0 & op_0815=0x4 unimpl
+:load_page    Imm8_0    is Imm8_0 & op_0815=0x4
+{
+    PAGE = zext(Imm8_0:1);
+}
 
 # 0x0200 0x01FF    load_modi At<Imm9, 0>,
 :load_modi    Imm9_0    is Imm9_0 & op_0915=0x1 unimpl
