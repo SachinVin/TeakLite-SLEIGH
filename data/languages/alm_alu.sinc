@@ -40,6 +40,7 @@ macro AlmGenericXor(a, Ax)
 macro AlmGenericAdd(a, Ax) 
 {
     value:5 = a;
+    C = carry(value, Ax);
     V = scarry(value, Ax);
     VL = VL || V;
     Ax = value + Ax;
@@ -60,6 +61,7 @@ macro AlmGenericTst1(a, Ax)
 macro AlmGenericCmp(a, Ax) 
 {
     value:5 = a;
+    c = carry(value, -Ax);
     V = sborrow(value, Ax);
     VL = VL || V;
     value = value - Ax;
@@ -68,21 +70,20 @@ macro AlmGenericCmp(a, Ax)
 macro AlmGenericSub(a, Ax) 
 {
     value:5 = a;
+    C = carry(value, -Ax);
     V = sborrow(value, Ax);
     VL = VL || V;
     value = value - Ax;
     SatAndSetAccAndFlag(Ax, value);
 }
-macro AlmGenericMsu(a, Ax) 
-{
-}
+# macro AlmGenericMsu(a, Ax) {} # Handled without macro
 macro AlmGenericSqr(a) 
 {
     x0 = a;
     y0 = a;
     DoMultiplication_unit0(1,1);
 }
-macro AlmGenericSqra() {}
+# macro AlmGenericSqra() {} # Handled without macro
 # <<< ALM normal >>>
 # 0xA000 0x1FFF    alm At<Alm, 9>,At<MemImm8, 0>,At<Ax, 8>,
 with : op_1315=0x5 
