@@ -481,6 +481,17 @@ Register_5: p0    is p0 & Register_0509=0x0B unimpl
 Register_5: pc    is pc & Register_0509=0x0C unimpl
 Register_5: Ax_5    is Ax_5 & (Register_0509=0x18 | Register_0509=0x19) unimpl
 
+RegToBus16SatAbl_9: Abl_9    is Abl_9 
+{
+    # todo: saturate
+    export Abl_9;
+}
+
+RegToBus16SatAxl_8: Axl_8    is Axl_8 
+{
+    # todo: saturate
+    export Axl_8;
+}
 
 Address18_16and0: Address18    is Address18_2_0 ; Address18_16_16
   [ Address18 = ((Address18_2_0<<16) | (Address18_16_16)); ]
