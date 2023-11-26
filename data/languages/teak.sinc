@@ -810,27 +810,24 @@ with :op_0606=0x1 & op_0909=0x1 & op_1215=0x9
 # 0xD4B8 0xFFFF0100    mov At<MemImm16, 16>,At<Ax, 8>,
 :mov    MemImm16_16,Ax_8    is Ax_8 & op_0007=0xB8 & op_0915=0x6A ; MemImm16_16 
 {
-    SatAndSetAccAndFlag(Ax_8, MemImm16_16);
+    SatAndSetAccAndFlag(Ax_8, sext(MemImm16_16));
 }
 
 # 0x6100 0x18FF    mov At<MemImm8, 0>,At<Ab, 11>,
 :mov    MemImm8_0,Ab_11    is MemImm8_0 & Ab_11 & op_0810=0x1 & op_1315=0x3 
 {
-    SatAndSetAccAndFlag(Ab_11, MemImm8_0);
+    SatAndSetAccAndFlag(Ab_11, sext(MemImm8_0));
 }
 
 # 0x6200 0x1CFF    mov At<MemImm8, 0>,At<Ablh, 10>,
-:mov    MemImm8_0,Ablh_10    is MemImm8_0 & Ablh_10 & op_0809=0x2 & op_1315=0x3 
-{
-    SatAndSetAccAndFlag(Ablh_10, MemImm8_0);
-}
+:mov    MemImm8_0,Ablh_10    is MemImm8_0 & Ablh_10 & op_0809=0x2 & op_1315=0x3 unimpl
 
 # 0x6500 0x10FF    mov_eu At<MemImm8, 0>,At<Axh, 12>,
-:mov_eu    MemImm8_0,Axh_12    is MemImm8_0 & Axh_12 & op_0811=0x5 & op_1315=0x3 
+:mov_eu    MemImm8_0,GetAccAxh_12    is MemImm8_0 & GetAccAxh_12 & op_0811=0x5 & op_1315=0x3 
 {
-    tmp:5 = Axh_12 & 0xFF00000000;
+    tmp:5 = GetAccAxh_12 & 0xFF00000000;
     tmp = tmp | (zext(MemImm8_0) << 16);
-    SetAccAndFlag(Axh_12, tmp);
+    SetAccAndFlag(GetAccAxh_12, tmp);
 }
 
 # 0x6000 0x1CFF    mov At<MemImm8, 0>,At<RnOld, 10>,

@@ -393,6 +393,7 @@ RegisterGetAccAbl_0: Axl_0    is Ax_0 & Axl_0 & Register_0004=0x1A { export Ax_0
 RegisterGetAccAbl_0: Axl_0    is Ax_0 & Axl_0 & Register_0004=0x1B { export Ax_0; }
 
 GetAccAxl_12: Axl_12    is Ax_12 & Axl_12 { export Ax_12; }
+GetAccAxh_12: Axh_12    is Ax_12 & Axh_12 { export Ax_12; }
 
 RegToBus16_0: Ax_0    is Ax_0 & Register_0004=0x18
 { 
