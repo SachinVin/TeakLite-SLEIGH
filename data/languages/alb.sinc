@@ -129,7 +129,38 @@ macro GenericAlbCmpv(a,b)
 :alb    Alb_9,Imm16_16,Register_0    is Alb_9 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16 unimpl
 
 # 0x47B8 0xFFFF0007    alb_r6 At<Alb, 0>,At<Imm16, 16>,
-:alb_r6    Alb_0,Imm16_16    is Alb_0 & op_0315=0x8F7 ; Imm16_16 unimpl
+:alb_r6_set    Imm16_16    is Alb_0=0x0 & op_0315=0x8F7 ; Imm16_16
+{
+    GenericAlbSet(Imm16_16:2, r6);
+}
+:alb_r6_rst    Imm16_16    is Alb_0=0x1 & op_0315=0x8F7 ; Imm16_16
+{
+    GenericAlbRst(Imm16_16:2, r6);
+}
+:alb_r6_chng    Imm16_16    is Alb_0=0x2 & op_0315=0x8F7 ; Imm16_16
+{
+    GenericAlbChng(Imm16_16:2, r6);
+}
+:alb_r6_addv    Imm16_16    is Alb_0=0x3 & op_0315=0x8F7 ; Imm16_16
+{
+    GenericAlbAddv(Imm16_16:2, r6);
+}
+:alb_r6_tst0    Imm16_16    is Alb_0=0x4 & op_0315=0x8F7 ; Imm16_16
+{
+    GenericAlbTst0(Imm16_16:2, r6);
+}
+:alb_r6_tst1    Imm16_16    is Alb_0=0x5 & op_0315=0x8F7 ; Imm16_16
+{
+    GenericAlbTst1(Imm16_16:2, r6);
+}
+:alb_r6_cmpv    Imm16_16    is Alb_0=0x6 & op_0315=0x8F7 ; Imm16_16
+{
+    GenericAlbCmpv(Imm16_16:2, r6);
+}
+:alb_r6_subv    Imm16_16    is Alb_0=0x7 & op_0315=0x8F7 ; Imm16_16
+{
+    GenericAlbSubv(Imm16_16:2, r6);
+}
 
 # <<< ALB SttMod >>>
 # 0x43C8 0xFFFF0007    alb Const<Alb, 0>,At<Imm16, 16>,At<SttMod, 0>,
