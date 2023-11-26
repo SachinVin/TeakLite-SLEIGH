@@ -759,31 +759,53 @@ with :op_0606=0x1 & op_0909=0x1 & op_1215=0x9
 :modr_ddmod    ArpRn2_5,ArpStep2_1,ArpStep2_3    is ArpRn2_5 & ArpStep2_1 & ArpStep2_3 & op_0000=0x1 & op_0715=0x1B unimpl
 
 # 0xD290 0x0C60    mov At<Ab, 10>,At<Ab, 5>,
-:mov    Ab_10,Ab_5    is Ab_10 & Ab_5 & op_0004=0x10 & op_0709=0x5 & op_1215=0xD unimpl
-
+:mov    Ab_10,Ab_5    is Ab_10 & Ab_5 & op_0004=0x10 & op_0709=0x5 & op_1215=0xD
+{
+    SatAndSetAccAndFlag(Ab_5, Ab_10);
+}
 # 0xD298 0x0C00    mov_dvm At<Abl, 10>,
 :mov_dvm    Abl_10    is Abl_10 & op_0009=0x298 & op_1215=0xD unimpl
 
 # 0xD2D8 0x0C00    mov_x0 At<Abl, 10>,
-:mov_x0    Abl_10    is Abl_10 & op_0009=0x2D8 & op_1215=0xD unimpl
-
+:mov_x0    RegToBus16SatAbl_10    is RegToBus16SatAbl_10 & op_0009=0x2D8 & op_1215=0xD
+{
+    x0 = RegToBus16SatAbl_10;
+}
 # 0xD394 0x0003    mov_x1 At<Abl, 0>,
-:mov_x1    Abl_0    is Abl_0 & op_0215=0x34E5 unimpl
+:mov_x1    RegToBus16SatAbl_0    is RegToBus16SatAbl_0 & op_0215=0x34E5
+{
+    x1 = RegToBus16SatAbl_0;
+}
 
 # 0xD384 0x0003    mov_y1 At<Abl, 0>,
-:mov_y1    Abl_0    is Abl_0 & op_0215=0x34E1 unimpl
+:mov_y1    RegToBus16SatAbl_0    is RegToBus16SatAbl_0 & op_0215=0x34E1
+{
+    y1 = RegToBus16SatAbl_0;
+}
 
 # 0x3000 0x0EFF    mov At<Ablh, 9>,At<MemImm8, 0>,
-:mov    Ablh_9,MemImm8_0    is Ablh_9 & MemImm8_0 & op_0808=0x0 & op_1215=0x3 unimpl
+:mov    RegToBus16SatAblh_9,MemImm8_0    is RegToBus16SatAblh_9 & MemImm8_0 & op_0808=0x0 & op_1215=0x3
+{
+    MemImm8_0 = RegToBus16SatAblh_9;
+}
 
 # 0xD4BC 0xFFFF0100    mov At<Axl, 8>,At<MemImm16, 16>,
-:mov    Axl_8,MemImm16_16    is Axl_8 & op_0007=0xBC & op_0915=0x6A ; MemImm16_16 unimpl
+:mov    RegToBus16SatAxl_8,MemImm16_16    is RegToBus16SatAxl_8 & op_0007=0xBC & op_0915=0x6A ; MemImm16_16 
+{
+    MemImm16_16 = RegToBus16SatAxl_8;
+}
 
 # 0xD49C 0xFFFF0100    mov At<Axl, 8>,At<MemR7Imm16, 16>,
-:mov    Axl_8,MemR7Imm16_16    is Axl_8 & op_0007=0x9C & op_0915=0x6A ; MemR7Imm16_16 unimpl
+:mov    RegToBus16SatAxl_8,MemR7Imm16_16    is RegToBus16SatAxl_8 & op_0007=0x9C & op_0915=0x6A ; MemR7Imm16_16 
+{
+    MemR7Imm16_16 = RegToBus16SatAxl_8;
+}
 
 # 0xDC80 0x017F    mov At<Axl, 8>,At<MemR7Imm7s, 0>,
-:mov    Axl_8,MemR7Imm7s_0    is Axl_8 & MemR7Imm7s_0 & op_0707=0x1 & op_0915=0x6E unimpl
+:mov    RegToBus16SatAxl_8,MemR7Imm7s_0    is RegToBus16SatAxl_8 & MemR7Imm7s_0 & op_0707=0x1 & op_0915=0x6E 
+{
+    MemR7Imm7s_0 = RegToBus16SatAxl_8;
+}
 
 # 0xD4B8 0xFFFF0100    mov At<MemImm16, 16>,At<Ax, 8>,
 :mov    MemImm16_16,Ax_8    is Ax_8 & op_0007=0xB8 & op_0915=0x6A ; MemImm16_16 

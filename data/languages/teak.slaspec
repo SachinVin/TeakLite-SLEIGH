@@ -481,10 +481,20 @@ Register_5: p0    is p0 & Register_0509=0x0B unimpl
 Register_5: pc    is pc & Register_0509=0x0C unimpl
 Register_5: Ax_5    is Ax_5 & (Register_0509=0x18 | Register_0509=0x19) unimpl
 
-RegToBus16SatAbl_9: Abl_9    is Abl_9 
+RegToBus16SatAblh_9: Ablh_9   is Ablh_9 
 {
     # todo: saturate
-    export Abl_9;
+    export Ablh_9;
+}
+RegToBus16SatAbl_10: Abl_10   is Abl_10 
+{
+    # todo: saturate
+    export Abl_10;
+}
+RegToBus16SatAbl_0: Abl_0   is Abl_0 
+{
+    # todo: saturate
+    export Abl_0;
 }
 
 RegToBus16SatAxl_8: Axl_8    is Axl_8 
