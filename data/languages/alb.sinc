@@ -92,11 +92,37 @@ macro GenericAlbCmpv(a,b)
 }
 
 # 0x80E0 0xFFFF0E1F    alb At<Alb, 9>,At<Imm16, 16>,At<Rn, 0>,At<StepZIDS, 3>,
-:alb    Alb_9,Imm16_16,Rn_0,StepZIDS_3    is Alb_9 & Rn_0 & StepZIDS_3 & op_0508=0x7 & op_1215=0x8 ; Imm16_16 unimpl
-
 :alb_set    Imm16_16,RnAddressAndModify_0    is Alb_9=0x0 & RnAddressAndModify_0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
 {
     GenericAlbSet(Imm16_16:2, RnAddressAndModify_0);
+}
+:alb_rst    Imm16_16,RnAddressAndModify_0    is Alb_9=0x1 & RnAddressAndModify_0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbRst(Imm16_16:2, RnAddressAndModify_0);
+}
+:alb_chng    Imm16_16,RnAddressAndModify_0    is Alb_9=0x2 & RnAddressAndModify_0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbChng(Imm16_16:2, RnAddressAndModify_0);
+}
+:alb_addv    Imm16_16,RnAddressAndModify_0    is Alb_9=0x3 & RnAddressAndModify_0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbAddv(Imm16_16:2, RnAddressAndModify_0);
+}
+:alb_tst0    Imm16_16,RnAddressAndModify_0    is Alb_9=0x4 & RnAddressAndModify_0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbTst0(Imm16_16:2, RnAddressAndModify_0);
+}
+:alb_tst1    Imm16_16,RnAddressAndModify_0    is Alb_9=0x5 & RnAddressAndModify_0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbTst1(Imm16_16:2, RnAddressAndModify_0);
+}
+:alb_cmpv    Imm16_16,RnAddressAndModify_0    is Alb_9=0x6 & RnAddressAndModify_0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbCmpv(Imm16_16:2, RnAddressAndModify_0);
+}
+:alb_subv    Imm16_16,RnAddressAndModify_0    is Alb_9=0x7 & RnAddressAndModify_0 & op_0508=0x7 & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbSubv(Imm16_16:2, RnAddressAndModify_0);
 }
 
 # 0x81E0 0xFFFF0E1F    alb At<Alb, 9>,At<Imm16, 16>,At<Register, 0>,
