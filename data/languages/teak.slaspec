@@ -582,6 +582,14 @@ ProductToBus40p1: p1    is p1
     local tmp:5 = zext(p1) | sext(P1E << 32);
     export tmp;
 }
+ProductToBus40_1: ProductToBus40p0 is ProductToBus40p0 & Px_1=0x0
+{
+    export ProductToBus40p0;
+}
+ProductToBus40_1: ProductToBus40p1 is ProductToBus40p1 & Px_1=0x1
+{
+    export ProductToBus40p1;
+}
 
 Cond_0: ""       is Cond_0003=0x0 { local tmp:1 = (1); export tmp; } # Always
 Cond_0: "eq"     is Cond_0003=0x1 { local tmp:1 = (Z==1); export tmp; } # Equal to zero
@@ -783,6 +791,23 @@ macro ShiftBus40Right(value, nsv, Ab)
 
     SetAccFlag(Ab);
     LM = LM || ((S == 0) && (SATA == 0) && (V || Ab != sext(Ab[0,32])));
+}
+
+macro Add(a, b) 
+{
+    value:5 = a;
+    C = carry(value, b);
+    V = scarry(value, b);
+    VL = VL || V;
+    b = value + b;
+}
+macro Sub(a, b) 
+{
+    value:5 = a;
+    C = carry(value, -b);
+    V = sborrow(value, b);
+    VL = VL || V;
+    b = value - b;
 }
 
 @include "teak.sinc"

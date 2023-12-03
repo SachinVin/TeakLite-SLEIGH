@@ -161,28 +161,68 @@ with : op_0415=0x498 {
 :or_    Bx_10,Bx_1,Ax_0    is Bx_10 & Bx_1 & Ax_0 & op_0209=0xF1 & op_1115=0x1A unimpl
 
 # 0xD2DA 0x0C01    add At<Ab, 10>,At<Bx, 0>,
-:add    Ab_10,Bx_0    is Ab_10 & Bx_0 & op_0109=0x16D & op_1215=0xD unimpl
+:add    Ab_10,Bx_0    is Ab_10 & Bx_0 & op_0109=0x16D & op_1215=0xD
+{
+    local tmp_Bx = Bx_0;
+    Add(Ab_10, tmp_Bx);
+    SatAndSetAccAndFlag(Bx_0, tmp_Bx);
+}
 
 # 0x5DF0 0x0003    add At<Bx, 1>,At<Ax, 0>,
-:add    Bx_1,Ax_0    is Bx_1 & Ax_0 & op_0215=0x177C unimpl
+:add    Bx_1,Ax_0    is Bx_1 & Ax_0 & op_0215=0x177C 
+{
+    local tmp_Ax = Ax_0;
+    Add(Bx_1, tmp_Ax);
+    SatAndSetAccAndFlag(Ax_0, tmp_Ax);
+}
 
 # 0xD782 0x0001    add_p1 At<Ax, 0>,
-:add_p1    Ax_0    is Ax_0 & op_0115=0x6BC1 unimpl
+:add    ProductToBus40p1,Ax_0    is ProductToBus40p1 & Ax_0 & op_0115=0x6BC1 
+{
+    local tmp_Ax = Ax_0;
+    Add(ProductToBus40p1, tmp_Ax);
+    SatAndSetAccAndFlag(Ax_0, tmp_Ax);
+}
 
 # 0x5DF8 0x0003    add At<Px, 1>,At<Bx, 0>,
-:add    Px_1,Bx_0    is Px_1 & Bx_0 & op_0215=0x177E unimpl
+:add    ProductToBus40_1,Bx_0    is ProductToBus40_1 & Bx_0 & op_0215=0x177E 
+{
+    local tmp_Bx = Bx_0;
+    Add(ProductToBus40_1, tmp_Bx);
+    SatAndSetAccAndFlag(Bx_0, tmp_Bx);
+}
 
 # 0x8A61 0x0118    sub At<Ab, 3>,At<Bx, 8>,
-:sub    Ab_3,Bx_8    is Ab_3 & Bx_8 & op_0002=0x1 & op_0507=0x3 & op_0915=0x45 unimpl
+:sub    Ab_3,Bx_8    is Ab_3 & Bx_8 & op_0002=0x1 & op_0507=0x3 & op_0915=0x45 
+{
+    local tmp_Bx = Bx_8;
+    Sub(Ab_3, tmp_Bx);
+    SatAndSetAccAndFlag(Bx_8, tmp_Bx);
+}
 
 # 0x8861 0x0018    sub At<Bx, 4>,At<Ax, 3>,
-:sub    Bx_4,Ax_3    is Bx_4 & Ax_3 & op_0002=0x1 & op_0515=0x443 unimpl
+:sub    Bx_4,Ax_3    is Bx_4 & Ax_3 & op_0002=0x1 & op_0515=0x443 
+{
+    local tmp_Ax = Ax_3;
+    Sub(Bx_4, tmp_Ax);
+    SatAndSetAccAndFlag(Ax_3, tmp_Ax);
+}
 
 # 0xD4B9 0x0100    sub_p1 At<Ax, 8>,
-:sub_p1    Ax_8    is Ax_8 & op_0007=0xB9 & op_0915=0x6A unimpl
+:sub    ProductToBus40p1,Ax_8    is ProductToBus40p1 & Ax_8 & op_0007=0xB9 & op_0915=0x6A 
+{
+    local tmp_Ax = Ax_8;
+    Sub(ProductToBus40p1, tmp_Ax);
+    SatAndSetAccAndFlag(Ax_8, tmp_Ax);
+}
 
 # 0x8FD0 0x0003    sub At<Px, 1>,At<Bx, 0>,
-:sub    Px_1,Bx_0    is Px_1 & Bx_0 & op_0215=0x23F4 unimpl
+:sub    ProductToBus40_1,Bx_0    is ProductToBus40_1 & Bx_0 & op_0215=0x23F4 
+{
+    local tmp_Bx = Bx_0;
+    Sub(ProductToBus40_1, tmp_Bx);
+    SatAndSetAccAndFlag(Bx_0, tmp_Bx);
+}
 
 # 0x5DC0 0x000C    app At<Ab, 2>,BZr,Add,PP,Add,PP,
 :app    Ab_2    is Ab_2 & op_0001=0x0 & op_0415=0x5DC unimpl
