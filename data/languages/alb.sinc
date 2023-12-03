@@ -126,7 +126,97 @@ macro GenericAlbCmpv(a,b)
 }
 
 # 0x81E0 0xFFFF0E1F    alb At<Alb, 9>,At<Imm16, 16>,At<Register, 0>,
-:alb    Alb_9,Imm16_16,Register_0    is Alb_9 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16 unimpl
+#todo: recheck implementation f0r Ablh regs
+:alb_set    Imm16_16,Register_0    is Alb_9=0x0 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbSet(Imm16_16:2, Register_0);
+}
+:alb_rst    Imm16_16,Register_0    is Alb_9=0x1 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbRst(Imm16_16:2, Register_0);
+}
+:alb_chng    Imm16_16,Register_0    is Alb_9=0x2 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbChng(Imm16_16:2, Register_0);
+}
+:alb_addv    Imm16_16,Register_0    is Alb_9=0x3 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbAddv(Imm16_16:2, Register_0);
+}
+:alb_tst0    Imm16_16,Register_0    is Alb_9=0x4 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbTst0(Imm16_16:2, Register_0);
+}
+:alb_tst1    Imm16_16,Register_0    is Alb_9=0x5 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbTst1(Imm16_16:2, Register_0);
+}
+:alb_cmpv    Imm16_16,Register_0    is Alb_9=0x6 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbCmpv(Imm16_16:2, Register_0);
+}
+:alb_subv    Imm16_16,Register_0    is Alb_9=0x7 & Register_0 & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    GenericAlbSubv(Imm16_16:2, Register_0);
+}
+:alb_set    Imm16_16,ProductToBus40p0    is ProductToBus40p0 & Alb_9=0x0 & Register_0004=0x0B & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    local tmp:5 = (ProductToBus40p0 >> 16) & 0xFFFF;
+    local tmp_p0:2 = tmp:2;
+    GenericAlbSet(Imm16_16:2, tmp_p0);
+    P0E = tmp_p0 > 0x7FFF;
+    p0[15,15] = tmp_p0;
+}
+:alb_rst    Imm16_16,ProductToBus40p0    is ProductToBus40p0 & Alb_9=0x1 & Register_0004=0x0B & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    local tmp:5 = (ProductToBus40p0 >> 16) & 0xFFFF;
+    local tmp_p0:2 = tmp:2;
+    GenericAlbRst(Imm16_16:2, tmp_p0);
+    P0E = tmp_p0 > 0x7FFF;
+    p0[15,15] = tmp_p0;
+}
+:alb_chng    Imm16_16,ProductToBus40p0    is ProductToBus40p0 & Alb_9=0x2 & Register_0004=0x0B & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    local tmp:5 = (ProductToBus40p0 >> 16) & 0xFFFF;
+    local tmp_p0:2 = tmp:2;
+    GenericAlbChng(Imm16_16:2, tmp_p0);
+    P0E = tmp_p0 > 0x7FFF;
+    p0[15,15] = tmp_p0;
+}
+:alb_addv    Imm16_16,ProductToBus40p0    is ProductToBus40p0 & Alb_9=0x3 & Register_0004=0x0B & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    local tmp:5 = (ProductToBus40p0 >> 16) & 0xFFFF;
+    local tmp_p0:2 = tmp:2;
+    GenericAlbAddv(Imm16_16:2, tmp_p0);
+    P0E = tmp_p0 > 0x7FFF;
+    p0[15,15] = tmp_p0;
+}
+:alb_tst0    Imm16_16,ProductToBus40p0    is ProductToBus40p0 & Alb_9=0x4 & Register_0004=0x0B & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    local tmp:5 = (ProductToBus40p0 >> 16) & 0xFFFF;
+    local tmp_p0:2 = tmp:2;
+    GenericAlbTst0(Imm16_16:2, tmp_p0);
+}
+:alb_tst1    Imm16_16,ProductToBus40p0    is ProductToBus40p0 & Alb_9=0x5 & Register_0004=0x0B & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    local tmp:5 = (ProductToBus40p0 >> 16) & 0xFFFF;
+    local tmp_p0:2 = tmp:2;
+    GenericAlbTst1(Imm16_16:2, tmp_p0);
+}
+:alb_cmpv    Imm16_16,ProductToBus40p0    is ProductToBus40p0 & Alb_9=0x6 & Register_0004=0x0B & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    local tmp:5 = (ProductToBus40p0 >> 16) & 0xFFFF;
+    local tmp_p0:2 = tmp:2;
+    GenericAlbCmpv(Imm16_16:2, tmp_p0);
+}
+:alb_subv    Imm16_16,ProductToBus40p0    is ProductToBus40p0 & Alb_9=0x7 & Register_0004=0x0B & op_0508=0xF & op_1215=0x8 ; Imm16_16
+{
+    local tmp:5 = (ProductToBus40p0 >> 16) & 0xFFFF;
+    local tmp_p0:2 = tmp:2;
+    GenericAlbSubv(Imm16_16:2, tmp_p0);
+    P0E = tmp_p0 > 0x7FFF;
+    p0[15,15] = tmp_p0;
+}
 
 # 0x47B8 0xFFFF0007    alb_r6 At<Alb, 0>,At<Imm16, 16>,
 :alb_r6_set    Imm16_16    is Alb_0=0x0 & op_0315=0x8F7 ; Imm16_16
